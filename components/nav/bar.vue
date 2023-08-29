@@ -1,8 +1,14 @@
 <template>
     <header :class="header_class" class="fixed w-full left-0">
         <nav>
-            <div>
+            <div class="upper">
+                <Icon v-if="!header_class.transparent" class="salesianos-logo" name="Salesianos" />
                 <ipisa-logo class="logo" />
+                <div class="social-media">
+                    <div v-for="({ src }, index) in social_media" class="icon">
+                        <Icon class="flex-shrink-0" :name="src" size="26px" />
+                    </div>
+                </div>
             </div>
             <ul class="navigation">
                 <li v-for="({ label, class_ }, index) in navigation_bar" :key="index" class="item" :class="class_">
@@ -22,16 +28,44 @@ ul.navigation li.item.focused {
 header {
     @apply text-black bg-white top-0 border-b border-b-[transparent] transition-all;
 }
-header nav svg.logo {
-    @apply my-4 transition-all w-[90px] h-[90px];
+header nav div.upper svg.logo {
+    @apply my-4 mx-auto w-[90px] h-[90px] transition-all;
 }
-
+header nav div.upper svg.salesianos-logo {
+    @apply absolute left-[18px] top-[32px] max-w-[100px] w-[7vw] xl:w-[11vw] h-auto;
+}
 header nav {
     @apply w-full flex flex-col items-center mb-4 justify-center;
 }
-header nav ul.navigation {
-    @apply flex items-center px-8 transition-all;
+header nav div.upper {
+    @apply flex w-full;
 }
+header nav ul.navigation {
+    @apply hidden lg:flex items-center transition-all;
+}
+header nav div.upper div.social-media {
+    @apply absolute flex right-0;
+}
+header nav div.upper div.social-media div.icon {
+    @apply flex items-center justify-center h-[40px] w-[40px] p-3 text-white cursor-pointer;
+}
+header nav div.upper div.social-media div.icon {
+    transform: translateY(-100%);
+    animation: slide-up-bottom 200ms cubic-bezier(.68,.82,0,.8) forwards;
+}
+@keyframes slide-up-bottom {
+    from {
+        transform: translateY(-100%);
+    }to {
+        transform: translateY(0%);
+    }
+}
+header nav div.upper div.social-media div.icon:nth-child(2) { animation-delay: 200ms; }
+header nav div.upper div.social-media div.icon:nth-child(3) { animation-delay: 300ms; }
+header nav div.upper div.social-media div.icon:nth-child(4) { animation-delay: 400ms; }
+header nav div.upper div.social-media div.icon:nth-child(5) { animation-delay: 500ms; }
+header nav div.upper div.social-media div.icon:nth-child(odd) { @apply bg-blue; }
+header nav div.upper div.social-media div.icon:nth-child(even) { @apply bg-orange; }
 header.scrolled {
     @apply top-[-200px] border-b-gray-100;
 }
@@ -41,8 +75,19 @@ header.scrolled.up {
 header.transparent {
     @apply bg-[#FFFFFF00] text-white transition-colors;
 }
-header.transparent nav svg.logo {
-    @apply my-7 w-[130px] h-[130px];
+header.transparent nav div.upper div.social-media { 
+    @apply absolute lg:right-[32px];
+}
+header.transparent nav div.upper div.social-media div.icon {
+    @apply lg:mt-8 text-[#FFFFFFCC];
+    animation: none;
+    transform: translateY(0%);
+}
+header.transparent nav div.upper div.social-media div.icon:is(:nth-child(even), :nth-child(odd)) {
+    @apply bg-[transparent];
+}
+header.transparent nav div.upper svg.logo {
+    @apply my-7 w-[130px] h-[130px] lg:w-[130px] lg:h-[130px];
 }
 header.transparent nav ul.navigation {
     @apply px-8;
@@ -55,8 +100,6 @@ header.scrolled nav ul.navigation {
 }
 </style>
 <script setup>
-import { onMounted, onBeforeUnmount, reactive, ref } from 'vue';
-
 const header_class = reactive({
     transparent: true,
     scrolled: false,
@@ -83,10 +126,25 @@ const navigation_bar = [
         class_: 'focused'
     }
 ]
+const social_media = [
+    {
+        src: 'fe:instagram'
+    },
+    {
+        src: 'icon-park-outline:facebook'
+    },
+    {
+        src: 'fe:mail'
+    },
+    {
+        src: 'ic:baseline-whatsapp'
+    }
+];
 let prevScrollY;
 onMounted(() => {
     prevScrollY = ref(window.scrollY);
     window.addEventListener('scroll', handleScroll);
+    handleScroll() // in case
 });
 onBeforeUnmount(() => {
     window.removeEventListener('scroll', handleScroll);

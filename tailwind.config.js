@@ -37,7 +37,6 @@ module.exports = {
         300: "#A4A4A4",
         400: "#636363",
       }
-
     },
     fontFamily: {
       'garamond': ['"EB Garamond"', '"ui-monospace"'],
