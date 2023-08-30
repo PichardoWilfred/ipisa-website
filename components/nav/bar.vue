@@ -1,5 +1,5 @@
 <template>
-    <header :class="header_class" class="fixed w-full left-0">
+    <header :class="header_class">
         <nav>
             <div class="upper">
                 <Icon v-if="!header_class.transparent" class="salesianos-logo" name="Salesianos" />
@@ -9,102 +9,130 @@
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
                     </div>
                 </div>
+                <button class="mobile" @click.prevent="toggle_mobile_menu">
+                    <Icon name="fe:bar" size="35px"/>
+                </button>
             </div>
             <ul class="navigation">
                 <li v-for="({ label, class_ }, index) in navigation_bar" :key="index" class="item" :class="class_">
                     {{ label }}
                 </li>
             </ul>
-        </nav>
+        </nav>   
+        <ul class="mobile-navigation">
+            <li v-for="({ label, class_ }, index) in navigation_bar" :key="index" class="item" :class="class_">
+                {{ label }}
+            </li>
+        </ul>
     </header>
+    <div v-if="mobile_menu" class="mask" @click="toggle_mobile_menu" />
 </template>
 <style scoped>
-ul.navigation li.item {
-    @apply relative cursor-pointer font-raleway font-bold me-10 last:me-0;
-}
-ul.navigation li.item.focused {
-    @apply after:absolute after:rounded-full after:w-[9px] after:h-[9px] after:bg-orange-300 after:top-[-2px] after:right-[-15px];
-}
-header {
-    @apply text-black bg-white top-0 border-b border-b-[transparent] transition-all;
-}
-header nav div.upper svg.logo {
-    @apply my-4 mx-auto w-[90px] h-[90px] transition-all;
-}
-header nav div.upper svg.salesianos-logo {
-    @apply absolute left-[18px] top-[32px] max-w-[100px] w-[7vw] xl:w-[11vw] h-auto;
-}
-header nav {
-    @apply w-full flex flex-col items-center mb-4 justify-center;
-}
-header nav div.upper {
-    @apply flex w-full;
-}
-header nav ul.navigation {
-    @apply hidden lg:flex items-center transition-all;
-}
-header nav div.upper div.social-media {
-    @apply absolute flex right-0;
-}
-header nav div.upper div.social-media div.icon {
-    @apply flex items-center justify-center h-[40px] w-[40px] p-3 text-white cursor-pointer;
-}
-header nav div.upper div.social-media div.icon {
-    transform: translateY(-100%);
-    animation: slide-up-bottom 200ms cubic-bezier(.68,.82,0,.8) forwards;
-}
-@keyframes slide-up-bottom {
-    from {
-        transform: translateY(-100%);
-    }to {
-        transform: translateY(0%);
+    ul.navigation li.item {
+        @apply relative cursor-pointer font-raleway font-bold me-10 last:me-0;
     }
-}
-header nav div.upper div.social-media div.icon:nth-child(2) { animation-delay: 200ms; }
-header nav div.upper div.social-media div.icon:nth-child(3) { animation-delay: 300ms; }
-header nav div.upper div.social-media div.icon:nth-child(4) { animation-delay: 400ms; }
-header nav div.upper div.social-media div.icon:nth-child(5) { animation-delay: 500ms; }
-header nav div.upper div.social-media div.icon:nth-child(odd) { @apply bg-blue; }
-header nav div.upper div.social-media div.icon:nth-child(even) { @apply bg-orange; }
-header.scrolled {
-    @apply top-[-200px] border-b-gray-100;
-}
-header.scrolled.up {
-    @apply top-0;
-}
-header.transparent {
-    @apply bg-[#FFFFFF00] text-white transition-colors;
-}
-header.transparent nav div.upper div.social-media { 
-    @apply absolute lg:right-[32px];
-}
-header.transparent nav div.upper div.social-media div.icon {
-    @apply lg:mt-8 text-[#FFFFFFCC];
-    animation: none;
-    transform: translateY(0%);
-}
-header.transparent nav div.upper div.social-media div.icon:is(:nth-child(even), :nth-child(odd)) {
-    @apply bg-[transparent];
-}
-header.transparent nav div.upper svg.logo {
-    @apply my-7 w-[130px] h-[130px] lg:w-[130px] lg:h-[130px];
-}
-header.transparent nav ul.navigation {
-    @apply px-8;
-}
-header.transparent nav {
-    @apply border-b-[transparent];
-}
-header.scrolled nav ul.navigation {
-    @apply me-0;
-}
+    ul.navigation li.item.focused {
+        @apply after:absolute after:rounded-full after:w-[9px] after:h-[9px] after:bg-orange-300 after:top-[-2px] after:right-[-15px];
+    }
+    header {
+        @apply fixed w-full left-0 text-black bg-white top-0 border-b border-b-[transparent] transition-all z-30;
+    }
+    header nav div.upper svg.logo {
+        @apply my-4 max-lg:ms-1 me-auto lg:mx-auto w-[60px] lg:w-[90px] h-[60px] lg:h-[90px] transition-all;
+    }
+    header nav div.upper svg.salesianos-logo {
+        @apply hidden lg:flex absolute left-[18px] top-[32px] max-w-[100px] w-[7vw] xl:w-[11vw] h-auto;
+    }
+    header nav {
+        @apply w-full flex flex-col items-center lg:mb-4 justify-center;
+    }
+    header nav div.upper {
+        @apply flex w-full;
+    }
+    header nav ul.navigation {
+        @apply hidden lg:flex items-center transition-all;
+    }
+    header nav div.upper div.social-media {
+        @apply absolute flex max-lg:left-[50%] lg:right-0 max-lg:translate-x-[-50%];
+    }
+    header nav div.upper button.mobile {
+        @apply max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md border border-gray-200 hover:bg-gray-100 transition-[background-color];
+    }
+
+    header nav div.upper div.social-media div.icon {
+        @apply flex items-center justify-center h-[40px] w-[40px] p-3 text-white cursor-pointer;
+    }
+    header nav div.upper div.social-media div.icon {
+        transform: translateY(-100%);
+        animation: slide-up-bottom 200ms cubic-bezier(.68,.82,0,.8) forwards;
+    }
+    @keyframes slide-up-bottom {
+        from {
+            transform: translateY(-100%);
+        }to {
+            transform: translateY(0%);
+        }
+    }
+    header nav div.upper div.social-media div.icon:nth-child(2) { animation-delay: 200ms; }
+    header nav div.upper div.social-media div.icon:nth-child(3) { animation-delay: 300ms; }
+    header nav div.upper div.social-media div.icon:nth-child(4) { animation-delay: 400ms; }
+    header nav div.upper div.social-media div.icon:nth-child(5) { animation-delay: 500ms; }
+    header nav div.upper div.social-media div.icon:nth-child(odd) { @apply bg-blue; }
+    header nav div.upper div.social-media div.icon:nth-child(even) { @apply bg-orange; }
+
+    header.scrolled {
+        @apply top-[-200px] border-b-gray-100;
+    }
+    header.scrolled.up {
+        @apply top-0;
+    }
+    header.transparent {
+        @apply bg-[#FFFFFF00] text-white transition-colors;
+    }
+    header.transparent nav div.upper div.social-media { 
+        @apply absolute top-[45px] lg:top-[32px] lg:right-[35px];
+    }
+    header.transparent nav div.upper button.mobile {
+        @apply border-white hover:bg-[#FFFFFF6B];
+    }
+    header.transparent nav div.upper div.social-media div.icon {
+        animation: none;
+        transform: translateY(0%);
+        @apply text-[#FFFFFFCC];
+    }
+    header.transparent nav div.upper div.social-media div.icon:is(:nth-child(even), :nth-child(odd)) {
+        @apply bg-[transparent];
+    }
+    header.transparent nav div.upper svg.logo {
+        @apply lg:mx-auto my-7 w-[80px] h-[80px] lg:w-[130px] lg:h-[130px];
+    }
+    header.transparent nav {
+        @apply border-b-[transparent];
+    }
+    header.scrolled nav ul.navigation {
+        @apply me-0;
+    }
+    header.scrolled nav div.upper svg.logo {
+        @apply my-3;
+    }
+    header.transparent ul.mobile-navigation {
+        @apply absolute top-0 w-full text-center  bg-white;
+    }
+    header.transparent ul.mobile-navigation li.item {
+        @apply font-raleway font-bold text-black py-6 border-b border-gray-100;
+    }
+    .mask {
+        @apply bg-[#09090970] fixed w-screen h-screen z-20;
+    }
 </style>
 <script setup>
+//style classes
 const header_class = reactive({
     transparent: true,
     scrolled: false,
     up: false
 })
+//social-media
 const navigation_bar = [
     {
         label: 'NOSOTROS'
@@ -140,6 +168,7 @@ const social_media = [
         src: 'ic:baseline-whatsapp'
     }
 ];
+// scroll modes
 let prevScrollY;
 onMounted(() => {
     prevScrollY = ref(window.scrollY);
@@ -157,5 +186,10 @@ const handleScroll = () => {
     header_class.up = currentScrollY < prevScrollY.value && window.scrollY > 800; // scrolling up
 
     prevScrollY.value = currentScrollY;
+}
+const mobile_menu = ref(true);
+const toggle_mobile_menu = () => {
+    mobile_menu.value =! mobile_menu.value;
+    console.log('uwu');
 }
 </script>
