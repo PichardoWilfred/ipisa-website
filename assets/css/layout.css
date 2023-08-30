@@ -30,12 +30,25 @@
         }
     }
     header ul.information .phone-icon-color path.phone {
-        animation: vibrating 350ms ease-in-out;
+        transform-origin: bottom;
+        animation: vibrating 350ms 1.5 ease-in-out;
     }
     @keyframes vibrating {
         0% { transform: rotate(0deg); }
-        25% { transform: rotate(5deg); }
-        50% { transform: rotate(0eg); }
-        75% { transform: rotate(-5deg); }
-        100% { transform: rotate(0deg); }
+        20% { transform: rotate(5deg); }
+        40% { transform: rotate(0deg); }
+        60% { transform: rotate(-5deg); }
+        80% { transform: rotate(0deg); }
+        100% { transform: rotate(5deg); }
     }
+    header ul.information .phone-icon-color path.wave {
+        opacity: 0;
+        animation: appear 1ms forwards;
+    }
+    @keyframes appear {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    header ul.information .phone-icon-color path.wave-1 { animation-delay: 200ms; }
+    header ul.information .phone-icon-color path.wave-2 { animation-delay: 400ms; }
+    header ul.information .phone-icon-color path.wave-3 { animation-delay: 600ms; }
