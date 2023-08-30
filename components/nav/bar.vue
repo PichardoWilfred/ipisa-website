@@ -129,10 +129,6 @@
         transform: translateY(0%);
         @apply text-[#FFFFFF8C] hover:text-white transition-[color];
     }
-    
-    header ul.information svg.icon {
-        
-    }
     header.transparent nav div.upper div.social-media div.icon:is(:nth-child(even), :nth-child(odd)) {
         @apply bg-[transparent];
     }
@@ -150,6 +146,9 @@
     }
     header.transparent ul.mobile-navigation li.item {
         @apply py-6 border-b border-gray-100 hover:bg-gray-100 hover:text-white;
+    }
+    header.transparent ul.information :deep(svg:is(.location-icon-color, .phone-icon-color))   {
+        animation: none;
     }
     header.scrolled nav ul.navigation {
         @apply me-0;

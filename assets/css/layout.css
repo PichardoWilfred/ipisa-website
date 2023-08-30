@@ -1,0 +1,41 @@
+    header ul.information svg:is(.phone-icon-color, .location-icon-color) ellipse{
+        transform-origin: bottom;
+        animation: grow-shadow 350ms ease-in-out;
+    }
+    @keyframes grow-shadow {
+        from {
+            transform: scale(0.1);
+            opacity: 0;
+        } 
+        50% {
+            opacity: 1;
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+    header ul.information .location-icon-color path {
+        transform-origin: top;
+        animation: location-pin 350ms ease-in-out;
+    }
+    @keyframes location-pin {
+        0% {
+            transform: translateY(0%);
+        } 
+        50% {
+            transform: translateY(-15%);
+        }
+        100% {
+            transform: translateY(0%);
+        }
+    }
+    header ul.information .phone-icon-color path.phone {
+        animation: vibrating 350ms ease-in-out;
+    }
+    @keyframes vibrating {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(5deg); }
+        50% { transform: rotate(0eg); }
+        75% { transform: rotate(-5deg); }
+        100% { transform: rotate(0deg); }
+    }
