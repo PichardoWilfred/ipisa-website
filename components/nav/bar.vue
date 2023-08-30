@@ -19,9 +19,24 @@
                 </li>
             </ul>
         </nav>   
-        <ul class="mobile-navigation" :class="{show: mobile_menu }">
+        <ul v-if="mobile_menu" class="mobile-navigation" :class="{show: mobile_menu }">
             <li v-for="({ label, class_ }, index) in navigation_bar" :key="index" class="item" :class="class_">
                 {{ label }}
+            </li>
+        </ul>
+        <ul class="information">
+            <li class="flex">
+                <h4 class="text-blue me-2">
+                    Av. Hispanoamericana, Km 1 Santiago,
+                    <span class="text-blue-300">Zona Sur, República Dominicana.</span>
+                </h4>
+                <Icon name="LocationColor" class="location-icon-color" size="35px"/>
+            </li>
+            <li class="flex items-center mt-2">
+                <h4 class="text-blue me-2">
+                    <span class="text-blue-300">(809)</span> 724-5700
+                </h4>
+                <Icon name="PhoneColor" class="phone-icon-color" size="25px"/>
             </li>
         </ul>
     </header>
@@ -36,6 +51,16 @@
     }
     header {
         @apply fixed w-full left-0 text-black bg-white top-0 border-b border-b-[transparent] transition-all z-30;
+    }
+    header ul.mobile-navigation {
+        @apply lg:hidden absolute top-[93px] right-0 bg-white text-center w-[70vw];
+        height: calc(100vh - 84px);
+    }
+    header ul.mobile-navigation li.item {
+        @apply font-raleway font-bold text-black py-6 border-b border-gray-100 hover:bg-gray-100 active:bg-gray-100;
+    }
+    header ul.information {
+        @apply absolute top-[4.5rem] right-[18px] max-xl:hidden flex flex-col items-end text-black font-raleway font-bold max-w-[300px] text-end text-[14px];
     }
     header nav div.upper svg.logo {
         @apply my-4 max-lg:ms-1 me-auto lg:mx-auto w-[60px] lg:w-[90px] h-[60px] lg:h-[90px] transition-all;
@@ -89,6 +114,10 @@
     header.transparent {
         @apply bg-[#FFFFFF00] text-white transition-colors;
     }
+    
+    header.transparent ul.information {
+        @apply hidden;
+    }
     header.transparent nav div.upper div.social-media { 
         @apply absolute top-[45px] lg:top-[32px] lg:right-[35px];
     }
@@ -98,7 +127,11 @@
     header.transparent nav div.upper div.social-media div.icon {
         animation: none;
         transform: translateY(0%);
-        @apply text-[#FFFFFFCC];
+        @apply text-[#FFFFFF8C] hover:text-white transition-[color];
+    }
+    
+    header ul.information svg.icon {
+        
     }
     header.transparent nav div.upper div.social-media div.icon:is(:nth-child(even), :nth-child(odd)) {
         @apply bg-[transparent];
@@ -109,23 +142,23 @@
     header.transparent nav {
         @apply border-b-[transparent];
     }
-    header.scrolled nav ul.navigation {
-        @apply me-0;
-    }
-    header.scrolled nav div.upper svg.logo {
-        @apply my-3;
-    }
     header.transparent ul.mobile-navigation {
-        @apply absolute top-0 w-full text-center bg-white translate-y-[-100%];
+        @apply top-0 w-full translate-y-[-100%] h-auto;
     }
     header.transparent ul.mobile-navigation.show {
         animation: slide-up-bottom 500ms ease-in-out forwards;
     }
     header.transparent ul.mobile-navigation li.item {
-        @apply font-raleway font-bold text-black py-6 border-b border-gray-100 hover:bg-gray-100;
+        @apply py-6 border-b border-gray-100 hover:bg-gray-100 hover:text-white;
+    }
+    header.scrolled nav ul.navigation {
+        @apply me-0;
+    }
+    header.scrolled ul.mobile-navigation {
+        @apply top-[85px];
     }
     .mask {
-        @apply bg-[#09090970] fixed w-screen h-screen z-20;
+        @apply lg:hidden bg-[#09090970] fixed w-screen h-screen z-20;
     }
 </style>
 <script setup>
