@@ -19,7 +19,7 @@
                 </li>
             </ul>
         </nav>   
-        <ul class="mobile-navigation">
+        <ul class="mobile-navigation" :class="{show: mobile_menu }">
             <li v-for="({ label, class_ }, index) in navigation_bar" :key="index" class="item" :class="class_">
                 {{ label }}
             </li>
@@ -116,10 +116,13 @@
         @apply my-3;
     }
     header.transparent ul.mobile-navigation {
-        @apply absolute top-0 w-full text-center  bg-white;
+        @apply absolute top-0 w-full text-center bg-white translate-y-[-100%];
+    }
+    header.transparent ul.mobile-navigation.show {
+        animation: slide-up-bottom 500ms ease-in-out forwards;
     }
     header.transparent ul.mobile-navigation li.item {
-        @apply font-raleway font-bold text-black py-6 border-b border-gray-100;
+        @apply font-raleway font-bold text-black py-6 border-b border-gray-100 hover:bg-gray-100;
     }
     .mask {
         @apply bg-[#09090970] fixed w-screen h-screen z-20;
@@ -190,6 +193,5 @@ const handleScroll = () => {
 const mobile_menu = ref(true);
 const toggle_mobile_menu = () => {
     mobile_menu.value =! mobile_menu.value;
-    console.log('uwu');
 }
 </script>
