@@ -62,6 +62,12 @@
     header ul.information {
         @apply absolute top-[4.5rem] right-[18px] max-xl:hidden flex flex-col items-end text-black font-raleway font-bold max-w-[300px] text-end text-[14px];
     }
+    header ul.information h4 {
+        @apply transition-all;
+    }
+    header ul.information h4 {
+        animation: appear 200ms ease-in-out;
+    }
     header nav div.upper svg.logo {
         @apply my-4 max-lg:ms-1 me-auto lg:mx-auto w-[60px] lg:w-[90px] h-[60px] lg:h-[90px] transition-all;
     }

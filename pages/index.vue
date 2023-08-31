@@ -1,5 +1,5 @@
 <template>
-    <section class="flex justify-center items-center bg-[#00488D99] lg:px-8">
+    <section class="flex justify-center items-end lg:items-center bg-[#00488D99] lg:px-8">
         <div class="card">
             <h4 class="title">
                 REPRESENTANDO <span class="text-orange">30 AÑOS</span> DE EXCELENCIA ACADÉMICA
@@ -23,12 +23,12 @@ section {
     @apply h-[120vh] lg:h-screen; 
 }
 div.card {
-    @apply flex flex-col bg-gradient-to-b from-blue-400 to-[#004F9600] py-10 px-8 lg:px-16 sm:rounded-xl lg:max-w-[700px];
+    @apply flex flex-col bg-gradient-to-b from-blue-400 to-[#004F9600] py-10 px-4 lg:px-16 mb-[1.5rem] sm:rounded-xl lg:max-w-[700px];
 }
 h4.title {
-    @apply font-bold font-garamond text-white max-lg:max-w-[440px] text-[1.3rem] lg:text-[2.4rem] leading-[2rem] lg:leading-[2.7rem] tracking-[1px] mx-auto mb-3 text-center;
+    @apply font-bold font-garamond text-white max-lg:max-w-[440px] text-[1.4rem] lg:text-[2.4rem] leading-[1.75rem] lg:leading-[2.7rem] tracking-[1px] mx-auto mb-3 text-center;
 }
 p.description {
-    @apply font-raleway text-lg text-white max-lg:max-w-[440px] max-lg:text-justify max-lg:mx-auto;
+    @apply font-raleway text-[16px] lg:text-lg text-white max-lg:max-w-[440px] max-lg:text-justify max-lg:mx-auto;
 }
 </style>
