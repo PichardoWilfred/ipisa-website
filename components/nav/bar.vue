@@ -3,7 +3,7 @@
         <nav>
             <div class="upper">
                 <Icon v-if="!header_class.transparent" class="salesianos-logo" name="Salesianos" />
-                <ipisa-logo class="logo" />
+                <navIpisa-logo class="logo" />
                 <div class="social-media">
                     <div v-for="({ src }, index) in social_media" class="icon">
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
