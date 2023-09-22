@@ -8,69 +8,24 @@
             <div class="white-blur" />
         </div>
         <div class="card-container">
-            <div class="card" v-for="({icon, title}, index) in cards" :key="index">
-                <nuxt-icon :name="icon" filled />
-                <h4 v-html="title"></h4>
-            </div>
-            <div class="card">
-                
+            <div class="card" v-for="({ icon, title, icon_class }, index) in cards" :key="index">
+                <nuxt-icon :name="icon" filled :class="icon_class" />
                 <h4>
-                    <span class="blue">Desarrollo </span>
-                    <span class="separator">& </span>
-                    <span class="orange">Administración </span>
-                    <br />
-                    <span class="separator">de </span>
-                    <span class="blue">Aplicaciones </span>
-                    <span class="orange">Informáticas</span>
+                    <template v-for="({ name, class_, br }, title_index) in title" >
+                        <span v-if="!br" :class="class_" :key="title_index">
+                            {{ name }}
+                        </span>
+                        <br v-else />
+                    </template>
                 </h4>
             </div>
-            <div class="card">
-                
-                <h4>
-                    <span class="blue">Electromecánica </span>
-                    <span class="separator">de </span>
-                    <span class="orange">Vehículos </span>
-                </h4>
-            </div>
-            <div class="card">
-                
-                <h4>
-                    <span class="blue">Gestión Administrativa </span>
-                    <span class="separator">& </span>
-                    <span class="orange">Tributaria </span>
-                </h4>
-            </div>
-            <!--  -->
-            
-            <div class="card">
-                
-                <h4>
-                    <span class="blue">Equipos </span>
-                    <span class="orange">Electrónicos</span>
-                </h4>
-            </div>
-            <div class="card">
-                
-                <h4>
-                    <span class="blue">Ensamblaje </span>
-                    <span class="separator">de </span>
-                    <span class="orange">Muebles</span>
-                </h4>
-            </div>
-            <div class="card">
-                
-                <h4>
-                    <span class="blue">Meca</span>
-                    <span class="orange">nizado</span>
-                </h4>
-            </div>
-            <div class="card">
+            <!-- <div class="card">
                 
                 <h4>
                     <span class="blue">Instalaciones </span>
                     <span class="orange">Eléctricas</span>
                 </h4>
-            </div>
+            </div> -->
         </div>
     </section>
 </template>
@@ -96,13 +51,138 @@
     // cards
     const cards = reactive([
         {
-            icon: 'workshop/confeccion-patronaje.svg',
-            title: '<span class="blue">Confección</span><span class="separator"> & </span><span class="orange">Patronaje</span>'
+            icon: 'workshop/confeccion-patronaje',
+            icon_class: '',
+            title: [
+                {
+                    class_: 'blue',
+                    name: 'Confección'
+                },
+                {
+                    class_: 'separator',
+                    name: ' & '
+                },
+                {
+                    class_: 'orange',
+                    name: 'Patronaje'
+                },
+            ]
         },        
         {
-            icon: 'workshop/confeccion-patronaje.svg',
-            title: '<span class="blue">Confección</span><span class="separator"> & </span><span class="orange">Patronaje</span>'
+            icon: 'workshop/desarrollo-aplicaciones-informaticas',
+            icon_class: '',
+            title: [
+                {
+                    class_: 'blue',
+                    name: 'Desarrollo'
+                },
+                {
+                    class_: 'separator',
+                    name: ' & '
+                },
+                {
+                    class_: 'orange',
+                    name: 'Administración'
+                },
+                {
+                    br: true
+                },
+                {
+                    class_: 'separator',
+                    name: ' de '
+                },
+                {
+                    class_: 'blue',
+                    name: 'Aplicaciones'
+                },
+                {
+                    class_: 'orange',
+                    name: ' Informáticas'
+                }
+            ]
         },
+        {
+            icon: 'workshop/electromecanica-vehiculos',
+            icon_class: '',
+            title: [
+                {
+                    class_: 'blue',
+                    name: 'Electromecánica'
+                },
+                {
+                    class_: 'separator',
+                    name: ' de '
+                },
+                {
+                    class_: 'orange',
+                    name: 'Vehículos'
+                },
+            ]
+        },
+        {
+            icon: 'workshop/gestion-administrativa-tributaria',
+            icon_class: '',
+            title: [
+                {
+                    class_: 'blue',
+                    name: 'Gestión Administrativa'
+                },
+                {
+                    class_: 'separator',
+                    name: ' & '
+                },
+                {
+                    class_: 'orange',
+                    name: 'Tributaria'
+                },
+            ]
+        },
+        {
+            icon: 'workshop/equipos-electronicos',
+            icon_class: '',
+            title: [
+                {
+                    class_: 'blue',
+                    name: 'Equipos '
+                },
+                {
+                    class_: 'orange',
+                    name: 'Electrónicos'
+                },
+            ]
+        },
+        {
+            icon: 'workshop/ensamblaje-muebles',
+            icon_class: '',
+            title: [
+                {
+                    class_: 'blue',
+                    name: 'Ensamblaje'
+                },
+                {
+                    class_: 'separator',
+                    name: ' de '
+                },
+                {
+                    class_: 'orange',
+                    name: 'Muebles'
+                },
+            ]
+        },
+        {
+            icon: 'workshop/mecanizado',
+            icon_class: '',
+            title: [
+                {
+                    class_: 'blue',
+                    name: 'Meca'
+                },
+                {
+                    class_: 'orange',
+                    name: 'nizado'
+                },
+            ]
+        }
     ])
 </script>
 <style scoped>
