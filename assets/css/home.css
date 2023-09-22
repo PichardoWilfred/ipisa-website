@@ -6,6 +6,6 @@
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-10px); /* Adjust the amount of float */
+        transform: translateY(-13px); /* Adjust the amount of float */
     }
 }

@@ -17,7 +17,8 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/tailwindcss',
-    'nuxt-icon',
+    'nuxt-icon', // importing preset icons
+    'nuxt-icons', // importing svgs with sub-folder
     ['@nuxtjs/google-fonts', {
       families: {
         Roboto: true,

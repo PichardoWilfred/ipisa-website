@@ -9,7 +9,7 @@
         </div>
         <div class="card-container">
             <div class="card">
-                
+                <nuxt-icon :name="icon" filled />
                 <h4>
                     <span class="blue">Confección</span> 
                     <span class="separator"> & </span>
@@ -79,6 +79,8 @@
     </section>
 </template>
 <script setup>
+
+
     const mouseX = ref(0);
     const mouseY = ref(0);
 
@@ -96,11 +98,11 @@
     });
 
     // cards
-    const cards = [
+    const cards = reactive([
         {
             name: ''
         },
-    ]
+    ])
 </script>
 <style scoped>
 section {
@@ -145,9 +147,13 @@ section {
 }
 .card {
     @apply flex flex-col rounded-[20px];
-    border: 3px solid rgba(255, 255, 255, 0.70);
+    border: 4px solid rgba(255, 255, 255, 0.70);
     background: linear-gradient(117deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.60) 100%);
     backdrop-filter: blur(10px);
+}
+.card svg {
+    width: 200px;
+    height: 400px;
 }
 .card h4 {
     @apply font-bold font-raleway text-center text-[1.25rem];
