@@ -8,13 +8,9 @@
             <div class="white-blur" />
         </div>
         <div class="card-container">
-            <div class="card">
+            <div class="card" v-for="({icon, title}, index) in cards" :key="index">
                 <nuxt-icon :name="icon" filled />
-                <h4>
-                    <span class="blue">Confección</span> 
-                    <span class="separator"> & </span>
-                    <span class="orange">Patronaje</span>
-                </h4>
+                <h4 v-html="title"></h4>
             </div>
             <div class="card">
                 
@@ -100,7 +96,12 @@
     // cards
     const cards = reactive([
         {
-            name: ''
+            icon: 'workshop/confeccion-patronaje.svg',
+            title: '<span class="blue">Confección</span><span class="separator"> & </span><span class="orange">Patronaje</span>'
+        },        
+        {
+            icon: 'workshop/confeccion-patronaje.svg',
+            title: '<span class="blue">Confección</span><span class="separator"> & </span><span class="orange">Patronaje</span>'
         },
     ])
 </script>
