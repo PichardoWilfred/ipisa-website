@@ -3,7 +3,8 @@
         <nav>
             <div class="upper">
                 <Icon v-if="!header_class.transparent" class="salesianos-logo" name="Salesianos" />
-                <navIpisa-logo class="logo" />
+                <nuxt-icon name="general/ipisa-logo" class="logo" filled />
+                <!-- <navIpisa-logo class="logo" /> -->
                 <div class="social-media">
                     <div v-for="({ src }, index) in social_media" class="icon">
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
@@ -57,7 +58,7 @@
         height: calc(100vh - 84px);
     }
     header ul.mobile-navigation li.item {
-        @apply font-raleway font-bold text-black py-6 border-b border-gray-100 hover:bg-gray-100 active:bg-gray-100;
+        @apply font-raleway font-bold text-black hover:text-[#8b8b8b] py-6 border-b border-gray-100 hover:bg-gray-100 active:bg-gray-100;
     }
     header ul.information {
         @apply absolute top-[4.5rem] right-[18px] max-xl:hidden flex flex-col items-end text-black font-raleway font-bold max-w-[300px] text-end text-[14px];
@@ -68,8 +69,12 @@
     header ul.information h4 {
         animation: appear 200ms ease-in-out;
     }
-    header nav div.upper svg.logo {
-        @apply my-4 max-lg:ms-1 me-auto lg:mx-auto w-[60px] lg:w-[90px] h-[60px] lg:h-[90px] transition-all;
+    header nav div.upper .logo {
+        @apply me-auto lg:mx-auto;
+    }
+    header nav div.upper .logo :deep(svg) {
+        /* max-w-[60px] */
+        @apply my-4 lg:w-[90px] h-[60px] lg:h-[90px] transition-all;
     }
     header nav div.upper svg.salesianos-logo {
         @apply hidden lg:flex absolute left-[18px] top-[32px] max-w-[100px] w-[7vw] xl:w-[11vw] h-auto;
@@ -87,20 +92,18 @@
         @apply absolute flex max-lg:left-[50%] lg:right-0 max-lg:translate-x-[-50%];
     }
     header nav div.upper button.mobile {
-        @apply max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md border border-gray-200 hover:bg-gray-100 transition-[background-color];
+        @apply max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md border border-gray-100 hover:bg-gray-100 transition-[background-color];
     }
 
     header nav div.upper div.social-media div.icon {
-        @apply flex items-center justify-center h-[40px] w-[40px] p-3 text-white cursor-pointer;
-    }
-    header nav div.upper div.social-media div.icon {
+        @apply flex items-center justify-center h-[40px] w-[40px] p-3 text-white cursor-pointer transition-all;
         transform: translateY(-100%);
         animation: slide-up-bottom 200ms cubic-bezier(.68,.82,0,.8) forwards;
     }
     @keyframes slide-up-bottom {
         from {
             transform: translateY(-100%);
-        }to {
+        } to {
             transform: translateY(0%);
         }
     }
@@ -108,8 +111,8 @@
     header nav div.upper div.social-media div.icon:nth-child(3) { animation-delay: 300ms; }
     header nav div.upper div.social-media div.icon:nth-child(4) { animation-delay: 400ms; }
     header nav div.upper div.social-media div.icon:nth-child(5) { animation-delay: 500ms; }
-    header nav div.upper div.social-media div.icon:nth-child(odd) { @apply bg-blue; }
-    header nav div.upper div.social-media div.icon:nth-child(even) { @apply bg-orange; }
+    header nav div.upper div.social-media div.icon:nth-child(odd) { @apply bg-blue hover:bg-blue-300; }
+    header nav div.upper div.social-media div.icon:nth-child(even) { @apply bg-orange hover:bg-orange-300; }
 
     header.scrolled {
         @apply top-[-200px] border-b-gray-100;
@@ -118,9 +121,8 @@
         @apply top-0;
     }
     header.transparent {
-        @apply bg-[#FFFFFF00] text-white transition-colors;
+        @apply bg-[#FFFFFF00] text-white hover:text-white transition-colors;
     }
-    
     header.transparent ul.information {
         @apply hidden;
     }
@@ -138,7 +140,7 @@
     header.transparent nav div.upper div.social-media div.icon:is(:nth-child(even), :nth-child(odd)) {
         @apply bg-[transparent];
     }
-    header.transparent nav div.upper svg.logo {
+    header.transparent nav div.upper .logo :deep(svg){
         @apply lg:mx-auto my-7 w-[80px] h-[80px] lg:w-[130px] lg:h-[130px];
     }
     header.transparent nav {

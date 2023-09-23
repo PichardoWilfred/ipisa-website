@@ -1,5 +1,5 @@
 <template>
-    <section class="flex flex-col justify-center items-center lg:items-center bg-[#00488D99] lg:px-8">
+    <section class="flex flex-col justify-center items-center lg:items-center bg-[#00488D99] lg:px-8  h-[120vh] lg:h-screen mb-[8rem]">
         <div class="card">
             <h4 class="title">
                 REPRESENTANDO <span class="text-orange">30 AÑOS</span> DE EXCELENCIA ACADÉMICA
@@ -16,9 +16,7 @@
     </section>
 </template>
 <style scoped>
-    section {
-        @apply h-[120vh] lg:h-screen; 
-    }
+
     div.card {
         @apply flex flex-col bg-gradient-to-b from-blue-400 to-[#004F9600] py-10 px-4 sm:px-6 lg:px-16 mb-[1.5rem] sm:rounded-xl lg:max-w-[700px];
     }

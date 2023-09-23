@@ -1,37 +1,42 @@
 <template>
-    <section class="relative py-[8rem] my-[8rem] bg-white z-10 h-[3rem]">
-        <div class="absolute flex w-full h-full overflow-hidden top-0 left-0" ref="container" @mousemove="trackMouse">
-            <HomeWorkshopBlueShapes />
-            <HomeWorkshopOrangeShapes />
-            <div class="blue-background color-background" />
-            <div class="orange-background right-0 color-background" />
-            <div class="white-blur" />
+    <section class="relative bg-white py-[8rem] h-[auto]">
+        <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[5rem] text-black">
+            <h1 class="text-[3.6rem] font-semibold">
+                <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
+            </h1>
+            <p class="font-medium text-[1.2rem] max-w-[900px]">
+                Nuestra área técnica es el corazón de la formación que ofrece la institución. Aquí, los estudiantes tienen la oportunidad de adquirir habilidades técnicas y conocimientos especializados en una variedad de disciplinas, preparándolos para enfrentar con éxito los desafíos del mundo laboral.
+                <br><br> 
+                <span class="text-blue-300">A continuación, te presentaremos de manera formal </span> 
+                <span class="text-orange-300 underline">los diversos talleres disponibles en el centro.</span>
+            </p>
         </div>
-        <div class="card-container">
-            <div class="card" v-for="({ icon, title, icon_class }, index) in cards" :key="index">
-                <nuxt-icon :name="icon" filled :class="icon_class" />
-                <h4>
-                    <template v-for="({ name, class_, br }, title_index) in title" >
-                        <span v-if="!br" :class="class_" :key="title_index">
-                            {{ name }}
-                        </span>
-                        <br v-else />
-                    </template>
-                </h4>
+        <div class="relative py-[8rem] mb-[8rem] z-10 ">
+            <div class="absolute flex w-full h-full overflow-hidden top-0 left-0" ref="container" @mousemove="trackMouse">
+                <HomeWorkshopBlueShapes />
+                <HomeWorkshopOrangeShapes />
+                <div class="blue-background color-background" />
+                <div class="orange-background right-0 color-background" />
+                <div class="white-blur" />
             </div>
-            <!-- <div class="card">
-                
-                <h4>
-                    <span class="blue">Instalaciones </span>
-                    <span class="orange">Eléctricas</span>
-                </h4>
-            </div> -->
+            <div class="card-container">
+                <div class="card" v-for="({ icon, title, icon_class }, index) in cards" :key="index" :class="icon_class">
+                    <nuxt-icon :name="icon" filled class="mx-auto"/>
+                    <h4>
+                        <template v-for="({ name, class_, br }, title_index) in title" >
+                            <span v-if="!br" :class="class_" :key="title_index">
+                                {{ name }}
+                            </span>
+                            <br v-else />
+                        </template>
+                    </h4>
+                </div>
+            </div>
         </div>
+        <hr class="border-gray-100">
     </section>
 </template>
 <script setup>
-
-
     const mouseX = ref(0);
     const mouseY = ref(0);
 
@@ -52,7 +57,7 @@
     const cards = reactive([
         {
             icon: 'workshop/confeccion-patronaje',
-            icon_class: '',
+            icon_class: 'confeccion',
             title: [
                 {
                     class_: 'blue',
@@ -70,7 +75,7 @@
         },        
         {
             icon: 'workshop/desarrollo-aplicaciones-informaticas',
-            icon_class: '',
+            icon_class: 'desarrollo',
             title: [
                 {
                     class_: 'blue',
@@ -103,7 +108,7 @@
         },
         {
             icon: 'workshop/electromecanica-vehiculos',
-            icon_class: '',
+            icon_class: 'electromecanica',
             title: [
                 {
                     class_: 'blue',
@@ -113,6 +118,9 @@
                     class_: 'separator',
                     name: ' de '
                 },
+                { 
+                    br: true
+                },
                 {
                     class_: 'orange',
                     name: 'Vehículos'
@@ -121,7 +129,7 @@
         },
         {
             icon: 'workshop/gestion-administrativa-tributaria',
-            icon_class: '',
+            icon_class: 'gestion',
             title: [
                 {
                     class_: 'blue',
@@ -131,6 +139,9 @@
                     class_: 'separator',
                     name: ' & '
                 },
+                { 
+                    br: true
+                },
                 {
                     class_: 'orange',
                     name: 'Tributaria'
@@ -139,7 +150,7 @@
         },
         {
             icon: 'workshop/equipos-electronicos',
-            icon_class: '',
+            icon_class: 'equipos',
             title: [
                 {
                     class_: 'blue',
@@ -153,7 +164,7 @@
         },
         {
             icon: 'workshop/ensamblaje-muebles',
-            icon_class: '',
+            icon_class: 'ensamblaje',
             title: [
                 {
                     class_: 'blue',
@@ -171,7 +182,7 @@
         },
         {
             icon: 'workshop/mecanizado',
-            icon_class: '',
+            icon_class: 'mecanizado',
             title: [
                 {
                     class_: 'blue',
@@ -182,12 +193,25 @@
                     name: 'nizado'
                 },
             ]
+        },
+        {
+            icon: 'workshop/instalaciones-electricas',
+            icon_class: 'instalaciones',
+            title: [
+                {
+                    class_: 'blue',
+                    name: 'Instalaciones '
+                },
+                {
+                    class_: 'orange',
+                    name: 'Eléctricas'
+                },
+            ]
         }
     ])
 </script>
 <style scoped>
 section {
-    max-height: 74vh !important;
 }
 .card-container {
     display: grid;
@@ -227,26 +251,56 @@ section {
     }
 }
 .card {
-    @apply flex flex-col rounded-[20px];
+    @apply flex flex-col justify-end rounded-[20px] bg-[#FFFFFFDB];
     border: 4px solid rgba(255, 255, 255, 0.70);
-    background: linear-gradient(117deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.60) 100%);
+    /* background: linear-gradient(117deg, rgba(255, 255, 255, 0.90) 10%, rgba(255, 255, 255, 0.60) 100%); */
     backdrop-filter: blur(10px);
 }
-.card svg {
-    width: 200px;
-    height: 400px;
+.card span {
+    @apply mb-3;
+}
+.card.confeccion :deep(svg){
+    width: 140px;
+    height: 130px;
+}
+
+.card.desarrollo :deep(svg){
+    width: 180px;
+    height: 110px;
+}
+.card.electromecanica :deep(svg){
+    width: 170px;
+    height: 95px;
+}
+.card.gestion :deep(svg){
+    width: 160px;
+    height: 120px;
+}
+.card.equipos :deep(svg) {
+    width: 160px;
+    height: 145px;
+    @apply translate-x-[18px];
+}
+.card.ensamblaje :deep(svg) {
+    width: 180px;
+    height: 120px;
+}
+.card.mecanizado :deep(svg) {
+    width: 190px;
+    height: 130px;
+}
+.card.instalaciones :deep(svg) {
+    width: 130px;
+    height: 110px;
 }
 .card h4 {
-    @apply font-bold font-raleway text-center text-[1.25rem];
+    @apply mb-[22px] font-bold font-raleway text-center text-[1.2rem] leading-[21px];
 }
-.card h4 span.blue {
-    @apply text-[#55AFFF];
+.card.desarrollo h4 {
+    @apply text-[0.99rem];
 }
-.card h4 span.orange {
-    @apply text-orange-300;
-}
-.card h4 span.separator {
-    @apply text-[#A9C2E0];
+.card.gestion h4 {
+    @apply text-[1.2rem];
 }
 .card-container.blue {
     box-shadow: 0px 1px 2px 0px #B2DBFF;

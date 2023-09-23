@@ -4,3 +4,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* general utilies */
+.blue {
+    @apply text-blue-300;
+}
+.orange {
+    @apply text-orange-300;
+}
+.separator {
+    @apply text-[#A9C2E0];
+}
