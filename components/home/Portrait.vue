@@ -1,5 +1,5 @@
 <template>
-    <section class="flex flex-col justify-center items-center lg:items-center bg-[#00488D99] lg:px-8  h-[120vh] lg:h-screen mb-[8rem]">
+    <section class="flex flex-col justify-center items-center lg:items-center bg-[#00488D99] lg:px-8  h-[120vh] lg:h-screen mb-[4rem] lg:mb-[8rem]">
         <div class="card">
             <h4 class="title">
                 REPRESENTANDO <span class="text-orange">30 AÑOS</span> DE EXCELENCIA ACADÉMICA

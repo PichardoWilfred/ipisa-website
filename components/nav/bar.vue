@@ -70,11 +70,11 @@
         animation: appear 200ms ease-in-out;
     }
     header nav div.upper .logo {
-        @apply me-auto lg:mx-auto;
+        @apply ms-4 me-auto lg:mx-auto;
     }
     header nav div.upper .logo :deep(svg) {
         /* max-w-[60px] */
-        @apply my-4 lg:w-[90px] h-[60px] lg:h-[90px] transition-all;
+        @apply my-4 max-lg:w-[60px] lg:w-[90px] h-[60px] lg:h-[90px] transition-all;
     }
     header nav div.upper svg.salesianos-logo {
         @apply hidden lg:flex absolute left-[18px] top-[32px] max-w-[100px] w-[7vw] xl:w-[11vw] h-auto;
@@ -230,8 +230,23 @@ const handleScroll = () => {
 
     prevScrollY.value = currentScrollY;
 }
-const mobile_menu = ref(true);
+const mobile_menu = ref(false);
 const toggle_mobile_menu = () => {
     mobile_menu.value =! mobile_menu.value;
+    const body = document.querySelector("body");
+    if (mobile_menu.value) {
+
+        const scrollTop = window.pageYOffset || document.body.scrollTop;
+        const scrollLeft = window.pageXOffset || document.body.scrollLeft;
+
+        window.onscroll = () => {
+            window.scrollTo(scrollLeft, scrollTop);
+        }
+        
+        body.style.overflowY = 'hidden';
+    }else {
+        window.onscroll = () => {};
+        body.style.overflowY = 'auto';
+    }
 }
 </script>

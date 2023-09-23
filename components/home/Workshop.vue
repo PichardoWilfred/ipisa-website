@@ -1,10 +1,10 @@
 <template>
     <section class="relative bg-white py-[8rem] h-[auto]">
         <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[5rem] text-black">
-            <h1 class="text-[3.6rem] font-semibold">
+            <h1 class="text-[2.2rem] lg:text-[3.6rem] max-lg:mb-3  font-semibold">
                 <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
             </h1>
-            <p class="font-medium text-[1.2rem] max-w-[900px]">
+            <p class="font-medium text-[1.1rem] max-w-[900px]">
                 Nuestra área técnica es el corazón de la formación que ofrece la institución. Aquí, los estudiantes tienen la oportunidad de adquirir habilidades técnicas y conocimientos especializados en una variedad de disciplinas, preparándolos para enfrentar con éxito los desafíos del mundo laboral.
                 <br><br> 
                 <span class="text-blue-300">A continuación, te presentaremos de manera formal </span> 

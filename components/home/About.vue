@@ -1,20 +1,41 @@
 <template>
     <section>
-        <div class="flex max-lg:flex-col-reverse items-center max-w-[1700px] px-[5vw] mx-auto">
+        <div class="flex flex-col-reverse xl:flex-row items-center max-w-[1700px] px-[5vw] mx-auto">
             <div class="illustration" :class="selected_section.icon">
                 <nuxt-icon :name="`home/about/${selected_section.icon}`" filled />
             </div>
             <div class="content">
-                <h1 class="flex items-end mb-2 font-bold text-[2.1rem] lg:text-[3.6rem] hover:underline cursor-pointer transition-all">
-                    {{ selected_section.title }}<span class="max-lg:hidden"><Icon name="fe:link" class="text-[2.5rem] separator mb-3" /></span>
-                </h1>
-                <p v-html="selected_section.description" class="text-black text-[1.1rem] font-medium lg:max-w-[760px] min-h-[30vh] mb-[1.8rem]"></p>
+                <div class="flex relative items-center  max-lg:mb-3">
+                    
+                    <h1 class="flex items-end font-bold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all">
+                        <a class="hover:underline">
+                            {{ selected_section.title }}
+                        </a>
+                        <span class="max-lg:hidden">
+                            <Icon name="fe:link" class=" ms-1 text-[2.5rem] separator mb-3" />
+                        </span>
+                    </h1>
+
+                    <span class="cursor-pointer lg:hidden flex items-center justify-center ms-auto rounded-full hover:bg-gray-100" @click="toggleDropdown">
+                        <Icon name="material-symbols:keyboard-arrow-down" class="text-[2.7rem] mt-auto transition-all" />
+                    </span>
+                    <Transition>
+                        <ul v-if="dropdown_menu" ref="dropdown" class="absolute bg-white top-0 right-0 border border-gray-100 rounded-lg shadow-md">
+                            <li v-for="({ label }, index) in sections" @click.prevent="select_index_mobile(index)"
+                            class="cursor-pointer hover:text-gray-400 hover:border-gray-300  text-[20px] py-2 px-4 font-raleway border-b border-gray-100 no-underline last:border-0">
+                                {{ label }}
+                            </li>
+                        </ul>
+                    </Transition>
+                </div>
+                
+                <p v-html="selected_section.description" class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[30vh] mb-[1.8rem]"></p>
                 
                 <ul class="navigation">
                     <li v-for="({ label }, index) in sections"
                     :class="{'selected': selected_index === index}"
                     @click="selected_index = index"
-                    class="flex items-center font-bold text-[1.2rem] lg:text-[1.3rem]" :key="index">
+                    class="flex items-center font-bold text-[1.2rem] lg:text-[1.3rem] cursor-pointer" :key="index">
                         {{ label }} <div class="cube mx-4 lg:mx-4 h-[10px] w-[10px]"></div>
                     </li>
                 </ul>
@@ -26,6 +47,24 @@
 </template>
 
 <script setup>
+    import { onClickOutside } from '@vueuse/core';
+
+    const dropdown = ref(null);
+    function close () {
+        if (dropdown_menu.value) {
+            dropdown_menu.value = false;
+        }
+    }
+
+    onClickOutside(dropdown, close);
+    // const select_index = (index) => {
+    //     selected_index.value = index;
+    // }
+    const select_index_mobile = (index) => {
+        selected_index.value = index;
+        dropdown_menu.value = false;
+    }
+
     const selected_index = ref(0);
 
     const sections = ref([
@@ -81,30 +120,36 @@
                 una activa comunidad de exalumnos comprometidos con la institución y su misión educativa.`
             },
     ]);
-    console.log(sections);
     const selected_section = computed(() => sections.value[selected_index.value]);
+    const dropdown_menu = ref(false);
+    const toggleDropdown = () => {
+        dropdown_menu.value =! dropdown_menu.value;
+    }
 </script>
 <style scoped>
 .illustration :deep(svg) {
-    @apply w-full me-[20px] lg:p-[40px];
+    @apply w-full xl:me-[20px] lg:p-[40px];
 }
 .illustration.school :deep(svg) {
-    @apply max-w-[720px] h-[500px];
+    @apply xl:max-w-[680px] h-[300px] lg:h-[500px];
 }
 .illustration.philosofy :deep(svg) {
-    @apply max-w-[690px] h-[500px];
+    @apply xl:max-w-[690px] h-[300px] lg:h-[500px] max-lg:ms-4;
 }
 .illustration.history :deep(svg) {
-    @apply w-full max-w-[760px] h-[500px];
+    @apply xl:max-w-[760px] h-[300px] lg:h-[500px] translate-y-[60px];
+}
+.illustration.awards :deep(svg) {
+    @apply xl:max-w-[760px] h-[300px] lg:h-[500px];
 }
 .content {
-    @apply font-raleway text-black lg:ms-auto;
+    @apply font-raleway text-black xl:ms-auto;
 }
 .content b {
     @apply font-bold;
 }
 .content ul.navigation {
-    @apply flex flex-wrap;
+    @apply hidden lg:flex flex-wrap;
 }
 .content ul.navigation li {
     @apply cursor-pointer hover:underline transition-all;
