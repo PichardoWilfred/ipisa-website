@@ -29,7 +29,10 @@ module.exports = {
         300: "#FF8B46",
         DEFAULT: "#FF7320"
       },
-      white: "#FFF",
+      white: {
+        DEFAULT: "#FFF",
+        100: "#f5f2f2"
+      },
       black: "#292929",
       gray: {
         100: "#E0E0E0",

@@ -11,12 +11,12 @@
                 <span class="text-orange-300 underline">los diversos talleres disponibles en el centro.</span>
             </p>
         </div>
-        <div class="relative py-[8rem] mb-[8rem] z-10 ">
-            <div class="absolute flex w-full h-full overflow-hidden top-0 left-0" ref="container" @mousemove="trackMouse">
+        <div class="relative py-[8rem] mb-[8rem] z-10">
+            <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container" @mousemove="trackMouse">
                 <HomeWorkshopBlueShapes />
                 <HomeWorkshopOrangeShapes />
                 <div class="blue-background color-background" />
-                <div class="orange-background right-0 color-background" />
+                <div class="orange-background color-background" />
                 <div class="white-blur" />
             </div>
             <div class="card-container">
@@ -46,7 +46,6 @@
         const rect = container.value.getBoundingClientRect();
         mouseX.value = event.clientX - rect.left;
         mouseY.value = event.clientY - rect.top;
-        // console.log(`x: (${mouseX.value}), y: (${mouseY.value})`);
     };
     onMounted(() => {
         const shapes = ref(document.querySelectorAll(".shape"));
@@ -211,51 +210,25 @@
     ])
 </script>
 <style scoped>
-section {
-}
 .card-container {
     display: grid;
     justify-content: center;
     gap: 22px;
     @apply relative w-[85%] h-full mx-auto z-40;
 }
-@media (min-width: 1600px) {
-    .card-container {
-        grid-template-columns: repeat(4, 360px);
-        grid-template-rows: repeat(2, 232px);
-    }
-}
-@media (max-width: 1600px) {
-    section {
-        max-height: unset !important;
-        height: unset !important;
-    }
-    .card-container {
-        grid-template-columns: repeat(3, 360px);
-        grid-template-rows: repeat(3, 232px);
-    }
-}
-
-@media (max-width: 1176px) {
-    .card-container {
-        grid-template-columns: repeat(2, 360px);
-        grid-template-rows: repeat(4, 232px);
-    }
-}
-
-@media (max-width: 800px) {
-    .card-container {
-        grid-template-columns: repeat(1, 320px);
-        grid-template-rows: repeat(8, 232px);
-        gap: 32px;
-    }
-}
 .card {
-    @apply flex flex-col justify-end rounded-[20px] bg-[#FFFFFFDB];
-    border: 4px solid rgba(255, 255, 255, 0.70);
-    /* background: linear-gradient(117deg, rgba(255, 255, 255, 0.90) 10%, rgba(255, 255, 255, 0.60) 100%); */
+    @apply flex flex-col justify-end rounded-[20px] bg-[#fffffff3];
+    border: 4px solid rgba(255, 255, 255, 0.884);
+    /* background: linear-gradient(117deg, rgba(255, 255, 255, 0.90) 10%, rgba(255, 255, 255, 0.70) 100%); */
     backdrop-filter: blur(10px);
 }
+.card:is(:nth-child(3), :nth-child(4), :nth-child(7), :nth-child(8)) {
+    box-shadow: 0px 1px 3px 0px #FFC6A4;
+}
+.card:is(:nth-child(1), :nth-child(2), :nth-child(5), :nth-child(6)) {
+    box-shadow: 0px 1px 3px 0px #B2DBFF;
+}
+
 .card span {
     @apply mb-3;
 }
@@ -314,11 +287,80 @@ section {
     background: linear-gradient(118deg, #0478E0 13.94%, #0478E000 66.24%);
     backdrop-filter: blur(2px);
 }
+@media (max-width: 1160px) {
+    .blue-background {
+        background: linear-gradient(120deg, #0478E0 3.94%, #0478E000 30.24%);
+    }
+    .orange-background {
+        background: linear-gradient(284deg, #FF7420 2.73%, rgba(255, 116, 32, 0.64) 34.25%, rgba(255, 116, 32, 0.00) 73.9%);
+    }
+}
+@media (max-width: 850px) {
+    .blue-background {
+        background: linear-gradient(120deg, #0478E0 3.94%, #0478E000 30.24%);
+    }
+    .orange-background {
+        background: linear-gradient(284deg, #FF7420 2.73%, rgba(255, 116, 32, 0.64) 34.25%, rgba(255, 116, 32, 0.00) 73.9%);
+    }
+}
+
+
 .orange-background {
-    background: linear-gradient(284deg, #FF7420 8.73%, rgba(255, 116, 32, 0.64) 34.25%, rgba(255, 116, 32, 0.00) 73.9%);
+    @apply max-[800px]:bg-orange-200 right-0;
+    background: linear-gradient(284deg, #FF7420 8.73%, rgba(255, 116, 32, 0.64) 10.25%, rgba(255, 116, 32, 0.00) 73.9%);
     backdrop-filter: blur(2px);
 }
 .color-background {
-    @apply w-[40%] h-full z-10 opacity-[0.6] absolute;
+    @apply absolute w-full h-full min-[800px]:w-[40%] min-[800px]:h-full z-10 opacity-[0.6];
+}
+
+@media (max-width: 800px) {
+    
+    .blue-background {
+        background: linear-gradient(180deg, #0478E0 19.94%, #0478E000 45.24%);
+    }    
+    .orange-background {
+        background: linear-gradient(300deg, #FF7420 -13.27%, rgba(255, 116, 32, 0.64) 10.25%, rgba(255, 116, 32, 0.00) 73.9%);
+    }
+}
+@media (min-width: 1600px) {
+    .card-container {
+        grid-template-columns: repeat(4, 360px);
+        grid-template-rows: repeat(2, 232px);
+    }
+}
+@media (max-width: 1600px) {
+    section {
+        max-height: unset !important;
+        height: unset !important;
+    }
+    .card-container {
+        width: 95%;
+        grid-template-columns: repeat(4, 21.5vw);
+        grid-template-rows: repeat(2, 232px);
+    }
+}
+
+@media (max-width: 1176px) {
+    .card-container {
+        grid-template-columns: repeat(2, 360px);
+        grid-template-rows: repeat(4, 232px);
+    }
+    .card:nth-child(odd) { box-shadow: 0px 1px 3px 0px #B2DBFF; }
+    .card:nth-child(even) { box-shadow: 0px 1px 3px 0px #FFC6A4; }
+}
+
+@media (max-width: 800px) {
+    .card-container {
+        grid-template-columns: repeat(1, min(470px, 81.5vw));
+        grid-template-rows: repeat(8, 232px);
+        gap: 32px;
+    }
+    .card:is(:nth-child(1), :nth-child(2), :nth-child(3), :nth-child(4)) { 
+        box-shadow: 0px 1px 3px 0px #B2DBFF; 
+    }
+    .card:is(:nth-child(5), :nth-child(6), :nth-child(7), :nth-child(8)) { 
+        box-shadow: 0px 1px 3px 0px #FFC6A4; 
+    }
 }
 </style>

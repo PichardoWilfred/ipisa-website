@@ -1,5 +1,5 @@
 <template>
-    <div class="orange-shapes absolute w-full h-full z-20">
+    <div class="orange-shapes max-[800px]:hidden absolute w-full h-full z-20">
         <!-- small-orange-circle -->
         <svg class="small-orange-circle shape" width="54" height="54" viewBox="0 0 54 54" fill="none">
             <circle cx="27" cy="27" r="27" fill="url(#paint0_linear_1251_4454)"/>
@@ -59,15 +59,15 @@
     }
 }
 .orange-comet-1 {
-    @apply absolute right-[12%] bottom-[40%] h-[360px] w-[360px];
+    @apply absolute right-[-7%] min-[1160px]:right-[12%] bottom-[83%] min-[1160px]:bottom-[40%] h-[360px] w-[360px];
     animation-delay: 40ms;
 }
 .orange-comet-2 {
-    @apply absolute right-[22%] bottom-[23%] h-[320px] w-[320px];
+    @apply absolute right-[-9%] min-[1160px]:right-[22%] bottom-[70%] min-[1160px]:bottom-[23%] h-[320px] w-[320px];
     animation-delay: 220ms;
 }
 .orange-small-pyramid {
-    @apply absolute right-[22%] bottom-[-1%] h-[245px] w-[245px];
+    @apply absolute min-[1160px]:right-[22%] right-[5%] bottom-[-1%] h-[245px] w-[245px];
     animation-delay: 120ms;
 }
 .small-orange-circle {
@@ -75,7 +75,7 @@
     animation-delay: 230ms;
 }
 .big-orange-circle {
-    @apply absolute right-[-30px] bottom-[-120px] h-[380px] w-[380px];
+    @apply absolute right-[-230px] min-[1160px]:right-[-30px] min-[1160px]:bottom-[-120px] bottom-[30%] h-[380px] w-[380px];
     animation-delay: 120ms;
 }
 </style>

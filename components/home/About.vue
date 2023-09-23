@@ -16,20 +16,20 @@
                         </span>
                     </h1>
 
-                    <span class="cursor-pointer lg:hidden flex items-center justify-center ms-auto rounded-full hover:bg-gray-100" @click="toggleDropdown">
+                    <span class="cursor-pointer lg:hidden flex items-center justify-center ms-auto rounded-full hover:bg-white-100" @click="toggleDropdown">
                         <Icon name="material-symbols:keyboard-arrow-down" class="text-[2.7rem] mt-auto transition-all" />
                     </span>
                     <Transition>
-                        <ul v-if="dropdown_menu" ref="dropdown" class="absolute bg-white top-0 right-0 border border-gray-100 rounded-lg shadow-md">
+                        <ul v-if="dropdown_menu" ref="dropdown" class="absolute bg-white top-0 right-0 border border-gray-100 rounded-lg shadow-md transition-all">
                             <li v-for="({ label }, index) in sections" @click.prevent="select_index_mobile(index)"
-                            class="cursor-pointer hover:text-gray-400 hover:border-gray-300  text-[20px] py-2 px-4 font-raleway border-b border-gray-100 no-underline last:border-0">
+                            class="cursor-pointer hover:bg-white-100 hover:text-gray-400 hover:border-gray-300 text-[20px] py-2 px-4 font-raleway border-b border-gray-100 no-underline last:border-0">
                                 {{ label }}
                             </li>
                         </ul>
                     </Transition>
                 </div>
                 
-                <p v-html="selected_section.description" class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[30vh] mb-[1.8rem]"></p>
+                <p v-html="selected_section.description" class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem]"></p>
                 
                 <ul class="navigation">
                     <li v-for="({ label }, index) in sections"
@@ -57,9 +57,7 @@
     }
 
     onClickOutside(dropdown, close);
-    // const select_index = (index) => {
-    //     selected_index.value = index;
-    // }
+    
     const select_index_mobile = (index) => {
         selected_index.value = index;
         dropdown_menu.value = false;
@@ -128,13 +126,13 @@
 </script>
 <style scoped>
 .illustration :deep(svg) {
-    @apply w-full xl:me-[20px] lg:p-[40px];
+    @apply w-full lg:p-[40px];
 }
 .illustration.school :deep(svg) {
     @apply xl:max-w-[680px] h-[300px] lg:h-[500px];
 }
 .illustration.philosofy :deep(svg) {
-    @apply xl:max-w-[690px] h-[300px] lg:h-[500px] max-lg:ms-4;
+    @apply xl:max-w-[690px] h-[300px] lg:h-[500px] translate-x-[30px];
 }
 .illustration.history :deep(svg) {
     @apply xl:max-w-[760px] h-[300px] lg:h-[500px] translate-y-[60px];
@@ -149,7 +147,7 @@
     @apply font-bold;
 }
 .content ul.navigation {
-    @apply hidden lg:flex flex-wrap;
+    @apply hidden lg:flex flex-wrap max-xl:justify-center;
 }
 .content ul.navigation li {
     @apply cursor-pointer hover:underline transition-all;

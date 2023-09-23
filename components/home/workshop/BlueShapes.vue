@@ -1,5 +1,5 @@
 <template>
-    <div class="blue-shapes absolute w-full h-full z-20">
+    <div class="blue-shapes max-[800px]:hidden absolute w-full h-full z-20">
         <!-- blue-rectangular-cube-outline -->
         <svg class="blue-rectangular-cube-outline shape" viewBox="0 0 248 118" fill="none">
             <path opacity="0.5" d="M178.884 9.7057L3.71663 216.562C3.37843 216.961 3.40536 217.554 3.77838 217.921L20.4824 234.358M178.884 9.7057L201.508 3.64385C201.853 3.55118 202.222 3.65048 202.475 3.9042L221.189 22.6992M178.884 9.7057L197.699 26.4052M221.189 22.6992L52.6663 232.703C52.4855 232.928 52.2159 233.064 51.9272 233.076L20.4824 234.358M221.189 22.6992L197.699 26.4052M20.4824 234.358L197.699 26.4052" stroke="#0478E0" stroke-width="5.3" stroke-linecap="round"/>
@@ -35,19 +35,19 @@
 </template>
 <style scoped>
     .blue-circle-small {
-        @apply absolute left-[28%] top-[5%] h-[150px] w-[150px];
+        @apply absolute left-[10%] top-[8%] min-[1160px]:left-[30%] min-[1160px]:top-[5%] h-[150px] w-[150px];
         animation-delay: 510ms;
     }   
     .blue-cube {
-        @apply absolute left-[8%] bottom-[35%] h-[310px];
+        @apply absolute left-[2%] min-[1160px]:left-[8%] bottom-[28%] min-[1160px]:bottom-[35%] h-[310px];
         animation-delay: 100ms;
     } 
     .big-blue-circle {
-        @apply absolute bottom-[-120px] left-[7%] h-[420px] w-[420px];
+        @apply absolute bottom-[-120px] left-[-10%] min-[1160px]:left-[7%] h-[420px] w-[420px];
         animation-delay: 200ms;
     }
     .blue-rectangular-cube-outline {
-        @apply absolute left-[21%] bottom-[-100px] h-[190px];
+        @apply absolute left-[13%] min-[1160px]:left-[21%] bottom-[-100px] h-[190px];
         animation-delay: 400ms;
     }
 
