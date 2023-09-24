@@ -11,8 +11,9 @@
                 <span class="text-orange-300 underline">los diversos talleres disponibles en el centro.</span>
             </p>
         </div>
+
         <div class="relative py-[8rem] mb-[8rem] z-10">
-            <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container" @mousemove="trackMouse">
+            <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
                 <HomeWorkshopBlueShapes />
                 <HomeWorkshopOrangeShapes />
                 <div class="blue-background color-background" />
@@ -20,7 +21,8 @@
                 <div class="white-blur" />
             </div>
             <div class="card-container">
-                <div class="card" v-for="({ icon, title, icon_class }, index) in cards" :key="index" :class="icon_class">
+                <div class="card" v-for="({ icon, title, icon_class, show_element }, index) in cards" :key="index" 
+                :ref="(el) => { cards[index].element = el}" :class="[icon_class, {'in-viewport': show_element }]" >
                     <nuxt-icon :name="icon" filled class="mx-auto"/>
                     <h4>
                         <template v-for="({ name, class_, br }, title_index) in title" >
@@ -32,26 +34,14 @@
                     </h4>
                 </div>
             </div>
+            <div class="absolute w-full h-full top-0 left-0 z-[40]" @mousemove.passive="trackMouse"></div>
         </div>
         <hr class="border-gray-100">
     </section>
 </template>
 <script setup>
-    const mouseX = ref(0);
-    const mouseY = ref(0);
-
-    const container = ref(null);
-
-    const trackMouse = (event) => {
-        const rect = container.value.getBoundingClientRect();
-        mouseX.value = event.clientX - rect.left;
-        mouseY.value = event.clientY - rect.top;
-    };
-    onMounted(() => {
-        const shapes = ref(document.querySelectorAll(".shape"));
-        const values = `translate(${mouseX.value / 20}px, ${mouseY.value / 20}px)`;
-    });
-
+    import { useIntersectionObserver } from '@vueuse/core';
+    
     // cards
     const cards = reactive([
         {
@@ -70,7 +60,9 @@
                     class_: 'orange',
                     name: 'Patronaje'
                 },
-            ]
+            ],
+            element: null,
+            show_element: false
         },        
         {
             icon: 'workshop/desarrollo-aplicaciones-informaticas',
@@ -103,7 +95,9 @@
                     class_: 'orange',
                     name: ' Informáticas'
                 }
-            ]
+            ],
+            element: null,
+            show_element: false
         },
         {
             icon: 'workshop/electromecanica-vehiculos',
@@ -124,7 +118,9 @@
                     class_: 'orange',
                     name: 'Vehículos'
                 },
-            ]
+            ],
+            element: null,
+            show_element: false
         },
         {
             icon: 'workshop/gestion-administrativa-tributaria',
@@ -145,7 +141,9 @@
                     class_: 'orange',
                     name: 'Tributaria'
                 },
-            ]
+            ],
+            element: null,
+            show_element: false
         },
         {
             icon: 'workshop/equipos-electronicos',
@@ -159,7 +157,9 @@
                     class_: 'orange',
                     name: 'Electrónicos'
                 },
-            ]
+            ],
+            element: null,
+            show_element: false
         },
         {
             icon: 'workshop/ensamblaje-muebles',
@@ -177,7 +177,9 @@
                     class_: 'orange',
                     name: 'Muebles'
                 },
-            ]
+            ],
+            element: null,
+            show_element: false
         },
         {
             icon: 'workshop/mecanizado',
@@ -191,7 +193,9 @@
                     class_: 'orange',
                     name: 'nizado'
                 },
-            ]
+            ],
+            element: null,
+            show_element: false
         },
         {
             icon: 'workshop/instalaciones-electricas',
@@ -205,9 +209,43 @@
                     class_: 'orange',
                     name: 'Eléctricas'
                 },
-            ]
+            ],
+            element: null,
+            show_element: false
         }
-    ])
+    ]);
+
+    const clientX = ref(0);
+    const clientY = ref(0);
+
+    const trackMouse = (e) => { // for translating the shapes depending on the mouse
+        console.log(e);
+        
+        clientX.value = e.clientX;
+        clientY.value = e.clientY;
+        
+        document.querySelectorAll("#shape-container").forEach( (shape) => {
+            const multiplier = shape.getAttribute("data-multiplier");
+
+            let x_axis = clientX.value * multiplier / 100;
+            let y_axis = clientY.value * multiplier / 100;
+
+            shape.style.transform = `translateX(${x_axis}px) translateY(${y_axis}px)`;
+        });
+    }
+    onMounted(() => {
+        // for showing presenting the workshop cards.
+        cards.map(({ element }, index) => {
+            const { stop } = useIntersectionObserver(element, ([{ isIntersecting }], observerElement) => {
+                if (isIntersecting) {
+                    cards[index].show_element = true; 
+                    stop();
+                }
+            }, { threshold: 1 });
+        });
+    });
+
+
 </script>
 <style scoped>
 .card-container {
@@ -217,11 +255,23 @@
     @apply relative w-[85%] h-full mx-auto z-40;
 }
 .card {
-    @apply flex flex-col justify-end rounded-[20px] bg-[#fffffff3];
-    border: 4px solid rgba(255, 255, 255, 0.884);
-    /* background: linear-gradient(117deg, rgba(255, 255, 255, 0.90) 10%, rgba(255, 255, 255, 0.70) 100%); */
+    @apply flex flex-col justify-end rounded-[20px];
+    border: 4px solid rgba(255, 255, 255, 0.70);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.60) 100%);
     backdrop-filter: blur(10px);
 }
+.card-container .card.in-viewport {
+    animation: show-card 850ms cubic-bezier(.68,.82,0,.8)  forwards;
+}
+@keyframes show-card {
+    from {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.60) 100%);
+    } to {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 93.68%, rgba(255, 255, 255, 0.60) 104.25%);
+;
+    }
+}
+
 .card:is(:nth-child(3), :nth-child(4), :nth-child(7), :nth-child(8)) {
     box-shadow: 0px 1px 3px 0px #FFC6A4;
 }
@@ -232,11 +282,42 @@
 .card span {
     @apply mb-3;
 }
+.card-container .card :deep(svg) {
+    transform: scale(1.1) translateY(15px);
+    transform-origin: bottom;
+}
+.card-container .card.in-viewport :deep(svg) {
+    transform: scale(1.1) translateY(15px);
+    animation: present-form 600ms cubic-bezier(.68,.82,0,.8)  forwards 500ms;
+}
+@keyframes present-form {
+    from {
+        transform: scale(1.1) translateY(15px);
+    } to {
+        transform: scale(1) translateY(0px);
+    }
+}
+.card-container .card.in-viewport :deep(svg) .shadow {
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: bottom;
+}
+.card-container .card.in-viewport :deep(svg) .shadow {
+    animation: appear-shadow 450ms cubic-bezier(.68,.82,0,.8)  forwards 600ms;
+}
+@keyframes appear-shadow {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    } to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 .card.confeccion :deep(svg){
     width: 140px;
     height: 130px;
 }
-
 .card.desarrollo :deep(svg){
     width: 180px;
     height: 110px;
@@ -252,7 +333,6 @@
 .card.equipos :deep(svg) {
     width: 160px;
     height: 145px;
-    @apply translate-x-[18px];
 }
 .card.ensamblaje :deep(svg) {
     width: 180px;
@@ -267,13 +347,26 @@
     height: 110px;
 }
 .card h4 {
-    @apply mb-[22px] font-bold font-raleway text-center text-[1.2rem] leading-[21px];
+    @apply mb-[22px] font-bold font-raleway text-center text-[1.3rem] leading-[21px];
+    opacity: 0;
+}
+.card-container .card.in-viewport h4 {
+    animation: slide-in 500ms cubic-bezier(.68,.82,0,.8)  forwards 250ms;
+}
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    } to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 .card.desarrollo h4 {
     @apply text-[0.99rem];
 }
-.card.gestion h4 {
-    @apply text-[1.2rem];
+.card:is(.gestion, .electromecanica) h4 {
+    @apply text-[1.05rem];
 }
 .card-container.blue {
     box-shadow: 0px 1px 2px 0px #B2DBFF;

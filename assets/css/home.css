@@ -1,5 +1,7 @@
 .shape {
     animation: floating 2.8s ease-in-out infinite;
+    transition: 900ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    overflow: visible;
 }
 @keyframes floating {
     0%, 100% {

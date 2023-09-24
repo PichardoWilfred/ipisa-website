@@ -52,6 +52,7 @@
     }
     header {
         @apply fixed w-full left-0 text-black bg-white top-0 border-b border-b-[transparent] transition-all z-30;
+        transition-duration: 250ms;
     }
     header ul.mobile-navigation {
         @apply lg:hidden absolute top-[93px] right-0 bg-white text-center w-[70vw];
