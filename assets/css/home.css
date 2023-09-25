@@ -1,3 +1,173 @@
+/* about section */
+
+/* school animations*/
+/* animation: name duration timing-function delay iteration-count direction fill-mode; */
+
+.illustration.school svg {
+    overflow: visible;
+}
+
+.illustration.school g.cloud {
+    transform: translateX(-12%);
+    animation: cloud-float ease both infinite;
+}
+@keyframes cloud-float {
+    from {
+        transform: translateX(-4%);
+    } 50% {
+        transform: translateX(2%);
+    } to {
+        transform: translateX(-4%);
+    } 
+}
+.illustration.school g.cloud.one {
+    animation-delay: 300ms;
+    animation-duration: 10s;
+}
+.illustration.school g.cloud.two {
+    animation-delay: 1200ms;
+    animation-duration: 7s;
+}
+.illustration.school g.cloud.third {
+    animation-delay: 800ms;
+    animation-duration: 12s;
+}
+
+.illustration.school g:is(.building, .platform, .flag-base, .flag, .don-bosco-statue), 
+.illustration.school rect.flag-pole, .illustration.school path.parking {
+    opacity: 0;
+}
+
+.illustration.school .show path.parking {
+    animation: grow-parking 950ms var(--ease-1) forwards 150ms;
+    transform-origin: bottom;
+}
+
+@keyframes grow-parking {
+    from {
+        opacity: 0;
+        transform: scaleX(0.3);
+    } 
+    30% {   
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+.illustration.school .show g.building {
+    animation: build-school 650ms var(--ease-1) forwards 300ms;
+    transform-origin: bottom;
+}
+@keyframes build-school {
+    from {
+        transform: scale(0.4);
+        opacity: 0;
+    } 
+    60% {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.illustration.school .show g.platform {
+    animation: show-platform 450ms var(--ease-1) both 700ms;
+    transform-origin: bottom;
+}
+
+.illustration.school .show g.flag-base {
+    animation: show-platform 550ms var(--ease-1) both 750ms;
+    transform-origin: bottom;
+}
+
+@keyframes show-platform {
+    from {
+        opacity: 0;
+        transform: scale(0.2);
+    } to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.illustration.school .show rect.flag-pole {
+    animation: grow-pole 850ms var(--ease-1) both 800ms;
+    transform-origin: bottom;
+}
+
+@keyframes grow-pole {
+    from {
+        transform: scaleY(0.2);
+        opacity: 0;
+    } 
+    20% {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+.illustration.school .show g.flag {
+    animation: raise-flag 900ms var(--ease-1) both 900ms;
+    transform-origin: bottom;
+}
+@keyframes raise-flag {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    } 
+    20% {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.illustration.school .show g.don-bosco-statue {
+    animation: build-statue 900ms var(--ease-1) both 750ms;
+    transform-origin: bottom;
+}
+@keyframes build-statue {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+    } 
+    20% {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.illustration.school .show g:is(.don-bosco, .kid) {
+    animation: grow-bosco 700ms cubic-bezier(.28,1.37,.11,.95) both 1350ms;
+    transform-origin: bottom;
+}
+
+@keyframes grow-bosco {
+    from {
+        opacity: 0;
+        transform: scaleY(0.3);
+    } 
+    20% {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+/* workshop section */
 .shape {
     animation: floating 2.8s ease-in-out infinite;
     transition: 900ms cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -10,4 +180,9 @@
     50% {
         transform: translateY(-13px); /* Adjust the amount of float */
     }
+}
+
+:root {
+    --ease-1: cubic-bezier(0.075, 0.82, 0.165, 1);
+    --ease-2: cubic-bezier();
 }

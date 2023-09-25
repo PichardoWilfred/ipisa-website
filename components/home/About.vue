@@ -1,8 +1,16 @@
 <template>
     <section>
+        <!-- debug animation -->
+        <DevOnly>
+            <button @click.prevent="show_animation" 
+            class="fixed bottom-9 right-9 rounded-full bg-orange-300 p-4 text-white hover:bg-orange-200 active:scale-[0.9] transition-all"> 
+                <Icon name="fe:play" class="text-[3rem]" />
+            </button>
+        </DevOnly>
+        <!--  -->
         <div class="flex flex-col-reverse xl:flex-row items-center max-w-[1700px] px-[5vw] mx-auto">
             <div class="illustration" :class="selected_section.icon">
-                <nuxt-icon :name="`home/about/${selected_section.icon}`" filled />
+                <nuxt-icon :name="`home/about/${selected_section.icon}`" :class="debug_animation" filled />
             </div>
             <div class="content">
                 <div class="flex relative items-center  max-lg:mb-3">
@@ -47,6 +55,7 @@
 </template>
 
 <script setup>
+    // mobile-dropdown
     import { onClickOutside } from '@vueuse/core';
 
     const dropdown = ref(null);
@@ -55,16 +64,18 @@
             dropdown_menu.value = false;
         }
     }
-
     onClickOutside(dropdown, close);
     
     const select_index_mobile = (index) => {
         selected_index.value = index;
         dropdown_menu.value = false;
     }
-
+    const dropdown_menu = ref(false);
+    const toggleDropdown = () => {
+        dropdown_menu.value =! dropdown_menu.value;
+    }
+    // section manager
     const selected_index = ref(0);
-
     const sections = ref([
             { 
                 label: 'Nosotros',
@@ -118,11 +129,28 @@
                 una activa comunidad de exalumnos comprometidos con la institución y su misión educativa.`
             },
     ]);
-    const selected_section = computed(() => sections.value[selected_index.value]);
-    const dropdown_menu = ref(false);
-    const toggleDropdown = () => {
-        dropdown_menu.value =! dropdown_menu.value;
+    const selected_section = computed(() => {
+        debug_animation.value = '';
+        return sections.value[selected_index.value]
+    });
+    //debug animation
+    const debug_animation = ref('');
+    const animation_timeout = ref(0);
+    const show_animation = () => {
+        if (debug_animation.value === 'show') {
+            clearTimeout(animation_timeout.value); 
+        }else {
+            debug_animation.value = 'show';
+            animation_timeout = setTimeout(() => {
+                debug_animation.value = 'idle';
+            }, 3200)
+        }
     }
+
+
+    onBeforeUnmount(() => {
+        clearTimeout(animation_timeout.value); 
+    })
 </script>
 <style scoped>
 .illustration :deep(svg) {
