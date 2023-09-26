@@ -1,32 +1,39 @@
 <template>
     <section>
-        <!-- debug animation -->
-        <DevOnly>
+<!-- debug animation -->
+<!--    <DevOnly>
             <button @click.prevent="show_animation" 
             class="fixed bottom-9 right-9 rounded-full bg-orange-300 p-4 text-white hover:bg-orange-200 active:scale-[0.9] transition-all"> 
                 <Icon name="fe:play" class="text-[3rem]" />
             </button>
-        </DevOnly>
-        <!--  -->
-        <div class="flex flex-col-reverse xl:flex-row items-center max-w-[1700px] px-[5vw] mx-auto">
-            <div class="illustration" :class="selected_section.icon">
-                <nuxt-icon :name="`home/about/${selected_section.icon}`" :class="debug_animation" filled />
-            </div>
+        </DevOnly> 
+-->
+        <div class="flex flex-col-reverse xl:flex-row items-center max-w-[1700px] px-[5vw] mx-auto min-h-[552px]">
+        
+            <Transition name="fade" mode="out-in">    
+                <div class="illustration" :class="selected_section.icon" v-intersection-observer="[onView, {threshold: 0.9}]" :key="selected_index">
+                    <nuxt-icon :name="`home/about/${selected_section.icon}`" :class="{'show': selected_section.show, 'idle': selected_section.idle}" filled />
+                </div>
+            </Transition>
+
             <div class="content">
-                <div class="flex relative items-center  max-lg:mb-3">
+                <div class="flex relative items-center max-lg:mb-3">
                     
-                    <h1 class="flex items-end font-bold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all">
-                        <a class="hover:underline">
-                            {{ selected_section.title }}
-                        </a>
-                        <span class="max-lg:hidden">
-                            <Icon name="fe:link" class=" ms-1 text-[2.5rem] separator mb-3" />
-                        </span>
-                    </h1>
+                    <Transition name="fade" mode="out-in">
+                        <h1 class="flex items-end font-bold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all" :key="selected_index" >
+                            <a class="hover:underline">
+                                {{ selected_section.title }}
+                            </a>
+                            <span class="max-lg:hidden">
+                                <Icon name="fe:link" class=" ms-1 text-[2.5rem] separator mb-3" />
+                            </span>
+                        </h1>
+                    </Transition>
 
                     <span class="cursor-pointer lg:hidden flex items-center justify-center ms-auto rounded-full hover:bg-white-100" @click="toggleDropdown">
                         <Icon name="material-symbols:keyboard-arrow-down" class="text-[2.7rem] mt-auto transition-all" />
                     </span>
+
                     <Transition>
                         <ul v-if="dropdown_menu" ref="dropdown" class="absolute bg-white top-0 right-0 border border-gray-100 rounded-lg shadow-md transition-all">
                             <li v-for="({ label }, index) in sections" @click.prevent="select_index_mobile(index)"
@@ -36,8 +43,10 @@
                         </ul>
                     </Transition>
                 </div>
-                
-                <p v-html="selected_section.description" class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem]"></p>
+                <Transition name="fade" mode="out-in">
+                    <p v-html="selected_section.description" :key="selected_index" 
+                    class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem]"></p>
+                </Transition>
                 
                 <ul class="navigation">
                     <li v-for="({ label }, index) in sections"
@@ -53,11 +62,12 @@
         <hr class="border-gray-100 mt-[8rem]">
     </section>
 </template>
-
 <script setup>
-    // mobile-dropdown
     import { onClickOutside } from '@vueuse/core';
+    import { vIntersectionObserver } from '@vueuse/components';
 
+
+    // mobile-dropdown
     const dropdown = ref(null);
     function close () {
         if (dropdown_menu.value) {
@@ -80,6 +90,8 @@
             { 
                 label: 'Nosotros',
                 icon: "school",
+                show: false,
+                idle: false,
                 title: '¿Qué Ofrece IPISA?',
                 description: `El Instituto Politécnico Industrial de Santiago <b>(IPISA)</b> es una institución educativa de renombre que destaca por su enfoque 
                 en la formación técnica y su firme compromiso con los valores cristianos. Su lema: <b class="text-blue">"Buenos Cristianos</b> <b class="separator">y</b> 
@@ -93,6 +105,8 @@
             {
                 label: 'Filosofía',
                 icon: 'philosofy',
+                show: false,
+                idle: false,
                 title: 'Filosofía del centro',
                 description: `La visión educativa del centro se inspira en el sistema preventivo de <b class="text-blue-300 underline">Don Bosco</b>, fundamentado 
                 en <b class="text-blue">la razón</b>, <b class="orange">la religión</b> <b class="separator">y</b> <b class="text-blue">el amor</b>. Este enfoque busca formar a jóvenes centrados en valores éticos y preparados para convertirse en ciudadanos 
@@ -106,6 +120,8 @@
             {
                 label: 'Historia',
                 icon: 'history',
+                show: false,
+                idle: false,
                 title: 'Historia del centro',
                 description: `Fundado en <b class="orange">19</b><b class="text-blue">88</b>, el IPISA nació como una respuesta a la creciente demanda de educación técnica en la Región Norte de la República Dominicana. 
                 Bajo la dirección de la congregación salesiana y con el respaldo decidido de la comunidad empresarial, este centro educativo asumió desde sus inicios el 
@@ -118,6 +134,8 @@
             {
                 label: 'Reconocimientos',
                 icon: 'awards',
+                show: false,
+                idle: false,
                 title: 'Reconocimientos',
                 description: `Fundado en <b class="orange">19</b><b class="text-blue">88</b>, el IPISA nació como una respuesta a la creciente demanda de 
                 educación técnica en la Región Norte de la República Dominicana. Bajo la dirección de la congregación salesiana y con el respaldo decidido 
@@ -129,27 +147,47 @@
                 una activa comunidad de exalumnos comprometidos con la institución y su misión educativa.`
             },
     ]);
-    const selected_section = computed(() => {
-        debug_animation.value = '';
-        return sections.value[selected_index.value]
-    });
-    //debug animation
-    const debug_animation = ref('');
-    const animation_timeout = ref(0);
-    const show_animation = () => {
-        if (debug_animation.value === 'show') {
-            clearTimeout(animation_timeout.value); 
-        }else {
-            debug_animation.value = 'show';
-            animation_timeout = setTimeout(() => {
-                debug_animation.value = 'idle';
-            }, 3200)
-        }
+
+    const selected_section = computed(() => sections.value[selected_index.value]);
+
+    let animation_timeout = ref(0);
+    watch(selected_index, (newVal, oldVal) => {
+        // whenever we change the index we cancel the last show animation
+        sections.value[oldVal].show = false;
+        // we 
+        if ( !sections.value[newVal].idle ) { 
+            sections.value[selected_index.value].show = true;  
+        } 
+
+        animation_timeout = setTimeout( () => {
+            sections.value[newVal].idle = true;
+        }, 1400);
+    })
+    // animation
+    function onView([{ isIntersecting }]) {
+
+        if (isIntersecting && !sections.value[selected_index.value].idle) {
+            sections.value[selected_index.value].show = true
+            animation_timeout = setTimeout( () => {
+                sections.value[selected_index.value].idle = true;
+            }, 1400);
+        };
     }
+    // const debug_animation = ref('');
+    
 
-
+    // const show_animation = () => {
+    //     if (debug_animation.value === 'show') {
+    //         clearTimeout(animation_timeout.value); 
+    //     }else {
+    //         debug_animation.value = 'show';
+    //         animation_timeout = setTimeout(() => {
+    //             debug_animation.value = 'idle';
+    //         }, 1900);
+    //     }
+    // }
     onBeforeUnmount(() => {
-        clearTimeout(animation_timeout.value); 
+        clearTimeout(animation_timeout.value)
     })
 </script>
 <style scoped>
@@ -160,7 +198,7 @@
     @apply xl:max-w-[680px] h-[300px] lg:h-[500px];
 }
 .illustration.philosofy :deep(svg) {
-    @apply xl:max-w-[690px] h-[300px] lg:h-[500px] translate-x-[30px];
+    @apply xl:max-w-[690px] h-[300px] lg:h-[500px] translate-x-[-3px] lg:translate-x-[30px];
 }
 .illustration.history :deep(svg) {
     @apply xl:max-w-[760px] h-[300px] lg:h-[500px] translate-y-[60px];
@@ -174,8 +212,12 @@
 .content b {
     @apply font-bold;
 }
+
+.fade-enter-active, .fade-leave-active { transition: opacity 300ms var(--ease-1); }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
 .content ul.navigation {
-    @apply hidden lg:flex flex-wrap max-xl:justify-center;
+    @apply hidden lg:flex flex-wrap max-xl:justify-center mt-auto;
 }
 .content ul.navigation li {
     @apply cursor-pointer hover:underline transition-all;
@@ -190,5 +232,7 @@
 .content ul.navigation li.selected { @apply underline; }
 .content ul.navigation li.selected:nth-child(even) { @apply text-blue; }
 .content ul.navigation li.selected:nth-child(odd) { @apply text-orange; }
+
+
 
 </style>

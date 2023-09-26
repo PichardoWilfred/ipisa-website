@@ -8,8 +8,8 @@
 }
 
 .illustration.school g.cloud {
-    transform: translateX(-12%);
-    animation: cloud-float ease both infinite;
+    transform: translateX(-4%);
+    animation: cloud-float ease forwards infinite;
 }
 @keyframes cloud-float {
     from {
@@ -21,21 +21,22 @@
     } 
 }
 .illustration.school g.cloud.one {
-    animation-delay: 300ms;
     animation-duration: 10s;
 }
 .illustration.school g.cloud.two {
-    animation-delay: 1200ms;
     animation-duration: 7s;
 }
 .illustration.school g.cloud.third {
-    animation-delay: 800ms;
     animation-duration: 12s;
 }
 
 .illustration.school g:is(.building, .platform, .flag-base, .flag, .don-bosco-statue), 
 .illustration.school rect.flag-pole, .illustration.school path.parking {
     opacity: 0;
+}
+.illustration.school .idle g:is(.building, .platform, .flag-base, .flag, .don-bosco-statue), 
+.illustration.school .idle rect.flag-pole, .illustration.school  .idle path.parking {
+    opacity: 1;
 }
 
 .illustration.school .show path.parking {
@@ -167,6 +168,104 @@
         transform: scaleY(1);
     }
 }
+
+/* philosofy */
+.illustration.philosofy svg {
+    @apply overflow-visible;
+}
+
+.illustration.philosofy .show .brightness-container {
+    animation: appear-bright 1200ms var(--ease-1) both 400ms;
+    transform-origin: bottom;
+}
+@keyframes appear-bright {
+    from {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    70% {
+        opacity: 1;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.illustration.philosofy .brightness {
+    transform-origin: center center;
+    animation: rotate-brigthness 8s ease both infinite;
+}
+@keyframes rotate-brigthness {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.6;
+    }
+    25% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(0.9);
+        opacity: 0.6;
+    }
+    75% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.9);
+        opacity: 0.6;
+    }
+}
+
+.illustration.philosofy .show .clouds {
+    transform-origin: bottom;
+    animation: show-clouds 400ms var(--ease-1) both 400ms;
+}
+@keyframes show-clouds {
+    from {
+        transform: translateY(80px) scale(0.3);
+        opacity: 0;
+    } to {
+        transform: translateY(0px) scale(1);
+        opacity: 1;
+    }
+}
+
+.illustration.philosofy .idle .clouds {
+    animation: float-clouds 3200ms ease infinite 600ms;
+}
+@keyframes float-clouds {
+    from {
+        transform: translateY(0px);
+    } 
+    50% {
+        transform: translateY(-18px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}
+
+.illustration.philosofy .show .people-container {
+    animation: grow-people 650ms cubic-bezier(.28, 1.37,.11,.95) both 700ms;
+    transform-origin: bottom center;
+}
+@keyframes grow-people {
+    from {
+        transform: scale(0.3);
+        opacity: 0;
+    } 
+    50% {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 /* workshop section */
 .shape {
     animation: floating 2.8s ease-in-out infinite;
