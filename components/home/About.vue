@@ -45,7 +45,7 @@
                 </div>
                 <Transition name="fade" mode="out-in">
                     <p v-html="selected_section.description" :key="selected_index" 
-                    class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem]"></p>
+                    class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem] max-lg:mb-[3.8rem]"></p>
                 </Transition>
                 
                 <ul class="navigation">
@@ -195,7 +195,7 @@
     @apply w-full lg:p-[40px];
 }
 .illustration.school :deep(svg) {
-    @apply xl:max-w-[680px] h-[300px] lg:h-[500px];
+    @apply xl:max-w-[680px] h-[400px] lg:h-[500px];
 }
 .illustration.philosofy :deep(svg) {
     @apply xl:max-w-[690px] h-[300px] lg:h-[500px] translate-x-[-3px] lg:translate-x-[30px];
