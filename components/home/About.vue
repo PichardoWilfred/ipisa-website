@@ -1,13 +1,5 @@
 <template>
-    <section>
-<!-- debug animation -->
-<!--    <DevOnly>
-            <button @click.prevent="show_animation" 
-            class="fixed bottom-9 right-9 rounded-full bg-orange-300 p-4 text-white hover:bg-orange-200 active:scale-[0.9] transition-all"> 
-                <Icon name="fe:play" class="text-[3rem]" />
-            </button>
-        </DevOnly> 
--->
+    <section class="relative pt-[4rem] lg:pt-[8rem] z-20">
         <div class="flex flex-col-reverse xl:flex-row items-center max-w-[1700px] px-[5vw] mx-auto min-h-[552px]">
         
             <Transition name="fade" mode="out-in">    
@@ -165,7 +157,6 @@
     })
     // animation
     function onView([{ isIntersecting }]) {
-
         if (isIntersecting && !sections.value[selected_index.value].idle) {
             sections.value[selected_index.value].show = true
             animation_timeout = setTimeout( () => {

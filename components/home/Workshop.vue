@@ -1,5 +1,5 @@
 <template>
-    <section class="relative bg-white py-[8rem] h-[auto]">
+    <section class="relative py-[8rem] h-[auto] z-20">
         <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[5rem] text-black">
             <h1 class="text-[2.2rem] lg:text-[3.6rem] max-lg:mb-3  font-semibold">
                 <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
@@ -12,7 +12,7 @@
             </p>
         </div>
 
-        <div class="relative py-[8rem] mb-[8rem] z-10">
+        <div class="relative bg-white py-[8rem] mb-[8rem] z-10">
             <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
                 <HomeWorkshopBlueShapes />
                 <HomeWorkshopOrangeShapes />
@@ -219,7 +219,6 @@
     const clientY = ref(0);
 
     const trackMouse = (e) => { // for translating the shapes depending on the mouse
-        console.log(e);
         
         clientX.value = e.clientX;
         clientY.value = e.clientY;

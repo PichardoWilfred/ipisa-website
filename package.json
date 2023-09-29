@@ -23,6 +23,7 @@
     "@nuxtjs/svg": "^0.4.1",
     "@vueuse/components": "^10.4.1",
     "@vueuse/core": "^10.4.1",
-    "nuxt-icons": "^3.2.1"
+    "nuxt-icons": "^3.2.1",
+    "rellax": "^1.12.1"
   }
 }
