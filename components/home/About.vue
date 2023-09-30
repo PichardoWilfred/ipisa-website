@@ -1,5 +1,5 @@
 <template>
-    <section class="relative pt-[4rem] lg:pt-[8rem] z-20">
+    <section class="relative pt-[4rem] lg:pt-[8rem] mb-[3rem] z-20">
         <div class="flex flex-col-reverse xl:flex-row items-center max-w-[1700px] px-[5vw] mx-auto min-h-[552px]">
         
             <Transition name="fade" mode="out-in">    
@@ -51,7 +51,7 @@
             </div>
         </div>
         
-        <hr class="border-gray-100 mt-[8rem]">
+        <!-- <hr class="border-gray-100 mt-[8rem]"> -->
     </section>
 </template>
 <script setup>
@@ -101,7 +101,7 @@
                 idle: false,
                 title: 'Filosofía del centro',
                 description: `La visión educativa del centro se inspira en el sistema preventivo de <b class="text-blue-300 underline">Don Bosco</b>, fundamentado 
-                en <b class="text-blue">la razón</b>, <b class="orange">la religión</b> <b class="separator">y</b> <b class="text-blue">el amor</b>. Este enfoque busca formar a jóvenes centrados en valores éticos y preparados para convertirse en ciudadanos 
+                en <b class="text-blue">la razón,</b> <b class="orange">la religión</b> <b class="separator">y</b> <b class="text-blue">el amor</b>. Este enfoque busca formar a jóvenes centrados en valores éticos y preparados para convertirse en ciudadanos 
                 responsables y comprometidos con la sociedad.
                 <br /> <br />
                 Este sistema educativo se caracteriza por el <b>equilibrio</b> entre la dimensión espiritual y la formación integral de los estudiantes. 

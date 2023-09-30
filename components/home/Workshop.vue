@@ -12,7 +12,7 @@
             </p>
         </div>
 
-        <div class="relative bg-white py-[8rem] mb-[8rem] z-10">
+        <div class="relative bg-white py-[8rem] mb-[8rem] z-10"  ref="card_container" @mousemove.passive="trackMouse">
             <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
                 <HomeWorkshopBlueShapes />
                 <HomeWorkshopOrangeShapes />
@@ -34,7 +34,7 @@
                     </h4>
                 </div>
             </div>
-            <div class="absolute w-full h-full top-0 left-0 z-[40]" @mousemove.passive="trackMouse"></div>
+            <!-- <div class="absolute w-full h-full top-0 left-0 z-[40]" ></div> -->
         </div>
         <hr class="border-gray-100">
     </section>
@@ -218,11 +218,15 @@
     const clientX = ref(0);
     const clientY = ref(0);
 
+    const card_container = ref(null);
+
     const trackMouse = (e) => { // for translating the shapes depending on the mouse
-        
-        clientX.value = e.clientX;
-        clientY.value = e.clientY;
-        
+        // Get the parent's bounding client
+        const parentRect = card_container.value.getBoundingClientRect();
+
+        clientX.value = e.clientX - parentRect.left;
+        clientY.value = e.clientY - parentRect.top;
+
         document.querySelectorAll("#shape-container").forEach( (shape) => {
             const multiplier = shape.getAttribute("data-multiplier");
 
@@ -254,7 +258,7 @@
     @apply relative w-[85%] h-full mx-auto z-40;
 }
 .card {
-    @apply flex flex-col justify-end rounded-[20px];
+    @apply flex flex-col justify-end rounded-[20px] cursor-pointer transition-all;
     border: 4px solid rgba(255, 255, 255, 0.70);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.60) 100%);
     backdrop-filter: blur(10px);
@@ -271,12 +275,10 @@
     }
 }
 
-.card:is(:nth-child(3), :nth-child(4), :nth-child(7), :nth-child(8)) {
-    box-shadow: 0px 1px 3px 0px #FFC6A4;
-}
-.card:is(:nth-child(1), :nth-child(2), :nth-child(5), :nth-child(6)) {
-    box-shadow: 0px 1px 3px 0px #B2DBFF;
-}
+.card:is(:nth-child(3), :nth-child(4), :nth-child(7), :nth-child(8)) { box-shadow: 0px 1px 3px 0px #FFC6A4; }
+.card:is(:nth-child(3), :nth-child(4), :nth-child(7), :nth-child(8)):hover { box-shadow: 0px 1px 3px 0px #ff9a5f; }
+.card:is(:nth-child(1), :nth-child(2), :nth-child(5), :nth-child(6)) { box-shadow: 0px 1px 3px 0px #B2DBFF; }
+.card:is(:nth-child(1), :nth-child(2), :nth-child(5), :nth-child(6)):hover { box-shadow: 0px 1px 3px 0px #47a9ff; }
 
 .card span {
     @apply mb-3;
@@ -439,7 +441,12 @@
         grid-template-rows: repeat(4, 232px);
     }
     .card:nth-child(odd) { box-shadow: 0px 1px 3px 0px #B2DBFF; }
+
+    .card:nth-child(odd):hover { box-shadow: 0px 1px 3px 0px #47a9ff; }
+
     .card:nth-child(even) { box-shadow: 0px 1px 3px 0px #FFC6A4; }
+    
+    .card:nth-child(even):hover { box-shadow: 0px 1px 3px 0px #ff9a5f; }
 }
 
 @media (max-width: 800px) {
@@ -448,11 +455,17 @@
         grid-template-rows: repeat(8, 232px);
         gap: 32px;
     }
-    .card:is(:nth-child(1), :nth-child(2), :nth-child(3), :nth-child(4)) { 
+    .card:is(:nth-child(1), :nth-child(2), :nth-child(7), :nth-child(8)){ 
         box-shadow: 0px 1px 3px 0px #B2DBFF; 
     }
     .card:is(:nth-child(5), :nth-child(6), :nth-child(7), :nth-child(8)) { 
         box-shadow: 0px 1px 3px 0px #FFC6A4; 
     }
+    
+
+    .card:is(:nth-child(1), :nth-child(2), :nth-child(7), :nth-child(8)):hover { box-shadow: 0px 1px 3px 0px #47a9ff; }
+
+    
+    .card:is(:nth-child(5), :nth-child(6), :nth-child(7), :nth-child(8)):hover { box-shadow: 0px 1px 3px 0px #ff9a5f; }
 }
 </style>
