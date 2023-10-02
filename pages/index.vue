@@ -4,8 +4,8 @@
         <HomeWallpaperContainer />
         <HomeAbout />
         <HomeWorkshop />
+        testing
     </div>
-    <Footer />
 </template>
 <script setup>
 </script>
