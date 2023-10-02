@@ -4,7 +4,6 @@
             <div class="upper">
                 <Icon v-if="!header_class.transparent" class="salesianos-logo" name="Salesianos" />
                 <nuxt-icon name="general/ipisa-logo" class="logo" filled />
-                <!-- <navIpisa-logo class="logo" /> -->
                 <div class="social-media">
                     <div v-for="({ src }, index) in social_media" class="icon">
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
@@ -31,13 +30,15 @@
                     Av. Hispanoamericana, Km 1 Santiago,
                     <span class="text-blue-300">Zona Sur, República Dominicana.</span>
                 </h4>
-                <Icon name="LocationColor" class="location-icon-color" size="35px"/>
+                
+                <nuxt-icon name="layout/location-color" class="text-[28px]" filled />
             </li>
             <li class="flex items-center mt-2">
-                <h4 class="text-blue me-2">
-                    <span class="text-blue-300">(809)</span> 724-5700
+                <h4 class="text-orange-300 me-2">
+                    <span class="text-orange-200">(809)</span> 724-5700
                 </h4>
-                <Icon name="PhoneColor" class="phone-icon-color" size="25px"/>
+                <nuxt-icon name="layout/phone-color" class="text-[26px]" filled />
+                <!-- <Icon name="PhoneColor" class="phone-icon-color" size="25px"/> -->
             </li>
         </ul>
     </header>

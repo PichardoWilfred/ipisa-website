@@ -5,6 +5,7 @@
         <HomeAbout />
         <HomeWorkshop />
     </div>
+    <Footer />
 </template>
 <script setup>
 </script>
