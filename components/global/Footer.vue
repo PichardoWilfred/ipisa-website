@@ -4,10 +4,10 @@
         <div class="separator-orange bg-orange-300 w-full h-[30px] mb-10" />
     <footer class="px-3 lg:px-8">
         <div class="flex flex-col align-center logo min-[800px]:max-w-[320px]">
-            <h4 class="font-raleway text-black font-bold text-[22px] min-[1400px]:text-[26px]">
+            <h4 class="font-raleway text-black font-bold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
                 ¡Sigue contactándonos!
             </h4>
-            <p class="text-gray-400 font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2">
+            <p class="text-gray-400 font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center">
                 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
             </p>
             <div class="flex flex-col items-center">
@@ -105,15 +105,16 @@
                 </div>
             </div>
         </div>
-        <div class="location">
-            <h4 class="font-raleway text-black font-bold text-[22px] min-[1400px]:text-[26px]">
+        <div class="location flex flex-col items-center max-sm:mb-6">
+            <h4 class="font-raleway text-black font-bold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
                 Ubicación
             </h4>
-            <p class="text-gray-400 font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2">
+            <p class="text-gray-400 font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center">
                 Av. Hispanoamericana, Km 1 Santiago, <br />
                 Zona Sur, República Dominicana
             </p>
-            <img src="/modules/home/footer/location-embed.png" class="w-[295px] h-[230px]" />
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15050.64837538612!2d-70.6843685!3d19.4270006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb1cf13d5f1c97b%3A0x13c741931d8d644f!2sInstituto%20Polit%C3%A9cnico%20Industrial%20de%20Santiago!5e0!3m2!1ses-419!2sdo!4v1696273194914!5m2!1ses-419!2sdo" 
+            width="300" height="230" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </footer>
     
@@ -146,6 +147,7 @@ footer {
     grid-area: job-insertion;
 }
 .about {
+    @apply flex flex-col;
     grid-area: about;
 }
 .workshop {
@@ -216,6 +218,7 @@ ul.activities {
     }
     ul.workshop-list {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
     .links {
         grid-template-columns: repeat(4, 1fr);
@@ -226,7 +229,7 @@ ul.activities {
     }
 }
 .links h5.title {
-    @apply font-bold font-raleway text-black text-[18px] min-[800px]:text-[22px] mb-1;
+    @apply font-bold font-raleway text-black text-[18px] min-[800px]:text-[22px] mb-2;
 }
 .links ul.activities li.activity, li.section, li.option {
     @apply text-gray-400 font-medium font-raleway text-[14px] min-[800px]:text-[16px] mb-1 hover:text-[#2b2b2b] hover:underline cursor-pointer;

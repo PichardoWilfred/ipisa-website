@@ -25,7 +25,7 @@
             </li>
         </ul>
         <ul class="information">
-            <li class="flex">
+            <li class="flex items-center">
                 <h4 class="text-blue me-2">
                     Av. Hispanoamericana, Km 1 Santiago,
                     <span class="text-blue-300">Zona Sur, República Dominicana.</span>
@@ -45,14 +45,21 @@
     <div v-if="mobile_menu" class="mask" @click="toggle_mobile_menu" />
 </template>
 <style scoped>
-    ul.navigation li.item {
-        @apply relative cursor-pointer font-raleway font-bold me-10 last:me-0;
+    header ul.navigation li.item {
+        @apply relative cursor-pointer font-raleway font-bold me-10 last:me-0 text-black 
+        after:flex after:content-[''] hover:after:w-full after:w-0 after:bg-orange-200 after:h-1 after:relative after:transition-all;
+    }
+    header ul.navigation li.item::after {
+        transform: scale(0);
+    }
+    header ul.navigation li.item::after {
+        transform: scale(0);
     }
     ul.navigation li.item.focused {
         @apply after:absolute after:rounded-full after:w-[9px] after:h-[9px] after:bg-orange-300 after:top-[-2px] after:right-[-15px];
     }
     header {
-        @apply fixed w-full left-0 text-black bg-white top-0 border-b border-b-[transparent] transition-all z-30;
+        @apply fixed w-full left-0 text-black bg-white top-0 border-b border-b-[transparent] transition-all z-[100];
         transition-duration: 250ms;
     }
     header ul.mobile-navigation {
@@ -96,7 +103,6 @@
     header nav div.upper button.mobile {
         @apply max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md border border-gray-100 hover:bg-gray-100 transition-[background-color];
     }
-
     header nav div.upper div.social-media div.icon {
         @apply flex items-center justify-center h-[40px] w-[40px] p-3 text-white cursor-pointer transition-all;
         transform: translateY(-100%);
@@ -123,10 +129,13 @@
         @apply top-0;
     }
     header.transparent {
-        @apply bg-[#FFFFFF00] text-white hover:text-white transition-colors;
+        @apply bg-[#FFFFFF00] transition-colors;
     }
     header.transparent ul.information {
         @apply hidden;
+    }
+    header.transparent ul.navigation li.item {
+        @apply text-white hover:text-[#ffffffa2];
     }
     header.transparent nav div.upper div.social-media { 
         @apply absolute top-[45px] lg:top-[32px] lg:right-[35px];

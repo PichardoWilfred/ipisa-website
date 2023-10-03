@@ -166,7 +166,6 @@
     }
     // const debug_animation = ref('');
     
-
     // const show_animation = () => {
     //     if (debug_animation.value === 'show') {
     //         clearTimeout(animation_timeout.value); 
@@ -186,7 +185,7 @@
     @apply w-full lg:p-[40px];
 }
 .illustration.school :deep(svg) {
-    @apply xl:max-w-[680px] h-[400px] lg:h-[500px];
+    @apply xl:max-w-[680px] h-[400px] lg:h-[500px] translate-y-10;
 }
 .illustration.philosofy :deep(svg) {
     @apply xl:max-w-[690px] h-[300px] lg:h-[500px] translate-x-[-3px] lg:translate-x-[30px];

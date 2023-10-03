@@ -4,8 +4,13 @@
         <HomeWallpaperContainer />
         <HomeAbout />
         <HomeWorkshop />
-        testing
     </div>
+    <HomeAdmissions />
+    <HomeActivities />
 </template>
 <script setup>
+useHead({
+    title: 'IPISA - Buenos Cristianos y Honrados Ciudadanos',
+    meta: [{ property: 'og:title', content: `Instituto Politécnico Industrial de Santiago` }]
+})
 </script>
