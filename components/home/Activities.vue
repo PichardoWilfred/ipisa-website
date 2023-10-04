@@ -1,6 +1,6 @@
 <template>
     <section class="h-[70vh] w-full mb-[8rem]">
-        <swiper :modules="[Pagination, Navigation, Autoplay]" :slides-per-view="1" :space-between="10" loop pagination navigation autoplay>
+        <swiper :modules="[Pagination, Navigation, Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop pagination navigation autoplay effect="fade" crossFade>
             <swiper-slide>
                 <img src="/modules/home/activities/1.png" alt="1" />
             </swiper-slide>
@@ -18,11 +18,12 @@
 </template>
 <script setup>
     import { Swiper, SwiperSlide } from 'swiper/vue';
-    import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+    import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
     // Import Swiper styles
     import 'swiper/css';
     import 'swiper/css/navigation';
     import 'swiper/css/pagination';
+    import 'swiper/css/effect-fade';
 </script>
 <style>
     .swiper {

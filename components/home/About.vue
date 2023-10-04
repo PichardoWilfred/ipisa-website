@@ -185,10 +185,10 @@
     @apply w-full lg:p-[40px];
 }
 .illustration.school :deep(svg) {
-    @apply xl:max-w-[680px] h-[400px] lg:h-[500px] translate-y-10;
+    @apply xl:max-w-[680px] max-sm:max-w-[300px] max-sm:h-[190px] max-w-[520px] h-[400px] lg:h-[500px] translate-y-[2vw];
 }
 .illustration.philosofy :deep(svg) {
-    @apply xl:max-w-[690px] h-[300px] lg:h-[500px] translate-x-[-3px] lg:translate-x-[30px];
+    @apply xl:max-w-[690px] h-[300px] lg:h-[500px] translate-x-[-2vw] lg:translate-x-[30px];
 }
 .illustration.history :deep(svg) {
     @apply xl:max-w-[760px] h-[300px] lg:h-[500px] translate-y-[60px];

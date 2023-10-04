@@ -38,7 +38,6 @@
                     <span class="text-orange-200">(809)</span> 724-5700
                 </h4>
                 <nuxt-icon name="layout/phone-color" class="text-[26px]" filled />
-                <!-- <Icon name="PhoneColor" class="phone-icon-color" size="25px"/> -->
             </li>
         </ul>
     </header>
@@ -79,10 +78,9 @@
         animation: appear 200ms ease-in-out;
     }
     header nav div.upper .logo {
-        @apply ms-4 me-auto lg:mx-auto;
+        @apply ms-2 me-auto lg:mx-auto;
     }
     header nav div.upper .logo :deep(svg) {
-        /* max-w-[60px] */
         @apply my-4 max-lg:w-[60px] lg:w-[90px] h-[60px] lg:h-[90px] transition-all;
     }
     header nav div.upper svg.salesianos-logo {
@@ -142,6 +140,9 @@
     }
     header.transparent nav div.upper button.mobile {
         @apply border-white hover:bg-[#FFFFFF6B];
+    }
+    header.transparent nav div.upper button.mobile ::v-deep(svg) {
+        @apply text-white;
     }
     header.transparent nav div.upper div.social-media div.icon {
         animation: none;
