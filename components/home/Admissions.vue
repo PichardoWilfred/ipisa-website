@@ -1,6 +1,6 @@
 <template>
-    <section class="w-full max-w-[1680px] mx-auto px-[3vw]">
-        <h2 class="flex items-center text-black font-semibold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 transition-all">
+    <section class="w-full max-w-[1680px] mx-auto px-[5vw]">
+        <h2 class="flex items-center text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 transition-all">
             Requisitos de Admisión
             
             <span class="copy-requirements" @click.prevent="copy_requirements">
@@ -13,11 +13,21 @@
             seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes. A continuación, detallamos 
             los requisitos necesarios para aplicar:
         </p>
-        <ol class="" style="list-style: decimal;" >
-            <li v-for="(item, index) in requirements" :key="index" class="text-[1.2rem] text-black font-normal font-raleway max-w-[1400px] mb-4 max-sm:w-[90%] max-sm:mx-auto" v-html="item">
+        <ol style="list-style: decimal;" >
+            <template v-for="({label, content}, index) in requirements" :key="index">
+                <li class="text-[1.2rem] text-black font-normal font-raleway max-w-[1400px] mb-4 max-sm:w-[90%] max-sm:mx-auto" >
+                    <b>
+                        {{ label }}
+                    </b>
+                    {{ content }}
+                    {{ item }}
+                    <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
+                </li>
+            </template>
+            <li>
             </li>
         </ol>
-        <p class="text-[1.2rem] text-black font-medium font-raleway max-w-[1200px] mb-2">
+        <p class="text-[1.2rem] text-black font-medium font-raleway max-w-[1200px] mb-10">
             Cumplir con estos requisitos es fundamental para iniciar tu proceso de admisión en IPISA y dar el primer paso hacia una educación técnica de calidad.
         </p>
     </section>
@@ -40,6 +50,9 @@
         `<b>Recibo de Contribución de Gastos de Pre-inscripción:</b> Adquiere el recibo correspondiente por un monto de <b>RD$ 100.00</b> en la caja de la institución.
         Este recibo valida tu proceso de pre-inscripción.`,
     ])
+    // const copy_item = ```
+    //     <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
+    // ```
     const copy_requirements = () => {
         console.log('uwu?');
     }
