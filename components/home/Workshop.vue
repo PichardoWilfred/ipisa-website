@@ -1,5 +1,5 @@
 <template>
-    <section class="relative pb-[3rem] pt-[4rem] h-[auto] z-20">
+    <section class="relative pt-[4rem] h-[auto] z-20">
         <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[3rem] text-black">
             <h1 class="text-[2.2rem] lg:text-[3.6rem] max-lg:mb-3  font-semibold">
                 <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
@@ -12,7 +12,7 @@
             </p>
         </div>
 
-        <div class="relative bg-white py-[8rem] mb-[8rem] z-10"  ref="card_container" @mousemove.passive="trackMouse">
+        <div class="relative bg-white py-[8rem] z-10"  ref="card_container" @mousemove.passive="trackMouse">
             <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
                 <HomeWorkshopBlueShapes />
                 <HomeWorkshopOrangeShapes />
@@ -36,7 +36,7 @@
             </div>
             <!-- <div class="absolute w-full h-full top-0 left-0 z-[40]" ></div> -->
         </div>
-        <hr class="border-gray-100">
+        <!-- <hr class="border-gray-100"> -->
     </section>
 </template>
 <script setup>
