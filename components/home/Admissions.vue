@@ -1,5 +1,5 @@
 <template>
-    <section class="w-full max-w-[1680px] mx-auto px-[3vw]">
+    <section class="w-full max-w-[1580px] mx-auto px-[3vw]">
         <h2 class="flex items-center text-black font-semibold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 transition-all">
             Requisitos de Admisión
             
