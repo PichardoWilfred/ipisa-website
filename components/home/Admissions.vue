@@ -14,17 +14,13 @@
             los requisitos necesarios para aplicar:
         </p>
         <ol style="list-style: decimal;" >
-            <template v-for="({label, content}, index) in requirements" :key="index">
-                <li class="text-[1.2rem] text-black font-normal font-raleway max-w-[1400px] mb-4 max-sm:w-[90%] max-sm:mx-auto" >
-                    <b>
-                        {{ label }}
-                    </b>
-                    {{ content }}
-                    {{ item }}
-                    <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
-                </li>
-            </template>
-            <li>
+            <li v-for="({label, content}, index) in requirements" :key="index" 
+            class="text-[1.2rem] text-black font-normal font-raleway max-w-[1400px] mb-4 max-sm:w-[90%] max-sm:mx-auto">
+                <b>
+                    {{ label }}
+                </b>
+                {{ content }}
+                <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
             </li>
         </ol>
         <p class="text-[1.2rem] text-black font-medium font-raleway max-w-[1200px] mb-10">
@@ -34,22 +30,57 @@
 </template>
 <script setup>
     const requirements = ref([
-        '<b class="underline cursor-pointer">Formulario de Admisión Completo,</b> Debes completar el formulario de admisión proporcionado por la institución, asegurándote de no realizar alteraciones en el mismo.',
-        `<b>Fotografías 2×2</b>, Se requieren dos fotografías recientes a color, en formato 2 x 2, donde tu rostro esté claramente visible. Evita usar aretes, maquillaje excesivo, 
-        blusas sin mangas, cortes de pelo extravagantes o tintes llamativos. La presentación debe ser sobria.`,
-        `<b>Acta de Nacimiento para Fines Escolares:</b> Proporciona una copia del acta de nacimiento, la cual debe ser utilizada con fines escolares.`,
-        `<b>Cédula de Identidad de los Padres:</b> Debes incluir una copia de la cédula de identidad tanto del padre como de la madre.
-        Asegúrate de que ambas copias incluyan ambas caras y no estén recortadas.`,
-        `<b>Certificado Médico:</b> Presenta una copia del certificado médico, que certifique tu estado de salud general.`,
-        `<b>Certificado de Conducta Estudiantil:</b> Incluye una copia del certificado de conducta estudiantil emitido por el centro educativo anterior. 
-        Este documento reflejará tu comportamiento y desempeño previos.`,
-        `<b>Tipificación Sanguínea:</b> Proporciona una copia de tu tipificación sanguínea, un dato importante para posibles situaciones médicas.`,
-        `<b>Tarjeta de Vacunas:</b> Incluye una copia de tu tarjeta de vacunas, asegurándote de que ambas caras estén legibles y sin recortes.`,
-        `<b>Reporte de Calificaciones Actuales de Octavo:</b> Presenta una copia del reporte de calificaciones actual correspondiente al octavo grado. 
-        Este documento reflejará tu desempeño académico en la educación primaria.`,
-        `<b>Recibo de Contribución de Gastos de Pre-inscripción:</b> Adquiere el recibo correspondiente por un monto de <b>RD$ 100.00</b> en la caja de la institución.
-        Este recibo valida tu proceso de pre-inscripción.`,
-    ])
+    {
+        label: 'Formulario de Admisión Completo,',
+        content: 'Debes completar el formulario de admisión proporcionado por la institución, asegurándote de no realizar alteraciones en el mismo.',
+        label_class: 'underline cursor-pointer',
+    },
+    {
+        label: 'Fotografías 2×2',
+        content: 'Se requieren dos fotografías recientes a color, en formato 2 x 2, donde tu rostro esté claramente visible. Evita usar aretes, maquillaje excesivo, blusas sin mangas, cortes de pelo extravagantes o tintes llamativos. La presentación debe ser sobria.',
+        label_class: '',
+    },
+    {
+        label: 'Acta de Nacimiento para Fines Escolares:',
+        content: 'Proporciona una copia del acta de nacimiento, la cual debe ser utilizada con fines escolares.',
+        label_class: '',
+    },
+    {
+        label: 'Cédula de Identidad de los Padres:',
+        content: 'Debes incluir una copia de la cédula de identidad tanto del padre como de la madre. Asegúrate de que ambas copias incluyan ambas caras y no estén recortadas.',
+        label_class: '',
+    },
+    {
+        label: 'Certificado Médico:',
+        content: 'Presenta una copia del certificado médico, que certifique tu estado de salud general.',
+        label_class: '',
+    },
+    {
+        label: 'Certificado de Conducta Estudiantil:',
+        content: 'Incluye una copia del certificado de conducta estudiantil emitido por el centro educativo anterior. Este documento reflejará tu comportamiento y desempeño previos.',
+        label_class: '',
+    },
+    {
+        label: 'Tipificación Sanguínea:',
+        content: 'Proporciona una copia de tu tipificación sanguínea, un dato importante para posibles situaciones médicas.',
+        label_class: '',
+    },
+    {
+        label: 'Tarjeta de Vacunas:',
+        content: 'Incluye una copia de tu tarjeta de vacunas, asegurándote de que ambas caras estén legibles y sin recortes.',
+        label_class: '',
+    },
+    {
+        label: 'Reporte de Calificaciones Actuales de Octavo:',
+        content: 'Presenta una copia del reporte de calificaciones actual correspondiente al octavo grado. Este documento reflejará tu desempeño académico en la educación primaria.',
+        label_class: '',
+    },
+    {
+        label: 'Recibo de Contribución de Gastos de Pre-inscripción:',
+        content: 'Adquiere el recibo correspondiente por un monto de RD$ 100.00 en la caja de la institución. Este recibo valida tu proceso de pre-inscripción.',
+        label_class: '',
+    },
+])
     // const copy_item = ```
     //     <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
     // ```
