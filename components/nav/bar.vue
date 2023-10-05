@@ -31,13 +31,13 @@
                     <span class="text-blue-300">Zona Sur, República Dominicana.</span>
                 </h4>
                 
-                <nuxt-icon name="layout/location-color" class="text-[28px]" filled />
+                <nuxt-icon name="layout/location-color" class="text-[28px] location-icon-color" filled />
             </li>
             <li class="flex items-center mt-2">
                 <h4 class="text-orange-300 me-2">
                     <span class="text-orange-200">(809)</span> 724-5700
                 </h4>
-                <nuxt-icon name="layout/phone-color" class="text-[26px]" filled />
+                <nuxt-icon name="layout/phone-color" class="text-[26px] phone-icon-color" filled />
             </li>
         </ul>
     </header>
@@ -166,6 +166,9 @@
     }
     header.transparent ul.mobile-navigation li.item {
         @apply py-6 border-b border-gray-100 hover:bg-gray-100 hover:text-white;
+    }
+    header ul.information :deep(:is(.location-icon-color, .phone-icon-color)) svg {
+        @apply overflow-visible;
     }
     header.transparent ul.information :deep(svg:is(.location-icon-color, .phone-icon-color))   {
         animation: none;

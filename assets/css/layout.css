@@ -1,4 +1,4 @@
-    header ul.information svg:is(.phone-icon-color, .location-icon-color) ellipse{
+    header ul.information svg:is(.phone-icon-color, .location-icon-color) ellipse {
         transform-origin: bottom;
         animation: grow-shadow 350ms ease-in-out;
     }

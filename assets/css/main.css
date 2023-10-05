@@ -17,15 +17,10 @@
     @apply text-[#A9C2E0];
 }
 
-.v-enter-active,
-.v-leave-active {
+.v-enter-active, .v-leave-active {
     transition: all 150ms cubic-bezier(.68,.82,0,.8);
 }
 
-.v-enter-from,
-.v-leave-to {
+.v-enter-from, .v-leave-to {
     opacity: 0;
 }
-
-
-/* fade */
