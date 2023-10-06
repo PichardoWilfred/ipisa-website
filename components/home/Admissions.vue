@@ -1,5 +1,5 @@
 <template>
-    <section class="w-full max-w-[1680px] mx-auto px-[5vw] pt-[8rem]">
+    <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[8rem] z-20">
         <h2 class="flex items-center text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
             Requisitos de Admisión
             <span class="copy-requirements" @click.prevent="copy_requirements">

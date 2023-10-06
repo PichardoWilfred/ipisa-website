@@ -5,8 +5,11 @@
         <HomeAbout />
         <HomeWorkshop />
     </div>
-    <HomeAdmissions />
-    <HomeActivities />
+    <div class="wallpaper-two relative overflow-hidden z-30 bg-white">
+        <HomeWallpaperContainerTwo />
+        <HomeAdmissions />
+        <HomeActivities />
+    </div>
 </template>
 <script setup>
 useHead({

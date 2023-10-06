@@ -7,7 +7,7 @@
             <h4 class="font-raleway text-black font-bold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
                 ¡Sigue contactándonos!
             </h4>
-            <p class="text-gray-400 font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center">
+            <p class="text-gray-400 font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center max-sm:mx-auto">
                 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
             </p>
             <div class="flex flex-col items-center">
