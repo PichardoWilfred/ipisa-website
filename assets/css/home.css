@@ -323,8 +323,3 @@
         transform: translateY(-13px); /* Adjust the amount of float */
     }
 }
-
-:root {
-    --ease-1: cubic-bezier(0.075, 0.82, 0.165, 1);
-    --ease-2: cubic-bezier();
-}

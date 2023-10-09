@@ -24,3 +24,8 @@
 .v-enter-from, .v-leave-to {
     opacity: 0;
 }
+
+:root {
+    --separator: #A9C2E0;
+    --ease-1: cubic-bezier(0.075, 0.82, 0.165, 1);
+}

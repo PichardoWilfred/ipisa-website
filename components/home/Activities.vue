@@ -1,5 +1,5 @@
 <template>
-    <section class="relative h-[70vh] w-full mb-[8rem] z-20">
+    <section class="relative h-[70vh] w-full z-20">
         <swiper :modules="[Pagination, Navigation, Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop pagination navigation autoplay effect="fade" crossFade>
             <swiper-slide>
                 <img src="/modules/home/activities/1.png" alt="1" />

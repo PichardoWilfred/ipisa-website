@@ -1,7 +1,6 @@
 <template>
-    
     <div class="separator-blue bg-blue w-full h-[40px]" />
-        <div class="separator-orange bg-orange-300 w-full h-[30px] mb-10" />
+    <div class="separator-orange bg-orange-300 w-full h-[30px] mb-10" />
     <footer class="px-3 lg:px-8">
         <div class="flex flex-col align-center logo min-[800px]:max-w-[320px]">
             <h4 class="font-raleway text-black font-bold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">

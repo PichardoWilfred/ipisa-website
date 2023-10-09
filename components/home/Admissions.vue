@@ -1,33 +1,59 @@
 <template>
     <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[8rem] z-20">
-        <h2 class="flex items-center text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
-            Requisitos de Admisión
+        <div class="relative content xl:bg-white z-30">
+            <h2 class="flex items-center text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
+            <b class="text-blue">Requisitos </b> <b class="separator mx-3">de</b> <b class="text-orange-300">Admisión</b>
             <span class="copy-requirements" @click.prevent="copy_requirements">
                 <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
             </span>
-        </h2>
-        <p class="text-[1.2rem] text-black font-medium font-raleway max-w-[1100px] mb-5">
-            Para formar parte de la comunidad educativa del <b class="text-blue">Instituto</b> <b class="text-orange-300">Politécnico</b> <b class="text-blue">Industrial</b>
-            <b class="separator"> de</b> <b class="text-orange-300">Santiago</b> <b>(IPISA),</b> es importante 
-            seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes. A continuación, detallamos 
-            los requisitos necesarios para aplicar:
-        </p>
-        <ol style="list-style: decimal;" >
-            <li v-for="({label, label_class, content}, index) in requirements" :key="index" 
-            class="text-[1rem] text-black font-raleway font-medium max-w-[1400px] mb-4 max-sm:w-[90%] max-sm:mx-auto">
-                <b :class="label_class" class="underline">
-                    {{ label }}
-                </b>
-                {{ content }}
-                <Icon name="ic:outline-content-copy" class="ms-2 font-bold text-[1.7rem] lg:text-[1.4rem] separator mt-1" />
-            </li>
-        </ol>
-        <p class="text-[1.2rem] text-black font-medium font-raleway max-w-[1200px] mb-10">
-            Cumplir con estos requisitos es fundamental para iniciar tu proceso de admisión en IPISA y dar el primer paso hacia una educación técnica de calidad.
-        </p>
+            </h2>
+            <p class="text-[1.2rem] text-black font-medium font-raleway max-w-[1100px] mb-5">
+                Para formar parte de la comunidad educativa del <b class="text-blue">Instituto</b> <b class="text-orange-300">Politécnico</b> <b class="text-blue">Industrial</b>
+                <b class="separator"> de</b> <b class="text-orange-300">Santiago</b> <b>(IPISA),</b> es importante 
+                seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes. A continuación, detallamos 
+                los requisitos necesarios para aplicar:
+            </p>
+            <ol style="list-style: decimal;" >
+                <li v-for="({label, label_class, content}, index) in requirements" :key="index" 
+                class="text-[1rem] text-black font-raleway font-medium max-w-[1400px] mb-4 max-sm:w-[90%] max-sm:mx-auto">
+                    <b :class="label_class" class="underline">
+                        {{ label }}
+                    </b>
+                    {{ content }}
+                    <Icon name="ic:outline-content-copy" class="ms-2 font-bold text-[1.7rem] lg:text-[1.4rem] separator mt-1" />
+                </li>
+            </ol>
+            <p class="text-[1.2rem] text-black font-medium font-raleway max-w-[1200px] mb-14">
+                Cumplir con estos requisitos es fundamental para iniciar tu proceso de admisión en IPISA y dar el primer paso hacia una educación técnica de calidad.
+            </p>
+        </div>
+
+        <div class="home-admission-required relative flex justify-center h-[35vh] z-10 overflow-hidden">
+            <div class="absolute top-0">
+                <HomeAdmissionRequirementBoard class="mx-auto max-lg:w-[99%] max-lg:h-[140px]" />
+            </div>
+            <div class="absolute top-[100px]">
+                <HomeAdmissionKids class="w-[250px] h-[316px]"/>
+            </div>
+            <!-- <div class="rellax" data-rellax-percentage="0.3" data-rellax-speed="-9">
+                <HomeAdmissionRequirementBoard />
+            </div>            
+            <div class="rellax" data-rellax-percentage="0.3" data-rellax-speed="-14">
+            </div> -->
+            <!-- home/requirements/requirement-board -->
+            <!-- <nuxt-icon name="home/requirements/requirement-board" class="text-[880px]" /> -->
+        </div>
+
     </section>
 </template>
 <script setup>
+    import Rellax from 'rellax';
+    onBeforeMount(() => {
+        const rellax = new Rellax('.rellax', { // Start Rellax
+            center: true
+        });
+        rellax.refresh(); // Destroy and create again parallax with previous settings
+    })
     const requirements = ref([
     {
         label: 'Formulario de Admisión Completo,',

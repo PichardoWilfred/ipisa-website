@@ -199,7 +199,7 @@ const navigation_bar = [
         label: 'TALLERES'
     },
     {
-        label: 'INFORMACIONES'
+        label: 'NOTICIAS'
     },
     {
         label: 'INSERCIÓN LABORAL'
