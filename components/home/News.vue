@@ -98,21 +98,21 @@ const news_feed = ref([
     @apply text-orange-300;
 }
 .news:hover button.see-more svg {
-    @apply transition-all;
+    @apply transition-all;  
 }
 .news:hover button.see-more svg {
     animation: bounce-arrow 950ms ease-in-out forwards infinite ;
 }
 @keyframes bounce-arrow {
-    from {
+    0% {
         transform: translateY(0px);
     } 50% {        
         transform: translateY(-6px);
-    } to {
+    } 100% {
         transform: translateY(0px);
     }
 }
-
+/* bounce dot animation on home.css */
 @media (max-width: 800px) {
     .news-feed {
         display: grid;

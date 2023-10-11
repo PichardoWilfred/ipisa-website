@@ -1,7 +1,7 @@
 <template>
     <section class="relative pt-[4rem] lg:pt-[8rem] mb-[3rem] z-20">
         <div class="flex flex-col-reverse xl:flex-row items-center max-w-[1700px] px-[5vw] mx-auto min-h-[552px]">
-        
+
             <Transition name="fade" mode="out-in">    
                 <div class="illustration" :class="selected_section.icon" v-intersection-observer="[onView, {threshold: 0.9}]" :key="selected_index">
                     <nuxt-icon :name="`home/about/${selected_section.icon}`" :class="{'show': selected_section.show, 'idle': selected_section.idle}" filled />
@@ -10,7 +10,6 @@
 
             <div class="content">
                 <div class="flex relative items-center max-lg:mb-3">
-                    
                     <Transition name="fade" mode="out-in">
                         <h1 class="flex items-end font-bold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all" :key="selected_index" >
                             <a class="hover:underline">

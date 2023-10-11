@@ -30,10 +30,10 @@
 
         <div class="home-admission-required relative flex justify-center h-[35vh] z-10 overflow-hidden">
             <div class="absolute top-0">
-                <HomeAdmissionRequirementBoard class="mx-auto max-lg:w-[99%] max-lg:h-[140px]" />
+                <HomeAdmissionRequirementBoard class="mx-auto max-lg:w-[100%] lg:w-[1200px] max-lg:h-[240px]" />
             </div>
             <div class="absolute top-[100px]">
-                <HomeAdmissionKids class="w-[250px] h-[316px]"/>
+                <HomeAdmissionKids class="w-[340px] h-[320px]"/>
             </div>
             <!-- <div class="rellax" data-rellax-percentage="0.3" data-rellax-speed="-9">
                 <HomeAdmissionRequirementBoard />
