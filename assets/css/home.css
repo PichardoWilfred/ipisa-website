@@ -362,3 +362,95 @@
         transform: translateY(-13px); /* Adjust the amount of float */
     }
 }
+
+section.job-insertion .bubble {
+    transform: scale(0);
+}
+section.job-insertion .bubble.visible {
+    animation: grow-bubble 450ms cubic-bezier(.49,1.44,.63,.94) forwards;
+}
+@keyframes grow-bubble {
+    from {
+        transform: scale(0);
+    } to {
+        transform: scale(1);
+    }
+}
+section.job-insertion .bubble.idle {
+    animation: float-bubble 4050ms ease-in-out infinite;
+}
+@keyframes float-bubble {
+    from {
+        transform: scale(1) translateY(0);
+    } 
+    50% {
+        transform: scale(.9) translateY(-5px);
+    }
+    to {
+        transform: scale(1) translateY(0);
+    }
+}
+section.job-insertion .bubble.visible.one {
+    animation-delay: 450ms;
+}
+section.job-insertion .bubble.visible.two {
+    animation-delay: 750ms;
+}
+section.job-insertion .bubble.visible.three {
+    animation-delay: 950ms;
+}
+
+section.job-insertion .girl-chair path.eye {
+    animation: blink 2150ms ease infinite;
+    transform-origin: center;
+}
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    2% {
+        opacity: 0;
+    }
+    8% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+section.job-insertion .dots svg circle.dot {
+    animation: bounce-dot 1350ms ease-in-out infinite;
+}
+@keyframes bounce-dot {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+section.job-insertion .dots svg circle.dot.one {
+    animation-delay: 50ms;
+}
+section.job-insertion .dots svg circle.dot.two {
+    animation-delay: 100ms;
+}
+section.job-insertion .dots svg circle.dot.three {
+    animation-delay: 200ms;
+}
+section.job-insertion .dots svg circle.dot.four {
+    animation-delay: 400ms;
+}
+section.job-insertion .dots svg circle.dot.five {
+    animation-delay: 500ms;
+}
+section.job-insertion .dots svg circle.dot.six {
+    animation-delay: 600ms;
+}
+section.job-insertion .dots svg circle.dot.seven {
+    animation-delay: 700ms;
+}

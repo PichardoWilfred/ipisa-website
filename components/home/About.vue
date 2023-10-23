@@ -1,10 +1,11 @@
 <template>
     <section class="relative pt-[4rem] lg:pt-[8rem] mb-[3rem] z-20">
         <div class="flex flex-col-reverse xl:flex-row items-center max-w-[1700px] px-[5vw] mx-auto min-h-[552px]">
-
             <Transition name="fade" mode="out-in">    
-                <div class="illustration" :class="selected_section.icon" v-intersection-observer="[onView, {threshold: 0.9}]" :key="selected_index">
-                    <nuxt-icon :name="`home/about/${selected_section.icon}`" :class="{'show': selected_section.show, 'idle': selected_section.idle}" filled />
+                <div class="illustration" :class="selected_section.icon" 
+                v-intersection-observer="[onView, {threshold: 0.9}]" :key="selected_index">
+                    <nuxt-icon :name="`home/about/${selected_section.icon}`" 
+                    :class="{'show': selected_section.show, 'idle': selected_section.idle}" filled />
                 </div>
             </Transition>
 
@@ -49,14 +50,12 @@
                 </ul>
             </div>
         </div>
-        
         <!-- <hr class="border-gray-100 mt-[8rem]"> -->
     </section>
 </template>
 <script setup>
     import { onClickOutside } from '@vueuse/core';
     import { vIntersectionObserver } from '@vueuse/components';
-
 
     // mobile-dropdown
     const dropdown = ref(null);
@@ -163,18 +162,6 @@
             }, 1400);
         };
     }
-    // const debug_animation = ref('');
-    
-    // const show_animation = () => {
-    //     if (debug_animation.value === 'show') {
-    //         clearTimeout(animation_timeout.value); 
-    //     }else {
-    //         debug_animation.value = 'show';
-    //         animation_timeout = setTimeout(() => {
-    //             debug_animation.value = 'idle';
-    //         }, 1900);
-    //     }
-    // }
     onBeforeUnmount(() => {
         clearTimeout(animation_timeout.value)
     })

@@ -2,10 +2,10 @@
     <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[8rem] z-20">
         <div class="relative content z-30">
             <h2 class="flex justify-center items-center text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
-            <b class="text-blue">Requisitos </b> <b class="separator mx-3">de</b> <b class="text-orange-300">Admisión</b>
-            <span class="copy-requirements" @click.prevent="copy_requirements">
-                <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
-            </span>
+                <b class="text-blue">Requisitos </b> <b class="separator mx-3">de</b> <b class="text-orange-300">Admisión</b>
+                <span class="copy-requirements" @click.prevent="copy_requirements">
+                    <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
+                </span>
             </h2>
             <p class="text-[1.2rem] text-black font-medium font-raleway max-w-[900px] mb-10 mx-auto">
                 Para formar parte de la comunidad educativa del <b class="text-blue">Instituto</b> <b class="text-orange-300">Politécnico</b> <b class="text-blue">Industrial</b>
