@@ -11,7 +11,6 @@
         <HomeAdmissions />
         <HomeActivities />
         <HomeJobInsertion />
-        <div class="h-[60vh]"></div>
     </div>
 </template>
 <script setup>

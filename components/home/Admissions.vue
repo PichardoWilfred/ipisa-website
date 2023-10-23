@@ -1,5 +1,5 @@
 <template>
-    <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[8rem] z-20">
+    <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[8rem] pb-[10rem] z-20">
         <div class="relative content z-30">
             <h2 class="flex justify-center items-center text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
                 <b class="text-blue">Requisitos </b> <b class="separator mx-3">de</b> <b class="text-orange-300">Admisión</b>
@@ -45,13 +45,6 @@
             <div class="absolute top-[100px]">
                 <HomeAdmissionKids class="w-[340px] h-[320px]"/>
             </div>
-            <!-- <div class="rellax" data-rellax-percentage="0.3" data-rellax-speed="-9">
-                <HomeAdmissionRequirementBoard />
-            </div>            
-            <div class="rellax" data-rellax-percentage="0.3" data-rellax-speed="-14">
-            </div> -->
-            <!-- home/requirements/requirement-board -->
-            <!-- <nuxt-icon name="home/requirements/requirement-board" class="text-[880px]" /> -->
         </div>
 
     </section>
