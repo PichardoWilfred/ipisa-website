@@ -1,12 +1,12 @@
 <template>
     <HomePortrait />
-    <div class="wallpaper-one relative overflow-hidden z-20">
+    <div class="wallpaper-one relative overflow-hidden z-10">
         <HomeWallpaperContainerOne />
         <HomeAbout />
         <HomeNews />
         <HomeWorkshop />
     </div>
-    <div class="wallpaper-two relative overflow-hidden z-30 bg-white">
+    <div class="wallpaper-two relative overflow-hidden z-10 bg-white">
         <HomeWallpaperContainerTwo />
         <HomeAdmissions />
         <HomeActivities />

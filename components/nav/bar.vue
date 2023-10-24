@@ -14,7 +14,8 @@
                 </button>
             </div>
             <ul class="navigation">
-                <li v-for="({ label, class_ }, index) in navigation_bar" :key="index" class="item" :class="class_">
+                <li v-for="({ label, class_ }, index) in navigation_bar" :key="index" 
+                class="item" :class="class_">
                     {{ label }}
                 </li>
             </ul>
@@ -46,19 +47,16 @@
 <style scoped>
     header ul.navigation li.item {
         @apply relative cursor-pointer font-raleway font-bold me-10 last:me-0 text-black 
-        after:flex after:content-[''] hover:after:w-full after:w-0 after:bg-orange-200 after:h-1 after:relative after:transition-all;
-    }
-    header ul.navigation li.item::after {
-        transform: scale(0);
-    }
-    header ul.navigation li.item::after {
-        transform: scale(0);
+        before:absolute before:bottom-[-4px] before:rounded-md before:flex before:h-[2px]
+        before:bg-orange-300 before:w-0 before:content-[''] 
+        hover:before:w-full before:transition-all before:origin-center;
     }
     ul.navigation li.item.focused {
         @apply after:absolute after:rounded-full after:w-[9px] after:h-[9px] after:bg-orange-300 after:top-[-2px] after:right-[-15px];
     }
     header {
-        @apply fixed w-full left-0 text-black bg-white top-0 border-b border-b-[transparent] transition-all z-[100];
+        @apply fixed w-full left-0 text-black bg-white 
+        top-0 border-b border-b-[transparent] transition-all z-[999];
         transition-duration: 250ms;
     }
     header ul.mobile-navigation {
@@ -66,7 +64,8 @@
         height: calc(100vh - 84px);
     }
     header ul.mobile-navigation li.item {
-        @apply font-raleway font-bold text-black hover:text-[#8b8b8b] py-6 border-b border-gray-100 hover:bg-gray-100 active:bg-gray-100;
+        @apply font-raleway font-bold text-black hover:text-[#8b8b8b] 
+        py-6 border-b border-gray-100 hover:bg-gray-100 active:bg-gray-100;
     }
     header ul.information {
         @apply absolute top-[4.5rem] right-[18px] max-xl:hidden flex flex-col items-end text-black font-raleway font-bold max-w-[300px] text-end text-[14px];
@@ -133,7 +132,7 @@
         @apply hidden;
     }
     header.transparent ul.navigation li.item {
-        @apply text-white hover:text-[#ffffffa2];
+        @apply before:w-0 text-white hover:text-[#ffffffa2];
     }
     header.transparent nav div.upper div.social-media { 
         @apply absolute top-[45px] lg:top-[32px] lg:right-[35px];
@@ -196,21 +195,21 @@ const navigation_bar = [
         label: 'NOSOTROS'
     },
     {
-        label: 'TALLERES'
-    },
-    {
         label: 'NOTICIAS'
     },
     {
-        label: 'INSERCIÓN LABORAL'
+        label: 'TALLERES'
+    },
+    {
+        label: 'ADMISIONES',
+        class_: 'focused'
     },
     {
         label: 'PASTORAL'
     },
     {
-        label: 'ADMISIONES',
-        class_: 'focused'
-    }
+        label: 'INSERCIÓN LABORAL'
+    },
 ]
 const social_media = [
     {
