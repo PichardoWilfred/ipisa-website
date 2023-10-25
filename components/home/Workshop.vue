@@ -1,5 +1,5 @@
 <template>
-    <section class="mt-[170px] relative pt-[2rem] h-[auto] z-20">
+    <section class="mt-[170px] relative pt-[2rem] h-[auto] z-20" id="workshop">
         <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[3rem] text-black">
             <h1 class="text-[2.2rem] lg:text-[3.6rem] max-lg:mb-3  font-semibold">
                 <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>

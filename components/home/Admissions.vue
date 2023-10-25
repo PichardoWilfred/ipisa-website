@@ -1,5 +1,5 @@
 <template>
-    <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[8rem] pb-[10rem] z-20">
+    <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[8rem] z-20" id="admissions">
         <div class="relative content z-30">
             <h2 class="flex justify-center items-center text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
                 <b class="text-blue">Requisitos </b> <b class="separator mx-3">de</b> <b class="text-orange-300">Admisión</b>
@@ -69,7 +69,7 @@
     }
 }
 .requirement {
-    @apply flex rounded-lg items-center justify-center relative max-w-[680px] border-[8px] h-[300px] lg:h-[180px];
+    @apply bg-white flex rounded-lg items-center justify-center relative max-w-[680px] border-[8px] h-[300px] lg:h-[180px];
 }
 .requirement.orange {
     @apply border-[#FFA36C]

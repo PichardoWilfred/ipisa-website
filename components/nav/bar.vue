@@ -3,7 +3,7 @@
         <nav>
             <div class="upper">
                 <Icon v-if="!header_class.transparent" class="salesianos-logo" name="Salesianos" />
-                <nuxt-icon name="general/ipisa-logo" class="logo" filled />
+                <nuxt-icon @click="scrollToSection('portrait')" name="general/ipisa-logo" class="logo" filled />
                 <div class="social-media">
                     <div v-for="({ src }, index) in social_media" class="icon">
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
@@ -14,14 +14,15 @@
                 </button>
             </div>
             <ul class="navigation">
-                <li v-for="({ label, class_ }, index) in navigation_bar" :key="index" 
-                class="item" :class="class_">
+                <li v-for="({ label, class_, section }, index) in navigation_bar" :key="index" 
+                class="item" :class="class_" @click.prevent="scrollToSection(section)">
                     {{ label }}
                 </li>
             </ul>
         </nav>   
         <ul v-if="mobile_menu" class="mobile-navigation" :class="{show: mobile_menu }">
-            <li v-for="({ label, class_ }, index) in navigation_bar" :key="index" class="item" :class="class_">
+            <li v-for="({ label, class_, section }, index) in navigation_bar" :key="index" class="item" 
+            :class="class_" @click.prevent="scrollToSection(section, 200)">
                 {{ label }}
             </li>
         </ul>
@@ -77,7 +78,7 @@
         animation: appear 200ms ease-in-out;
     }
     header nav div.upper .logo {
-        @apply ms-2 me-auto lg:mx-auto;
+        @apply cursor-pointer ms-2 me-auto lg:mx-auto;
     }
     header nav div.upper .logo :deep(svg) {
         @apply my-4 max-lg:w-[60px] lg:w-[90px] h-[60px] lg:h-[90px] transition-all;
@@ -189,28 +190,34 @@ const header_class = reactive({
     scrolled: false,
     up: false
 })
-//social-media
 const navigation_bar = [
     {
-        label: 'NOSOTROS'
+        label: 'NOSOTROS',
+        section: 'about' 
     },
     {
-        label: 'NOTICIAS'
+        label: 'NOTICIAS',
+        section: 'news'
     },
     {
-        label: 'TALLERES'
+        label: 'TALLERES',
+        section: 'workshop'
     },
     {
         label: 'ADMISIONES',
+        section: 'admissions',
         class_: 'focused'
     },
     {
-        label: 'PASTORAL'
+        label: 'PASTORAL',
+        section: 'activities'
     },
     {
-        label: 'INSERCIÓN LABORAL'
+        label: 'INSERCIÓN LABORAL',
+        section: 'job-insertion'
     },
 ]
+// socialmedia
 const social_media = [
     {
         src: 'fe:instagram'
@@ -225,7 +232,7 @@ const social_media = [
         src: 'ic:baseline-whatsapp'
     }
 ];
-// scroll modes
+// navigation bar styles
 let prevScrollY;
 onMounted(() => {
     prevScrollY = ref(window.scrollY);
@@ -245,11 +252,12 @@ const handleScroll = () => {
     prevScrollY.value = currentScrollY;
 }
 const mobile_menu = ref(false);
+
 const toggle_mobile_menu = () => {
     mobile_menu.value =! mobile_menu.value;
     const body = document.querySelector("body");
-    if (mobile_menu.value) {
 
+    if (mobile_menu.value) {
         const scrollTop = window.pageYOffset || document.body.scrollTop;
         const scrollLeft = window.pageXOffset || document.body.scrollLeft;
 
@@ -262,5 +270,17 @@ const toggle_mobile_menu = () => {
         window.onscroll = () => {};
         body.style.overflowY = 'auto';
     }
+}
+// scroll navigation
+const scrollToSection = (section_, delay = 0) => {
+    const in_mobile = window.matchMedia("(max-width: 768px)").matches;
+    setTimeout(() => {
+        const section = document.querySelector(`section#${section_}`);
+        const section_offset = parseInt(section.dataset.offset) || 0;
+        const y = section.getBoundingClientRect().top + window.pageYOffset - (in_mobile ? 60 : 140) + section_offset;
+        
+        window.scrollTo({ top: y, behavior: 'smooth' });
+    }, delay);
+    if (in_mobile ) toggle_mobile_menu();
 }
 </script>

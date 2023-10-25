@@ -1,5 +1,5 @@
 <template>
-    <section class="relative pt-[4rem] lg:pt-[8rem] mb-[3rem] z-20">
+    <section class="relative pt-[4rem] lg:pt-[8rem] mb-[3rem] z-20" id="about">
         <div class="flex flex-col-reverse xl:flex-row items-center max-w-[1700px] px-[5vw] mx-auto min-h-[552px]">
             <Transition name="fade" mode="out-in">    
                 <div class="illustration" :class="selected_section.icon" 

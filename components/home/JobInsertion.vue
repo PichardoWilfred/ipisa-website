@@ -1,6 +1,6 @@
 <template>
     <section class="job-insertion relative max-[680px]:pb-[16rem] px-[5vw] mt-28 sm:h-[130vh] lg:h-[92vh] overflow-hidden" 
-    v-intersection-observer="[onView, {threshold: 0.9}]">
+    v-intersection-observer="[onView, {threshold: 0.9}]" id="job-insertion">
         <h2 class="text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] 
         cursor-pointer mb-2 lg:mb-4 transition-all">
             <b class="text-blue">Inserción</b> <b class="text-orange-300">Laboral</b>
