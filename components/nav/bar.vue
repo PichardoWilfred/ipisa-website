@@ -20,9 +20,9 @@
                 </li>
             </ul>
         </nav>   
-        <ul v-if="mobile_menu" class="mobile-navigation" :class="{show: mobile_menu }">
+        <ul v-if="mobile_menu" class="mobile-navigation" :class="{ show: mobile_menu }">
             <li v-for="({ label, class_, section }, index) in navigation_bar" :key="index" class="item" 
-            :class="class_" @click.prevent="scrollToSection(section, 200)">
+            :class="class_" @click.prevent="scrollToSection(section, 200 )">
                 {{ label }}
             </li>
         </ul>
@@ -48,7 +48,7 @@
 <style scoped>
     header ul.navigation li.item {
         @apply relative cursor-pointer font-raleway font-bold me-10 last:me-0 text-black 
-        before:absolute before:bottom-[-4px] before:rounded-md before:flex before:h-[2px]
+        before:absolute before:bottom-[-3px] before:rounded-md before:flex before:h-[3px]
         before:bg-orange-300 before:w-0 before:content-[''] 
         hover:before:w-full before:transition-all before:origin-center;
     }
@@ -272,8 +272,16 @@ const toggle_mobile_menu = () => {
     }
 }
 // scroll navigation
-const scrollToSection = (section_, delay = 0) => {
+const scrollToSection = (section_, delay = 0 ) => {
     const in_mobile = window.matchMedia("(max-width: 768px)").matches;
+    
+    const route = useRouter();
+    const in_home = computed(() => {
+        return route.currentRoute.value.name === 'index';
+    });
+    if (!in_home) {
+        return
+    }
     setTimeout(() => {
         const section = document.querySelector(`section#${section_}`);
         const section_offset = parseInt(section.dataset.offset) || 0;

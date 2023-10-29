@@ -36,10 +36,10 @@
                     </Transition>
                 </div>
                 <Transition name="fade" mode="out-in">
-                    <p v-html="selected_section.description" :key="selected_index" 
-                    class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem] max-lg:mb-[3.8rem]"></p>
+                    <p :key="selected_index" class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem] max-lg:mb-[3.8rem]">
+                        <HomeAboutDescription :index="selected_index" />
+                    </p>
                 </Transition>
-                
                 <ul class="navigation">
                     <li v-for="({ label }, index) in sections"
                     :class="{'selected': selected_index === index}"
@@ -80,17 +80,11 @@
             { 
                 label: 'Nosotros',
                 icon: "school",
+                route: '',
                 show: false,
                 idle: false,
                 title: '¿Qué Ofrece IPISA?',
-                description: `El Instituto Politécnico Industrial de Santiago <b>(IPISA)</b> es una institución educativa de renombre que destaca por su enfoque 
-                en la formación técnica y su firme compromiso con los valores cristianos. Su lema: <b class="text-blue">"Buenos Cristianos</b> <b class="separator">y</b> 
-                <b class="orange">Honrados Ciudadanos"</b>, encapsula su misión de brindar una educación integral que combine habilidades técnicas y valores éticos. 
-                <br /> <br/>
-                Nos enorgullecemos de ofrecer educación de alta calidad en diversas disciplinas técnicas, preparando a los estudiantes para enfrentar el mundo laboral 
-                con confianza y ética. Nuestra énfasis en la <b class="text-blue">excelencia</b> <b class="orange">académica</b>, la formación en valores y una amplia 
-                gama de actividades extracurriculares hacen de IPISA una institución educativa de elección para aquellos que buscan una educación técnica sólida y una 
-                base sólida en principios éticos.`
+                description: 'vue:HomeAboutDescriptionsSchool'
             },
             {
                 label: 'Filosofía',
@@ -98,14 +92,7 @@
                 show: false,
                 idle: false,
                 title: 'Filosofía del centro',
-                description: `La visión educativa del centro se inspira en el sistema preventivo de <b class="text-blue-300 underline">Don Bosco</b>, fundamentado 
-                en <b class="text-blue">la razón,</b> <b class="orange">la religión</b> <b class="separator">y</b> <b class="text-blue">el amor</b>. Este enfoque busca formar a jóvenes centrados en valores éticos y preparados para convertirse en ciudadanos 
-                responsables y comprometidos con la sociedad.
-                <br /> <br />
-                Este sistema educativo se caracteriza por el <b>equilibrio</b> entre la dimensión espiritual y la formación integral de los estudiantes. 
-                Promueve valores como la responsabilidad, la calidad, la ciudadanía, la ética, la integridad, la honradez y la justicia. A través de este enfoque, 
-                <b>IPISA</b> se esfuerza por brindar una educación de calidad que fortalezca tanto los aspectos humanos y éticos como los <b class="text-blue">técnicos</b> 
-                <b class="separator">y</b> <b class="orange">académicos.</b>`
+                description: 'HomeAboutDescriptionsPhilosofy'
             },
             {
                 label: 'Historia',
@@ -113,13 +100,7 @@
                 show: false,
                 idle: false,
                 title: 'Historia del centro',
-                description: `Fundado en <b class="orange">19</b><b class="text-blue">88</b>, el IPISA nació como una respuesta a la creciente demanda de educación técnica en la Región Norte de la República Dominicana. 
-                Bajo la dirección de la congregación salesiana y con el respaldo decidido de la comunidad empresarial, este centro educativo asumió desde sus inicios el 
-                compromiso de brindar una formación de excelencia a sus estudiantes. 
-                <br /> <br />
-                Aunque inicialmente fue <b>exclusivo para jóvenes varones, pronto se abrió sus puertas a las mujeres</b> y diversificó su oferta de talleres. Hoy en día, 
-                arraigado en los principios del <b class="text-blue">Sistema Preventivo</b> <b class="separator">de</b> <b class="orange">San Juan Bosco</b>, el IPISA ha 
-                graduado a más de <b>2,664</b> estudiantes y mantiene vínculos sólidos con una activa comunidad de exalumnos comprometidos con la institución.`
+                description: 'HomeAboutDescriptionsHistory'
             },
             {
                 label: 'Reconocimientos',
@@ -127,14 +108,7 @@
                 show: false,
                 idle: false,
                 title: 'Reconocimientos',
-                description: `Fundado en <b class="orange">19</b><b class="text-blue">88</b>, el IPISA nació como una respuesta a la creciente demanda de 
-                educación técnica en la Región Norte de la República Dominicana. Bajo la dirección de la congregación salesiana y con el respaldo decidido 
-                de la comunidad empresarial, este centro educativo asumió desde sus inicios el compromiso de brindar una formación de excelencia a sus 
-                estudiantes. 
-                <br /> <br />
-                Aunque inicialmente fue exclusivo para jóvenes varones, pronto se abrió sus puertas a las mujeres y diversificó su oferta de talleres. Hoy en día, 
-                arraigado en los principios del Sistema Preventivo de San Juan Bosco, el IPISA ha graduado a más de 2,664 estudiantes y mantiene vínculos sólidos con 
-                una activa comunidad de exalumnos comprometidos con la institución y su misión educativa.`
+                description: 'HomeAboutDescriptionsAwards'
             },
     ]);
 
@@ -162,6 +136,7 @@
             }, 1400);
         };
     }
+
     onBeforeUnmount(() => {
         clearTimeout(animation_timeout.value)
     })
@@ -189,9 +164,6 @@
     @apply font-bold;
 }
 
-.fade-enter-active, .fade-leave-active { transition: opacity 300ms var(--ease-1); }
-.fade-enter-from, .fade-leave-to { opacity: 0; }
-
 .content ul.navigation {
     @apply hidden lg:flex flex-wrap max-xl:justify-center mt-auto;
 }
@@ -208,7 +180,4 @@
 .content ul.navigation li.selected { @apply underline; }
 .content ul.navigation li.selected:nth-child(even) { @apply text-blue; }
 .content ul.navigation li.selected:nth-child(odd) { @apply text-orange; }
-
-
-
 </style>

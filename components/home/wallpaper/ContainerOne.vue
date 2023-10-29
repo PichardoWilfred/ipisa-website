@@ -19,7 +19,7 @@
                 </svg>
             </div>
         </div>
-        <div class="rellax absolute left-[400px] top-[650px] max-sm:hidden" data-rellax-speed="-2" data-rellax-percentage="0.5">
+        <div class="rellax absolute left-[80px] top-[2150px] max-sm:hidden" data-rellax-speed="-2" data-rellax-percentage="0.5">
             <div class="book-container">
                 <svg width="140" height="140" viewBox="0 0 338 322" fill="none">
                     <path d="M182.486 49.1143C160.185 48.8908 55.9807 84.8965 3.00969 104.265C1.49581 104.818 0.537039 106.179 0.923712 107.744C6.90742 131.96 79.6708 256.545 117.807 319.948C118.491 321.085 119.642 321.762 120.967 321.689C151.044 320.026 260.784 277.377 317.045 254.144C319.29 253.217 320.089 250.475 318.729 248.461L185.149 50.6544C184.534 49.7433 183.585 49.1253 182.486 49.1143Z" fill="#0478E0"/>
@@ -46,6 +46,20 @@
                 </svg>
             </div>
         </div>
+        <div class="rellax absolute left-[420px] top-[700px]" data-rellax-speed="-4" data-rellax-percentage="0.5">
+            <div class="bubble-container six">
+                <svg width="152" height="237" viewBox="0 0 52 37" fill="none" class="overflow-visible">
+                    <path d="M-2.26162 39.3014C-2.4444 38.3772 0.145697 36.6828 1.03529 36.4715C4.17864 38.8194 9.53674 43.4395 10.406 44.5043C11.4926 45.8352 9.24963 48.0583 8.32672 48.5489C7.40382 49.0395 -2.03315 40.4568 -2.26162 39.3014Z" fill="#0478E0"/>
+                    <path d="M41.0543 1.79453L38.0479 4.80143C37.7337 5.1157 37.7436 5.62813 38.0696 5.93011L40.503 8.18382C40.8438 8.49943 41.3828 8.45093 41.6618 8.07955L43.123 6.13412C43.2676 5.94165 43.3157 5.69339 43.2533 5.46086L42.365 2.14568C42.2089 1.56313 41.4807 1.36803 41.0543 1.79453Z" fill="#C3E3FF"/>
+                    <path d="M37.1041 20.0856C33.6912 16.6778 27.9992 10.9434 26.4326 9.18229C26.1844 8.90327 26.2437 8.52194 26.5395 8.29398L28.1385 7.0617C28.335 6.91028 28.5916 6.86086 28.8303 6.92847L33.0153 8.11395C33.2862 8.1907 33.5775 8.11612 33.7783 7.91859L37.202 4.5495C37.2698 4.48284 37.3484 4.42584 37.4399 4.40024C38.8157 4.01539 40.8933 6.54803 42.0333 8.26761C42.2288 8.56253 42.1878 8.95112 41.9446 9.20816C41.11 10.0903 39.7502 11.5191 38.8078 12.4808C37.8005 13.5087 38.7709 16.2465 39.5615 17.8707C39.7094 18.1744 39.6627 18.5398 39.431 18.7857L38.2246 20.0659C37.922 20.387 37.4164 20.3974 37.1041 20.0856Z" fill="#8BC8FF"/>
+                    <path d="M26.52 7.78587C24.0632 7.56121 7.76438 25.2267 -0.744004 34.831C-1.15656 35.2967 -1.16275 35.9919 -0.752976 36.46C2.80825 40.5284 9.3706 47.1135 11.9264 46.2469C14.588 45.3443 30.5547 29.2462 38.8375 20.6596C39.2247 20.2583 39.2465 19.6335 38.8867 19.2074C35.394 15.0713 28.8966 8.0032 26.52 7.78587Z" fill="#52ADFF"/>
+                    <path d="M30.9346 7.61536L28.9405 6.94078C28.6832 6.85373 28.3991 6.90621 28.1899 7.07946L27.2581 7.85094C27.058 8.0166 26.7833 8.0595 26.5423 7.96274V7.96274C26.3313 7.87807 26.0931 7.89853 25.9036 8.02416C24.3936 9.02564 21.1757 11.4613 18.2261 14.6703" stroke="#0478E0" stroke-width="1.09678" stroke-linecap="round"/>
+                    <circle cx="33.0147" cy="8.11246" r="0.62673" transform="rotate(-15 33.0147 8.11246)" fill="#0478E0"/>
+                    <path d="M11.9713 42.4795C10.3924 43.7322 5.50323 38.8781 3.14242 36.1696C3.0648 36.0805 3.01337 35.9703 3.05571 35.86C3.99361 33.4169 24.4116 12.691 26.2007 11.7399C28.0465 10.7587 34.9092 18.8147 35.3795 19.6619C35.8499 20.5091 13.9779 40.8875 11.9713 42.4795Z" stroke="#8BC8FF" stroke-width="1.09678" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+
         <div class="rellax absolute left-[180px] top-[680px]" data-rellax-speed="-6" data-rellax-percentage="0.5">
             <div class="bubble-container two">
                 <svg width="80" height="80" viewBox="0 0 149 149" fill="none">
@@ -53,14 +67,14 @@
                 </svg>
             </div>
         </div>
-        <div class="rellax absolute left-[220px] top-[2290px]" data-rellax-speed="-3" data-rellax-percentage="0.5">
+        <div class="rellax absolute left-[220px] top-[1090px]" data-rellax-speed="-3" data-rellax-percentage="0.5">
             <div class="bubble-container three">
                 <svg width="50" height="50" viewBox="0 0 48 48" fill="none">
                     <circle cx="24.0689" cy="24.4098" r="23.4322" fill="#B9DEFF" />
                 </svg>
             </div>
         </div>
-        <div class="rellax absolute left-[320px] top-[780px]" data-rellax-speed="-6" data-rellax-percentage="0.5">
+        <div class="rellax absolute left-[320px] top-[2180px]" data-rellax-speed="-6" data-rellax-percentage="0.5">
             <div class="bubble-container four">
                 <svg width="42" height="42" viewBox="0 0 82 81" fill="none">
                     <circle cx="40.9132" cy="40.7533" r="40.2146" fill="#B9DEFF" />
@@ -78,7 +92,7 @@
                 </svg>
             </div>
         </div>
-        <div class="rellax max-sm:hidden absolute top-[7080px] translate-x-[-80%] right-[25%]" data-rellax-percentage="0.2" data-rellax-speed="-6">
+        <div class="rellax max-sm:hidden absolute top-[6580px] left-[90px]" data-rellax-percentage="0.2" data-rellax-speed="-6">
             <div class="crayon-container">
                 <svg width="295" height="98" class="overflow-visible" viewBox="0 0 695 368" fill="none">
                     <path d="M544.557 121.266L129.021 465.289C127.663 466.404 126.097 467.236 124.413 467.738C122.73 468.239 120.963 468.399 119.217 468.209C117.471 468.019 115.78 467.482 114.244 466.63C112.708 465.777 111.357 464.627 110.272 463.246L67.7856 410.175C65.5204 407.388 64.4413 403.821 64.781 400.245C65.1206 396.67 66.8518 393.37 69.6014 391.059L485.148 47.076C486.503 45.9558 488.069 45.1188 489.754 44.6141C491.438 44.1095 493.206 43.9476 494.954 44.1381C496.702 44.3285 498.394 44.8674 499.93 45.7229C501.466 46.5783 502.815 47.7331 503.897 49.1188L546.37 101.979C548.678 104.781 549.783 108.383 549.443 111.997C549.103 115.611 547.347 118.943 544.557 121.266Z" fill="#52ADFF"/>
@@ -111,7 +125,7 @@
                 </svg>
             </div>
         </div>
-        <div class="rellax max-sm:hidden absolute top-[6450px] right-[470px]" data-rellax-percentage="0.2" data-rellax-speed="-7">
+        <div class="rellax max-sm:hidden absolute top-[12450px] right-[470px]" data-rellax-percentage="0.2" data-rellax-speed="-7">
             <div class="scissors-container">
                 <svg width="89" height="105" viewBox="0 0 179 185" fill="none">
                     <path d="M177.913 32.6445L99.5039 78.2778L106.928 91.5875C122.834 81.9598 157.179 61.2558 167.32 55.4611C177.461 49.6665 178.608 37.8356 177.913 32.6445Z" fill="#FFD9C2"/>
@@ -204,7 +218,7 @@
                 </svg>
             </div>
         </div>
-        <div class="rellax max-sm:hidden absolute top-[5080px] translate-x-[-70%] right-[10%]" data-rellax-percentage="0.2" data-rellax-speed="-6">
+        <div class="rellax max-sm:hidden absolute top-[5180px] right-[100px]" data-rellax-percentage="0.2" data-rellax-speed="-6">
             <div class="paper-container">
                 <svg width="250" height="222" viewBox="0 0 450 422" fill="none">
                     <path d="M368.446 0.878906L0.273438 93.0096L62.9752 362.862L159.025 418.325L449.819 347.111L368.446 0.878906Z" fill="#FFD9C2"/>

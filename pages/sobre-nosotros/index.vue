@@ -1,0 +1,121 @@
+<template>
+    <section class="wallpaper bg-blue-300 h-[90vh] sm:h-[80vh]">
+
+    </section>
+    <section class="content-navigation pt-[4rem] sm:pt-[2rem] lg:pt-[6rem]">
+        <h1 class="text-center font-semibold text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all">
+            <span class="text-blue">Conoce </span> <span class="separator mx-1 lg:mx-2"> al </span><span class="orange"> Centro </span>
+        </h1>
+        <p class="font-raleway mx-auto w-[85%] lg:w-[70%] text-black text-[1.1rem] my-4">
+            Descubre más sobre el <b>Instituto Politécnico Industrial de Santiago (IPISA) </b>explorando lo que tenemos para ofrecerte. 
+            Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de 
+            <b class="text-blue font-bold">valores</b> <b class="orange">cristianos.</b>
+            Aprende sobre nuestra filosofía educativa, inspirada en el sistema preventivo de Don Bosco, que promueve <b>la razón, la religión</b> 
+            y <b>el amor</b> como pilares de formación.
+        </p>
+        <div class="about-modules">
+            <template v-for="({ title, description, icon }, index) in sections">
+                <div class="module" :class="icon">
+                    <nuxt-icon :name="`home/about/${icon}`" class="illustration idle" filled :class="icon" />
+                    <h1 class="mb-2 font-bold min-[800px]:leading-9 text-[1.5rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] truncate text-center ">
+                        {{ title }}
+                    </h1>
+                    <p class="text-justify">
+                        {{ description }}
+                    </p>
+                </div>
+                <div class="column-separator bg-[#DFDFDF] w-[2px] min-[1300px]:h-full mx-auto" />
+            </template>
+        </div>
+    </section>
+</template>
+<script setup>
+const sections = ref([
+    {
+        title: "Filosofía",
+        icon: 'philosofy',
+        description: "Arraigada en el sistema preventivo de Don Bosco. Nuestra visión es formar a jóvenes fuertes en valores éticos y ciudadanos comprometidos con la sociedad."
+    },
+    {
+        title: "Sobre IPISA",
+        icon: 'school',
+        description: "Descubre en IPISA una educación técnica de calidad que se basa en sólidos valores cristianos y una misión de formación integral."
+    },
+    {
+        title: "Nuestra Trayectoria",
+        icon: 'history',
+        description: "Con un testimonio de más de 30 años dedicados a la formación de jóvenes con excelencia. Desde su fundación en 1988, el centro ha pasado por cambios importantes."
+    },
+    {
+        title: "Reconocimientos",
+        icon: 'awards',
+        description: "Arraigada en el sistema preventivo de Don Bosco. Nuestra visión es formar a jóvenes fuertes en valores éticos y ciudadanos comprometidos con la sociedad."
+    },
+]);
+</script>
+<style scoped>
+.about-modules {
+    display: grid;
+    grid-template-rows: 500px 2px 500px 2px 500px 2px 500px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "school"
+        "separator-one"
+        "philosofy"
+        "separator-two"
+        "history"
+        "separator-three"
+        "awards";
+    @apply items-center justify-center mx-auto w-[85%] pb-[80px] sm:pt-[50px];
+}
+
+@media (min-width: 992px) {
+    .about-modules {
+        grid-template-areas:"school separator-one philosofy"
+                            "separator-two separator-two separator-two"
+                            "history separator-three awards";
+        grid-template-rows: 500px 2px 500px;
+        grid-template-columns: 1fr 2px 1fr;
+        column-gap: 2.3vw;
+    }
+}
+@media (min-width: 1300px) {
+    .about-modules {
+        grid-template-areas: "school separator-one philosofy separator-two history separator-three awards";
+        grid-template-rows: 500px;
+        grid-template-columns: 1fr 2px 1fr 2px 1fr 2px 1fr;
+        column-gap: 2.3vw;
+    }
+}
+
+.about-modules .module {
+    @apply flex flex-col items-center justify-around font-raleway my-7 min-[992px]:mx-auto min-[992px]:w-[80%] min-[1300px]:w-full;
+}
+.about-modules .module.school { grid-area: school; }
+.about-modules .module.philosofy { grid-area: philosofy; }
+.about-modules .module.history { grid-area: history; }
+.about-modules .module.awards { grid-area: awards; }
+
+/* .about-modules .column-separator-one { grid-area: separator-one; }
+.about-modules .column-separator-two { grid-area: separator-two; }
+.about-modules .column-separator-three { grid-area: separator-three; } */
+.module .illustration {
+    @apply flex items-center justify-center mb-7;
+}
+.module .illustration :deep(svg) {
+    @apply w-[95%] h-[250px] overflow-visible;
+}
+.module .illustration.school :deep(svg) {
+    @apply max-lg:max-w-[300px] max-sm:h-[190px] max-w-[420px] xl:max-w-[350px] translate-y-[20px];
+}
+.module .illustration.philosofy :deep(svg) {
+    /* translate-x-[2vw] lg:translate-x-[-30px] */
+    @apply max-lg:max-w-[300px] xl:max-w-[320px];
+}
+.module .illustration.history :deep(svg) {
+    @apply max-lg:max-w-[300px] max-w-[760px] xl:max-w-[340px] translate-y-[20px];
+}
+.module .illustration.awards :deep(svg) {
+    @apply max-lg:max-w-[300px] xl:max-w-[360px];
+}
+</style>

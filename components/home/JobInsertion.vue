@@ -1,5 +1,5 @@
 <template>
-    <section class="job-insertion relative max-[680px]:pb-[16rem] px-[5vw] mt-28 sm:h-[130vh] lg:h-[92vh] overflow-hidden" 
+    <section class="job-insertion relative max-[680px]:pb-[20rem] px-[5vw] mt-28 sm:h-[130vh] lg:h-[92vh] overflow-hidden" 
     v-intersection-observer="[onView, {threshold: 0.9}]" id="job-insertion">
         <h2 class="text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] 
         cursor-pointer mb-2 lg:mb-4 transition-all">
@@ -30,7 +30,7 @@
         <nuxt-icon class="dots" name="home/job-insertion/dots" filled />
 
         <nuxt-icon class="building" name="home/job-insertion/buildings" filled />
-
+        
         <nuxt-icon class="bubble one" :class="{ visible }" name="home/job-insertion/bubble-1" filled />
         <nuxt-icon class="bubble two" :class="{ visible }" name="home/job-insertion/bubble-2" filled />
         <nuxt-icon class="bubble three" :class="{ visible }" name="home/job-insertion/bubble-3" filled />
@@ -39,15 +39,17 @@
 <script setup>
 import { vIntersectionObserver } from '@vueuse/components';
 const visible = ref(false);
+
 const onView = ([{ isIntersecting }]) => {
-    if (isIntersecting) { visible.value = true; }
+    const in_mobile = window.matchMedia("(max-width: 678px)").matches;
+    if (isIntersecting || in_mobile) { visible.value = true; }
 }
 onMounted(() => {
     const bubbles = document.querySelectorAll('span.bubble');
     for (const bubble of bubbles) {
         bubble.addEventListener("animationend", (element) => {
             const bubble_ = element.target;
-            if (bubble_.classList.contains('visible')) {
+            if ( bubble_.classList.contains('visible') ) {
                 bubble_.classList.add('idle');
                 bubble_.classList.remove('visible');
             }
@@ -57,10 +59,10 @@ onMounted(() => {
 </script>
 <style scoped>
 .section-text {
-    @apply text-[1.2rem] text-black font-medium font-raleway mb-6;
+    @apply text-[1.2rem] text-black font-medium font-raleway mb-10 lg:mb-6;
 }
 .girl-chair {
-    @apply absolute max-[680px]:text-[30vw] text-[200px] lg:text-[250px] left-[20px] bottom-[-50px];
+    @apply absolute max-[680px]:text-[30vw] text-[200px] lg:text-[250px] left-[20px] bottom-[-20px] sm:bottom-[-50px];
 }
 .girl-chair-shadow {
     @apply absolute max-[680px]:text-[30vw] text-[200px] lg:text-[270px] left-[40px] bottom-[-50px];
@@ -71,12 +73,12 @@ onMounted(() => {
     bottom-[-100px] min-[1400px]:bottom-[-140px];
 }
 .bubble {
-    @apply absolute max-[680px]:text-[17vw] text-[10rem] min-[1400px]:text-[11rem];
+    @apply absolute text-[12vw] max-[680px]:text-[20vw] min-[1400px]:text-[11rem];
 }
 .bubble.one {
     @apply max-[680px]:bottom-[130px] max-[680px]:right-[14%] 
-    sm:right-[170px] 
-    min-[1400px]:right-[330px] min-[1400px]:bottom-[480px];
+    sm:right-[150px] sm:bottom-[380px]
+    min-[1400px]:right-[230px] min-[1400px]:bottom-[480px];
 }
 .bubble.two {
     @apply max-[680px]:right-[4%] max-[680px]:bottom-[4%]
