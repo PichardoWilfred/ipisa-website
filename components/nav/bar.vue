@@ -184,7 +184,13 @@
     }
 </style>
 <script setup>
-//style classes
+import { useLayoutStore } from '@/store/layout';
+const layout = useLayoutStore();
+// layout.$patch({scroll_breakpoint: 400})
+
+// router
+const router = useRouter();
+//navigation bar classes
 const header_class = reactive({
     transparent: true,
     scrolled: false,
@@ -245,9 +251,9 @@ onBeforeUnmount(() => {
 const handleScroll = () => {
     const currentScrollY = window.scrollY;
 
-    header_class.transparent = window.scrollY < 100;
-    header_class.scrolled = window.scrollY > 800; // scrolling past the limit
-    header_class.up = currentScrollY < prevScrollY.value && window.scrollY > 800; // scrolling up
+    header_class.transparent = currentScrollY < 100;
+    header_class.scrolled = currentScrollY > layout.scroll_breakpoint; // scrolling past the limit
+    header_class.up = currentScrollY < prevScrollY.value && currentScrollY > layout.scroll_breakpoint; // scrolling up
 
     prevScrollY.value = currentScrollY;
 }
@@ -261,10 +267,7 @@ const toggle_mobile_menu = () => {
         const scrollTop = window.pageYOffset || document.body.scrollTop;
         const scrollLeft = window.pageXOffset || document.body.scrollLeft;
 
-        window.onscroll = () => {
-            window.scrollTo(scrollLeft, scrollTop);
-        }
-        
+        window.onscroll = () => { window.scrollTo(scrollLeft, scrollTop); }
         body.style.overflowY = 'hidden';
     }else {
         window.onscroll = () => {};
@@ -272,15 +275,13 @@ const toggle_mobile_menu = () => {
     }
 }
 // scroll navigation
-const scrollToSection = (section_, delay = 0 ) => {
+const scrollToSection = async (section_, delay = 0 ) => {
     const in_mobile = window.matchMedia("(max-width: 768px)").matches;
-    
-    const route = useRouter();
-    const in_home = computed(() => {
-        return route.currentRoute.value.name === 'index';
-    });
-    if (!in_home) {
-        return
+    const in_home = computed(() => router.currentRoute.value.name === 'index');
+
+    if (!in_home.value) {
+        await navigateTo({ path: "/" });
+        return;
     }
     setTimeout(() => {
         const section = document.querySelector(`section#${section_}`);

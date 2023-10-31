@@ -50,7 +50,7 @@
                         IPISA
                     </li>
                     <li class="section">
-                        Historia
+                        Nuestra Trayectoria
                     </li>
                     <li class="section">
                         Reconocimientos

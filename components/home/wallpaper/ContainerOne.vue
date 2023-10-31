@@ -410,12 +410,18 @@
 </style>
 <script setup>
 import Rellax from 'rellax';
-onBeforeMount(() => {
+let rellax;
+onMounted(() => {
     // Start Rellax
-    const rellax = new Rellax('.rellax', {
-        center: true
-    });
-    // // Destroy and create again parallax with previous settings
-    rellax.refresh();
+    nextTick(() => {
+        rellax = new Rellax('.rellax', {
+            center: true
+        });
+        // // Destroy and create again parallax with previous settings
+        rellax.refresh();
+    })
+});
+onBeforeUnmount(() => {
+    rellax.destroy();
 })
 </script>

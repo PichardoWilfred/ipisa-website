@@ -1,7 +1,7 @@
 <template>
     <!-- I know this is a war crime, but I swear there's not other way around it, not with dynamic components nor layouts -->
     <template v-if="index === 0">
-        El <span class="underline cursor-pointer">Instituto Politécnico Industrial de Santiago <b>(IPISA)</b></span> es 
+        El <NuxtLink to="sobre-nosotros" class="underline cursor-pointer">Instituto Politécnico Industrial de Santiago <b>(IPISA)</b></NuxtLink> es 
         una institución educativa de renombre que destaca por su enfoque en la formación técnica y su firme compromiso 
         con los valores cristianos. Su lema: <b class="text-blue">"Buenos Cristianos</b> <b class="separator">y</b> 
         <b class="orange"> Honrados Ciudadanos",</b> encapsula su misión de brindar una educación integral que combine 
@@ -13,14 +13,13 @@
         en principios éticos.
     </template>
     <template v-else-if="index === 1">
-        La visión educativa del centro se inspira en el sistema preventivo de <b class="text-blue-300 underline">Don Bosco</b>, fundamentado 
+        La visión educativa del centro se inspira en el sistema preventivo de <NuxtLink to="/sobre-nosotros/filosofía" class="text-blue underline cursor-pointer">Don Bosco</NuxtLink>, fundamentado 
         en <b class="text-blue">la razón,</b> <b class="orange">la religión</b> <b class="separator">y</b> <b class="text-blue">el amor</b>. Este enfoque busca formar a jóvenes centrados en valores éticos y preparados para convertirse en ciudadanos 
         responsables y comprometidos con la sociedad.
         <br /> <br />
         Este sistema educativo se caracteriza por el <b>equilibrio</b> entre la dimensión espiritual y la formación integral de los estudiantes. 
         Promueve valores como la responsabilidad, la calidad, la ciudadanía, la ética, la integridad, la honradez y la justicia. A través de este enfoque, 
-        <b>IPISA</b> se esfuerza por brindar una educación de calidad que fortalezca tanto los aspectos humanos y éticos como los <b class="text-blue">técnicos</b> 
-        <b class="separator">y</b> <b class="orange">académicos.</b>
+        <b>IPISA</b> se esfuerza por brindar una educación de calidad que fortalezca tanto los aspectos humanos y éticos como los <b class="text-blue">técnicos</b> <b class="separator">y </b> <b class="orange">académicos.</b>
     </template>
     <template v-else-if="index === 2">
         Fundado en <b class="orange">19</b><b class="text-blue">88</b>, el IPISA nació como una respuesta a la creciente demanda de educación técnica en la Región Norte de la República Dominicana. 

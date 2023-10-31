@@ -1,12 +1,12 @@
 <template>
-    <section class="wallpaper bg-blue-300 h-[90vh] sm:h-[80vh]">
+    <section class="wallpaper bg-[#00488D99] h-[90vh] sm:h-[80vh]">
 
     </section>
     <section class="content-navigation pt-[4rem] sm:pt-[2rem] lg:pt-[6rem]">
         <h1 class="text-center font-semibold text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all">
-            <span class="text-blue">Conoce </span> <span class="separator mx-1 lg:mx-2"> al </span><span class="orange"> Centro </span>
+            <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>
         </h1>
-        <p class="font-raleway mx-auto w-[85%] lg:w-[70%] text-black text-[1.1rem] my-4">
+        <p class="font-raleway mx-auto w-[85%] lg:w-[70%] text-[#636363] text-[1.1rem] my-4">
             Descubre más sobre el <b>Instituto Politécnico Industrial de Santiago (IPISA) </b>explorando lo que tenemos para ofrecerte. 
             Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de 
             <b class="text-blue font-bold">valores</b> <b class="orange">cristianos.</b>
@@ -17,10 +17,12 @@
             <template v-for="({ title, description, icon }, index) in sections">
                 <div class="module" :class="icon">
                     <nuxt-icon :name="`home/about/${icon}`" class="illustration idle" filled :class="icon" />
-                    <h1 class="mb-2 font-bold min-[800px]:leading-9 text-[1.5rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] truncate text-center ">
-                        {{ title }}
+                    <h1 class="mb-2 font-bold min-[800px]:leading-9 text-[1.5rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] truncate text-center">
+                        <span v-for="({ color, word, space }, index) in title" :key="index" :class="`hovered-${color}`">
+                            {{ word }}<span v-if="space" class="mx-[4px]"></span> 
+                        </span>
                     </h1>
-                    <p class="text-justify">
+                    <p class="text-justify font-medium text-[#636363]">
                         {{ description }}
                     </p>
                 </div>
@@ -30,28 +32,46 @@
     </section>
 </template>
 <script setup>
+import { useLayoutStore } from '@/store/layout';
 const sections = ref([
     {
-        title: "Filosofía",
+        title: [
+            { color: 'blue', word: 'Filo' },
+            { color: 'orange', word: 'sofía' },
+        ],
         icon: 'philosofy',
         description: "Arraigada en el sistema preventivo de Don Bosco. Nuestra visión es formar a jóvenes fuertes en valores éticos y ciudadanos comprometidos con la sociedad."
     },
     {
-        title: "Sobre IPISA",
+        title: [
+            { color: 'blue', word: 'Sobre' },
+            { space: true },
+            { color: 'orange', word: 'Nosotros' },
+        ],
         icon: 'school',
         description: "Descubre en IPISA una educación técnica de calidad que se basa en sólidos valores cristianos y una misión de formación integral."
     },
     {
-        title: "Nuestra Trayectoria",
+        title: [
+            { color: 'blue', word: 'Nuestra' },
+            { space: true },
+            { color: 'orange', word: 'Trayectoria' },
+        ],
         icon: 'history',
         description: "Con un testimonio de más de 30 años dedicados a la formación de jóvenes con excelencia. Desde su fundación en 1988, el centro ha pasado por cambios importantes."
     },
     {
-        title: "Reconocimientos",
+        title: [
+            { color: 'blue', word: 'Recono' },
+            { color: 'orange', word: 'cimientos' },
+        ],
         icon: 'awards',
         description: "Arraigada en el sistema preventivo de Don Bosco. Nuestra visión es formar a jóvenes fuertes en valores éticos y ciudadanos comprometidos con la sociedad."
     },
 ]);
+
+const layout = useLayoutStore();
+layout.$patch({ scroll_breakpoint: 600 });
 </script>
 <style scoped>
 .about-modules {
@@ -66,7 +86,7 @@ const sections = ref([
         "history"
         "separator-three"
         "awards";
-    @apply items-center justify-center mx-auto w-[85%] pb-[80px] sm:pt-[50px];
+    @apply items-center justify-center mx-auto w-[85%] pb-[140px] sm:pt-[50px];
 }
 
 @media (min-width: 992px) {
@@ -87,10 +107,11 @@ const sections = ref([
         column-gap: 2.3vw;
     }
 }
-
 .about-modules .module {
-    @apply flex flex-col items-center justify-around font-raleway my-7 min-[992px]:mx-auto min-[992px]:w-[80%] min-[1300px]:w-full;
+    @apply flex flex-col items-center justify-around font-raleway my-7 min-[992px]:mx-auto min-[992px]:w-[80%] min-[1300px]:w-full cursor-pointer;
 }
+.about-modules .module .illustration { @apply transition-all; }
+.about-modules .module:hover .illustration { transform: scale(1.05); }
 .about-modules .module.school { grid-area: school; }
 .about-modules .module.philosofy { grid-area: philosofy; }
 .about-modules .module.history { grid-area: history; }
@@ -118,4 +139,10 @@ const sections = ref([
 .module .illustration.awards :deep(svg) {
     @apply max-lg:max-w-[300px] xl:max-w-[360px];
 }
+.about-modules .module:hover span:is(.hovered-blue, .hovered-orange) {
+    @apply transition-all;
+}
+.about-modules .module:hover span.hovered-blue {  color: #0478E0 !important; }
+.about-modules .module:hover span.hovered-orange { color: #FF8B46 !important; }
+
 </style>

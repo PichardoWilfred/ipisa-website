@@ -19,7 +19,7 @@
 <style scoped>
 
     div.card {
-        @apply flex flex-col bg-gradient-to-b from-blue-400 to-[#004F9600] pb-10 pt-12 px-4 sm:px-6 lg:px-16 mb-[1.5rem] lg:mt-[8rem] sm:rounded-xl lg:max-w-[700px];
+        @apply flex flex-col bg-gradient-to-b from-blue-400 to-[#004F9600] pb-10 pt-12 px-4 sm:px-6 lg:px-16 mb-[2rem] lg:mt-[8rem] sm:rounded-xl lg:max-w-[700px];
     }
     h4.title {
         @apply font-bold font-garamond text-white max-lg:max-w-[440px] text-[1.4rem] lg:text-[2.4rem] leading-[1.75rem] lg:leading-[2.7rem] tracking-[1px] mx-auto mb-3 text-center;

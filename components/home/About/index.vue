@@ -3,7 +3,7 @@
         <div class="flex flex-col-reverse xl:flex-row items-center max-w-[1700px] px-[5vw] mx-auto min-h-[552px]">
             <Transition name="fade" mode="out-in">    
                 <div class="illustration" :class="selected_section.icon" 
-                v-intersection-observer="[onView, {threshold: 0.9}]" :key="selected_index">
+                v-intersection-observer="[onView, { threshold: 0.9 }]" :key="selected_index">
                     <nuxt-icon :name="`home/about/${selected_section.icon}`" 
                     :class="{'show': selected_section.show, 'idle': selected_section.idle}" filled />
                 </div>
@@ -12,14 +12,16 @@
             <div class="content">
                 <div class="flex relative items-center max-lg:mb-3">
                     <Transition name="fade" mode="out-in">
-                        <h1 class="flex items-end font-bold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all" :key="selected_index" >
-                            <a class="hover:underline">
-                                {{ selected_section.title }}
-                            </a>
-                            <span class="max-lg:hidden">
-                                <Icon name="fe:link" class=" ms-1 text-[2.5rem] separator mb-3" />
-                            </span>
-                        </h1>
+                        <nuxt-link to="/sobre-nosotros/ipisa">
+                            <h1 class="flex items-end font-bold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all" :key="selected_index" >
+                                <a class="hover:underline">
+                                    {{ selected_section.title }}
+                                </a>
+                                <span class="max-lg:hidden">
+                                    <Icon name="fe:link" class=" ms-1 text-[2.5rem] separator mb-3" />
+                                </span>
+                            </h1>
+                        </nuxt-link>
                     </Transition>
 
                     <span class="cursor-pointer lg:hidden flex items-center justify-center ms-auto rounded-full hover:bg-white-100" @click="toggleDropdown">
@@ -152,7 +154,7 @@
     @apply xl:max-w-[690px] h-[300px] lg:h-[500px] translate-x-[-2vw] lg:translate-x-[30px];
 }
 .illustration.history :deep(svg) {
-    @apply xl:max-w-[760px] h-[300px] lg:h-[500px] translate-y-[60px];
+    @apply xl:max-w-[760px] h-[300px] lg:h-[460px] translate-y-[40px];
 }
 .illustration.awards :deep(svg) {
     @apply xl:max-w-[760px] h-[300px] lg:h-[500px];

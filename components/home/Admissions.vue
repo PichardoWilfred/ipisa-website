@@ -116,13 +116,6 @@
 }
 </style>
 <script setup>
-    import Rellax from 'rellax';
-    onBeforeMount(() => {
-        const rellax = new Rellax('.rellax', { // Start Rellax
-            center: true
-        });
-        rellax.refresh(); // Destroy and create again parallax with previous settings
-    })
     const requirements = ref([
     {
         label: 'Formulario de Admisión Completo',

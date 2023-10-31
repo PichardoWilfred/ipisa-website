@@ -2,6 +2,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['@/assets/css/main.css'],
   app: {
+    pageTransition: false,
+    layoutTransition: false,
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
@@ -16,7 +18,8 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    '@nuxtjs/tailwindcss',
+    '@nuxtjs/tailwindcss', // styles
+    '@pinia/nuxt', // state management
     'nuxt-icon', // importing preset icons
     'nuxt-icons', // importing svgs with sub-folder
     ['@nuxtjs/google-fonts', {
