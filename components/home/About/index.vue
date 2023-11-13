@@ -14,7 +14,7 @@
                     <Transition name="fade" mode="out-in">
                         <nuxt-link to="/sobre-nosotros/ipisa">
                             <h1 class="flex items-end font-bold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all" :key="selected_index" >
-                                <a class="hover:underline">
+                                <a class="hover:underline text-black-400">
                                     {{ selected_section.title }}
                                 </a>
                                 <span class="max-lg:hidden">

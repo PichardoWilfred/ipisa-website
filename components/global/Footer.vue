@@ -3,7 +3,7 @@
     <div class="separator-orange bg-orange-300 w-full h-[30px] mb-10" />
     <footer class="px-3 lg:px-8">
         <div class="flex flex-col align-center logo min-[800px]:max-w-[320px]">
-            <h4 class="font-raleway text-black font-bold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
+            <h4 class="font-raleway text-black-400 font-bold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
                 ¡Sigue contactándonos!
             </h4>
             <p class="text-gray-400 font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center max-sm:mx-auto">
@@ -105,7 +105,7 @@
             </div>
         </div>
         <div class="location flex flex-col items-center max-sm:mb-6">
-            <h4 class="font-raleway text-black font-bold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
+            <h4 class="font-raleway text-black-400 font-bold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
                 Ubicación
             </h4>
             <p class="text-gray-400 font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center">
@@ -228,10 +228,10 @@ ul.activities {
     }
 }
 .links h5.title {
-    @apply font-bold font-raleway text-black text-[18px] min-[800px]:text-[22px] mb-2;
+    @apply font-bold font-raleway text-black-400 text-[18px] min-[800px]:text-[22px] mb-2;
 }
 .links ul.activities li.activity, li.section, li.option {
-    @apply text-gray-400 font-medium font-raleway text-[14px] min-[800px]:text-[16px] mb-1 hover:text-[#2b2b2b] hover:underline cursor-pointer;
+    @apply text-black font-medium font-raleway text-[14px] min-[800px]:text-[16px] mb-1 hover:text-[#2b2b2b] hover:underline cursor-pointer;
 }
 </style>
 <script setup>

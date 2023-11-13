@@ -8,6 +8,7 @@
     </div>
     <div class="wallpaper-two relative overflow-hidden z-10 bg-white">
         <!-- <HomeWallpaperContainerTwo /> -->
+        <HomeNewStudents />
         <HomeAdmissions />
         <HomeActivities />
         <HomeJobInsertion />

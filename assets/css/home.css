@@ -1,6 +1,9 @@
 /* about section */
 .fade-enter-active, .fade-leave-active { transition: opacity 300ms var(--ease-1); }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
+
+.fade-fast-enter-active, .fade-fast-leave-active { transition: opacity 180ms var(--ease-1); }
+.fade-fast-enter-from, .fade-fast-leave-to { opacity: 0; }
 /* school animations*/
 .illustration.school svg {
     overflow: visible;
@@ -520,4 +523,8 @@ section.job-insertion .dots svg circle.dot.six {
 }
 section.job-insertion .dots svg circle.dot.seven {
     animation-delay: 700ms;
+}
+
+section.students-list {
+    
 }

@@ -31,9 +31,17 @@ module.exports = {
       },
       white: {
         DEFAULT: "#FFF",
-        100: "#f5f2f2"
+        100: "#f5f2f2",
+        200: "#F3F6FA"
       },
-      black: "#292929",
+      black: {
+        100: "#292929",
+        DEFAULT: "#4B6286",
+        400: "#344661",
+        500: "#CEE3FF",
+        600: "#AABDD8",
+        700: "#4B6286"
+      },
       gray: {
         100: "#E0E0E0",
         200: "#B3B3B3",
@@ -43,16 +51,17 @@ module.exports = {
     },
     fontFamily: {
       'garamond': ['"EB Garamond"', '"ui-monospace"'],
-      'raleway': ['"Raleway"','ui-sans-serif']
+      'raleway': ['"Raleway"','ui-sans-serif'],
+      'inter': ['"Inter"','ui-sans-serif'],
     }
   },
   corePlugins: {
-      textOpacity: false,
-      backgroundOpacity: false,
-      borderOpacity: false,
-      divideOpacity: false,
-      placeholderOpacity: false,
-      ringOpacity: false,
+    textOpacity: false,
+    backgroundOpacity: false,
+    borderOpacity: false,
+    divideOpacity: false,
+    placeholderOpacity: false,
+    ringOpacity: false,
   },
   plugins: [],
 }
