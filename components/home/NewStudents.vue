@@ -13,6 +13,24 @@
             como parte de <b class="text-blue">nuestra</b> <b class="orange">comunidad.</b> Esperamos que vuestro tiempo con nosotros sea una experiencia enriquecedora 
             y llena de aprendizaje. <b>¡Bienvenidos a la familia de</b> <b class="separator">IPISA!</b>
         </p>
+        <div class="table-pagination mobile">
+            <button class="pagination-btn" @click.prevent="set_index(0, 'substract')">
+                <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
+            </button>
+            <ul class="pagination">
+                <li v-for="({ page, dots }, index_) of pagination" :key="index_" :class="{active: (page + 1) === page_index}" @click.prevent="set_index(page, 'change')">
+                    <span v-if="dots" class="">
+                        ...
+                    </span>
+                    <span v-else>
+                        {{ page + 1}}
+                    </span>
+                </li>
+            </ul>
+            <button class="pagination-btn" @click.prevent="set_index(0, 'add')">
+                <nuxt-icon name="home/new-students/arrow-table" class="right text-[18px]" filled />
+            </button>
+        </div>
         <Transition name="fade-fast" mode="out-in">
             <div class="table-container" :key="page_index">
                 <ul class="column mx-auto w-full" v-for="(column, index) of columns_" :key="index">
@@ -30,12 +48,12 @@
                 <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
             </button>
             <ul class="pagination">
-                <li v-for="({ page, dots }, index_) of pagination" :key="index_" :class="{active: (page + 1) === page_index}" @click.prevent="set_index(page, 'change')">
-                    <span v-if="dots" class="">
+                <li v-for="({ page, dots, action }, index_) of pagination" :key="index_" :class="{active: (page + 1) === page_index}" @click.prevent="set_index(page, 'change')">
+                    <span v-if="dots" @click.prevent="set_index(0, action)">
                         ...
                     </span>
                     <span v-else>
-                        {{ page + 1 }}
+                        {{ page + 1}}
                     </span>
                 </li>
             </ul>
@@ -297,8 +315,7 @@
         "Carlos Eduardo Guerrero Santana",
         "Teresa Inmaculada Guerrero Santana"
     ]); 
-    let columns_ = ref([0, 0, 0]); //The array that we are going to populate.
-    
+    const columns_ = ref([0, 0, 0]); //The array that we are going to populate.
     let viewport = () => { // getting the actual view_port
             let viewport_;
             const display = {
@@ -319,100 +336,128 @@
             return viewport_;
     };
 
-    const row_limit = ref(17); // amounts of allowed rows.
-    const pages_limit = ref(4); //maximun of pages that a set of students can have
-    const pagination = ref([]);
-    watch(pages_limit, () => {
-        let pages = Array.from( Array(pages_limit.value).keys() );
-        pages.map((page, index) => {
-            pages[index] = { page: pages[index] };
-        });
-        if (pages.length >= 7) {
-            let pages_ = [...pages];
-            pages = [];
-            for (let index = 0; index < 3; index++) {
-                pages.push({ page: pages_[index].page });
-            }
-            pages.push({ dots: true });
-            pages.push({ page: pages_[pages_.length - 1].page });
-            // if (pages.length >= 10) {
-                // for (let index = 0; index < 2; index++) {
-                    // pages.push({ page: pages_[pages_.length - (index + 1)].page });
-                // }
-            // }else {
-                
-            // }
+    let available_columns = () => { // getting the array size in question
+        let visible_columns_;
+        switch (viewport()) {
+            case 'xl':
+                visible_columns_ = [0, 0, 0];
+                break;
+            case 'lg':
+                visible_columns_ = [0, 0];
+                break;
+            case 'md':
+                visible_columns_ = [0, 0];
+                break;
+            default:
+                visible_columns_ = [0];
+                break;
         }
-        pagination.value = pages;
-    })
-    const page_index = ref(0); //the page that we are focusing.
+        return visible_columns_;
+    };
+    const column_limit = ref(0);
+    const set_columns = () => {
+        let starting = (row_limit.value * column_limit.value * page_index.value) - (column_limit.value * row_limit.value);
+        let limit = starting + row_limit.value;
+
+        let inner_index = starting + 1; // asigning the indexes within
+        for (let i = 0; i < column_limit.value; i++) { // getting the values out of the list
+            let column = [];
+            for (let j = starting; j < limit; j++) {
+                column.push( { inner_index, name: list_.value[j] } );
+                inner_index++;
+            }
+            columns_.value[i] = column;
+
+            starting = limit; // set the start.
+            limit = (limit + row_limit.value); // set the limits.
+        }
+    }
+
+    const row_limit = ref(17); // amounts of allowed rows.
+    const pagination_limit = ref(3);
+    const pages_limit = ref(4); //maximun of pages that a set of students can have (re-defined on set_columns)
+    const pagination = ref([0]);
+    
+    watch(pages_limit, () => {
+        pagination.value.map((_, index) => {
+            pagination.value[index] = { page: pagination.value[index] };
+        });
+        if (pagination.value.length >= 7) {
+            let pages_ = [...pagination.value];
+            pagination.value = [];
+            for (let index = 0; index < 3; index++) {
+                pagination.value.push({ page: pages_[index].page });
+            }
+            pagination.value.push({ dots: true, action: 'added' });
+            pagination.value.push({ page: pages_[pages_.length - 1].page });
+        }
+    });
+
+    const page_index = ref(1); //the page that we are focusing.
     
     const set_index = ( index_, type = 'change' ) => { // index
         switch (type) {
             case 'change':
                 page_index.value = index_ + 1;
                 break;
+            case 'added':
+                console.log('debo despertar');
+                break;
             case 'substract':
-                if (page_index.value > 1) {
-                    page_index.value--;
-                }
+                page_index.value = (page_index.value > 1) ? page_index.value - 1 : pages_limit.value ;
                 break;
             case 'add':
-                if ((page_index.value + 1) <= pages_limit.value) {
-                    page_index.value++
-                }
+                page_index.value = (page_index.value + 1) <= pages_limit.value ? page_index.value + 1:1;
                 break;
             default:
                 break;
         }
     }
-
-    watch(page_index, () => {
-        let available_columns = () => { // getting the array size in question
-            let visible_columns_;
-            switch (viewport()) {
-                case 'xl':
-                    visible_columns_ = [0, 0, 0];
-                    break;
-                case 'lg':
-                    visible_columns_ = [0, 0];
-                    break;
-                case 'md':
-                    visible_columns_ = [0, 0];
-                    break;
-                default:
-                    visible_columns_ = [0];
-                    break;
+    
+    watch(page_index, (index_, old_value) => {
+        set_columns();
+        const next_page = index_ > old_value;
+        if (next_page) { //while moving forwards
+            if (pages_limit.value <= 7) return; // in case we have many other pages
+            if (index_ >= pagination_limit.value + 1) { // if we are aproaching the threshold of pages shown
+                
+                if ((index_ - 1) === pagination.value[pagination.value.length - 1].page) { //last one selected
+                    pagination_limit.value = pagination.value[pagination.value.length - 1].page;
+                    pagination.value = []; //clearing
+                    pagination.value.unshift({ dots: true }); //dots
+                    let j = 2;
+                    for (let i = 1; i < 4; i++) { //removing the first
+                        pagination.value.push({ page: (pagination_limit.value - j) + (i - 1) })
+                    }
+                    return;
+                }
+                
+                const last = pagination.value[pagination.value.length - 1];
+                if (!pagination.value[0].dots) {
+                    pagination.value.unshift({ dots: true });
+                }
+                if (index_ >= (last.page - 2) && pagination.value[pagination.value.length - 2].dots) { // if we are approaching the page limit
+                    pagination.value.pop();
+                    pagination.value.pop();
+                }
+                for (let i = 1; i < 4; i++) { //removing the first
+                    pagination.value[i].page = (pagination_limit.value - 1) + i;
+                }
+                pagination_limit.value += 3; // seting the new threshold.
+                return;
             }
-            return visible_columns_;
-        };
-        
-        let columns = available_columns() || [0, 0, 0];
-        let column_limit = columns.length;
+        }else {
 
-        let starting = (row_limit.value * column_limit * page_index.value) - (column_limit * row_limit.value);
-        let limit = starting + row_limit.value;
-
-        let inner_index = starting + 1; // asigning the indexes within
-        for (let i = 0; i < column_limit; i++) { // getting the values out of the list
-            let column = [];
-            for (let j = starting; j < limit; j++) {
-                column.push( { inner_index, name: list_.value[j] } );
-                inner_index++
-            }
-            columns[i] = column;
-
-            starting = limit; // set the start.
-            limit = (limit + row_limit.value); // set the limits.
         }
-
-        pages_limit.value = Math.ceil(list_.value.length / (row_limit.value * column_limit));
-
-        columns_.value = columns;
+        
     });
     
     onMounted(() => {
-        page_index.value = 1;
+        columns_.value = available_columns() || [0, 0, 0]; // setting the amount of columns visible depeding on the viewport 
+        column_limit.value = columns_.value.length;
+        pages_limit.value = Math.ceil(list_.value.length / (row_limit.value * column_limit.value)); // setting the amount of pages
+        pagination.value = Array.from( Array(pages_limit.value).keys()); //setting the initial value of the pagination elements
+        set_columns();
     });
 
 </script>
@@ -455,6 +500,9 @@
 }
 .table-pagination {
     @apply flex justify-center items-center mt-6;
+}
+.table-pagination.mobile {
+    @apply lg:hidden mt-0 mb-5;
 }
 .table-pagination .pagination {
     @apply flex mx-3;
