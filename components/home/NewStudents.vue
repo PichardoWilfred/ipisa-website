@@ -18,8 +18,8 @@
                 <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
             </button>
             <ul class="pagination">
-                <li v-for="({ page, dots }, index_) of pagination" :key="index_" :class="{active: (page + 1) === page_index}" @click.prevent="set_index(page, 'change')">
-                    <span v-if="dots" class="">
+                <li v-for="({ page, dots, action }, index_) of pagination" :key="index_" :class="{active: (page + 1) === page_index}" @click.prevent="set_index(page, 'change')">
+                    <span v-if="dots" @click.prevent="set_index(0, action)">
                         ...
                     </span>
                     <span v-else>
@@ -313,7 +313,7 @@
         "Roberto Antonio Ortiz Santana",
         "Isabel Cristina Guerrero Santana",
         "Carlos Eduardo Guerrero Santana",
-        "Teresa Inmaculada Guerrero Santana"
+        // "Teresa Inmaculada Guerrero Santana"
     ]); 
     const columns_ = ref([0, 0, 0]); //The array that we are going to populate.
     let viewport = () => { // getting the actual view_port
@@ -383,13 +383,13 @@
             pagination.value[index] = { page: pagination.value[index] };
         });
         if (pagination.value.length >= 7) {
-            let pages_ = [...pagination.value];
-            pagination.value = [];
-            for (let index = 0; index < 3; index++) {
-                pagination.value.push({ page: pages_[index].page });
-            }
-            pagination.value.push({ dots: true, action: 'added' });
-            pagination.value.push({ page: pages_[pages_.length - 1].page });
+            // let pages_ = [...pagination.value];
+            // pagination.value = [];
+            // for (let index = 0; index < 3; index++) {
+            //     pagination.value.push({ page: pages_[index].page });
+            // }
+            // pagination.value.push({ dots: true, action: 'dots-forwards' });
+            // pagination.value.push({ page: pages_[pages_.length - 1].page });
         }
     });
 
@@ -400,11 +400,29 @@
             case 'change':
                 page_index.value = index_ + 1;
                 break;
-            case 'added':
-                console.log('debo despertar');
+            case 'dots-backwards':
+                page_index.value
+                // page_index.value =  + 1;
+                break;
+            case 'dots-forwards':
+                let number = 0;
+                let equivalent_index = 0;
+                // pagination.value.map(({page}, index) => {
+                //     if ((page + 1) === page_index.value) equivalent_index = index;
+                // });
+                for (let index = 0; index <= equivalent_index; index++) {
+                    if (pagination.value[index].dots) continue;
+                    // console.log(pagination_limit.value);
+                    // const page = pagination.value[index].page + 1;
+                    // console.log(page);
+                    // if ((page / 3) % 1 === 0) {
+                    //     number++
+                    // };
+                }
+                console.log(number); 
                 break;
             case 'substract':
-                page_index.value = (page_index.value > 1) ? page_index.value - 1 : pages_limit.value ;
+                page_index.value = (page_index.value > 1) ? page_index.value - 1 : pages_limit.value;
                 break;
             case 'add':
                 page_index.value = (page_index.value + 1) <= pages_limit.value ? page_index.value + 1:1;
@@ -418,32 +436,44 @@
         set_columns();
         const next_page = index_ > old_value;
         if (next_page) { //while moving forwards
-            if (pages_limit.value <= 7) return; // in case we have many other pages
+            if (pages_limit.value <= 6) return; // in case we have many other pages
+            const last_pagination_group = () => {
+                pagination_limit.value = pages_limit.value - 1;
+                pagination.value = []; //clearing
+                pagination.value.unshift({ dots: true }); //dots
+                let j = 2;
+                for (let i = 1; i < 4; i++) { //adding the rest
+                    pagination.value.push({ page: (pagination_limit.value - j) + (i - 1) })
+                }
+                return;
+            }
+            console.log('here');
+            // set last pagination group
             if (index_ >= pagination_limit.value + 1) { // if we are aproaching the threshold of pages shown
-                
-                if ((index_ - 1) === pagination.value[pagination.value.length - 1].page) { //last one selected
-                    pagination_limit.value = pagination.value[pagination.value.length - 1].page;
-                    pagination.value = []; //clearing
-                    pagination.value.unshift({ dots: true }); //dots
-                    let j = 2;
-                    for (let i = 1; i < 4; i++) { //removing the first
-                        pagination.value.push({ page: (pagination_limit.value - j) + (i - 1) })
-                    }
-                    return;
+                if ((index_ - 1) === pagination.value[pagination.value.length - 1].page) { // setting the last navigation page
+                    console.log('last one selected');
+                    last_pagination_group();
                 }
                 
                 const last = pagination.value[pagination.value.length - 1];
-                if (!pagination.value[0].dots) {
+                if (!pagination.value[0].dots) { // remove the first dots
                     pagination.value.unshift({ dots: true });
                 }
                 if (index_ >= (last.page - 2) && pagination.value[pagination.value.length - 2].dots) { // if we are approaching the page limit
                     pagination.value.pop();
                     pagination.value.pop();
                 }
-                for (let i = 1; i < 4; i++) { //removing the first
-                    pagination.value[i].page = (pagination_limit.value - 1) + i;
+                // console.log(`limit: ${pagination_limit.value + 3}`);
+                const next_limit = pagination_limit.value + 3;
+                if (next_limit > pages_limit.value) { // reach the last page manually
+                    last_pagination_group();
+                } else {
+                    for (let i = 1; i < 4; i++) { //replacing the indexes
+                        pagination.value[i].page = ((pagination_limit.value - 1) + i);
+                    }
+                    pagination_limit.value += 3; // seting the new threshold.
                 }
-                pagination_limit.value += 3; // seting the new threshold.
+
                 return;
             }
         }else {
