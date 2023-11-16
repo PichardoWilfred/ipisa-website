@@ -13,19 +13,34 @@
             como parte de <b class="text-blue">nuestra</b> <b class="orange">comunidad.</b> Esperamos que vuestro tiempo con nosotros sea una experiencia enriquecedora 
             y llena de aprendizaje. <b>¡Bienvenidos a la familia de</b> <b class="separator">IPISA!</b>
         </p>
+
         <div class="table-pagination mobile">
             <button class="pagination-btn" @click.prevent="set_index(0, 'substract')">
                 <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
             </button>
             <ul class="pagination">
-                <li v-for="({ page, dots, action }, index_) of pagination" :key="index_" :class="{active: (page + 1) === page_index}" @click.prevent="set_index(page, 'change')">
-                    <span v-if="dots" @click.prevent="set_index(0, action)">
+                <template v-if="show_first_page">
+                    <li :class="{ active: 1 === page_index }" 
+                    @click.prevent="set_index(1, 'change')">
+                        1
+                    </li>
+                    <li>
                         ...
-                    </span>
-                    <span v-else>
-                        {{ page + 1}}
-                    </span>
+                    </li>
+                </template>
+                <li v-for="(page, index_) of pagination" :key="index_" :class="{ active: page === page_index }" 
+                @click.prevent="set_index(page, 'change')">
+                    {{ page }}
                 </li>
+                <template v-if="show_last_page">
+                    <li>
+                        ...
+                    </li>
+                    <li :class="{ active: last_page === page_index}" 
+                    @click.prevent="set_index(last_page, 'change')">
+                        {{ last_page }}
+                    </li>
+                </template>
             </ul>
             <button class="pagination-btn" @click.prevent="set_index(0, 'add')">
                 <nuxt-icon name="home/new-students/arrow-table" class="right text-[18px]" filled />
@@ -48,19 +63,34 @@
                 <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
             </button>
             <ul class="pagination">
-                <li v-for="({ page, dots, action }, index_) of pagination" :key="index_" :class="{active: (page + 1) === page_index}" @click.prevent="set_index(page, 'change')">
-                    <span v-if="dots" @click.prevent="set_index(0, action)">
+                <template v-if="show_first_page">
+                    <li :class="{ active: 1 === page_index }" 
+                    @click.prevent="set_index(1, 'change')">
+                        1
+                    </li>
+                    <li>
                         ...
-                    </span>
-                    <span v-else>
-                        {{ page + 1}}
-                    </span>
+                    </li>
+                </template>
+                <li v-for="(page, index_) of pagination" :key="index_" :class="{ active: page === page_index }" 
+                @click.prevent="set_index(page, 'change')">
+                    {{ page }}
                 </li>
+                <template v-if="show_last_page">
+                    <li>
+                        ...
+                    </li>
+                    <li :class="{ active: last_page === page_index}" 
+                    @click.prevent="set_index(last_page, 'change')">
+                        {{ last_page }}
+                    </li>
+                </template>
             </ul>
             <button class="pagination-btn" @click.prevent="set_index(0, 'add')">
                 <nuxt-icon name="home/new-students/arrow-table" class="right text-[18px]" filled />
             </button>
         </div>
+        
     </section>
 </template>
 <script setup>
@@ -313,8 +343,9 @@
         "Roberto Antonio Ortiz Santana",
         "Isabel Cristina Guerrero Santana",
         "Carlos Eduardo Guerrero Santana",
-        // "Teresa Inmaculada Guerrero Santana"
-    ]); 
+
+        "Teresa Inmaculada Guerrero Santana"
+    ]);
     const columns_ = ref([0, 0, 0]); //The array that we are going to populate.
     let viewport = () => { // getting the actual view_port
             let viewport_;
@@ -374,120 +405,119 @@
     }
 
     const row_limit = ref(17); // amounts of allowed rows.
-    const pagination_limit = ref(3);
-    const pages_limit = ref(4); //maximun of pages that a set of students can have (re-defined on set_columns)
-    const pagination = ref([0]);
-    
-    watch(pages_limit, () => {
-        pagination.value.map((_, index) => {
-            pagination.value[index] = { page: pagination.value[index] };
-        });
-        if (pagination.value.length >= 7) {
-            // let pages_ = [...pagination.value];
-            // pagination.value = [];
-            // for (let index = 0; index < 3; index++) {
-            //     pagination.value.push({ page: pages_[index].page });
-            // }
-            // pagination.value.push({ dots: true, action: 'dots-forwards' });
-            // pagination.value.push({ page: pages_[pages_.length - 1].page });
-        }
-    });
 
-    const page_index = ref(1); //the page that we are focusing.
-    
-    const set_index = ( index_, type = 'change' ) => { // index
+    // const pagination_limit = ref(3);
+    const page_index = ref(1);
+
+    const first_page = ref(0); 
+    const last_page = ref(0); //maximun of pages that a set of students can have (re-defined on set_columns)
+
+    const pagination = ref([]);
+
+    const show_last_page = ref(false);
+    const show_first_page = ref(false);
+
+    const set_index = ( new_index, type = 'change' ) => { // index
         switch (type) {
             case 'change':
-                page_index.value = index_ + 1;
+                page_index.value = new_index;
                 break;
             case 'dots-backwards':
-                page_index.value
-                // page_index.value =  + 1;
                 break;
             case 'dots-forwards':
-                let number = 0;
-                let equivalent_index = 0;
-                // pagination.value.map(({page}, index) => {
-                //     if ((page + 1) === page_index.value) equivalent_index = index;
-                // });
-                for (let index = 0; index <= equivalent_index; index++) {
-                    if (pagination.value[index].dots) continue;
-                    // console.log(pagination_limit.value);
-                    // const page = pagination.value[index].page + 1;
-                    // console.log(page);
-                    // if ((page / 3) % 1 === 0) {
-                    //     number++
-                    // };
-                }
                 console.log(number); 
                 break;
             case 'substract':
-                page_index.value = (page_index.value > 1) ? page_index.value - 1 : pages_limit.value;
+                page_index.value = (page_index.value > 1) ? page_index.value - 1 : last_page.value;
                 break;
             case 'add':
-                page_index.value = (page_index.value + 1) <= pages_limit.value ? page_index.value + 1:1;
+                page_index.value = (page_index.value + 1) <= last_page.value ? page_index.value + 1:1;
                 break;
             default:
                 break;
         }
     }
     
-    watch(page_index, (index_, old_value) => {
+    watch(page_index, (new_page_index, old_page_index) => {
         set_columns();
-        const next_page = index_ > old_value;
-        if (next_page) { //while moving forwards
-            if (pages_limit.value <= 6) return; // in case we have many other pages
-            const last_pagination_group = () => {
-                pagination_limit.value = pages_limit.value - 1;
-                pagination.value = []; //clearing
-                pagination.value.unshift({ dots: true }); //dots
-                let j = 2;
-                for (let i = 1; i < 4; i++) { //adding the rest
-                    pagination.value.push({ page: (pagination_limit.value - j) + (i - 1) })
-                }
-                return;
-            }
-            console.log('here');
-            // set last pagination group
-            if (index_ >= pagination_limit.value + 1) { // if we are aproaching the threshold of pages shown
-                if ((index_ - 1) === pagination.value[pagination.value.length - 1].page) { // setting the last navigation page
-                    console.log('last one selected');
-                    last_pagination_group();
-                }
-                
-                const last = pagination.value[pagination.value.length - 1];
-                if (!pagination.value[0].dots) { // remove the first dots
-                    pagination.value.unshift({ dots: true });
-                }
-                if (index_ >= (last.page - 2) && pagination.value[pagination.value.length - 2].dots) { // if we are approaching the page limit
-                    pagination.value.pop();
-                    pagination.value.pop();
-                }
-                // console.log(`limit: ${pagination_limit.value + 3}`);
-                const next_limit = pagination_limit.value + 3;
-                if (next_limit > pages_limit.value) { // reach the last page manually
-                    last_pagination_group();
-                } else {
-                    for (let i = 1; i < 4; i++) { //replacing the indexes
-                        pagination.value[i].page = ((pagination_limit.value - 1) + i);
+        if (pagination.value.length >= 7) return;
+        const largest_value = pagination.value[pagination.value.length - 1];
+        const smallest_value = pagination.value[0];
+
+        let starting_value = largest_value;
+         // check if its larger or smaller.
+        if (new_page_index > old_page_index) { //the index increased in value
+            if (new_page_index > largest_value) { // need a new pages group
+                if (new_page_index === last_page.value) { // if went directly to the last one
+                    starting_value = last_page.value - 3;
+                    for (let index = 0; index < pagination.value.length; index++) {
+                        pagination.value[index] = starting_value + (index + 1);
                     }
-                    pagination_limit.value += 3; // seting the new threshold.
+                    show_last_page.value = false;
+                    show_first_page.value = true;
+                    return;
+                }
+                if (!show_first_page.value) show_first_page.value = true; // if we haven't pass the first set
+
+                if ((smallest_value + 6) >= last_page.value) { // if we are approaching the last page
+                    starting_value = last_page.value - 3;
+                    show_last_page.value = false;
+                }
+                for (let index = 0; index < pagination.value.length; index++) { //asigning the new values
+                    pagination.value[index] = starting_value + (index + 1);
                 }
 
-                return;
+                if ( pagination.value.indexOf(new_page_index) === -1 ) { // In case the index is not inside the pagination array
+                    pagination.value.unshift((pagination.value[0] - 1));
+                }
             }
         }else {
-
+            const create_first_page = () => {
+                show_first_page.value = false;
+                show_last_page.value = true;
+                for (let index = 0; index < 3; index++) {
+                    pagination.value[index] = (index + 1);
+                }
+                if (pagination.value.length >= 4) pagination.value.pop();
+            }
+            if (new_page_index === 1) { // went to the first one
+                create_first_page();
+                return;
+            }
+            if (smallest_value > new_page_index) { //we needing a new group
+                const starting_value = smallest_value - 3;
+                
+                if (starting_value <= 1) {
+                    create_first_page();
+                    return;
+                };
+                
+                for (let index = 0; index < 3; index++) {
+                    pagination.value[index] = starting_value + index;
+                }
+                show_first_page.value = true;
+                show_last_page.value = true;
+            }
         }
-        
     });
     
     onMounted(() => {
         columns_.value = available_columns() || [0, 0, 0]; // setting the amount of columns visible depeding on the viewport 
         column_limit.value = columns_.value.length;
-        pages_limit.value = Math.ceil(list_.value.length / (row_limit.value * column_limit.value)); // setting the amount of pages
-        pagination.value = Array.from( Array(pages_limit.value).keys()); //setting the initial value of the pagination elements
+        last_page.value = Math.ceil(list_.value.length / (row_limit.value * column_limit.value)); // setting the amount of pages
+        Array.from( Array(last_page.value).keys() ).map((_, index) => { //setting the initial value of the pagination elements
+            pagination.value.push((index + 1));
+        });
+        // first_page.value = pagination[0];
         set_columns();
+        if (pagination.value.length >= 7) {
+            show_last_page.value = true; //show last and first option
+            pagination.value = [];
+            for (let index = 1; index <= 3; index++) {
+                pagination.value.push(index);
+            }
+        }
+        
     });
 
 </script>
@@ -535,10 +565,10 @@
     @apply lg:hidden mt-0 mb-5;
 }
 .table-pagination .pagination {
-    @apply flex mx-3;
+    @apply flex mx-auto lg:mx-3;
 }
 .table-pagination .pagination li {
-    @apply font-inter cursor-pointer flex items-center justify-center font-bold me-2 last:me-0 text-[18px] text-black-600 w-[38px] h-[38px] rounded-full hover:bg-white-200;
+    @apply font-inter cursor-pointer flex items-center justify-center font-bold me-1 lg:me-2 last:me-0 text-[18px] text-black-600 w-[38px] h-[38px] rounded-full hover:bg-white-200;
 }
 .table-pagination .pagination li.active {
     @apply  text-black-700 bg-white-200;
