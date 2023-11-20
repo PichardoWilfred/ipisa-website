@@ -1,8 +1,8 @@
 <template>
     <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[8rem] mb-[8rem] z-20" id="news">
         <h2 
-        class="flex items-center text-black font-bold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.8rem] cursor-pointer mb-2 lg:mb-4 transition-all">
-            <b class="me-5 text-blue">Últimas</b> <b class="text-orange-300">Noticias</b>
+        class="flex items-center text-black font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.8rem] cursor-pointer mb-2 lg:mb-4 transition-all">
+            <b class="me-2 lg:me-5 text-blue">Últimas</b> <b class="text-orange-300">Noticias</b>
         </h2>
         <div class="news-feed mb-[4rem]">
             <div class="news" v-for="({title, img, description, highlight, date}, index) in news_feed" :key="index">
@@ -68,10 +68,10 @@ const news_feed = ref([
     @apply my-3 min-[1200px]:my-3 w-full h-[320px] object-cover rounded-lg;
 }
 .news h2 {
-    @apply mb-2 font-bold min-[800px]:leading-9 text-[1.5rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] truncate;
+    @apply mb-1 text-black-400 font-bold min-[800px]:leading-9 text-[1.25rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] truncate;
 }
 .news p {
-    @apply text-gray-400 min-[800px]:text-[15px] min-[1200px]:text-[1rem] leading-6 mb-3;
+    @apply text-black min-[800px]:text-[15px] min-[1200px]:text-[1rem] leading-6 mb-2;
     width: 100%;
     overflow: hidden;
     -webkit-box-orient: vertical;
@@ -82,7 +82,7 @@ const news_feed = ref([
     @apply font-semibold text-gray-300 xl:text-[1rem]
 }
 .news button.see-more {
-    @apply text-[16px] min-[800px]:text-xl font-bold mt-auto;
+    @apply text-[16px] min-[800px]:text-xl font-[500] mt-auto;
     color:  var(--separator);
 }
 .news button.see-more :is(b, span::deep(svg path)) {

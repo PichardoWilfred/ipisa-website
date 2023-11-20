@@ -1,13 +1,13 @@
 <template>
     <section class="students-list px-[5vw] py-[5rem] mt-[70px] pt-[2rem]">
         <div class="mx-auto"></div>
-        <h2 class="flex justify-center items-center text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
+        <h2 class="flex lg:justify-center items-center text-black font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
             <b class="text-blue">Listado </b> <b class="separator mx-3">de</b> <b class="text-orange-300">Admitidos</b>
             <span class="copy-requirements">
                 <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
             </span>
         </h2>
-        <p class="text-justify lg:text-center text-[1.2rem] text-black font-medium font-raleway max-w-[900px] mb-10 mx-auto">
+        <p class="text-justify lg:text-center text-[1.1rem] text-black font-medium font-raleway max-sm:leading-7 max-w-[900px] mb-10 mx-auto">
             <b>¡Felicidades a todos los estudiantes que han sido admitidos en el centro! </b> Vuestra admisión
             es un paso importante en vuestro viaje educativo y profesional, y estamos emocionados de teneros 
             como parte de <b class="text-blue">nuestra</b> <b class="orange">comunidad.</b> Esperamos que vuestro tiempo con nosotros sea una experiencia enriquecedora 
@@ -50,10 +50,12 @@
             <div class="table-container" :key="page_index">
                 <ul class="column mx-auto w-full" v-for="(column, index) of columns_" :key="index">
                     <li class="row" v-for="({ name, inner_index }, j) in column" :key="j" :class="{'with-border': index >= 1}">
-                        <span class="font-inter mr-3 text-black-600 text-xl">
+                        <span class="flex justify-center min-w-[40px] font-inter mr-3 text-black-600 text-xl">
                             {{ inner_index }}
                         </span>
-                        {{ name }}
+                        <span>
+                            {{ name }}
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -550,7 +552,7 @@
     @apply overflow-hidden;
 }
 .table-container ul.column li.row {
-    @apply overflow-hidden font-raleway font-bold text-black py-3 px-3 odd:bg-white-200 border-b border-black-500;
+    @apply flex overflow-hidden font-raleway font-[600] text-black py-3 px-3 odd:bg-white-200 border-b border-black-500;
 }
 .table-container ul.column li.row {
     @apply last:border-[0px];

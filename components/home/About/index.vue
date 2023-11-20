@@ -11,9 +11,9 @@
 
             <div class="content">
                 <div class="flex relative items-center max-lg:mb-3">
-                    <Transition name="fade" mode="out-in">
-                        <nuxt-link to="/sobre-nosotros/ipisa">
-                            <h1 class="flex items-end font-bold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all" :key="selected_index" >
+                    <nuxt-link :to="sections[selected_index].route">
+                        <Transition name="fade" mode="out-in">
+                            <h1 class="flex items-end font-semibold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all" :key="selected_index" >
                                 <a class="hover:underline text-black-400">
                                     {{ selected_section.title }}
                                 </a>
@@ -21,17 +21,18 @@
                                     <Icon name="fe:link" class=" ms-1 text-[2.5rem] separator mb-3" />
                                 </span>
                             </h1>
-                        </nuxt-link>
-                    </Transition>
+                        </Transition>
+                    </nuxt-link>
 
-                    <span class="cursor-pointer lg:hidden flex items-center justify-center ms-auto rounded-full hover:bg-white-100" @click="toggleDropdown">
-                        <Icon name="material-symbols:keyboard-arrow-down" class="text-[2.7rem] mt-auto transition-all" />
+                    <span v-intersection-observer="[move_arrow, { threshold: 0.9 }]" :class="{'move': move}" 
+                    class="cursor-pointer lg:hidden flex items-center justify-center ms-auto rounded-full hover:bg-white-100" @click="toggleDropdown">
+                        <Icon name="material-symbols:keyboard-arrow-down" class="icon-arrow-down rounded-full relative bottom-1 text-[2.7rem] mt-auto transition-all" />
                     </span>
 
                     <Transition>
-                        <ul v-if="dropdown_menu" ref="dropdown" class="absolute bg-white top-0 right-0 border border-gray-100 rounded-lg shadow-md transition-all">
+                        <ul v-if="dropdown_menu" ref="dropdown" class="absolute bg-white top-0 right-0 border border-black-500 rounded-lg shadow-md transition-all">
                             <li v-for="({ label }, index) in sections" @click.prevent="select_index_mobile(index)"
-                            class="cursor-pointer hover:bg-white-100 hover:text-gray-400 hover:border-gray-300 text-[20px] py-2 px-4 font-raleway border-b border-gray-100 no-underline last:border-0">
+                            class="cursor-pointer hover:bg-white-100 hover:text-gray-400 hover:border-gray-300 text-[20px] py-2 px-4 font-raleway border-b border-black-500 no-underline last:border-0">
                                 {{ label }}
                             </li>
                         </ul>
@@ -46,7 +47,7 @@
                     <li v-for="({ label }, index) in sections"
                     :class="{'selected': selected_index === index}"
                     @click="selected_index = index"
-                    class="flex items-center font-bold text-[1.2rem] lg:text-[1.3rem] cursor-pointer" :key="index">
+                    class="flex items-center font-semibold text-[1.2rem] lg:text-[1.3rem] cursor-pointer" :key="index">
                         {{ label }} <div class="cube mx-4 lg:mx-4 h-[10px] w-[10px]"></div>
                     </li>
                 </ul>
@@ -67,6 +68,10 @@
         }
     }
     onClickOutside(dropdown, close);
+    const move = ref(false);
+    const move_arrow = ([{ isIntersecting }]) => { 
+        move.value = isIntersecting;
+    }
     
     const select_index_mobile = (index) => {
         selected_index.value = index;
@@ -82,27 +87,25 @@
             { 
                 label: 'Nosotros',
                 icon: "school",
-                route: '',
+                route: '/sobre-nosotros/ipisa',
                 show: false,
                 idle: false,
-                title: '¿Qué Ofrece IPISA?',
-                description: 'vue:HomeAboutDescriptionsSchool'
+                title: '¿Qué es IPISA?',
             },
             {
                 label: 'Filosofía',
                 icon: 'philosofy',
+                route: '/sobre-nosotros/filosofia',
                 show: false,
                 idle: false,
                 title: 'Filosofía del centro',
-                description: 'HomeAboutDescriptionsPhilosofy'
             },
             {
                 label: 'Historia',
                 icon: 'history',
                 show: false,
                 idle: false,
-                title: 'Historia del centro',
-                description: 'HomeAboutDescriptionsHistory'
+                title: 'Nuestra trayectoria',
             },
             {
                 label: 'Reconocimientos',
@@ -110,7 +113,6 @@
                 show: false,
                 idle: false,
                 title: 'Reconocimientos',
-                description: 'HomeAboutDescriptionsAwards'
             },
     ]);
 
@@ -182,4 +184,20 @@
 .content ul.navigation li.selected { @apply underline; }
 .content ul.navigation li.selected:nth-child(even) { @apply text-blue; }
 .content ul.navigation li.selected:nth-child(odd) { @apply text-orange; }
+
+.move .icon-arrow-down {
+    animation: move-blink 550ms ease backwards 350ms 2;
+}
+
+@keyframes move-blink {
+    0% {
+        transform: translateY(0px);
+    } 50% {
+        transform: translateY(-6px);
+        background-color: #f5f2f2;
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
 </style>

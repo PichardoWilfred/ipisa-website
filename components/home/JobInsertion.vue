@@ -1,7 +1,8 @@
+
 <template>
     <section class="job-insertion relative max-[680px]:pb-[20rem] px-[5vw] mt-28 sm:h-[130vh] lg:h-[92vh] overflow-hidden" 
-    v-intersection-observer="[onView, {threshold: 0.9}]" id="job-insertion">
-        <h2 class="text-black font-semibold font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] 
+    v-intersection-observer="[onView, { threshold: 0.9 }]" id="job-insertion">
+        <h2 class="text-black font-normal font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] 
         cursor-pointer mb-2 lg:mb-4 transition-all">
             <b class="text-blue">Inserción</b> <b class="text-orange-300">Laboral</b>
         </h2>
@@ -59,7 +60,7 @@ onMounted(() => {
 </script>
 <style scoped>
 .section-text {
-    @apply text-[1.2rem] text-black font-medium font-raleway mb-10 lg:mb-6;
+    @apply text-[1.1rem] text-black font-medium font-raleway mb-10 lg:mb-6;
 }
 .girl-chair {
     @apply absolute max-[680px]:text-[30vw] text-[200px] lg:text-[250px] left-[20px] bottom-[-20px] sm:bottom-[-50px];

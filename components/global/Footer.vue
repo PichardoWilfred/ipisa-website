@@ -1,17 +1,17 @@
 <template>
     <div class="separator-blue bg-blue w-full h-[40px]" />
     <div class="separator-orange bg-orange-300 w-full h-[30px] mb-10" />
-    <footer class="px-3 lg:px-8">
+    <footer class="px-4 lg:px-8">
         <div class="flex flex-col align-center logo min-[800px]:max-w-[320px]">
-            <h4 class="font-raleway text-black-400 font-bold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
+            <h4 class="font-raleway text-black-400 font-semibold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
                 ¡Sigue contactándonos!
             </h4>
-            <p class="text-gray-400 font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center max-sm:mx-auto">
+            <p class="text-black font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center max-sm:mx-auto">
                 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
             </p>
             <div class="flex flex-col items-center">
                 <nuxt-icon name="general/ipisa-logo" class="mx-auto text-[180px]" filled />
-                <h4 class="flex flex-col items-center font-bold font-raleway text-[20px] leading-[21px]">
+                <h4 class="flex flex-col items-center font-normal font-raleway text-[20px] leading-[21px]">
                     <b class="text-blue">Buenos Cristianos</b>
                     <b class="text-orange">Honrados Ciudadanos.</b>
                 </h4>
@@ -92,7 +92,7 @@
                         </li>
                     </ul>
                 </div>
-                <div>
+                <div class="max-md:mt-8">
                     <h5 class="title">
                         Informaciones
                     </h5>
@@ -108,7 +108,7 @@
             <h4 class="font-raleway text-black-400 font-bold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
                 Ubicación
             </h4>
-            <p class="text-gray-400 font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center">
+            <p class="text-black font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center">
                 Av. Hispanoamericana, Km 1 Santiago, <br />
                 Zona Sur, República Dominicana
             </p>
@@ -228,10 +228,10 @@ ul.activities {
     }
 }
 .links h5.title {
-    @apply font-bold font-raleway text-black-400 text-[18px] min-[800px]:text-[22px] mb-2;
+    @apply font-semibold font-raleway text-black-400 text-[18px] min-[800px]:text-[22px] mb-2;
 }
 .links ul.activities li.activity, li.section, li.option {
-    @apply text-black font-medium font-raleway text-[14px] min-[800px]:text-[16px] mb-1 hover:text-[#2b2b2b] hover:underline cursor-pointer;
+    @apply text-black font-medium font-raleway text-[14px] min-[800px]:text-[16px] mb-1 hover:text-black-400 hover:underline cursor-pointer;
 }
 </style>
 <script setup>

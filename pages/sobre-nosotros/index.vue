@@ -1,12 +1,10 @@
 <template>
-    <section class="wallpaper bg-[#00488D99] h-[90vh] sm:h-[80vh]">
-
-    </section>
+    <section class="wallpaper bg-[#00488D99] h-[90vh] sm:h-[80vh]"></section>
     <section class="content-navigation pt-[4rem] sm:pt-[2rem] lg:pt-[6rem]">
-        <h1 class="text-center font-semibold text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all">
+        <h1 class="title-page">
             <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>
         </h1>
-        <p class="font-raleway mx-auto w-[85%] lg:w-[70%] text-[#636363] text-[1.1rem] my-4">
+        <p class="text-black font-raleway mx-auto w-[90%] lg:w-[50%] text-[1.1rem] my-4">
             Descubre más sobre el <b>Instituto Politécnico Industrial de Santiago (IPISA) </b>explorando lo que tenemos para ofrecerte. 
             Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de 
             <b class="text-blue font-bold">valores</b> <b class="orange">cristianos.</b>
@@ -14,18 +12,20 @@
             y <b>el amor</b> como pilares de formación.
         </p>
         <div class="about-modules">
-            <template v-for="({ title, description, icon }, index) in sections">
-                <div class="module" :class="icon">
-                    <nuxt-icon :name="`home/about/${icon}`" class="illustration idle" filled :class="icon" />
-                    <h1 class="mb-2 font-bold min-[800px]:leading-9 text-[1.5rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] truncate text-center">
-                        <span v-for="({ color, word, space }, index) in title" :key="index" :class="`hovered-${color}`">
-                            {{ word }}<span v-if="space" class="mx-[4px]"></span> 
-                        </span>
-                    </h1>
-                    <p class="text-justify font-medium text-[#636363]">
-                        {{ description }}
-                    </p>
-                </div>
+            <template v-for="({ title, description, icon, link }, index) in sections">
+                <nuxt-link :to="link">
+                    <div class="module" :class="icon">
+                        <nuxt-icon :name="`home/about/${icon}`" class="illustration idle" filled :class="icon" />
+                        <h1 class="font-semibold min-[800px]:leading-9 text-[1.5rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] mb-2 text-black-400 truncate text-center">
+                            <span v-for="({ color, word, space }, index) in title" :key="index" :class="`hovered-${color}`">
+                                {{ word }}<span v-if="space" class="mx-[4px]"></span> 
+                            </span>
+                        </h1>
+                        <p class="text-justify font-medium text-black-700">
+                            {{ description }}
+                        </p>
+                    </div>
+                </nuxt-link>
                 <div class="column-separator bg-[#DFDFDF] w-[2px] min-[1300px]:h-full mx-auto" />
             </template>
         </div>
@@ -39,6 +39,7 @@ const sections = ref([
             { color: 'blue', word: 'Filo' },
             { color: 'orange', word: 'sofía' },
         ],
+        link: '',
         icon: 'philosofy',
         description: "Arraigada en el sistema preventivo de Don Bosco. Nuestra visión es formar a jóvenes fuertes en valores éticos y ciudadanos comprometidos con la sociedad."
     },
@@ -48,6 +49,7 @@ const sections = ref([
             { space: true },
             { color: 'orange', word: 'Nosotros' },
         ],
+        link: 'sobre-nosotros/ipisa',
         icon: 'school',
         description: "Descubre en IPISA una educación técnica de calidad que se basa en sólidos valores cristianos y una misión de formación integral."
     },
@@ -57,6 +59,7 @@ const sections = ref([
             { space: true },
             { color: 'orange', word: 'Trayectoria' },
         ],
+        link: '',
         icon: 'history',
         description: "Con un testimonio de más de 30 años dedicados a la formación de jóvenes con excelencia. Desde su fundación en 1988, el centro ha pasado por cambios importantes."
     },
@@ -65,6 +68,7 @@ const sections = ref([
             { color: 'blue', word: 'Recono' },
             { color: 'orange', word: 'cimientos' },
         ],
+        link: '',
         icon: 'awards',
         description: "Arraigada en el sistema preventivo de Don Bosco. Nuestra visión es formar a jóvenes fuertes en valores éticos y ciudadanos comprometidos con la sociedad."
     },
@@ -145,4 +149,7 @@ layout.$patch({ scroll_breakpoint: 600 });
 .about-modules .module:hover span.hovered-blue {  color: #0478E0 !important; }
 .about-modules .module:hover span.hovered-orange { color: #FF8B46 !important; }
 
+h1.title-page {
+    @apply text-center font-semibold text-[2.1rem] lg:text-[3.6rem] cursor-pointer;
+}
 </style>

@@ -20,9 +20,9 @@
                 </li>
             </ul>
         </nav>   
-        <ul v-if="mobile_menu" class="mobile-navigation" :class="{ show: mobile_menu }">
+        <ul class="mobile-navigation" :class="{ show: mobile_menu }">
             <li v-for="({ label, class_, section }, index) in navigation_bar" :key="index" class="item" 
-            :class="class_" @click.prevent="scrollToSection(section, 200 )">
+            :class="class_" @click.prevent="scrollToSection(section, 200)">
                 {{ label }}
             </li>
         </ul>
@@ -47,7 +47,7 @@
 </template>
 <style scoped>
     header ul.navigation li.item {
-        @apply relative cursor-pointer font-raleway font-bold me-10 last:me-0 text-black-100 
+        @apply relative cursor-pointer font-raleway font-semibold me-10 last:me-0 text-black-100 
         before:absolute before:bottom-[-3px] before:rounded-md before:flex before:h-[3px]
         before:bg-orange-300 before:w-0 before:content-[''] 
         hover:before:w-full before:transition-all before:origin-center;
@@ -60,12 +60,20 @@
         top-0 border-b border-b-[transparent] transition-all z-[999];
         transition-duration: 250ms;
     }
+    header.transparent ul.mobile-navigation {
+        right: 0;
+    }
     header ul.mobile-navigation {
         @apply lg:hidden absolute top-[93px] right-0 bg-white text-center w-[70vw];
+        right: -100%;
         height: calc(100vh - 84px);
     }
+    header ul.mobile-navigation.show {
+        @apply transition-all;
+        right: 0;
+    }
     header ul.mobile-navigation li.item {
-        @apply font-raleway font-bold text-black hover:text-[#8b8b8b] 
+        @apply font-raleway font-semibold text-black hover:text-[#8b8b8b] 
         py-6 border-b border-gray-100 hover:bg-gray-100 active:bg-gray-100;
     }
     header ul.information {
@@ -186,7 +194,6 @@
 <script setup>
 import { useLayoutStore } from '@/store/layout';
 const layout = useLayoutStore();
-// layout.$patch({scroll_breakpoint: 400})
 
 // router
 const router = useRouter();
@@ -199,7 +206,7 @@ const header_class = reactive({
 const navigation_bar = [
     {
         label: 'NOSOTROS',
-        section: 'about' 
+        section: 'about'
     },
     {
         label: 'NOTICIAS',
@@ -222,7 +229,16 @@ const navigation_bar = [
         label: 'INSERCIÓN LABORAL',
         section: 'job-insertion'
     },
-]
+];
+const addresses = {
+    'portrait': '/',
+    'about': '/sobre-nosotros',
+    'news': '',
+    'workshop': '',
+    'admissions': '',
+    'activities': '',
+    'job-insertion': '',
+}
 // socialmedia
 const social_media = [
     {
@@ -275,12 +291,14 @@ const toggle_mobile_menu = () => {
     }
 }
 // scroll navigation
-const scrollToSection = async (section_, delay = 0 ) => {
+async function scrollToSection (section_, delay = 0 ) {
     const in_mobile = window.matchMedia("(max-width: 768px)").matches;
     const in_home = computed(() => router.currentRoute.value.name === 'index');
 
     if (!in_home.value) {
-        await navigateTo({ path: "/" });
+        await navigateTo({ path: addresses[section_]});
+        if (in_mobile && mobile_menu.value) toggle_mobile_menu();
+
         return;
     }
     setTimeout(() => {
@@ -290,6 +308,9 @@ const scrollToSection = async (section_, delay = 0 ) => {
         
         window.scrollTo({ top: y, behavior: 'smooth' });
     }, delay);
-    if (in_mobile ) toggle_mobile_menu();
+
+    if (in_mobile && mobile_menu.value) {
+        toggle_mobile_menu();
+    };
 }
 </script>

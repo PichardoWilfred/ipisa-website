@@ -20,9 +20,20 @@
 .v-enter-active, .v-leave-active {
     transition: all 150ms cubic-bezier(.68,.82,0,.8);
 }
-
 .v-enter-from, .v-leave-to {
     opacity: 0;
+}
+
+h1.title {
+    @apply text-black font-raleway font-semibold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.8rem] cursor-pointer mb-2 lg:mb-3;
+}
+main.article h2.subtitle {
+    font-family: "Raleway", ui-sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;  
+    cursor: pointer;
+    color: #4B6286;
 }
 
 :root {
