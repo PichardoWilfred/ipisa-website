@@ -74,7 +74,7 @@
     }
     header ul.mobile-navigation li.item {
         @apply font-raleway font-semibold text-black hover:text-[#8b8b8b] 
-        py-6 border-b border-gray-100 hover:bg-gray-100 active:bg-gray-100;
+        py-6 border-b border-black-500 hover:bg-gray-100 active:bg-gray-100;
     }
     header ul.information {
         @apply absolute top-[4.5rem] right-[18px] max-xl:hidden flex flex-col items-end text-black font-raleway font-bold max-w-[300px] text-end text-[14px];
@@ -107,7 +107,7 @@
         @apply absolute flex max-lg:left-[50%] lg:right-0 max-lg:translate-x-[-50%];
     }
     header nav div.upper button.mobile {
-        @apply max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md border border-gray-100 hover:bg-gray-100 transition-[background-color];
+        @apply max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md border border-black-500 hover:bg-gray-100 transition-[background-color];
     }
     header nav div.upper div.social-media div.icon {
         @apply flex items-center justify-center h-[40px] w-[40px] p-3 text-white cursor-pointer transition-all;
@@ -129,7 +129,7 @@
     header nav div.upper div.social-media div.icon:nth-child(even) { @apply bg-orange hover:bg-orange-300; }
 
     header.scrolled {
-        @apply top-[-200px] border-b-gray-100;
+        @apply top-[-200px] border-b-black-500;
     }
     header.scrolled.up {
         @apply top-0;
@@ -173,7 +173,7 @@
         animation: slide-up-bottom 500ms ease-in-out forwards;
     }
     header.transparent ul.mobile-navigation li.item {
-        @apply py-6 border-b border-gray-100 hover:bg-gray-100 hover:text-white;
+        @apply py-6 border-b border-black-500 hover:bg-gray-100 hover:text-white;
     }
     header ul.information :deep(:is(.location-icon-color, .phone-icon-color)) svg {
         @apply overflow-visible;

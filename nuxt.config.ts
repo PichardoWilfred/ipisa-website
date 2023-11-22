@@ -34,7 +34,7 @@ export default defineNuxtConfig({
         },
         Raleway: {
           wght: [100, 200, 300, 400, 500, 600, 700, 900],
-          ital: [100]
+          ital: [100, 200, 300, 400, 500, 600, 700, 900]
         },
       }
   }],

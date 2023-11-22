@@ -39,7 +39,7 @@ const sections = ref([
             { color: 'blue', word: 'Filo' },
             { color: 'orange', word: 'sofía' },
         ],
-        link: '',
+        link: 'sobre-nosotros/filosofía',
         icon: 'philosofy',
         description: "Arraigada en el sistema preventivo de Don Bosco. Nuestra visión es formar a jóvenes fuertes en valores éticos y ciudadanos comprometidos con la sociedad."
     },

@@ -1,6 +1,6 @@
 <template>
     <div class="wallpaper bg-[#00488D99] h-screen sm:h-[80vh] mb-10 lg:mb-16"></div>
-    <main class="article flex max-lg:flex-col justify-between px-4 lg:px-24">
+    <main class="article flex max-lg:flex-col justify-between px-4 lg:px-24 mb-28">
         <section>
             <h1 class="title">
                 <slot name="title">
@@ -33,7 +33,7 @@
                     </li>
                 </ol>
             </nav>
-            <h1 class="font-raleway font-[700] text-[28px] lg:text-[36px] text-black-400 mt-20 mb-4">
+            <h1 class="font-raleway font-[700] text-[28px] lg:text-[36px] text-black-400 mt-3 lg:mt-20 mb-4">
                 Noticias
             </h1>
             <div class="news-feed">
@@ -55,23 +55,6 @@
             </div>
         </aside>
     </main>
-    
-    <!-- <div class="news" v-for="({title, img, description, highlight, date}, index) in news_feed" :key="index">
-        <div class="header">
-            <time>
-                {{ date }}
-            </time>
-            <button class="options">
-                <nuxt-icon name="home/news/options" filled class="text-[1.8rem]"/>
-            </button>
-        </div>
-        <img :src="`modules/home/news/${img}`" alt="titulo" srcset="">
-        <h2> {{ title }} </h2>
-        <p> {{ description }} </p>
-        <button class="see-more">
-            <b class="first">Ver</b> <b class="second">más</b> <Icon name="fe:arrow-down" class="text-[1.6rem]" filled />
-        </button>
-    </div> -->
 
     <button class="mobile-navigation" ref="mobile-navigation" @click.prevent="() => { show_navigation = true; }">
         <Icon name="mdi-light:layers" size="48px" />
@@ -109,14 +92,14 @@
         {
             title: '¿Qué es IPISA?',
             list: [
-                'Presentación',
-                'Presentando a IPISA',
+                'Nuestro Centro',
+                'IPISA - Conócenos (video)',
             ] 
         },
-        {
-            title: 'Actualidad',
-            list: ['Noticias']
-        },
+        // {
+        //     title: 'Actualidad',
+        //     list: ['Noticias']
+        // },
         {
             title: 'Nuestra Identidad',
             list: [
@@ -136,9 +119,6 @@
 <style scoped>
     section div.content {
         @apply lg:pe-8 min-h-[80vh] font-raleway;
-    }
-    section h1.title {
-        @apply text-black font-raleway font-semibold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.8rem] cursor-pointer mb-2 lg:mb-3;
     }
     section p.default-text {
         @apply text-black text-[1rem] lg:text-lg font-medium xl:min-w-[640px] xl:max-w-[1020px] min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem] max-lg:mb-[3.8rem];
