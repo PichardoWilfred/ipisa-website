@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="blank">
         <template #title>
-            <span class="text-blue">¿Qué</span> <span class="separator">es</span> <span class="text-orange">IPISA?</span>
+            <span id="anchor-ipisa" class="text-blue">¿Qué</span> <span class="separator">es</span> <span class="text-orange">IPISA?</span>
         </template>
         <template #content>
             El <span class="underline">Instituto Politécnico Industrial de Santiago</span> <b>(IPISA)</b> es un referente en la educación técnica y profesional 
@@ -23,7 +23,7 @@
             Estamos emocionados de dar la bienvenida a <b class="font-bold">nuevos estudiantes</b> y continuar nuestra misión de educar, 
             inspirar y forjar un futuro mejor.
 
-            <h2 class="subtitle mt-8 lg:mt-16">Presentando a IPISA</h2>
+            <h2 class="subtitle mt-8 lg:mt-16" id="anchor-video">Presentando a IPISA</h2>
 
             A continuación les presentaremos un <b>video promocional</b> que brinda una visión más profunda de lo que significa ser parte de la comunidad de nuestro centro.
             <span class="lg:hidden">
@@ -45,7 +45,7 @@
             institución que trasciende la mera educación técnica. Su identidad, enraizada en la comunidad y orientada hacia el progreso, 
             define un espacio de aprendizaje dinámico y transformador, donde se forjan no solo profesionales, sino ciudadanos comprometidos
             con un impacto positivo en u entorno.
-            <h2 class="subtitle mt-8 mb-5 lg:mb-8">Lema</h2>
+            <h2 class="subtitle mt-8 mb-5 lg:mb-8" id="anchor-phrase">Lema</h2>
                 <span class="text-[16px] lg:text-[22px]">
                     <span class="text-blue font-semibold">Buenos Cristianos</span> 
                     <span class="separator font-semibold mx-2">y</span> 
@@ -53,7 +53,7 @@
                 </span>
             <br>
             <div class="emblem">
-                <h2 class="subtitle subtitle mt-8 mb-5 lg:mb-8">Emblema</h2>
+                <h2 class="subtitle subtitle mt-8 mb-5 lg:mb-8" id="anchor-emblem">Emblema</h2>
                 Mucho más que una representación gráfica; es la síntesis visual de una institución que fusiona tradición, técnica y valores en su núcleo. 
                 Este distintivo icónico reúne los elementos esenciales que dan forma a la identidad del centro y narran su compromiso con la excelencia 
                 educativa en el corazón del Cibao dominicano.
@@ -232,9 +232,9 @@
                     </svg>
                 </div>
             </div>
-            <h2 class="subtitle mt-8 mb-5 lg:mb-8">Bandera</h2>
+            <h2 class="subtitle mt-8 mb-5 lg:mb-8" id="anchor-flag">Bandera</h2>
             <nuxt-icon name="general/ipisa-flag" class="ipisa-flag" filled />
-            <h2 class="subtitle mt-8 mb-5 lg:mb-8">Himno</h2>
+            <h2 class="subtitle mt-8 mb-5 lg:mb-8" id="anchor-hymn">Himno</h2>
             <div class="video-container">
                 <iframe class="video mb-8" src="https://www.youtube.com/embed/Yagc9RoAwF0?si=gptmoAY_VDqei22q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 <div class="stanza">
@@ -367,17 +367,35 @@ svg.ipisa-logo-colored g.emblem-core.colored g:is(.gear, .anvil, .rays, .hammer,
         {
             title: '¿Qué es IPISA?',
             list: [
-                'Nuestro Centro',
-                'IPISA - Conócenos (video)',
+                {
+                    label: 'Nuestro Centro',
+                    anchor: 'ipisa'
+                },
+                {
+                    label: 'IPISA - Conócenos (video)',
+                    anchor: 'video'
+                }
             ]
         },
         {
             title: 'Nuestra Identidad',
             list: [
-                'Lema',
-                'Emblema',
-                'Bandera',
-                'Himno'
+                {
+                    label: 'Lema',
+                    anchor: 'phrase'
+                },
+                {
+                    label: 'Emblema',
+                    anchor: 'emblem'
+                },
+                {
+                    label: 'Bandera',
+                    anchor: 'flag'
+                },
+                {
+                    label: 'Himno',
+                    anchor: 'hymn'
+                },
             ]
         }
     ]

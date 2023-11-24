@@ -23,12 +23,12 @@
                     <h1 class="navigation-title">
                         {{ title }}
                     </h1>
-                    <li v-for="(section, index_) in list" :key="index_">
+                    <li v-for="(section, index_) in list" :key="index_" @click.prevent="scroll_to(section.anchor)">
                         <span class="alphabet me-1">
                             {{ alphabet[index_] }}.
                         </span>
                         <span class="hover:underline">
-                            {{ section }}
+                            {{ section.label }}
                         </span>
                     </li>
                 </ol>
@@ -67,7 +67,7 @@
             </h1>
             <li v-for="(section, index_) in list" :key="index_" @click.prevent="close_navigation">
                 <span class="hover:underline">
-                    {{ alphabet[index_] }}. {{ section }}
+                    {{ alphabet[index_] }}. {{ section.label }}
                 </span>
             </li>
         </ol>
@@ -83,6 +83,18 @@
     
     const layout = useLayoutStore();
     const navigation_ = ref(layout.about_navigation); // getting its page navigation
+
+    function scroll_to (section_, delay = 0) {
+        const in_mobile = window.matchMedia("(max-width: 678px)").matches;
+        setTimeout(() => {
+            const anchor = document.querySelector(`#anchor-${section_}`);
+            if (!anchor) return;
+            const section_offset = parseInt(anchor.dataset.offset) || 0;
+            const top = anchor.getBoundingClientRect().top + window.pageYOffset - (in_mobile ? 60 : 140) + section_offset;
+            
+            window.scrollTo({ top, behavior: 'smooth' });
+        }, delay);
+    }
 
     const mobile_navigation = ref(null); // linked to a div
     const show_navigation = ref(false);
