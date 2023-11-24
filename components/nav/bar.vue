@@ -32,7 +32,6 @@
                     Av. Hispanoamericana, Km 1 Santiago,
                     <span class="text-blue-300">Zona Sur, República Dominicana.</span>
                 </h4>
-                
                 <nuxt-icon name="layout/location-color" class="text-[28px] location-icon-color" filled />
             </li>
             <li class="flex items-center mt-2">

@@ -27,6 +27,10 @@
 h1.title {
     @apply text-black font-raleway font-semibold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.8rem] cursor-pointer mb-2 lg:mb-3;
 }
+
+h1.secondary-title {
+    @apply font-raleway font-semibold leading-[1.9rem] text-[1.8rem] sm:text-[2rem] sm:leading-[46px] lg:leading-[2.6rem] lg:text-[2.6rem] mb-5 sm:my-10;
+}
 main.article h2.subtitle {
     font-family: "Raleway", ui-sans-serif;
     font-size: 1.8rem;

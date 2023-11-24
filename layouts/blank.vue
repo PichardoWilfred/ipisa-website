@@ -79,7 +79,11 @@
 </template>
 <script setup>
     import { onClickOutside } from '@vueuse/core';
+    import { useLayoutStore } from '@/store/layout';
     
+    const layout = useLayoutStore();
+    const navigation_ = ref(layout.about_navigation); // getting its page navigation
+
     const mobile_navigation = ref(null); // linked to a div
     const show_navigation = ref(false);
 
@@ -88,32 +92,7 @@
         if (show_navigation.value) show_navigation.value = false; 
     }
 
-    const navigation_ = ref([
-        {
-            title: '¿Qué es IPISA?',
-            list: [
-                'Nuestro Centro',
-                'IPISA - Conócenos (video)',
-            ] 
-        },
-        // {
-        //     title: 'Actualidad',
-        //     list: ['Noticias']
-        // },
-        {
-            title: 'Nuestra Identidad',
-            list: [
-                'Lema',
-                'Emblema',
-                'Bandera',
-                'Himno'
-            ]
-        }
-        
-    ]);
     const alphabet = ref([...'abcdefghijklmnopqrstuvwxyz'].map((letter) => letter));
-
-
     const news_feed =  ref([...Array(4).keys()]);
 </script>
 <style scoped>
@@ -132,7 +111,7 @@
         box-shadow: 0px 0.4147px 1.65879px 0px rgba(99, 160, 255, 0.35);
     }
     nav.navigation.mobile {
-        @apply flex lg:hidden;
+        @apply flex lg:hidden max-h-[420px] overflow-y-scroll;
         bottom: -100%;
     }
     nav.navigation.mobile.show {

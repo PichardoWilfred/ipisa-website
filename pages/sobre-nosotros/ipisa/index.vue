@@ -32,16 +32,19 @@
             Descubran por qué <b>IPISA</b> es la elección preferida de aquellos que buscan una educación que les prepare para el éxito en la vida y en sus futuras 
             carreras. <b class="underline">¡Les invitamos a disfrutar del video y unirse a nosotros en este viaje educativo! </b>
             <br><br>
-            <iframe class="video" src="https://www.youtube.com/embed/Lo-ETVLTU4Q?si=FNhWCNZr8UTZSt_u" 
-            title="Conoce IPISA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            
-            <h1 class="title mb-8 lg:leading-[4.15rem] mt-24">
+            <div class="video-container">
+                <iframe class="video" src="https://www.youtube.com/embed/Lo-ETVLTU4Q?si=FNhWCNZr8UTZSt_u" 
+                title="Conoce IPISA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="border-b border-black-500" />
+            <br>
+            <h1 class="secondary-title">
                 <span class="text-blue">Nuestra</span> <span class="text-orange">Identidad</span>
             </h1>
             En el corazón de nuestra filosofía se encuentra una fusión entre valores tradicionales y una visión vanguardista, moldeando una 
             institución que trasciende la mera educación técnica. Su identidad, enraizada en la comunidad y orientada hacia el progreso, 
             define un espacio de aprendizaje dinámico y transformador, donde se forjan no solo profesionales, sino ciudadanos comprometidos
-            con un impacto positivo en su entorno.
+            con un impacto positivo en u entorno.
             <h2 class="subtitle mt-8 mb-5 lg:mb-8">Lema</h2>
                 <span class="text-[16px] lg:text-[22px]">
                     <span class="text-blue font-semibold">Buenos Cristianos</span> 
@@ -232,7 +235,8 @@
             <h2 class="subtitle mt-8 mb-5 lg:mb-8">Bandera</h2>
             <nuxt-icon name="general/ipisa-flag" class="ipisa-flag" filled />
             <h2 class="subtitle mt-8 mb-5 lg:mb-8">Himno</h2>
-            <iframe class="video mb-8" src="https://www.youtube.com/embed/Yagc9RoAwF0?si=gptmoAY_VDqei22q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div class="video-container">
+                <iframe class="video mb-8" src="https://www.youtube.com/embed/Yagc9RoAwF0?si=gptmoAY_VDqei22q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 <div class="stanza">
                     Sueño de Don Bosco, hecho realidad.  
                     Es nuestro aporte a la sociedad.  
@@ -251,6 +255,8 @@
                     Creciendo entendemos que es hora de empezar  
                     A hacer del taller nuestro hogar.
                 </div>
+            </div>
+
         </template>
     </NuxtLayout>
 </template>
@@ -287,8 +293,11 @@
 .ipisa-flag :deep(svg) {
     @apply w-full h-full max-w-[420px] max-h-[290px];
 }
-iframe.video {
-    @apply w-full h-[330px] lg:w-[800px] lg:h-[400px];
+.video-container {
+    @apply flex flex-col w-full lg:w-[800px];
+}
+.video-container iframe.video {
+    @apply w-full h-[330px] lg:h-[400px];
 }
 .stanza {
     @apply italic font-medium mb-3 max-w-[420px] mx-auto;
@@ -352,6 +361,28 @@ svg.ipisa-logo-colored g.emblem-core.colored g:is(.gear, .anvil, .rays, .hammer,
 }
 </style>
 <script setup>
+    import { useLayoutStore } from '@/store/layout';
+    const layout_store = useLayoutStore();
+    const about_navigation = [
+        {
+            title: '¿Qué es IPISA?',
+            list: [
+                'Nuestro Centro',
+                'IPISA - Conócenos (video)',
+            ]
+        },
+        {
+            title: 'Nuestra Identidad',
+            list: [
+                'Lema',
+                'Emblema',
+                'Bandera',
+                'Himno'
+            ]
+        }
+    ]
+    layout_store.$patch({ about_navigation });
+
     const emblem_elements = ref([
         {
             name: 'name',
