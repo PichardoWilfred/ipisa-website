@@ -17,7 +17,7 @@
             </div>
         </section>
 
-        <aside class="lg:w-[370px] ">
+        <aside class="lg:w-[370px] relative">
             <nav class="navigation">
                 <ol v-for="({ title, list }, index) in navigation_" :key="index">
                     <h1 class="navigation-title">
@@ -105,7 +105,7 @@
     }
 
     const alphabet = ref([...'abcdefghijklmnopqrstuvwxyz'].map((letter) => letter));
-    const news_feed =  ref([...Array(4).keys()]);
+    // const news_feed =  ref([...Array(4).keys()]);
 </script>
 <style scoped>
     section div.content {
@@ -118,7 +118,7 @@
         @apply fixed top-0 left-0 h-screen w-screen bg-[#09090970] z-40;
     }
     nav.navigation {
-        @apply max-lg:hidden max-lg:fixed left-0 bottom-0 flex flex-col bg-white w-full p-6 lg:rounded-lg z-50 transition-all;
+        @apply max-lg:hidden sticky top-[20vh] left-0 bottom-0 flex flex-col bg-white w-full p-6 lg:rounded-lg z-50 transition-all;
         transition-duration: 250ms;
         box-shadow: 0px 0.4147px 1.65879px 0px rgba(99, 160, 255, 0.35);
     }

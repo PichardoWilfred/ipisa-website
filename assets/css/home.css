@@ -4,6 +4,9 @@
 
 .fade-fast-enter-active, .fade-fast-leave-active { transition: opacity 180ms var(--ease-1); }
 .fade-fast-enter-from, .fade-fast-leave-to { opacity: 0; }
+
+.fade-fast-2-enter-active, .fade-fast-2-leave-active { transition: opacity 100ms ease-in-out; }
+.fade-fast-2-enter-from, .fade-fast-2-leave-to { opacity: 0; }
 /* school animations*/
 .illustration.school svg {
     overflow: visible;

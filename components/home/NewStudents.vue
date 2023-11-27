@@ -46,6 +46,26 @@
                 <nuxt-icon name="home/new-students/arrow-table" class="right text-[18px]" filled />
             </button>
         </div>
+        <div class="table-header">
+            <div class="input-container">
+                <icon name="fe:search" filled size="24px" class="text-black-500 me-2" />
+                
+                <Transition name="fade-fast-2" mode="out-in">
+                    <input v-if="search_by === 'name'" type="text" class="search" v-model="search_by_name"
+                    placeholder="Buscar por nombre" pattern="[a-zA-Z ]{2,254}" />
+                    <input v-else-if="search_by === 'number'" type="number" class="search" ref="search_by_number"
+                    placeholder="Buscar por número" />
+                </Transition>
+                
+                <button class="search" @click.prevent="toggle_search_by()">
+                    <Transition name="fade-fast-2" mode="out-in">
+                        <icon v-if="search_by === 'name'" name="mdi:format-letter-case" filled size="24px" class="text-black-700" />
+                        <icon v-else-if="search_by === 'number'" name="tabler:list-numbers" filled size="24px" class="text-black-700" />
+                    </Transition>
+                </button>
+
+            </div>
+        </div>
         <Transition name="fade-fast" mode="out-in">
             <div class="table-container" :key="page_index">
                 <ul class="column mx-auto w-full" v-for="(column, index) of columns_" :key="index">
@@ -92,12 +112,12 @@
                 <nuxt-icon name="home/new-students/arrow-table" class="right text-[18px]" filled />
             </button>
         </div>
-        
+        <!-- {{ filtered_list }} -->
     </section>
 </template>
 <script setup>
     const list_ = ref([ // List example of new students.
-        //1
+        // //1
         "Juan Carlos Pérez",
         "Ana María Rodríguez Sánchez",
         "Manuel Antonio García",
@@ -345,9 +365,34 @@
         "Roberto Antonio Ortiz Santana",
         "Isabel Cristina Guerrero Santana",
         "Carlos Eduardo Guerrero Santana",
-
         "Teresa Inmaculada Guerrero Santana"
     ]);
+
+    const search_by_number = ref(null);
+    const search_by_name = ref('');
+
+    const filtered_list = computed(() => {
+        const filtered_ = list_.value.filter(item => 
+            item.toLowerCase().includes(search_by_name.value.toLowerCase())
+        );
+        return filtered_;
+    });
+    
+    watch(search_by_name, () => {
+        page_index.value = 1;
+        
+        set_pagination();
+    });
+
+    const search_by = ref('name');
+    const toggle_search_by = () => {
+        if (search_by.value === 'name') {
+            search_by.value = 'number';
+        }else if(search_by.value === 'number') {
+            search_by.value = 'name';
+        }
+    }
+
     const columns_ = ref([0, 0, 0]); //The array that we are going to populate.
     let viewport = () => { // getting the actual view_port
             let viewport_;
@@ -396,7 +441,7 @@
         for (let i = 0; i < column_limit.value; i++) { // getting the values out of the list
             let column = [];
             for (let j = starting; j < limit; j++) {
-                column.push( { inner_index, name: list_.value[j] } );
+                column.push( { inner_index, name: filtered_list.value[j] } );
                 inner_index++;
             }
             columns_.value[i] = column;
@@ -408,10 +453,8 @@
 
     const row_limit = ref(17); // amounts of allowed rows.
 
-    // const pagination_limit = ref(3);
     const page_index = ref(1);
 
-    const first_page = ref(0); 
     const last_page = ref(0); //maximun of pages that a set of students can have (re-defined on set_columns)
 
     const pagination = ref([]);
@@ -427,7 +470,6 @@
             case 'dots-backwards':
                 break;
             case 'dots-forwards':
-                console.log(number); 
                 break;
             case 'substract':
                 page_index.value = (page_index.value > 1) ? page_index.value - 1 : last_page.value;
@@ -442,75 +484,79 @@
     
     watch(page_index, (new_page_index, old_page_index) => {
         set_columns();
-        if (pagination.value.length >= 7) return;
-        const largest_value = pagination.value[pagination.value.length - 1];
-        const smallest_value = pagination.value[0];
+        if (last_page.value >= 7) {
+            const largest_value = pagination.value[pagination.value.length - 1];
+            const smallest_value = pagination.value[0];
 
-        let starting_value = largest_value;
-         // check if its larger or smaller.
-        if (new_page_index > old_page_index) { //the index increased in value
-            if (new_page_index > largest_value) { // need a new pages group
-                if (new_page_index === last_page.value) { // if went directly to the last one
-                    starting_value = last_page.value - 3;
-                    for (let index = 0; index < pagination.value.length; index++) {
+            let starting_value = largest_value;
+            // check if its larger or smaller.
+            if (new_page_index > old_page_index) { //the index increased in value
+                if (new_page_index > largest_value) { // need a new pages group
+                    if (new_page_index === last_page.value) { // if went directly to the last one
+                        starting_value = last_page.value - 3;
+                        for (let index = 0; index < pagination.value.length; index++) {
+                            pagination.value[index] = starting_value + (index + 1);
+                        }
+                        show_last_page.value = false;
+                        show_first_page.value = true;
+                        return;
+                    }
+                    if (!show_first_page.value) show_first_page.value = true; // if we haven't pass the first set
+
+                    if ((smallest_value + 6) >= last_page.value) { // if we are approaching the last page
+                        starting_value = last_page.value - 3;
+                        show_last_page.value = false;
+                    }
+                    for (let index = 0; index < pagination.value.length; index++) { //asigning the new values
                         pagination.value[index] = starting_value + (index + 1);
                     }
-                    show_last_page.value = false;
-                    show_first_page.value = true;
-                    return;
-                }
-                if (!show_first_page.value) show_first_page.value = true; // if we haven't pass the first set
 
-                if ((smallest_value + 6) >= last_page.value) { // if we are approaching the last page
-                    starting_value = last_page.value - 3;
-                    show_last_page.value = false;
+                    if ( pagination.value.indexOf(new_page_index) === -1 ) { // In case the index is not inside the pagination array
+                        pagination.value.unshift((pagination.value[0] - 1));
+                    }
                 }
-                for (let index = 0; index < pagination.value.length; index++) { //asigning the new values
-                    pagination.value[index] = starting_value + (index + 1);
+            }else { // the index decreased in value
+                const create_first_page = () => {
+                    show_first_page.value = false;
+                    show_last_page.value = true;
+                    for (let index = 0; index < pagination.value.length; index++) {
+                        pagination.value[index] = (index + 1);
+                    }
+                    if (pagination.value.length >= 4) pagination.value.pop(); // if we have added an aditional page before we need to get rid of it
+                    // in case there's not many pages?
                 }
-
-                if ( pagination.value.indexOf(new_page_index) === -1 ) { // In case the index is not inside the pagination array
-                    pagination.value.unshift((pagination.value[0] - 1));
-                }
-            }
-        }else {
-            const create_first_page = () => {
-                show_first_page.value = false;
-                show_last_page.value = true;
-                for (let index = 0; index < 3; index++) {
-                    pagination.value[index] = (index + 1);
-                }
-                if (pagination.value.length >= 4) pagination.value.pop();
-            }
-            if (new_page_index === 1) { // went to the first one
-                create_first_page();
-                return;
-            }
-            if (smallest_value > new_page_index) { //we needing a new group
-                const starting_value = smallest_value - 3;
-                
-                if (starting_value <= 1) {
+                if (new_page_index === 1) { // went to the first one
                     create_first_page();
                     return;
-                };
-                
-                for (let index = 0; index < 3; index++) {
-                    pagination.value[index] = starting_value + index;
                 }
-                show_first_page.value = true;
-                show_last_page.value = true;
+                if (smallest_value > new_page_index) { //we needing a new group
+                    
+                    const starting_value = smallest_value - 3;
+                    
+                    if (starting_value <= 1) {
+                        create_first_page();
+                        return;
+                    };
+                    
+                    for (let index = 0; index < 3; index++) {
+                        pagination.value[index] = starting_value + index;
+                    }
+                    show_first_page.value = true;
+                    show_last_page.value = true;
+                }
             }
-        }
+        };
     });
     
-    onMounted(() => {
+    const set_pagination = () => {
         columns_.value = available_columns() || [0, 0, 0]; // setting the amount of columns visible depeding on the viewport 
         column_limit.value = columns_.value.length;
-        last_page.value = Math.ceil(list_.value.length / (row_limit.value * column_limit.value)); // setting the amount of pages
+        last_page.value = Math.ceil(filtered_list.value.length / (row_limit.value * column_limit.value)); // setting the amount of pages
+        
+        pagination.value = [];
         Array.from( Array(last_page.value).keys() ).map((_, index) => { //setting the initial value of the pagination elements
             pagination.value.push((index + 1));
         });
-        // first_page.value = pagination[0];
         set_columns();
         if (pagination.value.length >= 7) {
             show_last_page.value = true; //show last and first option
@@ -518,8 +564,14 @@
             for (let index = 1; index <= 3; index++) {
                 pagination.value.push(index);
             }
+        }else {
+            show_last_page.value = false;
+            show_first_page.value = false;
         }
-        
+    }
+
+    onMounted(() => {
+        set_pagination();
     });
 
 </script>
@@ -548,6 +600,24 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+/*  */
+.table-header {
+    @apply flex justify-end mb-4;
+}
+.table-header .input-container {
+    @apply flex items-center border-2 border-black-500 ps-2 py-1 rounded-md w-full max-w-[320px] min-h-[42px];
+}
+.table-header .input-container input.search {
+    @apply text-base text-black font-semibold font-raleway grow
+    placeholder:text-[15px] placeholder:text-[#AABDD8] ;
+}
+.table-header .input-container button.search {
+    @apply flex items-center hover:bg-[#CEE3FF80] active:bg-[#CEE3FF80] rounded-full p-1 me-1 transition-all;
+}
+.table-header .input-container input.search:is(:focus, :focus-within, :focus-visible) {
+    @apply outline-none;
+}
+/*  */
 .table-container ul.column {
     @apply overflow-hidden;
 }
@@ -570,7 +640,7 @@
     @apply flex mx-auto lg:mx-3;
 }
 .table-pagination .pagination li {
-    @apply font-inter cursor-pointer flex items-center justify-center font-bold me-1 lg:me-2 last:me-0 text-[18px] text-black-600 w-[38px] h-[38px] rounded-full hover:bg-white-200;
+    @apply font-inter cursor-pointer flex items-center justify-center font-bold me-1 lg:me-2 last:me-0 text-[18px] text-black-600 w-[34px] h-[34px] lg:w-[38px] lg:h-[38px] rounded-full hover:bg-white-200;
 }
 .table-pagination .pagination li.active {
     @apply  text-black-700 bg-white-200;
@@ -586,5 +656,15 @@
 
 .pagination-btn .right {
     transform:translateY(.5px);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
 }
 </style>

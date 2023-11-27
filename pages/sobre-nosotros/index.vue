@@ -150,6 +150,6 @@ layout.$patch({ scroll_breakpoint: 600 });
 .about-modules .module:hover span.hovered-orange { color: #FF8B46 !important; }
 
 h1.title-page {
-    @apply text-center font-semibold text-[2.1rem] lg:text-[3.6rem] cursor-pointer;
+    @apply font-raleway text-center font-semibold text-[2.1rem] lg:text-[3.6rem] cursor-pointer;
 }
 </style>

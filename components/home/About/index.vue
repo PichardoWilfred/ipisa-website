@@ -53,7 +53,7 @@
                 </ul>
             </div>
         </div>
-        <!-- <hr class="border-gray-100 mt-[8rem]"> -->
+        
     </section>
 </template>
 <script setup>
