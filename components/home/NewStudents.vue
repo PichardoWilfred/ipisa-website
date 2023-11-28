@@ -73,7 +73,13 @@
             </div>
         </div>
         <Transition name="fade-fast" mode="out-in">
-            <div class="table-container" :key="page_index">
+            <div v-if="results_not_found" class="flex items-start lg:items-center lg:justify-center h-[920px] sm:min-h-[902px]">
+                <div class="flex flex-col items-center justify-center max-sm:pt-20">
+                    <icon name="material-symbols:unknown-document-outline" filled size="120px" class="text-black-600" />
+                    <span class="font-raleway text-black-600 text-[28px] text-center leading-9 mt-6">No pudimos encontrar ningún resultado</span>
+                </div>
+            </div>
+            <div v-else class="table-container" :key="page_index">
                 <ul class="column mx-auto w-full" v-for="(column, index) of columns_" :key="index">
                     <li class="row" v-for="({ name, list_index }, j) in column" :key="j" :class="{'with-border': index >= 1}">
                         <span class="flex justify-center min-w-[40px] font-inter mr-3 text-black-600 text-xl">
@@ -380,7 +386,6 @@
     const search_by = ref('name');
 
     const search_by_error = ref(false);
-    // const show_search_by_error = ref(false);
     const search_by_error_label = ref(''); 
     let error_timeout;
 
@@ -447,11 +452,10 @@
                 filtered_ = list_.value;
             }
         }
-        
         return filtered_;
     });
     
-    watch(search_by_name, (value) => {
+    watch(search_by_name, () => {
         page_index.value = 1;
         set_pagination();
     });
@@ -474,6 +478,14 @@
     }
 
     const columns_ = ref([0, 0, 0]); //The array that we are going to populate.
+    const results_not_found = computed(() => {
+        if (columns_.value[0]) {
+            return (columns_.value[0][0]["list_index"] === 0 || columns_.value[0][0]["name"] === '');
+        }else {
+            return false;
+        }
+    });
+
     let viewport = () => { // getting the actual view_port
             let viewport_;
             const display = {
@@ -664,7 +676,6 @@
     })
 </script>
 <style scoped>
-
 .table-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -688,6 +699,7 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
 /*  */
 .table-header {
     @apply flex flex-col items-end mb-4;
