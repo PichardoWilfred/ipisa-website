@@ -14,7 +14,7 @@
             y llena de aprendizaje. <b>¡Bienvenidos a la familia de</b> <b class="separator">IPISA!</b>
         </p>
 
-        <div class="table-pagination mobile">
+        <div class="table-pagination mobile" :class="{disabled: search_by === 'number'}">
             <button class="pagination-btn" @click.prevent="set_index(0, 'substract')">
                 <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
             </button>
@@ -47,20 +47,26 @@
             </button>
         </div>
         <div class="table-header">
-            <div class="input-container">
-                <icon name="fe:search" filled size="24px" class="text-black-500 me-2" />
+            <div class="flex items-end justify-end min-h-[42px] w-full sm:max-w-[320px]">
+                <span class="font-raleway font-medium text-[12px] text-black mb-1 transition-all" 
+                :class="{'text-orange-300': search_by_error}">
+                    {{ search_by_error_label }}
+                </span>
+            </div>
+            <div class="input-container" :class="{'error': search_by_error}" >
+                <icon name="fe:search" filled size="24px" class="search-icon text-black-500 me-2 transition-all" />
                 
                 <Transition name="fade-fast-2" mode="out-in">
-                    <input v-if="search_by === 'name'" type="text" class="search" v-model="search_by_name"
-                    placeholder="Buscar por nombre" pattern="[a-zA-Z ]{2,254}" />
-                    <input v-else-if="search_by === 'number'" type="number" class="search" ref="search_by_number"
+                    <input v-if="search_by === 'name'" type="text" class="search" v-model="search_by_name" @input="only_letters"
+                    placeholder="Buscar por nombre" pattern="[A-Za-z]+" />
+                    <input v-else-if="search_by === 'number'" type="number" class="search" v-model="search_by_number" @keydown="only_numbers"
                     placeholder="Buscar por número" />
                 </Transition>
                 
                 <button class="search" @click.prevent="toggle_search_by()">
                     <Transition name="fade-fast-2" mode="out-in">
-                        <icon v-if="search_by === 'name'" name="mdi:format-letter-case" filled size="24px" class="text-black-700" />
-                        <icon v-else-if="search_by === 'number'" name="tabler:list-numbers" filled size="24px" class="text-black-700" />
+                        <icon v-if="search_by === 'name'" name="mdi:format-letter-case" filled size="24px" class="duration-75" :class="{'error': search_by_error}" />
+                        <icon v-else-if="search_by === 'number'" name="tabler:list-numbers" filled size="24px" class="duration-75" :class="{'error': search_by_error}" />
                     </Transition>
                 </button>
 
@@ -69,9 +75,9 @@
         <Transition name="fade-fast" mode="out-in">
             <div class="table-container" :key="page_index">
                 <ul class="column mx-auto w-full" v-for="(column, index) of columns_" :key="index">
-                    <li class="row" v-for="({ name, inner_index }, j) in column" :key="j" :class="{'with-border': index >= 1}">
+                    <li class="row" v-for="({ name, list_index }, j) in column" :key="j" :class="{'with-border': index >= 1}">
                         <span class="flex justify-center min-w-[40px] font-inter mr-3 text-black-600 text-xl">
-                            {{ inner_index }}
+                            {{ (list_index > 0) ? list_index: '‎'}}
                         </span>
                         <span>
                             {{ name }}
@@ -80,7 +86,7 @@
                 </ul>
             </div>
         </Transition>
-        <div class="table-pagination">
+        <div class="table-pagination" :class="{disabled: search_by === 'number'}">
             <button class="pagination-btn" @click.prevent="set_index(0, 'substract')">
                 <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
             </button>
@@ -102,7 +108,7 @@
                     <li>
                         ...
                     </li>
-                    <li :class="{ active: last_page === page_index}" 
+                    <li :class="{ active: last_page === page_index }" 
                     @click.prevent="set_index(last_page, 'change')">
                         {{ last_page }}
                     </li>
@@ -112,10 +118,10 @@
                 <nuxt-icon name="home/new-students/arrow-table" class="right text-[18px]" filled />
             </button>
         </div>
-        <!-- {{ filtered_list }} -->
     </section>
 </template>
 <script setup>
+
     const list_ = ref([ // List example of new students.
         // //1
         "Juan Carlos Pérez",
@@ -371,26 +377,100 @@
     const search_by_number = ref(null);
     const search_by_name = ref('');
 
+    const search_by = ref('name');
+
+    const search_by_error = ref(false);
+    // const show_search_by_error = ref(false);
+    const search_by_error_label = ref(''); 
+    let error_timeout;
+
+    const trigger_error = (type) => {
+        const labels = {
+            number: "Porfavor, ingrese un número válido",
+            letters: 'Porfavor, ingrese un caracter válido'
+        }
+        search_by_error_label.value = labels[type];
+        
+        clearTimeout(error_timeout);
+        search_by_error.value = true;
+        error_timeout = setTimeout(() => {
+            search_by_error.value = false;
+        }, 500);
+    } 
+    
+    const only_letters = (event) => {
+        const only_letters = /[^A-Za-z\s]/g;
+        const typed_content = event.target.value;
+        if (only_letters.test(typed_content)) {
+            trigger_error('letters')
+        } else {
+            search_by_error_label.value = "";
+        };
+
+        search_by_name.value = typed_content.replace(only_letters, ''); // Replace non-letter characters with an empty string
+    }
+    const only_numbers = (event) => {
+        const typed_content = event.target.value;
+        const keyCode = event.keyCode || event.which;
+                            // Numbers                           // Numeric keypad                   // Backspace      // Delete         // Left arrow     // Right arrow
+        const is_number = !((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105) || keyCode === 8 || keyCode === 46 || keyCode === 37 || keyCode === 39) // onkeydown="return event.keyCode !== 69"
+        // Check for non-numeric keys excluding special keys
+        if (is_number) {
+            event.preventDefault(); // Prevent default action (i.e., prevent entering non-numeric input)
+            trigger_error('number');
+        }else {
+            search_by_error_label.value = "";
+        }
+    }
+
+    const found_number = ref(null);
+
     const filtered_list = computed(() => {
-        const filtered_ = list_.value.filter(item => 
-            item.toLowerCase().includes(search_by_name.value.toLowerCase())
-        );
+        let filtered_ = [];
+        if (search_by.value === 'name') { // numbers
+            filtered_ = list_.value.filter(item => 
+                item.toLowerCase().includes(search_by_name.value.toLowerCase())
+            );
+        }
+
+        if(search_by.value === 'number') { // names
+            if (search_by_number.value) {
+                let result = '';
+                list_.value.map((_, index_) => {
+                    if (search_by_number.value === (index_ + 1) ) {
+                        result = list_.value[index_];
+                        found_number.value = index_ + 1;
+                    }
+                });
+                filtered_.push(result);
+            }else {
+                filtered_ = list_.value;
+            }
+        }
+        
         return filtered_;
     });
     
-    watch(search_by_name, () => {
+    watch(search_by_name, (value) => {
         page_index.value = 1;
-        
         set_pagination();
     });
 
-    const search_by = ref('name');
-    const toggle_search_by = () => {
-        if (search_by.value === 'name') {
+    watch(search_by_number, () => {
+        page_index.value = 1;
+        set_pagination();
+    });
+
+    const toggle_search_by = () => { //change filter to
+        if (search_by.value === 'name') { // numbers
             search_by.value = 'number';
-        }else if(search_by.value === 'number') {
+        }else if(search_by.value === 'number') { // names
             search_by.value = 'name';
         }
+
+        search_by_number.value = null;
+        search_by_name.value = '';
+        page_index.value = 1;
     }
 
     const columns_ = ref([0, 0, 0]); //The array that we are going to populate.
@@ -436,13 +516,20 @@
     const set_columns = () => {
         let starting = (row_limit.value * column_limit.value * page_index.value) - (column_limit.value * row_limit.value);
         let limit = starting + row_limit.value;
+        
+        let list_index = (search_by.value === 'number' && search_by_number.value) ? found_number.value : (starting + 1);
 
-        let inner_index = starting + 1; // asigning the indexes within
         for (let i = 0; i < column_limit.value; i++) { // getting the values out of the list
             let column = [];
             for (let j = starting; j < limit; j++) {
-                column.push( { inner_index, name: filtered_list.value[j] } );
-                inner_index++;
+                if (search_by_number.value) { //number filter
+                    column.push( { list_index: ((filtered_list.value[0] === filtered_list.value[j]) ? list_index : 0), name: filtered_list.value[j] } ); // only add the found one
+                } else if (search_by_name.value !== '') { //name filter
+                    column.push( { list_index: (list_.value.indexOf(filtered_list.value[j]) + 1), name: filtered_list.value[j] } );
+                } else {
+                    column.push( { list_index, name: filtered_list.value[j] } );
+                    list_index++;
+                }
             }
             columns_.value[i] = column;
 
@@ -569,11 +656,12 @@
             show_first_page.value = false;
         }
     }
-
     onMounted(() => {
         set_pagination();
     });
-
+    onBeforeUnmount(() => {
+        clearTimeout(error_timeout);
+    })
 </script>
 <style scoped>
 
@@ -602,22 +690,38 @@
 }
 /*  */
 .table-header {
-    @apply flex justify-end mb-4;
+    @apply flex flex-col items-end mb-4;
 }
 .table-header .input-container {
-    @apply flex items-center border-2 border-black-500 ps-2 py-1 rounded-md w-full max-w-[320px] min-h-[42px];
+    @apply flex items-center border-2 border-black-500 ps-2 py-1 max-md:mb-4 rounded-md w-full sm:max-w-[320px] min-h-[42px] transition-all;
+}
+.table-header .input-container.error {
+    @apply border-orange-200;
+}
+.table-header .input-container.error .search-icon{
+    @apply text-orange-300;
 }
 .table-header .input-container input.search {
     @apply text-base text-black font-semibold font-raleway grow
-    placeholder:text-[15px] placeholder:text-[#AABDD8] ;
+    placeholder:text-[15px] placeholder:text-[#AABDD8];
+}
+.table-header .input-container.error input.search {
+    @apply text-orange-300 placeholder:text-orange-100;
 }
 .table-header .input-container button.search {
-    @apply flex items-center hover:bg-[#CEE3FF80] active:bg-[#CEE3FF80] rounded-full p-1 me-1 transition-all;
+    @apply flex items-center hover:bg-[#CEE3FF80] active:bg-[#CEE3FF80] rounded-full p-1 me-1 text-black transition-all;
+}
+.table-header .input-container button.search :deep(svg path) {
+    @apply transition-all delay-75;
+}
+.table-header .input-container button.search :deep(svg.error path) {
+    fill: #FF8B46;
+    stroke: #FF8B46;
 }
 .table-header .input-container input.search:is(:focus, :focus-within, :focus-visible) {
     @apply outline-none;
 }
-/*  */
+
 .table-container ul.column {
     @apply overflow-hidden;
 }
@@ -633,8 +737,12 @@
 .table-pagination {
     @apply flex justify-center items-center mt-6;
 }
+.table-pagination.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
 .table-pagination.mobile {
-    @apply lg:hidden mt-0 mb-5;
+    @apply lg:hidden mt-0;
 }
 .table-pagination .pagination {
     @apply flex mx-auto lg:mx-3;
@@ -665,6 +773,6 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+    -moz-appearance: textfield; /* Firefox */
 }
 </style>
