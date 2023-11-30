@@ -73,10 +73,10 @@
             </div>
         </div>
         <Transition name="fade-fast" mode="out-in">
-            <div v-if="results_not_found" class="flex items-start lg:items-center lg:justify-center h-[920px] sm:min-h-[902px]">
+            <div v-if="results_not_found" class="flex items-start lg:items-center lg:justify-center h-[920px] sm:min-h-[902px] rounded-lg border border-black-500">
                 <div class="flex flex-col items-center justify-center max-sm:pt-20">
                     <icon name="material-symbols:unknown-document-outline" filled size="120px" class="text-black-600" />
-                    <span class="font-raleway text-black-600 text-[28px] text-center leading-9 mt-6">No pudimos encontrar ningún resultado</span>
+                    <span class="font-raleway text-black-600 text-[28px] md:text-[24px] text-center leading-9 mt-6">No pudimos encontrar ningún resultado</span>
                 </div>
             </div>
             <div v-else class="table-container" :key="page_index">

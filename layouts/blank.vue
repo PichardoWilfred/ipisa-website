@@ -1,5 +1,5 @@
 <template>
-    <div class="wallpaper bg-[#00488D99] h-screen sm:h-[80vh] mb-10 lg:mb-16"></div>
+    <div class="wallpaper bg-[#00488D99] h-screen sm:h-[80vh] mb-10 lg:mb-16" />
     <main class="article flex max-lg:flex-col justify-between px-4 lg:px-24 mb-28">
         <section>
             <h1 class="title">
@@ -18,7 +18,7 @@
         </section>
 
         <aside class="lg:w-[370px] relative">
-            <nav class="navigation">
+            <nav class="navigation" v-intersection-observer="[onView]">
                 <ol v-for="({ title, list }, index) in navigation_" :key="index">
                     <h1 class="navigation-title">
                         {{ title }}
@@ -65,7 +65,7 @@
             <h1 class="navigation-title">
                 {{ title }}
             </h1>
-            <li v-for="(section, index_) in list" :key="index_" @click.prevent="close_navigation">
+            <li v-for="(section, index_) in list" :key="index_" @click.prevent="close_navigation(section.anchor, true)">
                 <span class="hover:underline">
                     {{ alphabet[index_] }}. {{ section.label }}
                 </span>
@@ -73,14 +73,39 @@
         </ol>
     </nav>
 
+    <div class="scrolled-navigation-container"
+    :class="{ 
+        opened: navigation_opened,
+        available: !navigation_visible,
+        not_available: (navigation_visible && enable_navigation_visible), 
+    }">
+        <div @click.prevent="() => {navigation_opened = !navigation_opened}"
+        class="relative right-[-1px] flex flex-col justify-center items-center content-center h-[90px] w-[40px] p-2 bg-white border-2 border-r-0 border-black-500 rounded-lg rounded-br-none rounded-tr-none cursor-pointer z-10">
+            <div v-for="_ of [0,0,0]" class="rounded-xl bg-black-500 h-[3px] w-full my-1" />
+        </div>
+        <nav class="navigation scrolled">
+            <ol v-for="({ title, list }, index) in navigation_" :key="index">
+                <h1 class="navigation-title">
+                    {{ title }}
+                </h1>
+                <li v-for="(section, index_) in list" :key="index_" @click.prevent="scroll_to(section.anchor)">
+                    <span class="hover:underline">
+                        {{ alphabet[index_] }}. {{ section.label }}
+                    </span>
+                </li>
+            </ol>
+        </nav>
+    </div>
+
     <Transition name="fade" mode="out-in" :key="show_navigation">
         <div v-show="show_navigation" class="mobile-navigation-mask" />
     </Transition>
 </template>
 <script setup>
     import { onClickOutside } from '@vueuse/core';
+    import { vIntersectionObserver } from '@vueuse/components';
     import { useLayoutStore } from '@/store/layout';
-    
+
     const layout = useLayoutStore();
     const navigation_ = ref(layout.about_navigation); // getting its page navigation
 
@@ -90,7 +115,7 @@
             const anchor = document.querySelector(`#anchor-${section_}`);
             if (!anchor) return;
             const section_offset = parseInt(anchor.dataset.offset) || 0;
-            const top = anchor.getBoundingClientRect().top + window.pageYOffset - (in_mobile ? 60 : 140) + section_offset;
+            const top = anchor.getBoundingClientRect().top + window.pageYOffset - (in_mobile ? 100 : 180) + section_offset;
             
             window.scrollTo({ top, behavior: 'smooth' });
         }, delay);
@@ -99,13 +124,25 @@
     const mobile_navigation = ref(null); // linked to a div
     const show_navigation = ref(false);
 
+    const navigation_visible = ref(false);
+    const enable_navigation_visible = ref(false);
+    const navigation_opened = ref(false);
+
+    const onView = ([ value ]) => {
+        navigation_visible.value = value.isIntersecting;
+        if (!value.isIntersecting) {
+            enable_navigation_visible.value = true;
+            navigation_opened.value = false;
+        };
+    }
+
     onClickOutside(mobile_navigation, close_navigation);
-    function close_navigation () {
+    function close_navigation (section, scroll = false) {
         if (show_navigation.value) show_navigation.value = false; 
+        if (scroll) scroll_to(section, 120);
     }
 
     const alphabet = ref([...'abcdefghijklmnopqrstuvwxyz'].map((letter) => letter));
-    // const news_feed =  ref([...Array(4).keys()]);
 </script>
 <style scoped>
     section div.content {
@@ -117,13 +154,41 @@
     .mobile-navigation-mask {
         @apply fixed top-0 left-0 h-screen w-screen bg-[#09090970] z-40;
     }
+    .scrolled-navigation-container {
+        @apply hidden md:flex items-center fixed bottom-[40%];
+        width: max-content;
+        right: -100%;
+        transition: all 180ms var(--ease-1);
+    }
+    /* animation: slide-in-dragger 180ms var(--ease-1) forwards reverse; */
+    .scrolled-navigation-container.not_available {
+        right: -100%;
+    }
+    .scrolled-navigation-container.available {
+        right: -291px;
+        /* animation: slide-in-dragger 180ms var(--ease-1) forwards; */
+    }
+    @keyframes slide-in-dragger {
+        from {
+            right: -100%;
+        } to {
+        }
+    } 
+    .scrolled-navigation-container.opened {
+        transform: translateX(-285px);
+    }
+    
+    .scrolled-navigation-container nav.navigation {
+        @apply top-0 relative p-5 z-[5];
+    }
     nav.navigation {
-        @apply max-lg:hidden sticky top-[20vh] left-0 bottom-0 flex flex-col bg-white w-full p-6 lg:rounded-lg z-50 transition-all;
+        @apply max-lg:hidden top-[20vh] left-0 bottom-0 flex flex-col bg-white w-full p-6 lg:rounded-lg z-50 transition-all;
         transition-duration: 250ms;
         box-shadow: 0px 0.4147px 1.65879px 0px rgba(99, 160, 255, 0.35);
     }
     nav.navigation.mobile {
-        @apply flex lg:hidden max-h-[420px] overflow-y-scroll;
+        @apply flex fixed lg:hidden max-h-[420px] overflow-y-scroll;
+        top: unset !important;
         bottom: -100%;
     }
     nav.navigation.mobile.show {
