@@ -39,6 +39,15 @@ main.article h2.subtitle {
     color: #4B6286;
 }
 
+main.article h2.subtitle.highlight {
+    animation: highlight-subtitle 600ms ease-out both infinite;
+}
+@keyframes highlight-subtitle {
+    from { filter: brightness(100%); }
+    50% { filter: brightness(190%); } 
+    to { filter: brightness(100%); }
+}
+
 :root {
     --separator: #A9C2E0;
     --ease-1: cubic-bezier(0.075, 0.82, 0.165, 1);

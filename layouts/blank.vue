@@ -113,6 +113,7 @@
         const in_mobile = window.matchMedia("(max-width: 678px)").matches;
         setTimeout(() => {
             const anchor = document.querySelector(`#anchor-${section_}`);
+            focused_anchor.value = anchor;
             if (!anchor) return;
             const section_offset = parseInt(anchor.dataset.offset) || 0;
             const top = anchor.getBoundingClientRect().top + window.pageYOffset - (in_mobile ? 100 : 180) + section_offset;
@@ -127,6 +128,17 @@
     const navigation_visible = ref(false);
     const enable_navigation_visible = ref(false);
     const navigation_opened = ref(false);
+
+    const focused_anchor = ref(null);
+    const scroll_timeout = ref(0);
+    watch(focused_anchor, (value) => {
+        scroll_timeout.value = setTimeout(() => {
+            if (focused_anchor.value) {
+                const element = focused_anchor.value;
+                element.classList.remove("highlight");
+            }
+        }, 1200);
+    })
 
     const onView = ([ value ]) => {
         navigation_visible.value = value.isIntersecting;
@@ -143,6 +155,22 @@
     }
 
     const alphabet = ref([...'abcdefghijklmnopqrstuvwxyz'].map((letter) => letter));
+    onMounted(() => {
+        const element = focused_anchor.value;
+        addEventListener('scroll', function(e) {
+            if (focused_anchor.value) {
+                focused_anchor.value.classList.add("highlight");
+                clearTimeout(scroll_timeout.value);
+                scroll_timeout.value = setTimeout(() => {
+                    focused_anchor.value.classList.remove("highlight");
+                    focused_anchor.value = null;
+                }, 1200);
+            }
+        });
+    });
+    onBeforeUnmount(()=>{
+
+    })
 </script>
 <style scoped>
     section div.content {
