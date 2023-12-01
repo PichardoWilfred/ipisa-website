@@ -223,9 +223,12 @@
     nav.navigation ol h1.navigation-title {
         @apply font-raleway font-bold text-black text-xl;
     }
-    nav.navigation ol li {
-        @apply font-raleway text-lg text-black active:text-black-600 ps-4 font-normal cursor-pointer transition-all;
+    /* .scrolled-navigation-container nav.navigation ol h1.navigation-title {
+        @apply text-lg;
     }
+    .scrolled-navigation-container nav.navigation ol li {
+        @apply text-base cursor-pointer;
+    } */
     button.mobile-navigation {
         @apply lg:hidden fixed bottom-[12px] right-[12px] bg-blue rounded-full text-white-200 font-bold p-2 hover:bg-blue-400 active:bg-blue-400 transition-all;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

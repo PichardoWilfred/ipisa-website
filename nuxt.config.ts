@@ -27,7 +27,7 @@ export default defineNuxtConfig({
       'xxl': 1536,
       '2xl': 1536
     },
-    domains: ['https://stellular-nasturtium-aaff86.netlify.app/']
+    // domains: ['https://stellular-nasturtium-aaff86.netlify.app/']
   },
   modules: [
     '@nuxt/image',
