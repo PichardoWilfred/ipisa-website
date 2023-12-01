@@ -1,5 +1,5 @@
 <template>
-    <section class="mt-[170px] relative pt-[2rem] h-[auto] z-20" id="workshop">
+    <section class="mt-[70px] relative pt-[2rem] h-[auto] z-20" id="workshop">
         <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[3rem] text-black">
             <h1 class="text-[2.2rem] lg:text-[3.6rem] max-lg:mb-3">
                 <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b>
@@ -9,7 +9,7 @@
                 <br><br>
                 <span>
                     <span class="text-blue">A continuación, te presentaremos de manera formal </span> 
-                    <span class="text-orange-300 underline cursor-pointer">los diversos talleres disponibles en el centro.</span>
+                    <NuxtLink to="sobre-nosotros/talleres" class="text-orange-300 underline cursor-pointer">los diversos talleres disponibles en el centro.</NuxtLink>
                 </span>
             </p>
         </div>

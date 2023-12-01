@@ -1,5 +1,7 @@
 <template>
-    <section class="wallpaper bg-[#00488D99] h-[90vh] sm:h-[80vh]"></section>
+    <section class="wallpaper">
+        <NuxtImg src="/modules/home/wallpaper/IMG_5964.JPG" alt="" srcset="" />
+    </section>
     <section class="content-navigation pt-[4rem] sm:pt-[2rem] lg:pt-[6rem]">
         <h1 class="title-page">
             <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>
@@ -78,6 +80,9 @@ const layout = useLayoutStore();
 layout.$patch({ scroll_breakpoint: 600 });
 </script>
 <style scoped>
+section.wallpaper {
+    @apply overflow-hidden bg-[#00488D99] h-[90vh];
+}
 .about-modules {
     display: grid;
     grid-template-rows: 500px 2px 500px 2px 500px 2px 500px;

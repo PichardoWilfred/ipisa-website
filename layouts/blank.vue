@@ -38,7 +38,7 @@
             </h1>
             <div class="news-feed">
                 <div class="new mb-10">
-                    <img src="/modules/home/news/new-1.png" alt="carajitos" />
+                    <nuxt-img src="/modules/home/news/new-1.png" alt="muchachos" />
                     <div class="author">
                         <div class="avatar bg-black-600 rounded-full w-[25px] h-[25px] me-3" />
                         <h3 class="font-raleway text-md text-black-600">
@@ -79,8 +79,7 @@
         available: !navigation_visible,
         not_available: (navigation_visible && enable_navigation_visible), 
     }">
-        <div @click.prevent="() => {navigation_opened = !navigation_opened}"
-        class="relative right-[-1px] flex flex-col justify-center items-center content-center h-[90px] w-[40px] p-2 bg-white border-2 border-r-0 border-black-500 rounded-lg rounded-br-none rounded-tr-none cursor-pointer z-10">
+        <div @click.prevent="() => {navigation_opened = !navigation_opened}" class="draggable">
             <div v-for="_ of [0,0,0]" class="rounded-xl bg-black-500 h-[3px] w-full my-1" />
         </div>
         <nav class="navigation scrolled">
@@ -183,31 +182,27 @@
         @apply fixed top-0 left-0 h-screen w-screen bg-[#09090970] z-40;
     }
     .scrolled-navigation-container {
-        @apply hidden md:flex items-center fixed bottom-[40%];
+        @apply hidden md:flex items-center fixed bottom-[50%];
         width: max-content;
         right: -100%;
         transition: all 180ms var(--ease-1);
+        transform: translateY(50%);
     }
-    /* animation: slide-in-dragger 180ms var(--ease-1) forwards reverse; */
     .scrolled-navigation-container.not_available {
         right: -100%;
     }
     .scrolled-navigation-container.available {
         right: -291px;
-        /* animation: slide-in-dragger 180ms var(--ease-1) forwards; */
     }
-    @keyframes slide-in-dragger {
-        from {
-            right: -100%;
-        } to {
-        }
-    } 
     .scrolled-navigation-container.opened {
-        transform: translateX(-285px);
+        transform: translateX(-285px) translateY(50%);
     }
-    
+    .scrolled-navigation-container .draggable {
+        @apply relative right-[-1px] flex flex-col justify-center items-center content-center h-[90px] w-[40px] p-2 bg-white 
+        border-2 border-r-0 border-black-500 rounded-lg rounded-br-none rounded-tr-none cursor-pointer z-10;
+    }
     .scrolled-navigation-container nav.navigation {
-        @apply top-0 relative p-5 z-[5];
+        @apply top-0 relative p-5 z-[5] w-[290px];
     }
     nav.navigation {
         @apply max-lg:hidden top-[20vh] left-0 bottom-0 flex flex-col bg-white w-full p-6 lg:rounded-lg z-50 transition-all;

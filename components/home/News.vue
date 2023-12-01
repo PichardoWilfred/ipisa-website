@@ -1,10 +1,10 @@
 <template>
-    <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[8rem] mb-[8rem] z-20" id="news">
+    <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[6rem] mb-[2rem] z-20" id="news">
         <h2 
         class="flex items-center text-black font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.8rem] cursor-pointer mb-2 lg:mb-4 transition-all">
             <b class="me-2 lg:me-5 text-blue">Últimas</b> <b class="text-orange-300">Noticias</b>
         </h2>
-        <div class="news-feed mb-[4rem]">
+        <div class="news-feed">
             <div class="news" v-for="({title, img, description, highlight, date}, index) in news_feed" :key="index">
                 <div class="header">
                     <time>
@@ -14,7 +14,7 @@
                         <nuxt-icon name="home/news/options" filled class="text-[1.8rem]"/>
                     </button>
                 </div>
-                <img :src="`modules/home/news/${img}`" alt="titulo" srcset="">
+                <nuxt-img :src="`modules/home/news/${img}`" alt="titulo" srcset="" />
                 <h2> {{ title }} </h2>
                 <p> {{ description }} </p>
                 <button class="see-more">

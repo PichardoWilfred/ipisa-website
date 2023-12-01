@@ -7,7 +7,7 @@
                 <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
             </span>
         </h2>
-        <p class="text-justify lg:text-center text-[1.1rem] text-black font-medium font-raleway max-sm:leading-7 max-w-[900px] mb-10 mx-auto">
+        <p class="text-justify lg:text-center text-[1.1rem] text-black font-medium font-raleway max-sm:leading-7 max-w-[900px] mb-5 mx-auto">
             <b>¡Felicidades a todos los estudiantes que han sido admitidos en el centro! </b> Vuestra admisión
             es un paso importante en vuestro viaje educativo y profesional, y estamos emocionados de teneros 
             como parte de <b class="text-blue">nuestra</b> <b class="orange">comunidad.</b> Esperamos que vuestro tiempo con nosotros sea una experiencia enriquecedora 
@@ -47,7 +47,7 @@
             </button>
         </div>
         <div class="table-header">
-            <div class="flex items-end justify-end min-h-[42px] w-full sm:max-w-[320px]">
+            <div class="flex items-end justify-end min-h-[22px] w-full sm:max-w-[320px]">
                 <span class="font-raleway font-medium text-[12px] text-black mb-1 transition-all" 
                 :class="{'text-orange-300': search_by_error}">
                     {{ search_by_error_label }}
