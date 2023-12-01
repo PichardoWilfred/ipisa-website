@@ -18,6 +18,14 @@ export default defineNuxtConfig({
     }
   },
   image: {
+    provider: 'netlify',
+    netlify: {
+      baseURL: 'https://stellular-nasturtium-aaff86.netlify.app/',
+      modifiers: {
+        effect: 'sharpen:100',
+        quality: 'auto:best',
+      }
+    },
     screens: {
       'xs': 320,
       'sm': 640,
