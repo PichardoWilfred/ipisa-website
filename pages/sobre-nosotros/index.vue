@@ -61,7 +61,7 @@ const sections = ref([
             { space: true },
             { color: 'orange', word: 'Trayectoria' },
         ],
-        link: '',
+        link: 'sobre-nosotros/nuestra-trayectoria',
         icon: 'history',
         description: "Con un testimonio de más de 30 años dedicados a la formación de jóvenes con excelencia. Desde su fundación en 1988, el centro ha pasado por cambios importantes."
     },

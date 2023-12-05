@@ -1,6 +1,6 @@
 <template>
     <div class="wallpaper bg-[#00488D99] h-screen sm:h-[80vh] mb-10 lg:mb-16" />
-    <main class="article flex max-lg:flex-col justify-between px-4 lg:px-24 mb-28">
+    <main class="article flex max-xl:flex-col justify-between px-4 lg:px-24 mb-28">
         <section>
             <h1 class="title">
                 <slot name="title">
@@ -18,7 +18,7 @@
         </section>
 
         <aside class="lg:w-[370px] relative">
-            <nav class="navigation" v-intersection-observer="[onView]">
+            <nav v-intersection-observer="[static_navigation_visible]" class="navigation">
                 <ol v-for="({ title, list }, index) in navigation_" :key="index">
                     <h1 class="navigation-title">
                         {{ title }}
@@ -27,7 +27,7 @@
                         <span class="alphabet me-1">
                             {{ alphabet[index_] }}.
                         </span>
-                        <span class="hover:underline">
+                        <span class="hover:underline cursor-pointer">
                             {{ section.label }}
                         </span>
                     </li>
@@ -42,7 +42,7 @@
                     <div class="author">
                         <div class="avatar bg-black-600 rounded-full w-[25px] h-[25px] me-3" />
                         <h3 class="font-raleway text-md text-black-600">
-                            Guillermo López Santos.
+                            Autor de Ejemplo
                         </h3>
                     </div>
                     <h2 class="font-raleway font-bold text-black-400 text-xl mb-1">
@@ -54,6 +54,7 @@
                 </div>
             </div>
         </aside>
+
     </main>
 
     <button class="mobile-navigation" ref="mobile-navigation" @click.prevent="() => { show_navigation = true; }">
@@ -88,7 +89,7 @@
                     {{ title }}
                 </h1>
                 <li v-for="(section, index_) in list" :key="index_" @click.prevent="scroll_to(section.anchor)">
-                    <span class="hover:underline">
+                    <span class="hover:underline cursor-pointer">
                         {{ alphabet[index_] }}. {{ section.label }}
                     </span>
                 </li>
@@ -99,6 +100,7 @@
     <Transition name="fade" mode="out-in" :key="show_navigation">
         <div v-show="show_navigation" class="mobile-navigation-mask" />
     </Transition>
+    
 </template>
 <script setup>
     import { onClickOutside } from '@vueuse/core';
@@ -106,11 +108,15 @@
     import { useLayoutStore } from '@/store/layout';
 
     const layout = useLayoutStore();
-    const navigation_ = ref(layout.about_navigation); // getting its page navigation
+    // origin
+    const navigation_ = ref(layout.about_navigation); // getting it's page navigation.
+    
+    const scroll_timeout = ref(0);
+    const observer = ref(null);
 
     function scroll_to (section_, delay = 0) {
         const in_mobile = window.matchMedia("(max-width: 678px)").matches;
-        setTimeout(() => {
+        scroll_timeout.value = setTimeout(() => {
             const anchor = document.querySelector(`#anchor-${section_}`);
             focused_anchor.value = anchor;
             if (!anchor) return;
@@ -129,17 +135,8 @@
     const navigation_opened = ref(false);
 
     const focused_anchor = ref(null);
-    const scroll_timeout = ref(0);
-    watch(focused_anchor, (value) => {
-        scroll_timeout.value = setTimeout(() => {
-            if (focused_anchor.value) {
-                const element = focused_anchor.value;
-                element.classList.remove("highlight");
-            }
-        }, 1200);
-    })
 
-    const onView = ([ value ]) => {
+    const static_navigation_visible = ([ value ]) => {
         navigation_visible.value = value.isIntersecting;
         if (!value.isIntersecting) {
             enable_navigation_visible.value = true;
@@ -147,7 +144,7 @@
         };
     }
 
-    onClickOutside(mobile_navigation, close_navigation);
+    onClickOutside(mobile_navigation, close_navigation); //mobile navigation show/hide
     function close_navigation (section, scroll = false) {
         if (show_navigation.value) show_navigation.value = false; 
         if (scroll) scroll_to(section, 120);
@@ -155,21 +152,27 @@
 
     const alphabet = ref([...'abcdefghijklmnopqrstuvwxyz'].map((letter) => letter));
     onMounted(() => {
-        const element = focused_anchor.value;
-        addEventListener('scroll', function(e) {
-            if (focused_anchor.value) {
-                focused_anchor.value.classList.add("highlight");
-                clearTimeout(scroll_timeout.value);
-                scroll_timeout.value = setTimeout(() => {
-                    focused_anchor.value.classList.remove("highlight");
-                    focused_anchor.value = null;
-                }, 1200);
-            }
+        const callback = (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.intersectionRatio > 0) {
+                    console.log(`${entry.target.id} visible`);
+                }
+            });
+        }
+        
+        observer.value = new IntersectionObserver(callback);
+
+        navigation_.value.map(({list}) => {
+            list.map(({ anchor }) => {
+                const anchor_element = document.querySelector(`#anchor-${anchor}`);
+                observer.value.observe(anchor_element);
+                return anchor_element;
+            });
         });
     });
-    onBeforeUnmount(()=>{
-
-    })
+    onBeforeUnmount(() => {
+        observer.value.disconnect();
+    });
 </script>
 <style scoped>
     section div.content {
@@ -192,25 +195,25 @@
         right: -100%;
     }
     .scrolled-navigation-container.available {
-        right: -291px;
+        right: -390px;
     }
     .scrolled-navigation-container.opened {
-        transform: translateX(-285px) translateY(50%);
+        transform: translateX(-390px) translateY(50%);
     }
     .scrolled-navigation-container .draggable {
         @apply relative right-[-1px] flex flex-col justify-center items-center content-center h-[90px] w-[40px] p-2 bg-white 
         border-2 border-r-0 border-black-500 rounded-lg rounded-br-none rounded-tr-none cursor-pointer z-10;
     }
     .scrolled-navigation-container nav.navigation {
-        @apply top-0 relative p-5 z-[5] w-[290px];
+        @apply top-0 relative p-5 z-[5] w-[390px];
     }
     nav.navigation {
-        @apply max-lg:hidden top-[20vh] left-0 bottom-0 flex flex-col bg-white w-full p-6 lg:rounded-lg z-50 transition-all;
+        @apply max-xl:hidden top-[20vh] left-0 bottom-0 flex flex-col bg-white w-full p-6 lg:rounded-lg z-50 transition-all;
         transition-duration: 250ms;
         box-shadow: 0px 0.4147px 1.65879px 0px rgba(99, 160, 255, 0.35);
     }
     nav.navigation.mobile {
-        @apply flex fixed lg:hidden max-h-[420px] overflow-y-scroll;
+        @apply flex fixed xl:hidden max-h-[420px] overflow-y-scroll;
         top: unset !important;
         bottom: -100%;
     }
@@ -223,14 +226,8 @@
     nav.navigation ol h1.navigation-title {
         @apply font-raleway font-bold text-black text-xl;
     }
-    /* .scrolled-navigation-container nav.navigation ol h1.navigation-title {
-        @apply text-lg;
-    }
-    .scrolled-navigation-container nav.navigation ol li {
-        @apply text-base cursor-pointer;
-    } */
     button.mobile-navigation {
-        @apply lg:hidden fixed bottom-[12px] right-[12px] bg-blue rounded-full text-white-200 font-bold p-2 hover:bg-blue-400 active:bg-blue-400 transition-all;
+        @apply xl:hidden fixed bottom-[12px] right-[12px] bg-blue rounded-full text-white-200 font-bold p-2 hover:bg-blue-400 active:bg-blue-400 transition-all;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
     .news-feed .new {

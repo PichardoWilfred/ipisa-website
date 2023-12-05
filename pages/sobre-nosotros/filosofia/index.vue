@@ -209,14 +209,13 @@ const about_navigation = [
                 anchor: 'laura'
             },
             {
-                label: 'Doménico Savio',
+                label: 'Domingo Savio (Doménico Savio)',
                 anchor: 'savio'
             },
         ]
     }
 ]
 layout_store.$patch({ about_navigation });
-
 const biographies = ref([
 {
     name: "San Juan Bosco",
@@ -225,7 +224,9 @@ const biographies = ref([
     biography: [
         "Juan Melchor Bosco Ochiennao, Don Bosco (en italiano Giovanni Melchiorre Bosco Ochienna). nace en en Becchi, <b>16 de agosto de 1815.</b> Fue un sacerdote católico, educador y escritor italiano del siglo XIX.",
         "Fundó la Congregación Salesiana, el Instituto de las Hijas de María Auxiliadora, la Asociación de Salesianos Cooperadores, el Boletín Salesiano y el Oratorio Salesiano.",
-        "Promovió la Asociación de Exalumnos Salesianos, el desarrollo de un moderno sistema pedagógico conocido como Sistema Preventivo para la formación de los niños y jóvenes y promovió la construcción de obras educativas al servicio de la juventud más necesitada. También es patrono de los magos, ilusionistas, artesanos, impresores y de los jóvenes. Su fiesta es el 31 de enero, falleció en Turín, <b>31 de enero de 1888</b>"
+        `Promovió la Asociación de Exalumnos Salesianos, el desarrollo de un moderno sistema pedagógico conocido como Sistema Preventivo para la formación de los niños y jóvenes y 
+        promovió la construcción de obras educativas al servicio de la juventud más necesitada. También es patrono de los magos, ilusionistas, artesanos, impresores y de 
+        los jóvenes. <b>Su fiesta es el 31 de enero,</b> falleció en Turín.`,
     ]
 },
 {
@@ -257,12 +258,12 @@ const biographies = ref([
     ]
 },
 {
-	name: "Doménico Savio",
+	name: "Domingo Savio (Doménico Savio)",
 	img: "domingo_savio.jpg",
     anchor: 'savio',
 	biography: [
         "Doménico Savio. Nace en San Giovanni da Riva, Italia el <b>2 de abril de 1842.</b> Fue un alumno de San Juan Bosco, en el Oratorio de San Francisco de Sales, que se propuso ser santo y murió a la edad de 14 años faltando 3 semanas para cumplir sus 15 años de edad, siendo el santo no mártir más joven de la Iglesia Católica.",
-        "Sus propósitos fueron: me confesaré muy a menudo y recibiré la sagrada comunión siempre que el confesor me lo permita, quiero santificar los días de fiesta, mis amigos serán Jesús y María, antes morir que pecar y, estaré siempre alegre. Su festividad es el 6 de mayo."
+        "Sus propósitos fueron: me confesaré muy a menudo y recibiré la sagrada comunión siempre que el confesor me lo permita, quiero santificar los días de fiesta, mis amigos serán Jesús y María, antes morir que pecar y, estaré siempre alegre. <b>Su festividad es el 6 de mayo.</b>"
     ]
 }
 ]);

@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@nuxt/image": "^1.1.0",
-    "@nuxtjs/svg": "^0.4.1",
+    "@nuxtjs/svg": "^0.0.0",
     "@pinia/nuxt": "^0.5.1",
     "@vueuse/components": "^10.4.1",
     "@vueuse/core": "^10.4.1",

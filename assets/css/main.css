@@ -32,15 +32,10 @@ h1.secondary-title {
     @apply font-raleway font-semibold leading-[1.9rem] text-[1.8rem] sm:text-[2rem] sm:leading-[46px] lg:leading-[2.6rem] lg:text-[2.6rem] mb-5 sm:my-10;
 }
 main.article h2.subtitle {
-    font-family: "Raleway", ui-sans-serif;
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 0.8rem;  
-    color: #4B6286;
+    @apply font-raleway text-[1.8rem] font-bold mb-[0.8rem] text-black;
 }
-
 main.article h2.subtitle.highlight {
-    animation: highlight-subtitle 600ms ease-out both infinite;
+    filter: brightness(190%);
 }
 @keyframes highlight-subtitle {
     from { filter: brightness(100%); }

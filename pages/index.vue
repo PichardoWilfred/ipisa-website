@@ -18,6 +18,7 @@
 import { useLayoutStore } from '@/store/layout';
 const layout = useLayoutStore();
 layout.$reset();
+
 useHead({
     title: 'IPISA - Buenos Cristianos y Honrados Ciudadanos',
     meta: [{ property: 'og:title', content: `Instituto Politécnico Industrial de Santiago` }]
