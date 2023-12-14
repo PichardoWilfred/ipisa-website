@@ -12,7 +12,6 @@
             <div class="content">
                 <div class="flex relative items-center max-lg:mb-3">
                     <nuxt-link :to="sections[selected_index].route">
-                        {{ selected_index }}
                         <Transition name="fade" mode="out-in">
                             <h1 class="flex items-end font-semibold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all" :key="selected_index" >
                                 <a class="hover:underline text-black-400">

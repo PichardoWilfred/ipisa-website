@@ -54,13 +54,18 @@
             <br>
             <div class="emblem">
                 <h2 class="subtitle subtitle mt-8 mb-5 lg:mb-8" id="anchor-emblem">Emblema</h2>
-                Mucho más que una representación gráfica; es la síntesis visual de una institución que fusiona tradición, técnica y valores en su núcleo. 
-                Este distintivo icónico reúne los elementos esenciales que dan forma a la identidad del centro y narran su compromiso con la excelencia 
-                educativa en el corazón del Cibao dominicano.
+                <p class="">
+                    Mucho más que una representación gráfica; es la síntesis visual de una institución que fusiona tradición, técnica y valores en su núcleo. 
+                    Este distintivo icónico reúne los elementos esenciales que dan forma a la identidad del centro y narran su compromiso con la excelencia 
+                    educativa en el corazón del Cibao.
+                </p>
                 <div class="emblem-analysis">
                     <ul class="disc-style ms-[1rem] lg:ms-6 bg-white" id="emblem-parts">
+                        <p class="highlight-hint" v-intersection-observer="[enable_highlight, { threshold: 0.9 }]" :class="{ visible: highlight_hint }">
+                            Identifica las secciones de nuestro emblema junto con su significado, 
+                        </p>   
                         <li v-for="({ name, label, sub_elements, label_end }, index) of emblem_elements" :key="index" 
-                        :class="[name, { highlight: (name === emblem_section) }]" 
+                        :class="[name, { highlight: name === emblem_section }]" 
                         @mouseover.prevent="apply_color(name)" @mouseleave.prevent="apply_color(null)">
                             <template v-if="sub_elements.length">
                                 {{ label }} <i class="font-italic"><b>{{ label_end }}</b></i>
@@ -76,7 +81,7 @@
                             </template>
                         </li>
                     </ul>
-                    <svg class="ipisa-logo-colored" width="316" height="316" viewBox="0 0 316 316" fill="none">
+                    <svg class="ipisa-logo-colored" viewBox="0 0 316 316" fill="none">
                         
                         <g class="background-circles" :class="{'colored': emblem_section}">
                             <path class="blue-circle" d="M304.864 166.196C304.864 248.764 237.929 315.699 155.361 315.699C72.7922 315.699 5.85733 248.764 5.85733 166.196C5.85733 83.6277 72.7922 16.6929 155.361 16.6929C237.929 16.6929 304.864 83.6277 304.864 166.196Z" fill="#0966C2"/>
@@ -237,19 +242,19 @@
             <h2 class="subtitle mt-8 mb-5 lg:mb-8" id="anchor-hymn">Himno</h2>
             <div class="video-container">
                 <iframe class="video mb-8" src="https://www.youtube.com/embed/Yagc9RoAwF0?si=gptmoAY_VDqei22q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <div class="stanza">
+                <div class="strophe">
                     Sueño de Don Bosco, hecho realidad.  
                     Es nuestro aporte a la sociedad.  
                     Razón, amor y religión  
                     Hoy se aplica en la Ciudad Corazón
                 </div>
-                <div class="stanza">   
+                <div class="strophe">   
                     Haciendo del trabajo una oración,  
                     Rompiendo fronteras en la formación.  
                     En IPISA construimos un profesional  
                     Honra del esfuerzo y el mundo empresarial.
                 </div>
-                <div class="stanza">
+                <div class="strophe">
                     En IPISA hacemos camino al andar  
                     Luchando siempre por tu ideal.  
                     Creciendo entendemos que es hora de empezar  
@@ -262,7 +267,27 @@
 </template>
 <style scoped>
 .emblem-analysis {
-    @apply flex flex-wrap items-center justify-center lg:justify-between mt-4;
+    @apply flex flex-wrap items-center justify-center lg:justify-between mt-2;
+}
+
+.emblem-analysis p.highlight-hint {
+    color: #AABDD8;
+    @apply italic text-[12px] lg:text-[14px] mb-2 translate-x-[-1.1rem] transition-all;
+}
+@keyframes highlight-hint-blink {
+    0% {
+        color:#AABDD8;
+    }
+    10% {
+        color:#4B6286;
+    }
+    16%, 100% {
+        color:#AABDD8;
+    }
+}
+
+.emblem-analysis p.highlight-hint.visible {
+    animation: highlight-hint-blink 6s ease-in-out infinite;
 }
 .emblem-analysis ul.disc-style {
     @apply max-w-[460px] ;
@@ -285,7 +310,9 @@
     @apply underline text-black-600;
 }
 .emblem-analysis .ipisa-logo-colored {
-    @apply flex items-center max-sm:mt-6;
+    @apply flex items-center content-center justify-center max-sm:mt-6;
+    width: 306px;
+    height: 300px;
 }
 .ipisa-logo-colored :deep(svg){
     @apply w-full h-full max-w-[290px] max-h-[290px] transition-all translate-y-[-12px];
@@ -299,7 +326,7 @@
 .video-container iframe.video {
     @apply w-full h-[330px] lg:h-[400px];
 }
-.stanza {
+.strophe {
     @apply italic font-medium mb-3 max-w-[420px] mx-auto;
 }
 
@@ -362,6 +389,12 @@ svg.ipisa-logo-colored g.emblem-core.colored g:is(.gear, .anvil, .rays, .hammer,
 </style>
 <script setup>
     import { useLayoutStore } from '@/store/layout';
+    import { vIntersectionObserver } from '@vueuse/components';
+
+    const highlight_hint = ref(false);
+    const enable_highlight = ([{ isIntersecting }]) => {
+        if (isIntersecting) { highlight_hint.value = true; }
+    }
     const layout_store = useLayoutStore();
     const about_navigation = [
         {
@@ -422,8 +455,8 @@ svg.ipisa-logo-colored g.emblem-core.colored g:is(.gear, .anvil, .rays, .hammer,
         },
         {
             name: 'workshop',
-            label: "Pictografía con los elementos descriptivos del origen del IPISA",
-            label_end: "(Siendo estos los primeros talleres)",
+            label: "Pictografía con los elementos descriptivos del origen del IPISA, en concreto",
+            label_end: "nuestros primeros talleres",
             sub_elements: [
                 {
                     name_: 'hammer',

@@ -130,7 +130,11 @@
             <br><br>
             <ul class="biographies">
                 <li v-for="({ name, img, biography, anchor }, index) in biographies" :key="index">
-                    <nuxt-img :src="`/modules/about/philosofy/people/${img}`" :alt="img" class="max-[650px]:my-12" />
+                    <nuxt-img :src="`/modules/about/philosofy/people/${img}`" :alt="img" class="max-[650px]:my-12" 
+                    sizes="100vw sm:50vw md:400px"
+                    :placeholder="[50, 25, 75, 5]"
+                    densities="x1 x2"
+                    />
                     <div class="min-[650px]:ms-12">
                         <h2 class="subtitle" :id="`anchor-${anchor}`">
                             {{ name }}

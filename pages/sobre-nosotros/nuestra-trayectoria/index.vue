@@ -50,9 +50,6 @@
             Hasta el año <b>2015</b>, IPISA se enorgullece de haber graduado a <b>2,664 estudiantes</b>, <b>30</b> de los cuales han retornado como parte del cuerpo 
             docente.
             <br><br>
-            <h1 class="pasdmasmpod" id="anchor-papo">
-                papoooo
-            </h1>
         </template>
     </NuxtLayout>
 </template>

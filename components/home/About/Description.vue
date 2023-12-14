@@ -16,7 +16,7 @@
     </template>
     <template v-else-if="index === 1">
         La visión educativa del centro se inspira en el sistema preventivo 
-        de <NuxtLink v-intersection-observer="[onView, { threshold: 0.9 }]" to="/sobre-nosotros/filosofía" class="link underline cursor-pointer" :class="{blink: blink}">Don Bosco</NuxtLink>, fundamentado 
+        de <NuxtLink v-intersection-observer="[onView, { threshold: 0.9 }]" to="/sobre-nosotros/filosofia" class="link underline cursor-pointer" :class="{blink: blink}">Don Bosco</NuxtLink>, fundamentado 
         en <b class="text-blue">la razón,</b> <b class="orange">la religión</b> <b class="separator">y</b> <b class="text-blue">el amor</b>. Este enfoque busca formar a jóvenes centrados en valores éticos y preparados para convertirse en ciudadanos 
         responsables y comprometidos con la sociedad.
         <br /> <br />
@@ -28,7 +28,7 @@
     <template v-else-if="index === 2">
         Fundado en <b class="orange">19</b><b class="text-blue">88</b>, el IPISA nació como una respuesta a la creciente demanda de educación 
         técnica en la Región Norte de la República Dominicana. Bajo la dirección de la congregación salesiana y con el respaldo decidido de la 
-        comunidad empresarial, este centro educativo asumió desde <NuxtLink v-intersection-observer="[onView, { threshold: 0.9 }]" to="/sobre-nosotros/filosofía" class="link underline cursor-pointer" :class="{ blink: blink }"> sus inicios </NuxtLink>el compromiso de brindar una formación de excelencia a sus estudiantes. 
+        comunidad empresarial, este centro educativo asumió desde <NuxtLink v-intersection-observer="[onView, { threshold: 0.9 }]" to="/sobre-nosotros/filosofia" class="link underline cursor-pointer" :class="{ blink: blink }"> sus inicios </NuxtLink>el compromiso de brindar una formación de excelencia a sus estudiantes. 
         <br /> <br />
         Aunque inicialmente fue <b>exclusivo para jóvenes varones, pronto se abrió sus puertas a las mujeres</b> y diversificó su oferta de talleres. Hoy en día, 
         arraigado en los principios del <b class="text-blue">Sistema Preventivo</b> <b class="separator">de</b> <b class="orange">San Juan Bosco</b>, el IPISA ha 

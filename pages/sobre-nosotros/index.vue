@@ -1,12 +1,19 @@
 <template>
     <section class="wallpaper">
-        <NuxtImg src="/modules/home/wallpaper/IMG_5964.JPG" alt="" srcset="" />
+        <nuxt-img 
+        class="portrait"
+        format="webp"
+        src="/modules/home/wallpaper/IMG_5964.JPG" 
+        sizes="100vw sm:50vw md:400px"
+        :placeholder="[50, 25, 75, 5]"
+        densities="x1 x2"
+        />
     </section>
     <section class="content-navigation pt-[4rem] sm:pt-[2rem] lg:pt-[6rem]">
         <h1 class="title-page">
             <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>
         </h1>
-        <p class="text-black font-raleway mx-auto w-[90%] lg:w-[50%] text-[1.1rem] my-4">
+        <p class="text-black font-raleway text-[1.1rem] mx-auto w-[90%] sm:w-[70%] xl:w-[50%] my-4">
             Descubre más sobre el <b>Instituto Politécnico Industrial de Santiago (IPISA) </b>explorando lo que tenemos para ofrecerte. 
             Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de 
             <b class="text-blue font-bold">valores</b> <b class="orange">cristianos.</b>
@@ -15,20 +22,18 @@
         </p>
         <div class="about-modules">
             <template v-for="({ title, description, icon, link }, index) in sections">
-                <nuxt-link :to="link">
-                    <div class="module" :class="icon">
-                        <nuxt-icon :name="`home/about/${icon}`" class="illustration idle" filled :class="icon" />
-                        <h1 class="font-semibold min-[800px]:leading-9 text-[1.5rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] mb-2 text-black-400 truncate text-center">
-                            <span v-for="({ color, word, space }, index) in title" :key="index" :class="`hovered-${color}`">
-                                {{ word }}<span v-if="space" class="mx-[4px]"></span> 
-                            </span>
-                        </h1>
-                        <p class="text-justify font-medium text-black-700">
-                            {{ description }}
-                        </p>
-                    </div>
+                <nuxt-link :to="link" class="module" :class="icon">
+                    <nuxt-icon :name="`home/about/${icon}`" class="illustration idle" filled :class="icon" />
+                    <h1 class="font-semibold min-[800px]:leading-9 text-[1.5rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] mb-2 text-black-400 truncate text-center">
+                        <span v-for="({ color, word, space }, index) in title" :key="index" :class="`hovered-${color}`">
+                            {{ word }}<span v-if="space" class="mx-[4px]"></span> 
+                        </span>
+                    </h1>
+                    <p class="text-justify font-medium text-black-700">
+                        {{ description }}
+                    </p>
                 </nuxt-link>
-                <div class="column-separator bg-[#DFDFDF] w-[2px] min-[1300px]:h-full mx-auto" />
+                <div class="column-separator bg-[#d2e6ff] w-[2px] min-[1300px]:h-full mx-auto" />
             </template>
         </div>
     </section>
@@ -83,6 +88,9 @@ layout.$patch({ scroll_breakpoint: 600 });
 section.wallpaper {
     @apply overflow-hidden bg-[#00488D99] h-[90vh];
 }
+section.wallpaper img.portrait {
+    @apply max-xl:h-full max-xl:object-cover;
+}
 .about-modules {
     display: grid;
     grid-template-rows: 500px 2px 500px 2px 500px 2px 500px;
@@ -98,7 +106,7 @@ section.wallpaper {
     @apply items-center justify-center mx-auto w-[85%] pb-[140px] sm:pt-[50px];
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
     .about-modules {
         grid-template-areas:"school separator-one philosofy"
                             "separator-two separator-two separator-two"
@@ -126,9 +134,6 @@ section.wallpaper {
 .about-modules .module.history { grid-area: history; }
 .about-modules .module.awards { grid-area: awards; }
 
-/* .about-modules .column-separator-one { grid-area: separator-one; }
-.about-modules .column-separator-two { grid-area: separator-two; }
-.about-modules .column-separator-three { grid-area: separator-three; } */
 .module .illustration {
     @apply flex items-center justify-center mb-7;
 }

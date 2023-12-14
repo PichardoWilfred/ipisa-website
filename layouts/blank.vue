@@ -38,7 +38,7 @@
             </h1>
             <div class="news-feed">
                 <div class="new mb-10">
-                    <nuxt-img src="/modules/home/news/new-1.png" alt="muchachos" />
+                    <nuxt-img src="/modules/home/news/new-1.png" alt="estudiantes" />
                     <div class="author">
                         <div class="avatar bg-black-600 rounded-full w-[25px] h-[25px] me-3" />
                         <h3 class="font-raleway text-md text-black-600">
@@ -112,16 +112,34 @@
     const navigation_ = ref(layout.about_navigation); // getting it's page navigation.
     
     const scroll_timeout = ref(0);
+    const scroll_highlight = ref(0);
     const observer = ref(null);
 
     function scroll_to (section_, delay = 0) {
         const in_mobile = window.matchMedia("(max-width: 678px)").matches;
-        scroll_timeout.value = setTimeout(() => {
-            const anchor = document.querySelector(`#anchor-${section_}`);
-            focused_anchor.value = anchor;
-            if (!anchor) return;
-            const section_offset = parseInt(anchor.dataset.offset) || 0;
-            const top = anchor.getBoundingClientRect().top + window.pageYOffset - (in_mobile ? 100 : 180) + section_offset;
+        focused_anchor.value = null;
+        focused_anchor.value = document.querySelector(`#anchor-${section_}`);
+        const rect = focused_anchor.value.getBoundingClientRect(); 
+        const already_visible = (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        )
+        if (focused_anchor.value.classList.contains("highlight")) {
+            focused_anchor.value.classList.remove("highlight");
+        }
+
+        if (already_visible) {
+            scroll_highlight.value = setTimeout(() => {
+                focused_anchor.value.classList.add("highlight");
+            }, 180);
+            return;
+        }
+        scroll_timeout.value = setTimeout(() => { // if we need to scroll
+            if (!focused_anchor.value) return;
+            const section_offset = parseInt(focused_anchor.value.dataset.offset) || 0;
+            const top = focused_anchor.value.getBoundingClientRect().top + window.pageYOffset - (in_mobile ? 100 : 180) + section_offset;
             
             window.scrollTo({ top, behavior: 'smooth' });
         }, delay);
@@ -135,6 +153,7 @@
     const navigation_opened = ref(false);
 
     const focused_anchor = ref(null);
+    // const focused_anchor_timeout = ref(null);
 
     const static_navigation_visible = ([ value ]) => {
         navigation_visible.value = value.isIntersecting;
@@ -152,26 +171,31 @@
 
     const alphabet = ref([...'abcdefghijklmnopqrstuvwxyz'].map((letter) => letter));
     onMounted(() => {
-        const callback = (entries, observer) => {
+        // callback
+        function callback(entries, observer) {
             entries.forEach((entry) => {
-                if (entry.intersectionRatio > 0) {
-                    console.log(`${entry.target.id} visible`);
-                }
+                if (!focused_anchor.value) return;
+                if (entry.target.id !== focused_anchor.value.id) return; 
+                scroll_highlight.value = setTimeout(() => {
+                    focused_anchor.value.classList.add("highlight");
+                }, 180);
             });
         }
-        
-        observer.value = new IntersectionObserver(callback);
-
-        navigation_.value.map(({list}) => {
+        observer.value = new IntersectionObserver(callback); // to disconnect it later
+        navigation_.value.map(({ list }) => {
             list.map(({ anchor }) => {
                 const anchor_element = document.querySelector(`#anchor-${anchor}`);
-                observer.value.observe(anchor_element);
-                return anchor_element;
+                if (anchor_element) observer.value.observe(anchor_element);
             });
         });
     });
     onBeforeUnmount(() => {
         observer.value.disconnect();
+
+        clearTimeout(scroll_timeout.value);
+        clearTimeout(scroll_highlight.value);
+        // clearTimeout(focused_anchor_timeout.value);
+        // focused_anchor.value.removeEventListener("animationend", remove_class);
     });
 </script>
 <style scoped>
