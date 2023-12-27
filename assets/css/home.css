@@ -330,7 +330,7 @@ section.content-navigation .illustration.school path.parking {
     75% { transform: translate(-3px, 3px) rotate(-3deg); }
     100% { transform: translate(0, 0) rotate(0deg); }
 }
-.illustration.history g.clouds g{
+.illustration.history g.clouds g {
     transform: translateX(-2%);
     animation: subtle-cloud-float ease-in-out forwards infinite;
 }
@@ -374,12 +374,19 @@ section.content-navigation .illustration.school path.parking {
 }
 
 .illustration.history .camera {
-    animation-name: history-lens-bright-vibrate-big 5000ms ease-in-out infinite;
+    animation-name: history-lens-bright-vibrate-big 5600ms ease-in-out infinite;
 }
 @keyframes slide-in-camera {
     from {
         transform: translateY(120%);
-    } to {
+    } 
+    75% {
+        transform: translateY(0%);
+    }
+    90% {
+        transform: translateY(2%);
+    }
+    to {
         transform: translateY(0%);
     }
 }
@@ -387,6 +394,7 @@ section.content-navigation .illustration.school path.parking {
     animation: about-blink 250ms ease-in-out both;
     animation-delay: 1300ms;
 }
+
 @keyframes about-blink {
     from {
         opacity: 1;
@@ -394,6 +402,20 @@ section.content-navigation .illustration.school path.parking {
         opacity: 0;
     } to {
         opacity: 1;
+    }
+}
+
+.illustration.history .show g.camera-button {
+    animation: about-camera-button-press 450ms var(--ease-1) both 1180ms;
+} 
+@keyframes about-camera-button-press {
+    from {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(4%);
+    } to {
+        transform: translateY(0);
     }
 }
 

@@ -379,7 +379,7 @@
         "Carlos Eduardo Guerrero Santana",
         "Teresa Inmaculada Guerrero Santana"
     ]);
-
+    // serach bar logic
     const search_by_number = ref(null);
     const search_by_name = ref('');
 
@@ -644,7 +644,7 @@
                     show_last_page.value = true;
                 }
             }
-        };
+        }
     });
     
     const set_pagination = () => {
