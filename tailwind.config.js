@@ -32,7 +32,7 @@ module.exports = {
       white: {
         DEFAULT: "#FFF",
         100: "#f5f2f2",
-        200: "#F3F6FA"
+        200: "#F3F6FA",
       },
       black: {
         100: "#292929",
@@ -40,14 +40,15 @@ module.exports = {
         400: "#344661",
         500: "#CEE3FF",
         600: "#AABDD8",
-        700: "#4B6286"
+        700: "#4B6286",
       },
+      separator: "#A9C2E0",
       gray: {
         100: "#E0E0E0",
         200: "#B3B3B3",
         300: "#A4A4A4",
         400: "#636363",
-      }
+      },
     },
     fontFamily: {
       'garamond': ['"EB Garamond"', '"ui-monospace"'],

@@ -550,3 +550,40 @@ section.job-insertion .dots svg circle.dot.seven {
     animation-delay: 700ms;
 }
 /* swiper styles */
+.swiper {
+    @apply bg-blue-100 h-[70vh];
+}
+.swiper .swiper-slide {
+    user-select: none;
+}
+.swiper-button-prev, .swiper-button-next {
+    @apply text-blue hover:text-blue-200 transition-all;
+    height: 80px !important;
+    width: 70px !important;
+}
+.swiper-pagination-bullet {
+    @apply transition-all;
+}
+.swiper-pagination-bullet-active:nth-child(even) {
+    @apply bg-orange-300;
+}
+/* swiper */
+.swiper .swiper-slide {
+    user-select: none;
+}
+.swiper .swiper-slide img.swiper-img {
+    object-fit: cover;
+    object-position: 0px -190px;
+    user-select: none;
+}
+.swiper .swiper-slide .image-text {
+    @apply absolute;
+    top: 60px;
+    left: 50px;
+}
+.swiper .swiper-slide .image-text h2.image-title {
+    @apply font-raleway font-semibold text-white text-6xl mb-3;
+}
+.swiper .swiper-slide .image-text p.image-description {
+    @apply font-raleway font-normal text-white text-2xl max-w-[620px] ps-2;
+}

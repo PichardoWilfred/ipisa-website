@@ -39,7 +39,7 @@
                     </Transition>
                 </div>
                 <Transition name="fade" mode="out-in">
-                    <p :key="selected_index" class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem] max-lg:mb-[3.8rem]">
+                    <p :key="selected_index" class="text-black text-[1.1rem] font-medium xl:min-w-[640px] xl:max-w-[760px] min-h-[25vh] xl:min-h-[31vh] mb-[1.8rem] max-lg:mb-[3.8rem]">
                         <HomeAboutDescription :index="selected_index" />
                     </p>
                 </Transition>

@@ -1,6 +1,6 @@
 <template>
-    <div class="wallpaper bg-[#00488D99] h-screen sm:h-[80vh] mb-10 lg:mb-16" />
-    <main class="article flex max-xl:flex-col justify-between px-4 lg:px-24 mb-28">
+    <WallpaperPlaceholder />
+    <main class="article flex max-xl:flex-col justify-center px-4 lg:px-24 mb-28">
         <section>
             <h1 class="title">
                 <slot name="title">
@@ -17,7 +17,7 @@
             </div>
         </section>
 
-        <aside class="lg:w-[370px] relative">
+        <aside class="lg:w-[360px] relative">
             <nav v-intersection-observer="[static_navigation_visible]" class="navigation">
                 <ol v-for="({ title, list }, index) in navigation_" :key="index">
                     <h1 class="navigation-title">
@@ -54,7 +54,6 @@
                 </div>
             </div>
         </aside>
-
     </main>
 
     <button class="mobile-navigation" ref="mobile-navigation" @click.prevent="() => { show_navigation = true; }">
@@ -200,10 +199,10 @@
 </script>
 <style scoped>
     section div.content {
-        @apply lg:pe-8 min-h-[80vh] font-raleway;
+        @apply lg:me-10 font-raleway xl:min-w-[640px] xl:max-w-[790px] min-h-[80vh];
     }
     section p.default-text {
-        @apply text-black text-[1rem] lg:text-lg font-medium xl:min-w-[640px] xl:max-w-[1020px] min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem] max-lg:mb-[3.8rem];
+        @apply text-black text-[1rem] lg:text-lg font-medium min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem] max-lg:mb-[3.8rem];
     }
     .mobile-navigation-mask {
         @apply fixed top-0 left-0 h-screen w-screen bg-[#09090970] z-40;

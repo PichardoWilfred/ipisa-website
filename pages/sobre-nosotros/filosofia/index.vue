@@ -13,7 +13,7 @@
                 Misión
             </h2>
             Ofrecer a adolescentes y jóvenes una formación integral centrada en los aspectos humano, ético, técnico y académico, que les permita su inserción en el mundo laboral 
-            y de los estudios superiores, proyectándose como <br> 
+            y de los estudios superiores, proyectándose como
             <span class="text-blue font-bold">Buenos Cristianos </span> <span class="separator font-bold">Y</span> <span class="text-orange font-bold">Honrados Ciudadanos.</span>
             <br><br>
             <h2 class="subtitle" id="anchor-vision">
@@ -139,7 +139,8 @@
                         <h2 class="subtitle" :id="`anchor-${anchor}`">
                             {{ name }}
                         </h2>
-                        <p v-html="paragraph" v-for="(paragraph, index_) in biography" :key="index_" :class="{'mb-3': index_ !== (biography.length - 1) }" />
+                        <p v-html="paragraph" v-for="(paragraph, index_) in biography" :key="index_" 
+                        :class="{'mb-3': index_ !== (biography.length - 1) }" class="text-[16px]" />
                     </div>
                 </li>
             </ul>

@@ -8,8 +8,7 @@
                 </span>
             </h2>
             <p class="text-[1.1rem] text-black font-medium font-raleway max-w-[900px] mb-10 mx-auto">
-                Para formar parte de la comunidad educativa del <b class="text-blue">Instituto</b> <b class="text-orange-300">Politécnico</b> <b class="text-blue">Industrial</b>
-                <b class="separator"> de</b> <b class="text-orange-300">Santiago</b> <b>(IPISA),</b> es importante 
+                Para formar parte de la comunidad educativa del Instituto Politécnico Industrial de Santiago <b>(IPISA),</b> es importante 
                 seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes. A continuación, detallamos 
                 los requisitos necesarios para aplicar:
             </p>
@@ -18,7 +17,7 @@
             </p>
         </div>
         <div class="requirements-list">
-            <div class="requirement" v-for="({label, label_class, content, icon}, index) in requirements" :key="index"
+            <div class="requirement" v-for="({ label, label_class, content, icon }, index) in requirements" :key="index"
             :class="index % 2 === 0 ? 'orange':'blue'">
                 <div class="number">
                     <span>

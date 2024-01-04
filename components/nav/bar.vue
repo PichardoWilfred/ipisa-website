@@ -233,7 +233,7 @@ const addresses = {
     'portrait': '/',
     'about': '/sobre-nosotros',
     'news': '',
-    'workshop': '',
+    'workshop': '/talleres',
     'admissions': '',
     'activities': '',
     'job-insertion': '',

@@ -1,14 +1,14 @@
 <template>
-    <section class="wallpaper">
+    <div class="portrait">
         <nuxt-img 
-        class="portrait"
+        class="wallpaper"
         format="webp"
         src="/modules/home/wallpaper/IMG_5964.JPG" 
         sizes="100vw sm:50vw md:400px"
         :placeholder="[50, 25, 75, 5]"
         densities="x1 x2"
         />
-    </section>
+    </div>
     <section class="content-navigation pt-[4rem] sm:pt-[2rem] lg:pt-[6rem]">
         <h1 class="title-page">
             <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>
@@ -33,7 +33,7 @@
                         {{ description }}
                     </p>
                 </nuxt-link>
-                <div class="column-separator bg-[#d2e6ff] w-[2px] min-[1300px]:h-full mx-auto" />
+                <div class="column-separator bg-black-500 w-[1px] min-[1300px]:h-full mx-auto" />
             </template>
         </div>
     </section>
@@ -85,10 +85,10 @@ const layout = useLayoutStore();
 layout.$patch({ scroll_breakpoint: 600 });
 </script>
 <style scoped>
-section.wallpaper {
-    @apply overflow-hidden bg-[#00488D99] h-[90vh];
+div.portrait {
+    @apply relative overflow-hidden h-[75vh] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[#00488D99];
 }
-section.wallpaper img.portrait {
+div.portrait img.portrait {
     @apply max-xl:h-full max-xl:object-cover;
 }
 .about-modules {
@@ -144,7 +144,6 @@ section.wallpaper img.portrait {
     @apply max-lg:max-w-[300px] max-sm:h-[190px] max-w-[420px] xl:max-w-[350px] translate-y-[20px];
 }
 .module .illustration.philosofy :deep(svg) {
-    /* translate-x-[2vw] lg:translate-x-[-30px] */
     @apply max-lg:max-w-[300px] xl:max-w-[320px];
 }
 .module .illustration.history :deep(svg) {
