@@ -1,7 +1,7 @@
 <template>
     <section class="relative w-full z-20 pt-[4rem] lg:pt-[6rem]" id="activities" data-offset="80">
         <swiper :modules="[Pagination, Navigation, Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop pagination navigation 
-        :autoplay="{delay: 20000}" effect="fade" crossFade>
+        :autoplay="{ delay: 20000 }" effect="fade" crossFade>
             <swiper-slide v-for="(img, index) in [1, 2, 3, 4]" :key="index">
                 <div class="image-text">
                     <h2 class="image-title">
@@ -38,7 +38,6 @@
 .swiper-pagination-bullet-active:nth-child(even) {
     @apply bg-orange-300;
 }
-/* swiper */
 .swiper .swiper-slide {
     user-select: none;
 }

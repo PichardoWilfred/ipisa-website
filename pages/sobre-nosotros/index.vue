@@ -86,7 +86,8 @@ layout.$patch({ scroll_breakpoint: 600 });
 </script>
 <style scoped>
 div.portrait {
-    @apply relative overflow-hidden h-[75vh] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[#00488D99];
+    @apply relative overflow-hidden h-[75vh] 
+    before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[#00488D70];
 }
 div.portrait img.portrait {
     @apply max-xl:h-full max-xl:object-cover;

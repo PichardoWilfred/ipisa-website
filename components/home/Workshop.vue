@@ -7,17 +7,16 @@
             <p class="font-medium text-[1.1rem] max-w-[900px]">
                 Nuestra área técnica es el corazón de la formación que ofrece la institución. Aquí, los estudiantes tienen la oportunidad de adquirir habilidades técnicas y conocimientos especializados en una variedad de disciplinas, preparándolos para enfrentar con éxito los desafíos del mundo laboral.
                 <br><br>
-                <span>
+                <span class="max-md:font-semibold">
                     <span class="text-blue">A continuación, te presentaremos de manera formal </span> 
                     <nuxt-link to="/talleres" class="text-orange-300 underline cursor-pointer">los diversos talleres disponibles en el centro.</nuxt-link>
                 </span>
             </p>
         </div>
-
         <div class="relative bg-white py-[8rem] z-10"  ref="card_container" @mousemove.passive="trackMouse">
             <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
-                <HomeWorkshopBlueShapes />
-                <HomeWorkshopOrangeShapes />
+                <HomeWorkshopBlueShapes v-if="!in_mobile" />
+                <HomeWorkshopOrangeShapes v-if="!in_mobile" />
                 <div class="blue-background color-background" />
                 <div class="orange-background color-background" />
                 <div class="white-blur" />
@@ -223,8 +222,7 @@
     const card_container = ref(null);
 
     const trackMouse = (e) => { // for translating the shapes depending on the mouse
-        // Get the parent's bounding client
-        const parentRect = card_container.value.getBoundingClientRect();
+        const parentRect = card_container.value.getBoundingClientRect(); // Get the parent's bounding client
 
         clientX.value = e.clientX - parentRect.left;
         clientY.value = e.clientY - parentRect.top;
@@ -238,9 +236,11 @@
             shape.style.transform = `translateX(${x_axis}px) translateY(${y_axis}px)`;
         });
     }
+
+    // mobile
+    const in_mobile = ref(true);
     onMounted(() => {
-        // for showing presenting the workshop cards.
-        cards.map(({ element }, index) => {
+        cards.map(({ element }, index) => { // for showing presenting the workshop cards.
             const { stop } = useIntersectionObserver(element, ([{ isIntersecting }], observerElement) => {
                 if (isIntersecting) {
                     cards[index].show_element = true; 
@@ -248,6 +248,7 @@
                 }
             }, { threshold: 1 });
         });
+        in_mobile.value = window.matchMedia("(max-width: 678px)").matches;
     });
 
 

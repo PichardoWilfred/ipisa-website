@@ -4,7 +4,7 @@
         <h2 class="flex lg:justify-center items-center text-black font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
             <b class="text-blue">Listado </b> <b class="separator mx-3">de</b> <b class="text-orange-300">Admitidos</b>
             <span class="copy-requirements">
-                <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
+                <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mb-1" />
             </span>
         </h2>
         <p class="text-justify lg:text-center text-[1.1rem] text-black font-medium font-raleway max-sm:leading-7 max-w-[900px] mb-5 mx-auto">

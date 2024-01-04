@@ -4,7 +4,7 @@
             <h2 class="flex justify-center items-center text-black font-normal font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
                 <b class="text-blue">Requisitos </b> <b class="separator mx-3">de</b> <b class="text-orange-300">Admisión</b>
                 <span class="copy-requirements" @click.prevent="copy_requirements">
-                    <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mt-1" />
+                    <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator" />
                 </span>
             </h2>
             <p class="text-[1.1rem] text-black font-medium font-raleway max-w-[900px] mb-10 mx-auto">

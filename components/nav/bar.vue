@@ -187,7 +187,7 @@
         @apply top-[85px];
     }
     .mask {
-        @apply lg:hidden bg-[#09090970] fixed w-screen h-screen z-20;
+        @apply lg:hidden bg-[#09090970] fixed w-screen h-screen z-[40];
     }
 </style>
 <script setup>
