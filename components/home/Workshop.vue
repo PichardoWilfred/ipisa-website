@@ -13,10 +13,11 @@
                 </span>
             </p>
         </div>
-        <div class="relative bg-white py-[8rem] z-10"  ref="card_container" @mousemove.passive="trackMouse">
+        <!-- @mousemove.passive="trackMouse" -->
+        <div class="relative bg-white py-[8rem] z-10"  ref="card_container" >
             <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
-                <HomeWorkshopBlueShapes v-if="!in_mobile" />
-                <HomeWorkshopOrangeShapes v-if="!in_mobile" />
+                <!-- <HomeWorkshopBlueShapes v-if="!in_mobile" />
+                <HomeWorkshopOrangeShapes v-if="!in_mobile" /> -->
                 <div class="blue-background color-background" />
                 <div class="orange-background color-background" />
                 <div class="white-blur" />

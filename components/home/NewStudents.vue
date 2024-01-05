@@ -700,7 +700,6 @@
     }
 }
 
-/*  */
 .table-header {
     @apply flex flex-col items-end mb-4;
 }
