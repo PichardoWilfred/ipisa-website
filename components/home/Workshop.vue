@@ -2,7 +2,7 @@
     <section class="mt-[70px] relative pt-[2rem] h-[auto] z-20" id="workshop">
         <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[3rem] text-black">
             <h1 class="text-[2.2rem] lg:text-[3.6rem] max-lg:mb-3">
-                <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b>
+                <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b> (no spying 2)
             </h1>
             <p class="font-medium text-[1.1rem] max-w-[900px]">
                 Nuestra área técnica es el corazón de la formación que ofrece la institución. Aquí, los estudiantes tienen la oportunidad de adquirir habilidades técnicas y conocimientos especializados en una variedad de disciplinas, preparándolos para enfrentar con éxito los desafíos del mundo laboral.
@@ -14,6 +14,7 @@
             </p>
         </div>
         <!-- @mousemove.passive="trackMouse" -->
+        <!-- :ref="(el) => { cards[index].element = el}" -->
         <div class="relative bg-white py-[8rem] z-10"  ref="card_container" >
             <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
                 <!-- <HomeWorkshopBlueShapes v-if="!in_mobile" />
@@ -24,8 +25,8 @@
             </div>
             <div class="card-container">
                 <div class="card" v-for="({ icon, title, icon_class, show_element }, index) in cards" :key="index" 
-                :ref="(el) => { cards[index].element = el}" :class="[icon_class, {'in-viewport': show_element }]" >
-                    <nuxt-icon :name="icon" filled class="mx-auto"/>
+                :class="[icon_class, {'in-viewport': show_element }]" >
+                    <nuxt-icon class="mx-auto" :name="icon" filled />
                     <h4>
                         <template v-for="({ name, class_, br }, title_index) in title" >
                             <span v-if="!br" :class="class_" :key="title_index">
