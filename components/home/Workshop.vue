@@ -241,14 +241,14 @@
     // mobile
     const in_mobile = ref(true);
     onMounted(() => {
-        cards.map(({ element }, index) => { // for showing presenting the workshop cards.
-            const { stop } = useIntersectionObserver(element, ([{ isIntersecting }], observerElement) => {
-                if (isIntersecting) {
-                    cards[index].show_element = true; 
-                    stop();
-                }
-            }, { threshold: 1 });
-        });
+        // cards.map(({ element }, index) => { // for showing presenting the workshop cards.
+        //     const { stop } = useIntersectionObserver(element, ([{ isIntersecting }], observerElement) => {
+        //         if (isIntersecting) {
+        //             cards[index].show_element = true; 
+        //             stop();
+        //         }
+        //     }, { threshold: 1 });
+        // });
         in_mobile.value = window.matchMedia("(max-width: 678px)").matches;
     });
 
