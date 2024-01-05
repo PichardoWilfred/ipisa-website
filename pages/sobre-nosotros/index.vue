@@ -6,14 +6,10 @@
         :placeholder="[50, 25, 75, 5]" densities="x1 x2" />
     </div>
     <section class="content-navigation pt-[4rem] sm:pt-[2rem]">
-        <button @click.prevent="interpolate"
-        class="font-raleway font-bold text-[1.1rem] text-white hover:text-[#FFFFFFE6] py-3 rounded-xl min-w-[300px] lg:min-w-[370px]"> 
-            animate 
-        </button>
         <h1 class="font-raleway text-center font-semibold text-[2.1rem] lg:text-[3.6rem]">
             <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>
         </h1>
-        <p class="text-black font-raleway text-[1.1rem] mx-auto w-[90%] sm:w-[70%] xl:w-[50%] my-4 text-justify">
+        <p class="text-center text-black font-raleway text-[1.1rem] mx-auto w-[90%] sm:w-[70%] xl:w-[50%] mb-4">
             Descubre más sobre el <b>Instituto Politécnico Industrial de Santiago (IPISA) </b>explorando lo que tenemos para ofrecerte. 
             Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de 
             <b class="text-blue font-bold">valores</b> <b class="orange">cristianos.</b>
@@ -46,9 +42,6 @@ const zoom = ref(true);
 function interpolate () {  // zoom.value !=  zoom.value | not working for some reason ???
     zoom.value = (zoom.value) ? false : true;
 }
-watch(zoom, (value) => {
-    console.log(value);
-});
 function apply_zoom () {
     zoom.value = false;
 }
