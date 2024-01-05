@@ -2,10 +2,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: [
     '@/assets/css/main.css',
-    'swiper/css',  // swiper
-    'swiper/css/navigation',
-    'swiper/css/pagination',
-    'swiper/css/effect-fade',
   ],
   app: {
     pageTransition: false,

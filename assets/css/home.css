@@ -528,32 +528,21 @@ section.job-insertion .dots svg circle.dot {
         transform: translateY(0px);
     }
 }
-section.job-insertion .dots svg circle.dot.one {
-    animation-delay: 50ms;
-}
-section.job-insertion .dots svg circle.dot.two {
-    animation-delay: 100ms;
-}
-section.job-insertion .dots svg circle.dot.three {
-    animation-delay: 200ms;
-}
-section.job-insertion .dots svg circle.dot.four {
-    animation-delay: 400ms;
-}
-section.job-insertion .dots svg circle.dot.five {
-    animation-delay: 500ms;
-}
-section.job-insertion .dots svg circle.dot.six {
-    animation-delay: 600ms;
-}
-section.job-insertion .dots svg circle.dot.seven {
-    animation-delay: 700ms;
-}
+section.job-insertion .dots svg circle.dot.one { animation-delay: 50ms; }
+section.job-insertion .dots svg circle.dot.two { animation-delay: 100ms; }
+section.job-insertion .dots svg circle.dot.three { animation-delay: 200ms; }
+section.job-insertion .dots svg circle.dot.four { animation-delay: 400ms; }
+section.job-insertion .dots svg circle.dot.five { animation-delay: 500ms; }
+section.job-insertion .dots svg circle.dot.six { animation-delay: 600ms; }
+section.job-insertion .dots svg circle.dot.seven { animation-delay: 700ms; }
 /* swiper styles */
 .swiper {
-    @apply bg-blue-100 h-[70vh];
+    @apply bg-blue-100;
 }
-.swiper .swiper-slide {
+div.swiper.activities {
+    @apply h-[40vh] xl:h-[70vh];
+}
+.swiper.activities .swiper-slide {
     user-select: none;
 }
 .swiper-button-prev, .swiper-button-next {
@@ -564,26 +553,18 @@ section.job-insertion .dots svg circle.dot.seven {
 .swiper-pagination-bullet {
     @apply transition-all;
 }
-.swiper-pagination-bullet-active:nth-child(even) {
-    @apply bg-orange-300;
-}
+.swiper-pagination-bullet-active:nth-child(even) { @apply bg-orange-300; }
+
 /* swiper */
-.swiper .swiper-slide {
-    user-select: none;
+.swiper.activities .swiper-slide { user-select: none; }
+.swiper.activities .swiper-slide img.swiper-img { user-select: none; }
+/*  */
+.swiper.activities .swiper-slide .image-text {
+    @apply absolute top-[60px] left-[50px];
 }
-.swiper .swiper-slide img.swiper-img {
-    object-fit: cover;
-    object-position: 0px -190px;
-    user-select: none;
-}
-.swiper .swiper-slide .image-text {
-    @apply absolute;
-    top: 60px;
-    left: 50px;
-}
-.swiper .swiper-slide .image-text h2.image-title {
+.swiper.activities .swiper-slide .image-text h2.image-title {
     @apply font-raleway font-semibold text-white text-6xl mb-3;
 }
-.swiper .swiper-slide .image-text p.image-description {
+.swiper.activities .swiper-slide .image-text p.image-description {
     @apply font-raleway font-normal text-white text-2xl max-w-[620px] ps-2;
 }

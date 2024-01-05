@@ -1,12 +1,19 @@
 <template>
     <section id="portrait" class="relative flex flex-col justify-end md:justify-center items-center lg:px-8 
-    h-[650px] lg:h-[120vh] xl:h-screen overflow-hidden">
+    h-[650px] lg:h-screen overflow-hidden">
         <div class="absolute md:w-full h-full top-0 left-0">
             <div class="bg-[#00488D99] z-20 absolute top-0 left-0 sm:w-full sm:h-full" />
-            <nuxt-img src="/modules/home/wallpaper/portrait-1.jpg" class="w-[1022px] max-h-full max-md:max-w-[none] md:w-full md:h-full z-10" 
-                sizes="md:400px xl:100%"
-                :placeholder="[50, 25, 75, 5]"
-                densities="x1 x2" />
+                <swiper :modules="[Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop 
+                :autoplay="{ delay: 4000 }" effect="fade" crossFade>
+                    <swiper-slide v-for="(img, index) in [1, 2, 3, 4]" :key="index">
+                        <nuxt-img :src="`/modules/home/wallpaper/portrait-${img}.jpg`"
+                            class="object-cover w-screen h-screen" 
+                            sizes="md:400px xl:100%"
+                            :placeholder="[50, 25, 75, 5]"
+                            densities="x1 x2" />
+                    </swiper-slide>
+        </swiper>
+        
         </div>
         <div class="relative w-full flex flex-col items-center mb-10 z-30">
             <div class="flex flex-col bg-gradient-to-b from-blue-400 to-[#004F9600] 
@@ -30,6 +37,15 @@
         </div>
     </section>
 </template>
+<script setup>
+    import { Swiper, SwiperSlide } from 'swiper/vue';
+    import { Autoplay, EffectFade } from 'swiper/modules';
+    
+    import 'swiper/css';  // swiper
+    import 'swiper/css/navigation';
+    import 'swiper/css/pagination';
+    import 'swiper/css/effect-fade';
+</script>
 <style scoped>
     button.join {
         background: linear-gradient(to bottom, #FF6000 0%, #FF3131 50%, #FF6000 100%);

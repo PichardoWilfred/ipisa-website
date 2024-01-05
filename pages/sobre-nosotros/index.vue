@@ -1,19 +1,19 @@
 <template>
-    <div class="portrait">
-        <nuxt-img 
-        class="wallpaper"
-        format="webp"
-        src="/modules/home/wallpaper/IMG_5964.JPG" 
-        sizes="100vw sm:50vw md:400px"
-        :placeholder="[50, 25, 75, 5]"
-        densities="x1 x2"
-        />
+    <div class="portrait relative overflow-hidden h-[75vh]">
+        <div class="absolute top-0 left-0 w-full h-full bg-[#00488D70] z-10"></div>
+        <nuxt-img  class="wallpaper w-full h-full object-cover transition-all z-[9]" :class="{'zoom-in': zoom, 'zoom-normal': !zoom}"
+        format="webp" src="/modules/home/wallpaper/portrait-2.JPG" sizes="100vw sm:50vw md:400px"
+        :placeholder="[50, 25, 75, 5]" densities="x1 x2" />
     </div>
-    <section class="content-navigation pt-[4rem] sm:pt-[2rem] lg:pt-[6rem]">
-        <h1 class="title-page">
+    <section class="content-navigation pt-[4rem] sm:pt-[2rem]">
+        <button @click.prevent="interpolate"
+        class="font-raleway font-bold text-[1.1rem] text-white hover:text-[#FFFFFFE6] py-3 rounded-xl min-w-[300px] lg:min-w-[370px]"> 
+            animate 
+        </button>
+        <h1 class="font-raleway text-center font-semibold text-[2.1rem] lg:text-[3.6rem]">
             <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>
         </h1>
-        <p class="text-black font-raleway text-[1.1rem] mx-auto w-[90%] sm:w-[70%] xl:w-[50%] my-4">
+        <p class="text-black font-raleway text-[1.1rem] mx-auto w-[90%] sm:w-[70%] xl:w-[50%] my-4 text-justify">
             Descubre más sobre el <b>Instituto Politécnico Industrial de Santiago (IPISA) </b>explorando lo que tenemos para ofrecerte. 
             Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de 
             <b class="text-blue font-bold">valores</b> <b class="orange">cristianos.</b>
@@ -23,7 +23,7 @@
         <div class="about-modules">
             <template v-for="({ title, description, icon, link }, index) in sections">
                 <nuxt-link :to="link" class="module" :class="icon">
-                    <nuxt-icon :name="`home/about/${icon}`" class="illustration idle" filled :class="icon" />
+                    <nuxt-icon :name="`home/about/${icon}`" class="illustration idle flex items-center justify-center mb-7 " filled :class="icon" />
                     <h1 class="font-semibold min-[800px]:leading-9 text-[1.5rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] mb-2 text-black-400 truncate text-center">
                         <span v-for="({ color, word, space }, index) in title" :key="index" :class="`hovered-${color}`">
                             {{ word }}<span v-if="space" class="mx-[4px]"></span> 
@@ -40,6 +40,19 @@
 </template>
 <script setup>
 import { useLayoutStore } from '@/store/layout';
+
+let wallpaper;
+const zoom = ref(true);
+function interpolate () {  // zoom.value !=  zoom.value | not working for some reason ???
+    zoom.value = (zoom.value) ? false : true;
+}
+watch(zoom, (value) => {
+    console.log(value);
+});
+function apply_zoom () {
+    zoom.value = false;
+}
+
 const sections = ref([
     {
         title: [
@@ -83,15 +96,28 @@ const sections = ref([
 
 const layout = useLayoutStore();
 layout.$patch({ scroll_breakpoint: 600 });
+
+onMounted(() => {
+    wallpaper = document.querySelector("img.wallpaper");
+    wallpaper.addEventListener('load', apply_zoom, true);
+});
+onBeforeUnmount(() => {
+    wallpaper.removeEventListener('load', apply_zoom, true);
+});
 </script>
 <style scoped>
-div.portrait {
-    @apply relative overflow-hidden h-[75vh] 
-    before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[#00488D70];
+div.portrait img.wallpaper {
+    object-position: 0px 0px;
+    transition: all 150ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-div.portrait img.portrait {
-    @apply max-xl:h-full max-xl:object-cover;
+div.portrait img.wallpaper.zoom-in {
+    filter: blur(10px);
+    transform: scale(1.3);
 }
+/* button {
+    border-radius: 12.872px;
+    background: linear-gradient(0deg, #FF4A4A 0%, #FF6000 92.55%);
+} */
 .about-modules {
     display: grid;
     grid-template-rows: 500px 2px 500px 2px 500px 2px 500px;
@@ -135,9 +161,6 @@ div.portrait img.portrait {
 .about-modules .module.history { grid-area: history; }
 .about-modules .module.awards { grid-area: awards; }
 
-.module .illustration {
-    @apply flex items-center justify-center mb-7;
-}
 .module .illustration :deep(svg) {
     @apply w-[95%] h-[250px] overflow-visible;
 }
@@ -159,7 +182,4 @@ div.portrait img.portrait {
 .about-modules .module:hover span.hovered-blue {  color: #0478E0 !important; }
 .about-modules .module:hover span.hovered-orange { color: #FF8B46 !important; }
 
-h1.title-page {
-    @apply font-raleway text-center font-semibold text-[2.1rem] lg:text-[3.6rem] cursor-pointer;
-}
 </style>
