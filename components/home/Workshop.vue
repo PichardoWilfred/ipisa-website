@@ -2,7 +2,7 @@
     <section class="mt-[70px] relative pt-[2rem] h-[auto] z-20" id="workshop">
         <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[3rem] text-black">
             <h1 class="text-[2.2rem] lg:text-[3.6rem] max-lg:mb-3">
-                <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b> (no spying 2)
+                <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b>
             </h1>
             <p class="font-medium text-[1.1rem] max-w-[900px]">
                 Nuestra área técnica es el corazón de la formación que ofrece la institución. Aquí, los estudiantes tienen la oportunidad de adquirir habilidades técnicas y conocimientos especializados en una variedad de disciplinas, preparándolos para enfrentar con éxito los desafíos del mundo laboral.
@@ -13,19 +13,17 @@
                 </span>
             </p>
         </div>
-        <!-- @mousemove.passive="trackMouse" -->
-        <!-- :ref="(el) => { cards[index].element = el}" -->
         <div class="relative bg-white py-[8rem] z-10"  ref="card_container" >
             <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
-                <!-- <HomeWorkshopBlueShapes v-if="!in_mobile" />
-                <HomeWorkshopOrangeShapes v-if="!in_mobile" /> -->
+                <HomeWorkshopBlueShapes v-if="!in_mobile" />
+                <HomeWorkshopOrangeShapes v-if="!in_mobile" />
                 <div class="blue-background color-background" />
                 <div class="orange-background color-background" />
                 <div class="white-blur" />
             </div>
             <div class="card-container">
-                <div class="card" v-for="({ icon, title, icon_class, show_element }, index) in cards" :key="index" 
-                :class="[icon_class, {'in-viewport': show_element }]" >
+                <div class="card" v-for="({ icon, title, icon_class, show_element }, index) in cards" :key="index" @mousemove.passive="trackMouse"
+                :ref="(el) => { cards[index].element = el}" :class="[icon_class, {'in-viewport': show_element }]">
                     <nuxt-icon class="mx-auto" :name="icon" filled />
                     <h4>
                         <template v-for="({ name, class_, br }, title_index) in title" >
@@ -225,7 +223,6 @@
 
     const trackMouse = (e) => { // for translating the shapes depending on the mouse
         const parentRect = card_container.value.getBoundingClientRect(); // Get the parent's bounding client
-
         clientX.value = e.clientX - parentRect.left;
         clientY.value = e.clientY - parentRect.top;
 
@@ -242,14 +239,14 @@
     // mobile
     const in_mobile = ref(true);
     onMounted(() => {
-        // cards.map(({ element }, index) => { // for showing presenting the workshop cards.
-        //     const { stop } = useIntersectionObserver(element, ([{ isIntersecting }], observerElement) => {
-        //         if (isIntersecting) {
-        //             cards[index].show_element = true; 
-        //             stop();
-        //         }
-        //     }, { threshold: 1 });
-        // });
+        cards.map(({ element }, index) => { // for showing presenting the workshop cards.
+            const { stop } = useIntersectionObserver(element, ([{ isIntersecting }], observerElement) => {
+                if (isIntersecting) {
+                    cards[index].show_element = true; 
+                    stop();
+                }
+            }, { threshold: 1 });
+        });
         in_mobile.value = window.matchMedia("(max-width: 678px)").matches;
     });
 

@@ -2,18 +2,17 @@
     <section id="portrait" class="relative flex flex-col justify-end md:justify-center items-center lg:px-8 
     h-[650px] lg:h-screen overflow-hidden">
         <div class="absolute md:w-full h-full top-0 left-0">
-            <div class="bg-[#00488D99] z-20 absolute top-0 left-0 sm:w-full sm:h-full" />
-                <swiper :modules="[Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop 
-                :autoplay="{ delay: 4000 }" effect="fade" crossFade>
-                    <swiper-slide v-for="(img, index) in [1, 2, 3, 4]" :key="index">
-                        <nuxt-img :src="`/modules/home/wallpaper/portrait-${img}.jpg`"
-                            class="object-cover w-screen h-screen" 
-                            sizes="md:400px xl:100%"
-                            :placeholder="[50, 25, 75, 5]"
-                            densities="x1 x2" />
-                    </swiper-slide>
-        </swiper>
-        
+            <div class="bg-[#00488D99] z-20 absolute top-0 left-0 w-full h-full" />
+            <swiper :modules="[Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop 
+            :autoplay="{ delay: 4000 }" effect="fade" crossFade>
+                <swiper-slide v-for="(img, index) in [1, 2, 3]" :key="index">
+                    <nuxt-img :src="`/modules/home/wallpaper/portrait-${img}.jpg`"
+                        class="object-cover w-screen h-screen" 
+                        sizes="400px md:1200px xl:100%"
+                        :placeholder="[50, 25, 75, 5]"
+                        densities="x1 x2" />
+                </swiper-slide>
+            </swiper>
         </div>
         <div class="relative w-full flex flex-col items-center mb-10 z-30">
             <div class="flex flex-col bg-gradient-to-b from-blue-400 to-[#004F9600] 
@@ -50,7 +49,7 @@
     button.join {
         background: linear-gradient(to bottom, #FF6000 0%, #FF3131 50%, #FF6000 100%);
         background-size: auto 200%;
-        transition: all 250ms cubic-bezier(.8,.87,0,.95);
+        transition: all 250ms cubic-bezier(.8, .87, 0, .95);
     }
     button.join:hover {
         background-position: bottom right;
