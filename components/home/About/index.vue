@@ -106,6 +106,7 @@
                 show: false,
                 idle: false,
                 title: 'Nuestra trayectoria',
+                route: '/sobre-nosotros/nuestra-trayectoria',
             },
             {
                 label: 'Reconocimientos',

@@ -1,17 +1,18 @@
 <template>
     <WallpaperPlaceholder />   
     <main class="min-h-[50vh] py-24">
-        <div class="hidden flex-col items-center">
-            <!-- <p> {{ animated  }} </p> -->
+        <div class="flex-col items-center">
             <button class="font-raleway font-medium text-[2rem] bg-blue-300 text-white px-10 py-4 radius-[4px] max-w-[320px]" 
             @click.prevent="trigger_animation">
                 animate
             </button>
         </div>
-        <!-- max-[1480px]:min-[800px]:w-[98%] min-[1480px]:w-[85%] max-[800px]:w-[800px] min-[1480px]:-->
         <div class="relative max-sm:py-[20rem] w-[98%] min-[1480px]:w-[85%] mx-auto">
             <div class="absolute w-full h-full z-30">
-                <div class="color-bg" :class="[{'blue-animation': blue_animation, 'orange-animation': orange_animation}]" />
+                <div v-if="in_tablet" class="tablet-color-bg" :class="[{'blue-animation': blue_animation, 'orange-animation': orange_animation}]" />
+                <div v-if="!in_tablet" class="desktop-color-bg" :class="[{'color-animation': color_animation }]">
+                    <!-- <div class="middle-bg" /> -->
+                </div>
             </div>
             <div class="card-container z-40" ref="card_container">
                 <div class="card" v-for="({ icon, title, icon_class, show_element, description }, index) in cards" :key="index" @mousemove.passive="trackMouse"
@@ -32,27 +33,35 @@
                     </div>
                 </div>
             </div>
-            <div ref="">
-
-            </div>
         </div>
     </main>
 </template>
 <script setup>
-    import { useIntersectionObserver } from '@vueuse/core';
-    
+
+
+
+    //(TODO) convert this into somethign with animation end
     const temp_timer = ref(0);
+
+    const color_animation = ref(false);
+    // these are reserved for medium & tablet
     const blue_animation = ref(false);
     const orange_animation = ref(false);
+
     const observer = ref(null);
     const once = ref(true);
+
     function trigger_animation() {
-        once.value = false;
-        clearTimeout(temp_timer.value);
-        blue_animation.value =! blue_animation.value;
-        temp_timer.value = setTimeout(() => {
-            orange_animation.value =! orange_animation.value;
-        }, 650);
+        if (in_tablet.value) {
+            once.value = false;
+            clearTimeout(temp_timer.value);
+            blue_animation.value =! blue_animation.value;
+            temp_timer.value = setTimeout(() => {
+                orange_animation.value =! orange_animation.value;
+            }, 650);
+        }else {
+            color_animation.value =! color_animation.value;
+        }
     }
     const card_container = ref(null);
 
@@ -257,33 +266,12 @@
         //     shape.style.transform = `translateX(${x_axis}px) translateY(${y_axis}px)`;
         // });
     }
-    function isInViewport(element) {
-        let rect = element.getBoundingClientRect();
-        let html = document.documentElement;
-        console.log(rect);
-        console.log(html);
-        console.log(window);
-        console.log(
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || html.clientHeight) &&
-            rect.right <= (window.innerWidth || html.clientWidth)
-        );
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || html.clientHeight) &&
-            rect.right <= (window.innerWidth || html.clientWidth)
-        );
-    }
     onMounted(() => {
         in_tablet.value = window.matchMedia("(min-width: 800px) and (max-width: 1480px)").matches;
         // callback
         function observer_callback(entries, observer) {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    if (once.value) trigger_animation();
-                }
+                if (entry.isIntersecting) if (once.value) trigger_animation();
             });
         }
         observer.value = new IntersectionObserver(observer_callback, { threshold: in_tablet.value ? 0.5 : 1 }); // to disconnect it later
@@ -301,7 +289,6 @@
     justify-content: center;
     gap: 2px;
     border: 3px solid white;
-    /* border-radius: 8px; */
 }
 .card {
     @apply flex flex-col 
@@ -355,11 +342,72 @@
     background: linear-gradient(98deg, rgba(255, 255, 255, 0.404) 25%, rgba(255, 255, 255, 0.40) 78.3%);
     backdrop-filter: blur(6px);
 }
-.color-bg {
+.desktop-color-bg {
     position: relative; width: 100%; height: 100%; overflow: hidden;
     @apply transition-all;
 }
-.color-bg.blue-animation { /* animation */
+.desktop-color-bg.color-animation {
+    animation: gray-background 800ms ease-in-out 1;
+}
+@keyframes gray-background {
+    0% {
+        background-color: white;
+    }
+    15%, 85% {
+        background-color: #E9F3FF;
+    }
+    100% {
+        background-color: white;
+    }
+}
+
+.desktop-color-bg.color-animation::before { /* animation */
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 43%;
+    height: 20%;
+    animation: blue-vertical-movement 500ms ease-in-out 1 forwards 120ms;
+}
+.desktop-color-bg.color-animation::after { /* animation */
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    width: 43%;
+    height: 20%;
+    animation: orange-vertical-movement 500ms ease-in-out 1 forwards 120ms;
+}
+.middle-bg {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 48%;
+    width: 5%;
+    height: 20%;
+}
+.desktop-color-bg.color-animation .middle-bg {
+    animation: gray-vertical-movement 500ms ease-in-out 1 forwards 120ms;
+}
+@keyframes gray-vertical-movement {
+    from {
+        transform: translateY(-120%);
+        background: linear-gradient(180deg, #c3d4eb 0%, #94acc9 54.64%, #c3d4eb 107.14%);
+    }
+    to {
+        transform: translateY(500%);
+        background: linear-gradient(180deg, #c3d4eb 0%, #94acc9 54.64%, #c3d4eb 107.14%);
+    }
+}
+/* background: linear-gradient(180deg, #F1F7FF 0%, #CEE4FF 54.64%, #F1F7FF 107.14%); */
+.tablet-color-bg {
+    position: relative; width: 100%; height: 100%; overflow: hidden;
+    @apply transition-all;
+}
+.tablet-color-bg.blue-animation { /* animation */
     animation: blue-background 700ms ease-in-out 1;
 }
 @keyframes blue-background {
@@ -373,30 +421,35 @@
         background-color: white;
     }
 }
-/* background-color: #DAEEFF; */
-/* background-color: #FFD9C2; */
-.color-bg.blue-animation::before { /* animation */
+.tablet-color-bg.blue-animation::before { /* animation */
     content: '';
     display: block;
     position: relative;
     width: 100%;
     height: 50%;
-    animation: vertical-movement 500ms ease-in-out 1 forwards 120ms;
+    animation: blue-vertical-movement 500ms ease-in-out 1 forwards 120ms;
 }
-/* background: linear-gradient(180deg, #FFD9C2 0%, #FF7320 53.5%, #FFD9C2 100%); */
-/* background: linear-gradient(180deg, #DAEEFF 0%, #52ADFF 53.5%, #DAEEFF 100%); */
-@keyframes vertical-movement {
+@keyframes blue-vertical-movement {
     from {
         transform: translateY(-120%);
-        background: linear-gradient(180deg, #DAEEFF 0%, #52ADFF 53.5%, #DAEEFF 100%); 
+        background: linear-gradient(180deg, #DAEEFF 0%, #6FBBFF 40%, #52ADFF 53.5%, #85C5FF 65%, #DAEEFF 100%);
     }
     to {
-        transform: translateY(200%);
-        background: linear-gradient(180deg, #DAEEFF 0%, #52ADFF 53.5%, #DAEEFF 100%);
+        transform: translateY(500%);
+        background: linear-gradient(180deg, #DAEEFF 0%, #6FBBFF 40%, #52ADFF 53.5%, #85C5FF 65%, #DAEEFF 100%);
     }
 }
-
-.color-bg.orange-animation { /* animation */
+@keyframes orange-vertical-movement {
+    from {
+        transform: translateY(-120%);
+        background: linear-gradient(180deg, #ffede1 0.3%, #FFBF99 23.3%, #FFAB79 51.83%, #FFCAAB 74.8%, #ffede1 100.3%);
+    }
+    to {
+        transform: translateY(500%);
+        background: linear-gradient(180deg, #ffede1 0.3%, #FFBF99 23.3%, #FFAB79 51.83%, #FFCAAB 74.8%, #ffede1 100.3%);
+    }
+}
+.tablet-color-bg.orange-animation { /* animation */
     animation: orange-background 700ms ease-in-out 1;
 }
 @keyframes orange-background {
@@ -410,7 +463,7 @@
         background-color: white;
     }
 }
-.color-bg.orange-animation::after { /* animation */
+.tablet-color-bg.orange-animation::after { /* animation */
     content: '';
     display: block;
     position: relative;
@@ -422,11 +475,11 @@
 @keyframes horizontal-movement {
     from {
         transform: translateX(-20%);
-background: linear-gradient(270deg, #FFD9C2 0.3%, #FFBF99 23.3%, #FF7320 51.83%, #FFCAAB 74.8%, #FFD9C2 100.3%);        /* background: linear-gradient(270deg, #FFD9C2 0.3%, #FF7320 51.83%, #FFD9C2 100.3%); */
+        background: linear-gradient(270deg, #FFD9C2 0.3%, #FFBF99 23.3%, #FF7320 51.83%, #FFCAAB 74.8%, #FFD9C2 100.3%);
     }
     to {
         transform: translateX(1000%);
-background: linear-gradient(270deg, #FFD9C2 0.3%, #FFBF99 23.3%, #FF7320 51.83%, #FFCAAB 74.8%, #FFD9C2 100.3%);        /* background: linear-gradient(270deg, #FFD9C2 0.3%, #FF7320 51.83%, #FFD9C2 100.3%); */
+        background: linear-gradient(270deg, #FFD9C2 0.3%, #FFBF99 23.3%, #FF7320 51.83%, #FFCAAB 74.8%, #FFD9C2 100.3%);
     }
 }
 @media (min-width: 800px) and (max-width: 1480px) {

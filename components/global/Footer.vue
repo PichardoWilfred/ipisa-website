@@ -3,11 +3,11 @@
     <div class="separator-orange bg-orange-300 w-full h-[30px] mb-10" />
     <footer class="px-4 lg:px-8">
         <div class="flex flex-col align-center logo min-[800px]:max-w-[320px]">
-            <h4 class="font-raleway text-black-400 font-semibold text-[22px] min-[1400px]:text-[26px] max-sm:text-center">
+            <h4 class="font-raleway text-black-400 font-semibold text-[22px] min-[1400px]:text-[26px] max-md:text-center">
                 ¡Sigue contactándonos!
             </h4>
-            <p class="text-black font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-sm:text-center max-sm:mx-auto">
-                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
+            <p class="text-black font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-md:text-center max-md:mx-auto">
+                Te invitamos a ser parte de nuestra trayectoria educativa y descubrir cómo podemos impulsar tu futuro.
             </p>
             <div class="flex flex-col items-center">
                 <nuxt-icon name="general/ipisa-logo" class="mx-auto text-[180px]" filled />
@@ -20,7 +20,8 @@
         <div class="links">
             <div class="extracurricular-activities">
                 <h5 class="title">
-                    Actividades Extracurriculares
+                    Pastoral
+                    <!-- Actividades Extracurriculares -->
                 </h5>
                 <ul class="activities">
                     <li v-for="({label, address }, index) in extracurricular_activities" :key="index" class="activity">
@@ -50,6 +51,9 @@
                         IPISA
                     </li>
                     <li class="section">
+                        Filosofía
+                    </li>
+                    <li class="section">
                         Nuestra Trayectoria
                     </li>
                     <li class="section">
@@ -57,9 +61,6 @@
                     </li>
                     <li class="section">
                         Promociones
-                    </li>
-                    <li class="section">
-                        Visión y Misión
                     </li>
                 </ul>
             </div>
@@ -121,7 +122,7 @@
 
     <div class="flex max-[800px]:flex-col items-center w-full justify-between px-6 min-[800px]:px-10 pb-8 min-[800px]:pb-16 pt-2">
         <p class="text-gray-200 font-raleway text-[14px] min-[800px]:text-[16px] max-[800px]:mb-4">
-            2023 © IPISA, Todos los Derechos Reservados.
+            {{ new Date().getFullYear() }} © IPISA, Todos los Derechos Reservados.
         </p>
         <div class="flex space-x-2 min-[800px]:space-x-4 social-media">
             <nuxt-icon name="layout/instagram" class="cursor-pointer text-[30px]" filled />
