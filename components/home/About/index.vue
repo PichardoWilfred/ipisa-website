@@ -151,10 +151,10 @@
     @apply w-full lg:p-[40px];
 }
 .illustration.school :deep(svg) {
-    @apply xl:max-w-[680px] max-sm:max-w-[300px] max-sm:h-[190px] max-w-[520px] h-[400px] lg:h-[500px] translate-y-[2vw];
+    @apply xl:max-w-[680px] max-sm:max-w-[300px] max-sm:h-[190px] max-w-[520px] h-[400px] lg:h-[500px] translate-y-[2vw] xl:translate-x-[-2vw];
 }
 .illustration.philosofy :deep(svg) {
-    @apply xl:max-w-[690px] h-[300px] lg:h-[500px] translate-x-[-2vw] lg:translate-x-[30px];
+    @apply xl:max-w-[690px] h-[300px] lg:h-[500px] translate-x-[-4vw] lg:translate-x-[-1-vw];
 }
 .illustration.history :deep(svg) {
     @apply xl:max-w-[760px] h-[300px] lg:h-[460px] translate-y-[40px];

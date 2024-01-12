@@ -5,7 +5,7 @@
             <div class="bg-[#00488D99] z-20 absolute top-0 left-0 w-full h-full" />
             <swiper :modules="[Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop 
             :autoplay="{ delay: 4000 }" effect="fade" crossFade>
-                <swiper-slide v-for="(img, index) in [1, 2, 3]" :key="index">
+                <swiper-slide v-for="(img, index) in [1, 2, 3, 4, 5]" :key="index">
                     <nuxt-img :src="`/modules/home/wallpaper/portrait-${img}.jpg`"
                         class="object-cover w-screen h-screen" 
                         sizes="400px md:1200px xl:100%"

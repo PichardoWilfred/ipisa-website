@@ -14,38 +14,6 @@
             y llena de aprendizaje. <b>¡Bienvenidos a la familia de</b> <b class="separator">IPISA!</b>
         </p>
 
-        <div class="table-pagination mobile" :class="{disabled: search_by === 'number'}">
-            <button class="pagination-btn" @click.prevent="set_index(0, 'substract')">
-                <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
-            </button>
-            <ul class="pagination">
-                <template v-if="show_first_page">
-                    <li :class="{ active: 1 === page_index }" 
-                    @click.prevent="set_index(1, 'change')">
-                        1
-                    </li>
-                    <li>
-                        ...
-                    </li>
-                </template>
-                <li v-for="(page, index_) of pagination" :key="index_" :class="{ active: page === page_index }" 
-                @click.prevent="set_index(page, 'change')">
-                    {{ page }}
-                </li>
-                <template v-if="show_last_page">
-                    <li>
-                        ...
-                    </li>
-                    <li :class="{ active: last_page === page_index}" 
-                    @click.prevent="set_index(last_page, 'change')">
-                        {{ last_page }}
-                    </li>
-                </template>
-            </ul>
-            <button class="pagination-btn" @click.prevent="set_index(0, 'add')">
-                <nuxt-icon name="home/new-students/arrow-table" class="right text-[18px]" filled />
-            </button>
-        </div>
         <div class="table-header">
             <div class="flex items-end justify-end min-h-[22px] w-full sm:max-w-[320px]">
                 <span class="font-raleway font-medium text-[12px] text-black mb-1 transition-all" 
@@ -69,7 +37,39 @@
                         <icon v-else-if="search_by === 'number'" name="tabler:list-numbers" filled size="24px" class="duration-75" :class="{'error': search_by_error}" />
                     </Transition>
                 </button>
-
+            </div>
+            
+            <div class="table-pagination mobile" :class="{disabled: search_by === 'number'}">
+                <button class="pagination-btn" @click.prevent="set_index(0, 'substract')">
+                    <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
+                </button>
+                <ul class="pagination">
+                    <template v-if="show_first_page">
+                        <li :class="{ active: 1 === page_index }" 
+                        @click.prevent="set_index(1, 'change')">
+                            1
+                        </li>
+                        <li>
+                            ...
+                        </li>
+                    </template>
+                    <li v-for="(page, index_) of pagination" :key="index_" :class="{ active: page === page_index }" 
+                    @click.prevent="set_index(page, 'change')">
+                        {{ page }}
+                    </li>
+                    <template v-if="show_last_page">
+                        <li>
+                            ...
+                        </li>
+                        <li :class="{ active: last_page === page_index}" 
+                        @click.prevent="set_index(last_page, 'change')">
+                            {{ last_page }}
+                        </li>
+                    </template>
+                </ul>
+                <button class="pagination-btn" @click.prevent="set_index(0, 'add')">
+                    <nuxt-icon name="home/new-students/arrow-table" class="right text-[18px]" filled />
+                </button>
             </div>
         </div>
         <Transition name="fade-fast" mode="out-in">
@@ -753,7 +753,7 @@
     pointer-events: none;
 }
 .table-pagination.mobile {
-    @apply lg:hidden mt-0;
+    @apply w-full lg:hidden mt-0;
 }
 .table-pagination .pagination {
     @apply flex mx-auto lg:mx-3;

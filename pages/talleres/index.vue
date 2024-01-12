@@ -1,24 +1,40 @@
 <template>
     <WallpaperPlaceholder />   
     <main class="min-h-[50vh] py-24">
-        <div class="flex-col items-center">
-            <button class="font-raleway font-medium text-[2rem] bg-blue-300 text-white px-10 py-4 radius-[4px] max-w-[320px]" 
-            @click.prevent="trigger_animation">
-                animate
-            </button>
-        </div>
-        <div class="relative max-sm:py-[20rem] w-[98%] min-[1480px]:w-[85%] mx-auto">
-            <div class="absolute w-full h-full z-30">
-                <div v-if="in_tablet" class="tablet-color-bg" :class="[{'blue-animation': blue_animation, 'orange-animation': orange_animation}]" />
-                <div v-if="!in_tablet" class="desktop-color-bg" :class="[{'color-animation': color_animation }]">
-                    <!-- <div class="middle-bg" /> -->
+        <button class="hidden font-raleway font-medium text-[2rem] bg-blue-300 text-white px-10 py-4 radius-[4px] max-w-[320px] mx-auto" 
+        @click.prevent="trigger_animation">
+            animate
+        </button>
+        <div class="relative top-0 left-0 max-sm:py-[6rem] w-full min-[1480px]:w-[85%] mx-auto md:rounded-[35px] md:overflow-hidden">
+            <div class="max-md:absolute top-0 left-0 w-full h-full">
+                <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-full md:h-full transition-all z-20">
+                    <template v-if="!in_mobile">
+                        <div v-if="in_tablet" class="tablet-color-bg relative w-full h-full overflow-hidden transition-all" 
+                        :class="[{'blue-animation': blue_animation, 'orange-animation': orange_animation}]" />
+                        <div v-if="!in_tablet" class="desktop-color-bg relative w-full h-full overflow-hidden transition-all" 
+                        :class="[{'color-animation': color_animation }]" />
+                    </template>
+                    <template v-else>
+                        <div class="absolute opacity-80 md:opacity-0 top-0 left-0 w-full h-full bg-white z-20" />
+                    </template>
+                    <nuxt-img v-for="({ name }, index) in cards"
+                        sizes="400px md:1200px xl:100%"
+                        :src="`/modules/workshop/${name}-1.JPG`"
+                        :placeholder="[50, 25, 75, 5]"
+                        densities="x1 x2"
+                        class="absolute top-0 left-0 w-screen h-screen md:w-full md:h-full md:opacity-0 object-cover transition-all" 
+                        :class="{'workshop-focused': name === focused_workshop}"
+                        />
                 </div>
             </div>
-            <div class="card-container z-40" ref="card_container">
-                <div class="card" v-for="({ icon, title, icon_class, show_element, description }, index) in cards" :key="index" @mousemove.passive="trackMouse"
-                :ref="(el) => { cards[index].element = el}" :class="[icon_class]">
-                    <nuxt-icon class="mx-auto max-[1480px]:min-[800px]:mx-[0] mb-5 px-5" :name="icon" filled />
-                    <div class="flex flex-col max-[1480px]:min-[800px]:items-start">
+            <div class="card-container max-md:border-0 md:border-[5px] md:border-[white] md:radius-[30px] z-30" ref="card_container" :class="{'translucent': enable_background}">
+                <div class="card max-[1480px]:min-[800px]:flex-row max-[1480px]:min-[800px]:items-center 
+                flex flex-col justify-center md:bg-white text-[#7D96BD] object-cover cursor-pointer transition-all" 
+                v-for="({ icon, title, name, show_element, description }, index) in cards" :key="index" 
+                @mouseenter.prevent="apply_background(name)"
+                :ref="(el) => { cards[index].element = el}" :class="[name]">
+                    <nuxt-icon class="no-shadow mx-auto max-[1480px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5" :name="icon" filled />
+                    <div class="flex flex-col max-[1480px]:min-[800px]:items-start max-md:pb-10">
                         <h4 class="max-[1480px]:min-[800px]:text-start text-center my-[10px] font-bold font-raleway text-[1.3rem] leading-[20px]">
                             <template v-for="({ name, class_, br }, title_index) in title" >
                                 <span v-if="!br" :class="class_" :key="title_index">
@@ -27,7 +43,7 @@
                                 <br v-else />
                             </template>
                         </h4>
-                        <p class="max-[1480px]:min-[800px]:text-start text-center font-raleway text-[#7D96BD] font-medium leading-[18px] max-w-[310px] mx-auto">
+                        <p class="max-[1480px]:min-[800px]:text-start text-center font-raleway leading-[18px] max-w-[310px] md:mb-5 mx-auto">
                             {{ description }}
                         </p>
                     </div>
@@ -37,9 +53,6 @@
     </main>
 </template>
 <script setup>
-
-
-
     //(TODO) convert this into somethign with animation end
     const temp_timer = ref(0);
 
@@ -52,26 +65,30 @@
     const once = ref(true);
 
     function trigger_animation() {
+        once.value = false;
         if (in_tablet.value) {
-            once.value = false;
             clearTimeout(temp_timer.value);
-            blue_animation.value =! blue_animation.value;
+            blue_animation.value =! blue_animation.value; // ternary cause of debugging purposes
             temp_timer.value = setTimeout(() => {
                 orange_animation.value =! orange_animation.value;
             }, 650);
         }else {
-            color_animation.value =! color_animation.value;
+            color_animation.value =! color_animation.value; // ternary cause of debugging purposes
         }
+        background_image_timer.value = setTimeout(() => {
+            enable_background.value = true;
+        }, in_tablet.value ? 1300:650);
     }
     const card_container = ref(null);
 
     const in_tablet = ref(false);
+    const in_mobile = ref(false);
 
     // cards
     const cards = reactive([
         {
             icon: 'workshop/confeccion-patronaje',
-            icon_class: 'confeccion',
+            name: 'confeccion',
             title: [
                 {
                     class_: 'blue',
@@ -92,7 +109,7 @@
         },        
         {
             icon: 'workshop/desarrollo-aplicaciones-informaticas',
-            icon_class: 'desarrollo',
+            name: 'desarrollo',
             title: [
                 {
                     class_: 'blue',
@@ -128,7 +145,7 @@
         },
         {
             icon: 'workshop/electromecanica-vehiculos',
-            icon_class: 'electromecanica',
+            name: 'electromecanica',
             title: [
                 {
                     class_: 'blue',
@@ -152,7 +169,7 @@
         },
         {
             icon: 'workshop/gestion-administrativa-tributaria',
-            icon_class: 'gestion',
+            name: 'gestion',
             title: [
                 {
                     class_: 'blue',
@@ -176,7 +193,7 @@
         },
         {
             icon: 'workshop/equipos-electronicos',
-            icon_class: 'equipos',
+            name: 'equipos',
             title: [
                 {
                     class_: 'blue',
@@ -193,7 +210,7 @@
         },
         {
             icon: 'workshop/ensamblaje-muebles',
-            icon_class: 'ensamblaje',
+            name: 'ensamblaje',
             title: [
                 {
                     class_: 'blue',
@@ -214,7 +231,7 @@
         },
         {
             icon: 'workshop/mecanizado',
-            icon_class: 'mecanizado',
+            name: 'mecanizado',
             title: [
                 {
                     class_: 'blue',
@@ -231,7 +248,7 @@
         },
         {
             icon: 'workshop/instalaciones-electricas',
-            icon_class: 'instalaciones',
+            name: 'instalaciones',
             title: [
                 {
                     class_: 'blue',
@@ -251,7 +268,18 @@
     const clientX = ref(0);
     const clientY = ref(0);
 
+    const focused_workshop = ref(null);
+    const background_image_timer = ref(0);
+    const enable_background = ref(false);
+    const background_timer = ref(0);
 
+    const apply_background = (workshop) => {
+        clearTimeout(background_timer.value);
+        background_timer.value = setTimeout(() => {
+            if (focused_workshop.value === workshop || !enable_background.value) return;
+            focused_workshop.value = workshop;
+        }, 120);
+    }
     const trackMouse = (e) => { // for translating the shapes depending on the mouse
         // const parentRect = card_container.value.getBoundingClientRect(); // Get the parent's bounding client
         // clientX.value = e.clientX - parentRect.left;
@@ -267,19 +295,41 @@
         // });
     }
     onMounted(() => {
+
         in_tablet.value = window.matchMedia("(min-width: 800px) and (max-width: 1480px)").matches;
-        // callback
-        function observer_callback(entries, observer) {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) if (once.value) trigger_animation();
+        in_mobile.value = window.matchMedia("(max-width: 800px)").matches;
+        if (in_mobile) {
+            //   entry.boundingClientRect | intersectionRatio | intersectionRect | isIntersecting | rootBounds | target | time
+            function observe_card_callback(entries, observer) { // callback
+                entries.forEach(({ target, intersectionRatio}) => {
+                    console.dir(target);
+                    if ((intersectionRatio * 100) > 50.00) {
+                        console.log(`| ${target.classList[0]} |`);
+                    }
+                });
+            }
+            observer.value = new IntersectionObserver(observe_card_callback, { threshold: in_tablet.value ? 0.5 : 1 }); // to disconnect it later
+            cards.map(({ element }) => {
+                observer.value.observe(element);
             });
+        }else {
+            function observe_container_callback(entries, observer) { // callback
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        if (once.value) trigger_animation();
+                    }
+                });
+            }
+            observer.value = new IntersectionObserver(observe_container_callback, { threshold: in_tablet.value ? 0.5 : 1 }); // to disconnect it later
+            observer.value.observe(card_container.value);
         }
-        observer.value = new IntersectionObserver(observer_callback, { threshold: in_tablet.value ? 0.5 : 1 }); // to disconnect it later
-        observer.value.observe(card_container.value);
     });
     onBeforeUnmount(() => {
         observer.value.disconnect();
+        
+        clearTimeout(background_timer.value);
         clearTimeout(temp_timer.value);
+        clearTimeout(background_image_timer.value)
     });
 </script>
 <style scoped>
@@ -288,12 +338,50 @@
     display: grid;
     justify-content: center;
     gap: 2px;
-    border: 3px solid white;
 }
-.card {
-    @apply flex flex-col 
-    max-[1480px]:min-[800px]:flex-row max-[1480px]:min-[800px]:items-center justify-center 
-    cursor-pointer min-[800px]:bg-white transition-all;
+img.workshop-focused {
+    opacity: 0.3;
+    animation: zoom-in 150ms ease-in-out forwards;
+}
+@keyframes zoom-in {
+    from {
+
+    }to {
+        
+    }
+}
+.card-container.translucent {
+    animation: card-container-show 300ms ease-in-out forwards;
+}
+
+@keyframes card-container-show {
+    from {  
+        opacity: 0;
+        gap: 2px;
+    } to {
+        opacity: 1;
+        gap: 0px;
+    }
+}
+.card-container.translucent .card {
+    font-weight: 500;
+    color: #5E6B81;
+    background-color: transparent;
+    
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+}
+.card-container.translucent .card:hover {
+    background-color: white;
+    color: #7D96BD;
+    border-color: transparent;
+}
+.card-container.translucent .card :deep(svg) .shadow {
+    opacity: 0; 
+    @apply transition-all;
+}
+.card-container.translucent .card:hover :deep(svg) .shadow {
+    opacity: 1;
 }
 .card.confeccion :deep(svg){
     width: 140px;
@@ -332,19 +420,10 @@
     @apply scale-[1.1] translate-y-[15px];
 }
 .card.desarrollo h4 {
-    @apply text-[0.99rem];
+    font-size: 0.99rem;
 }
 .card:is(.gestion, .electromecanica) h4 {
-    @apply text-[1.2rem];
-}
-.white-blur {
-    @apply absolute top-0 left-0 w-full h-full z-30;
-    background: linear-gradient(98deg, rgba(255, 255, 255, 0.404) 25%, rgba(255, 255, 255, 0.40) 78.3%);
-    backdrop-filter: blur(6px);
-}
-.desktop-color-bg {
-    position: relative; width: 100%; height: 100%; overflow: hidden;
-    @apply transition-all;
+    font-size: 1.2rem;
 }
 .desktop-color-bg.color-animation {
     animation: gray-background 800ms ease-in-out 1;
@@ -360,26 +439,34 @@
         background-color: white;
     }
 }
-
-.desktop-color-bg.color-animation::before { /* animation */
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0px;
-    left: 0;
-    width: 43%;
-    height: 20%;
-    animation: blue-vertical-movement 500ms ease-in-out 1 forwards 120ms;
-}
 .desktop-color-bg.color-animation::after { /* animation */
     content: '';
     display: block;
     position: absolute;
     top: 0px;
     right: 0;
-    width: 43%;
+    width: 100%;
     height: 20%;
-    animation: orange-vertical-movement 500ms ease-in-out 1 forwards 120ms;
+    animation: color-vertical-movement 500ms ease-in-out 1 forwards 120ms;
+}
+@keyframes color-vertical-movement {
+    from {
+        transform: translateY(-120%);
+        background: linear-gradient(180deg, #DAEEFF 0%, #6FBBFF 40%, #52ADFF 53.5%, #85C5FF 65%, #DAEEFF 100%);
+    }
+    40% {
+        background: linear-gradient(180deg, #DAEEFF 0%, #6FBBFF 40%, #52ADFF 53.5%, #85C5FF 65%, #DAEEFF 100%);
+    }
+    45% {
+        background: linear-gradient(180deg, #F1F7FF 0%, #CEE4FF 54.64%, #F1F7FF 107.14%);
+    }
+    50% {
+        background: linear-gradient(180deg, #ffede1 0.3%, #FFBF99 23.3%, #FFAB79 51.83%, #FFCAAB 74.8%, #ffede1 100.3%);
+    }
+    to {
+        transform: translateY(495%);
+        background: linear-gradient(180deg, #ffede1 0.3%, #FFBF99 23.3%, #FFAB79 51.83%, #FFCAAB 74.8%, #ffede1 100.3%);
+    }
 }
 .middle-bg {
     position: absolute;
@@ -389,24 +476,7 @@
     width: 5%;
     height: 20%;
 }
-.desktop-color-bg.color-animation .middle-bg {
-    animation: gray-vertical-movement 500ms ease-in-out 1 forwards 120ms;
-}
-@keyframes gray-vertical-movement {
-    from {
-        transform: translateY(-120%);
-        background: linear-gradient(180deg, #c3d4eb 0%, #94acc9 54.64%, #c3d4eb 107.14%);
-    }
-    to {
-        transform: translateY(500%);
-        background: linear-gradient(180deg, #c3d4eb 0%, #94acc9 54.64%, #c3d4eb 107.14%);
-    }
-}
 /* background: linear-gradient(180deg, #F1F7FF 0%, #CEE4FF 54.64%, #F1F7FF 107.14%); */
-.tablet-color-bg {
-    position: relative; width: 100%; height: 100%; overflow: hidden;
-    @apply transition-all;
-}
 .tablet-color-bg.blue-animation { /* animation */
     animation: blue-background 700ms ease-in-out 1;
 }
@@ -437,16 +507,6 @@
     to {
         transform: translateY(500%);
         background: linear-gradient(180deg, #DAEEFF 0%, #6FBBFF 40%, #52ADFF 53.5%, #85C5FF 65%, #DAEEFF 100%);
-    }
-}
-@keyframes orange-vertical-movement {
-    from {
-        transform: translateY(-120%);
-        background: linear-gradient(180deg, #ffede1 0.3%, #FFBF99 23.3%, #FFAB79 51.83%, #FFCAAB 74.8%, #ffede1 100.3%);
-    }
-    to {
-        transform: translateY(500%);
-        background: linear-gradient(180deg, #ffede1 0.3%, #FFBF99 23.3%, #FFAB79 51.83%, #FFCAAB 74.8%, #ffede1 100.3%);
     }
 }
 .tablet-color-bg.orange-animation { /* animation */
@@ -525,9 +585,11 @@
 @media (max-width: 800px) {
     .card-container {
         grid-template-columns: repeat(1, min(470px, 81.5vw));
-        grid-template-rows: repeat(8, 282px);
-        gap: 50vh;
+        grid-template-rows: repeat(8, 80vh);
+        row-gap: 20vh;
     }
+    .card-container .card:first-child { padding-top: 20vh; }
+    .card-container .card:last-child { padding-bottom: 20vh; }
 }
 
 </style>
