@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  ssr: true,
   devtools: { enabled: true },
   css: [
     '@/assets/css/main.css',
@@ -60,6 +61,6 @@ export default defineNuxtConfig({
           ital: [100, 200, 300, 400, 500, 600, 700, 900]
         },
       }
-  }],
+    }],
   ],
 })
