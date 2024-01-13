@@ -21,10 +21,11 @@
                 <div class="orange-background color-background" />
                 <div class="white-blur" />
             </div>
-            <div class="card-container">
-                <!-- :ref="(el) => { cards[index].element = el}"  @mousemove.passive="trackMouse" -->
-                <div class="card" v-for="({ icon, title, icon_class, show_element }, index) in cards" :key="index" 
-                :class="[icon_class, {'in-viewport': show_element }]">
+            <div class="card-container relative w-[85%] h-full mx-auto z-40" @mousemove.passive="trackMouse">
+                <!-- :ref="(el) => { cards[index].element = el}"  -->
+                <div class="card flex flex-col justify-end rounded-[20px] cursor-pointer transition-all" 
+                v-for="({ icon, title, card_name, show_element }, index) in cards" :key="index" :id="card_name"
+                :class="[card_name, {'in-viewport': show_element }]">
                     <nuxt-icon class="mx-auto" :name="icon" filled />
                     <h4>
                         <template v-for="({ name, class_, br }, title_index) in title" >
@@ -48,7 +49,7 @@
     const cards = reactive([
         {
             icon: 'workshop/confeccion-patronaje',
-            icon_class: 'confeccion',
+            card_name: 'confeccion',
             title: [
                 {
                     class_: 'blue',
@@ -63,12 +64,11 @@
                     name: 'Patronaje'
                 },
             ],
-            element: null,
             show_element: false
         },        
         {
             icon: 'workshop/desarrollo-aplicaciones-informaticas',
-            icon_class: 'desarrollo',
+            card_name: 'desarrollo',
             title: [
                 {
                     class_: 'blue',
@@ -98,12 +98,11 @@
                     name: ' Informáticas'
                 }
             ],
-            element: null,
             show_element: false
         },
         {
             icon: 'workshop/electromecanica-vehiculos',
-            icon_class: 'electromecanica',
+            card_name: 'electromecanica',
             title: [
                 {
                     class_: 'blue',
@@ -121,12 +120,11 @@
                     name: 'Vehículos'
                 },
             ],
-            element: null,
             show_element: false
         },
         {
             icon: 'workshop/gestion-administrativa-tributaria',
-            icon_class: 'gestion',
+            card_name: 'gestion',
             title: [
                 {
                     class_: 'blue',
@@ -144,12 +142,11 @@
                     name: 'Tributaria'
                 },
             ],
-            element: null,
             show_element: false
         },
         {
             icon: 'workshop/equipos-electronicos',
-            icon_class: 'equipos',
+            card_name: 'equipos',
             title: [
                 {
                     class_: 'blue',
@@ -160,12 +157,11 @@
                     name: 'Electrónicos'
                 },
             ],
-            element: null,
             show_element: false
         },
         {
             icon: 'workshop/ensamblaje-muebles',
-            icon_class: 'ensamblaje',
+            card_name: 'ensamblaje',
             title: [
                 {
                     class_: 'blue',
@@ -180,12 +176,11 @@
                     name: 'Muebles'
                 },
             ],
-            element: null,
             show_element: false
         },
         {
             icon: 'workshop/mecanizado',
-            icon_class: 'mecanizado',
+            card_name: 'mecanizado',
             title: [
                 {
                     class_: 'blue',
@@ -196,12 +191,11 @@
                     name: 'nizado'
                 },
             ],
-            element: null,
             show_element: false
         },
         {
             icon: 'workshop/instalaciones-electricas',
-            icon_class: 'instalaciones',
+            card_name: 'instalaciones',
             title: [
                 {
                     class_: 'blue',
@@ -212,7 +206,6 @@
                     name: 'Eléctricas'
                 },
             ],
-            element: null,
             show_element: false
         }
     ]);
@@ -240,7 +233,8 @@
     // mobile
     const in_mobile = ref(true);
     onMounted(() => {
-        cards.map(({ element }, index) => { // for showing presenting the workshop cards.
+        cards.map(({ card_name }, index) => { // for showing presenting the workshop cards.
+            const element = document.querySelector(`#${card_name}`);
             const { stop } = useIntersectionObserver(element, ([{ isIntersecting }], observerElement) => {
                 if (isIntersecting) {
                     cards[index].show_element = true; 
@@ -258,16 +252,14 @@
     display: grid;
     justify-content: center;
     gap: 22px;
-    @apply relative w-[85%] h-full mx-auto z-40;
 }
 .card {
-    @apply flex flex-col justify-end rounded-[20px] cursor-pointer transition-all;
     border: 4px solid rgba(255, 255, 255, 0.70);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.60) 100%);
     backdrop-filter: blur(10px);
 }
 .card-container .card.in-viewport {
-    animation: show-card 850ms cubic-bezier(.68,.82,0,.8)  forwards;
+    animation: show-card 850ms cubic-bezier(.68,.82,0,.8) forwards;
 }
 @keyframes show-card {
     from {

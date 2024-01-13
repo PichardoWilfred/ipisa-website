@@ -15,24 +15,24 @@
                         :class="[{'color-animation': color_animation }]" />
                     </template>
                     <template v-else>
-                        <div class="absolute opacity-80 md:opacity-0 top-0 left-0 w-full h-full bg-white z-20" />
+                        <div class="absolute opacity-30 md:opacity-0 top-0 left-0 w-full h-full bg-white z-20" />
                     </template>
                     <nuxt-img v-for="({ name }, index) in cards"
                         sizes="400px md:1200px xl:100%"
                         :src="`/modules/workshop/${name}-1.JPG`"
                         :placeholder="[50, 25, 75, 5]"
                         densities="x1 x2"
-                        class="absolute top-0 left-0 w-screen h-screen md:w-full md:h-full md:opacity-0 object-cover transition-all" 
+                        class="absolute top-0 left-0 w-screen h-screen md:w-full md:h-full opacity-0 object-cover transition-all" 
                         :class="{'workshop-focused': name === focused_workshop}"
                         />
                 </div>
             </div>
-            <div class="card-container max-md:border-0 md:border-[5px] md:border-[white] md:radius-[30px] z-30" ref="card_container" :class="{'translucent': enable_background}">
+            <div class="card-container max-md:border-0 md:border-[5px] md:border-[white] md:radius-[30px] z-30" 
+            ref="card_container" :class="{'translucent': enable_background}">
                 <div class="card max-[1480px]:min-[800px]:flex-row max-[1480px]:min-[800px]:items-center 
                 flex flex-col justify-center md:bg-white text-[#7D96BD] object-cover cursor-pointer transition-all" 
-                v-for="({ icon, title, name, show_element, description }, index) in cards" :key="index" 
-                @mouseenter.prevent="apply_background(name)"
-                :ref="(el) => { cards[index].element = el}" :class="[name]">
+                v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name" :class="[name]"
+                @mouseenter.prevent="apply_background(name)">
                     <nuxt-icon class="no-shadow mx-auto max-[1480px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5" :name="icon" filled />
                     <div class="flex flex-col max-[1480px]:min-[800px]:items-start max-md:pb-10">
                         <h4 class="max-[1480px]:min-[800px]:text-start text-center my-[10px] font-bold font-raleway text-[1.3rem] leading-[20px]">
@@ -65,6 +65,7 @@
     const once = ref(true);
 
     function trigger_animation() {
+        console.log('uwu');
         once.value = false;
         if (in_tablet.value) {
             clearTimeout(temp_timer.value);
@@ -77,7 +78,7 @@
         }
         background_image_timer.value = setTimeout(() => {
             enable_background.value = true;
-        }, in_tablet.value ? 1300:650);
+        }, in_tablet.value ? 1300 : 650);
     }
     const card_container = ref(null);
 
@@ -295,21 +296,21 @@
         // });
     }
     onMounted(() => {
-
         in_tablet.value = window.matchMedia("(min-width: 800px) and (max-width: 1480px)").matches;
         in_mobile.value = window.matchMedia("(max-width: 800px)").matches;
-        if (in_mobile) {
-            //   entry.boundingClientRect | intersectionRatio | intersectionRect | isIntersecting | rootBounds | target | time
+        if (in_mobile.value) {             // entry.boundingClientRect | intersectionRatio | intersectionRect | isIntersecting | rootBounds | target | time
             function observe_card_callback(entries, observer) { // callback
                 entries.forEach(({ target, intersectionRatio}) => {
-                    console.dir(target);
                     if ((intersectionRatio * 100) > 50.00) {
-                        console.log(`| ${target.classList[0]} |`);
+                        enable_background.value = true;
+                            apply_background(target.id);
+                        // }
                     }
                 });
             }
             observer.value = new IntersectionObserver(observe_card_callback, { threshold: in_tablet.value ? 0.5 : 1 }); // to disconnect it later
-            cards.map(({ element }) => {
+            cards.map(({ name }) => {
+                const element = document.querySelector(`#${name}`);
                 observer.value.observe(element);
             });
         }else {
@@ -590,6 +591,12 @@ img.workshop-focused {
     }
     .card-container .card:first-child { padding-top: 20vh; }
     .card-container .card:last-child { padding-bottom: 20vh; }
+    .card-container.translucent .card {
+        border-color: transparent;
+    }
+    .card-container.translucent .card:hover {
+        background-color: transparent;
+    }
 }
 
 </style>
