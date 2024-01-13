@@ -1,7 +1,7 @@
 <template>
     <div class="portrait relative overflow-hidden h-[75vh]">
         <div class="absolute top-0 left-0 w-full h-full bg-[#00488D70] z-10"></div>
-        <nuxt-img  class="wallpaper w-full h-full object-cover transition-all z-[9]" :class="{'zoom-in': zoom, 'zoom-normal': !zoom}"
+        <nuxt-img  class="wallpaper w-full h-full object-cover transition-all z-[9]" :class="{'zoom-in': zoom}"
         format="webp" src="/modules/home/wallpaper/portrait-2.JPG" sizes="100vw sm:50vw md:400px"
         :placeholder="[50, 25, 75, 5]" densities="x1 x2" />
     </div>
@@ -107,10 +107,6 @@ div.portrait img.wallpaper.zoom-in {
     filter: blur(10px);
     transform: scale(1.3);
 }
-/* button {
-    border-radius: 12.872px;
-    background: linear-gradient(0deg, #FF4A4A 0%, #FF6000 92.55%);
-} */
 .about-modules {
     display: grid;
     grid-template-rows: 500px 2px 500px 2px 500px 2px 500px;

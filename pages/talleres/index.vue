@@ -346,9 +346,11 @@ img.workshop-focused {
 }
 @keyframes zoom-in {
     from {
-
+        filter: blur(10px);
+        transform: scale(1.05);
     }to {
-        
+        filter: blur(0px);
+        transform: scale(1);
     }
 }
 .card-container.translucent {
