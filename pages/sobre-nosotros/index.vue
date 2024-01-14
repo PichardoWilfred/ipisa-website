@@ -9,7 +9,7 @@
         <h1 class="font-raleway text-center font-semibold text-[2.1rem] lg:text-[3.6rem]">
             <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>
         </h1>
-        <p class="text-center text-black font-raleway text-[1.1rem] mx-auto w-[90%] sm:w-[70%] xl:w-[50%] mb-4">
+        <p class="text-justify text-black font-raleway text-[1.1rem] mx-auto w-[90%] sm:w-[70%] xl:w-[50%] mb-4">
             Descubre más sobre el <b>Instituto Politécnico Industrial de Santiago (IPISA) </b>explorando lo que tenemos para ofrecerte. 
             Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de 
             <b class="text-blue font-bold">valores</b> <b class="orange">cristianos.</b>
@@ -38,10 +38,8 @@
 import { useLayoutStore } from '@/store/layout';
 
 let wallpaper;
+
 const zoom = ref(true);
-function interpolate () {  // zoom.value !=  zoom.value | not working for some reason ???
-    zoom.value = (zoom.value) ? false : true;
-}
 function apply_zoom () {
     zoom.value = false;
 }

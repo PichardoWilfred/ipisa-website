@@ -1,11 +1,25 @@
 <template>
-    <WallpaperPlaceholder />   
-    <main class="min-h-[50vh] py-24">
-        <button class="hidden font-raleway font-medium text-[2rem] bg-blue-300 text-white px-10 py-4 radius-[4px] max-w-[320px] mx-auto" 
-        @click.prevent="trigger_animation">
-            animate
-        </button>
-        <div class="relative top-0 left-0 max-sm:py-[6rem] w-full min-[1480px]:w-[85%] mx-auto md:rounded-[35px] md:overflow-hidden">
+    <div class="portrait relative overflow-hidden h-[75vh]">
+        <div class="absolute top-0 left-0 w-full h-full bg-[#00488D70] z-10"></div>
+        <nuxt-img  class="wallpaper w-full h-full object-cover transition-all z-[9]" :class="{'zoom-in': zoom}"
+        format="webp" src="/modules/home/wallpaper/portrait-2.JPG" sizes="100vw sm:50vw md:400px"
+        :placeholder="[50, 25, 75, 5]" densities="x1 x2" />
+    </div>
+    <main class="py-7">
+        <h1 class="font-raleway text-center font-semibold text-[2.1rem] lg:text-[3.6rem] mb-4">
+            <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
+        </h1>
+        <p class="text-justify text-black font-raleway text-[1.1rem] mx-auto w-[90%] min-[1400px]:w-[50%] mb-14">
+            En IPISA, cada taller es una puerta de entrada a la excelencia académica y técnica. 
+            Desde el fascinante universo de la Electrónica hasta la precisión del Mecanizado, nuestros programas están diseñados para nutrir 
+            a los estudiantes con habilidades prácticas y conocimientos especializados. 
+            <br><br>
+            Cada taller es una oportunidad para forjar un camino 
+            hacia el éxito, proporcionando a los estudiantes una base sólida y las herramientas necesarias para sobresalir en sus respectivos campos. 
+            <b> Te invitamos a explorar cada taller en detalle y descubrir cómo en IPISA, estamos construyendo el futuro a través de la 
+            educación de calidad. </b>
+        </p>
+        <div class="relative top-0 left-0 max-sm:py-[6rem] w-full min-[1480px]:w-[85%] mx-auto mb-[10rem] md:rounded-[35px] md:overflow-hidden">
             <div class="max-md:absolute top-0 left-0 w-full h-full">
                 <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-full md:h-full transition-all z-20">
                     <template v-if="!in_mobile">
@@ -53,7 +67,14 @@
     </main>
 </template>
 <script setup>
-    //(TODO) convert this into somethign with animation end
+    // | (TODO) convert this into something with animation |
+    
+    let wallpaper;
+    const zoom = ref(true);
+    function apply_zoom () {
+        zoom.value = false;
+    }
+
     const temp_timer = ref(0);
 
     const color_animation = ref(false);
@@ -65,7 +86,6 @@
     const once = ref(true);
 
     function trigger_animation() {
-        console.log('uwu');
         once.value = false;
         if (in_tablet.value) {
             clearTimeout(temp_timer.value);
@@ -298,13 +318,12 @@
     onMounted(() => {
         in_tablet.value = window.matchMedia("(min-width: 800px) and (max-width: 1480px)").matches;
         in_mobile.value = window.matchMedia("(max-width: 800px)").matches;
-        if (in_mobile.value) {             // entry.boundingClientRect | intersectionRatio | intersectionRect | isIntersecting | rootBounds | target | time
+        if (in_mobile.value) { // entry.boundingClientRect | intersectionRatio | intersectionRect | isIntersecting | rootBounds | target | time
             function observe_card_callback(entries, observer) { // callback
                 entries.forEach(({ target, intersectionRatio}) => {
                     if ((intersectionRatio * 100) > 50.00) {
                         enable_background.value = true;
-                            apply_background(target.id);
-                        // }
+                        apply_background(target.id);
                     }
                 });
             }
@@ -324,13 +343,18 @@
             observer.value = new IntersectionObserver(observe_container_callback, { threshold: in_tablet.value ? 0.5 : 1 }); // to disconnect it later
             observer.value.observe(card_container.value);
         }
+        //wallpaper animation 
+        wallpaper = document.querySelector("img.wallpaper");
+        wallpaper.addEventListener('load', apply_zoom, true);
     });
     onBeforeUnmount(() => {
         observer.value.disconnect();
         
         clearTimeout(background_timer.value);
         clearTimeout(temp_timer.value);
-        clearTimeout(background_image_timer.value)
+        clearTimeout(background_image_timer.value);
+
+        wallpaper.removeEventListener('load', apply_zoom, true);
     });
 </script>
 <style scoped>
@@ -341,7 +365,7 @@
     gap: 2px;
 }
 img.workshop-focused {
-    opacity: 0.3;
+    opacity: 0.25;
     animation: zoom-in 150ms ease-in-out forwards;
 }
 @keyframes zoom-in {
@@ -356,7 +380,6 @@ img.workshop-focused {
 .card-container.translucent {
     animation: card-container-show 300ms ease-in-out forwards;
 }
-
 @keyframes card-container-show {
     from {  
         opacity: 0;

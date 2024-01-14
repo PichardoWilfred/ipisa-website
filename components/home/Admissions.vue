@@ -178,6 +178,6 @@
     },
 ]);
     const copy_requirements = () => {
-        console.log('uwu?');
+        
     }
 </script>
