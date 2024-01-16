@@ -1,5 +1,5 @@
 <template>
-    <NuxtLayout name="blank">
+    <NuxtLayout name="about">
         <template #title>
             <span class="text-blue">Historia</span> <span class="separator">del</span> <span class="text-orange">Centro</span>
         </template>
@@ -54,7 +54,6 @@
     </NuxtLayout>
 </template>
 <script setup>
-
 import { useLayoutStore } from '@/store/layout';
 const layout_store = useLayoutStore();
 const about_navigation = [

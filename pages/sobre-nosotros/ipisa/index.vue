@@ -1,5 +1,5 @@
 <template>
-    <NuxtLayout name="blank">
+    <NuxtLayout name="about" picture="/modules/home/wallpaper/portrait-2.JPG">
         <template #title>
             <span id="anchor-ipisa" class="text-blue">¿Qué</span> <span class="separator">es</span> <span class="text-orange">IPISA?</span>
         </template>

@@ -1,10 +1,5 @@
 <template>
-    <div class="portrait relative overflow-hidden h-[75vh]">
-        <div class="absolute top-0 left-0 w-full h-full bg-[#00488D70] z-10"></div>
-        <nuxt-img  class="wallpaper w-full h-full object-cover transition-all z-[9]" :class="{'zoom-in': zoom}"
-        format="webp" src="/modules/home/wallpaper/portrait-2.JPG" sizes="100vw sm:50vw md:400px"
-        :placeholder="[50, 25, 75, 5]" densities="x1 x2" />
-    </div>
+    <about-portrait-component picture="/modules/home/wallpaper/portrait-2.JPG" />
     <main class="py-7">
         <h1 class="font-raleway text-center font-semibold text-[2.1rem] lg:text-[3.6rem] mb-4">
             <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
@@ -68,12 +63,6 @@
 </template>
 <script setup>
     // | (TODO) convert this into something with animation |
-    
-    let wallpaper;
-    const zoom = ref(true);
-    function apply_zoom () {
-        zoom.value = false;
-    }
 
     const temp_timer = ref(0);
 
@@ -343,9 +332,6 @@
             observer.value = new IntersectionObserver(observe_container_callback, { threshold: in_tablet.value ? 0.5 : 1 }); // to disconnect it later
             observer.value.observe(card_container.value);
         }
-        //wallpaper animation 
-        wallpaper = document.querySelector("img.wallpaper");
-        wallpaper.addEventListener('load', apply_zoom, true);
     });
     onBeforeUnmount(() => {
         observer.value.disconnect();
@@ -354,7 +340,6 @@
         clearTimeout(temp_timer.value);
         clearTimeout(background_image_timer.value);
 
-        wallpaper.removeEventListener('load', apply_zoom, true);
     });
 </script>
 <style scoped>

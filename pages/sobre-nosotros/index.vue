@@ -1,15 +1,10 @@
 <template>
-    <div class="portrait relative overflow-hidden h-[75vh]">
-        <div class="absolute top-0 left-0 w-full h-full bg-[#00488D70] z-10"></div>
-        <nuxt-img  class="wallpaper w-full h-full object-cover transition-all z-[9]" :class="{'zoom-in': zoom}"
-        format="webp" src="/modules/home/wallpaper/portrait-2.JPG" sizes="100vw sm:50vw md:400px"
-        :placeholder="[50, 25, 75, 5]" densities="x1 x2" />
-    </div>
+    <about-portrait-component picture="/modules/home/wallpaper/portrait-2.JPG" />
     <section class="content-navigation pt-[4rem] sm:pt-[2rem]">
         <h1 class="font-raleway text-center font-semibold text-[2.1rem] lg:text-[3.6rem]">
             <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>
         </h1>
-        <p class="text-justify text-black font-raleway text-[1.1rem] mx-auto w-[90%] sm:w-[70%] xl:w-[50%] mb-4">
+        <p class="text-justify text-black font-raleway text-[1.1rem] mx-auto w-[90%] min-[1400px]:w-[50%] mb-4">
             Descubre más sobre el <b>Instituto Politécnico Industrial de Santiago (IPISA) </b>explorando lo que tenemos para ofrecerte. 
             Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de 
             <b class="text-blue font-bold">valores</b> <b class="orange">cristianos.</b>
@@ -97,14 +92,6 @@ onBeforeUnmount(() => {
 });
 </script>
 <style scoped>
-div.portrait img.wallpaper {
-    object-position: 0px 0px;
-    transition: all 150ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-div.portrait img.wallpaper.zoom-in {
-    filter: blur(10px);
-    transform: scale(1.3);
-}
 .about-modules {
     display: grid;
     grid-template-rows: 500px 2px 500px 2px 500px 2px 500px;
