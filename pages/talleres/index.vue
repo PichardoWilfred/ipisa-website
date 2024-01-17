@@ -26,13 +26,11 @@
                     <template v-else>
                         <div class="absolute opacity-30 md:opacity-0 top-0 left-0 w-full h-full bg-white z-20" />
                     </template>
-                    <nuxt-img v-for="({ name }, index) in cards"
-                        sizes="400px md:1200px xl:100%"
-                        :src="`/modules/workshop/${name}-1.JPG`"
-                        :placeholder="[50, 25, 75, 5]"
-                        densities="x1 x2"
+                    <nuxt-img v-for="({ name }, index) in cards" sizes="400px md:1200px xl:100%" densities="x1 x2"
+                        :src="`/modules/workshop/${name}-1.JPG`" 
+                        :placeholder="img_src(`/modules/workshop/${name}-1.jpg`, { h: 10, f: 'jpg', blur: 2, q: 50 })" 
                         class="absolute top-0 left-0 w-screen h-screen md:w-full md:h-full opacity-0 object-cover transition-all" 
-                        :class="{'workshop-focused': name === focused_workshop}"
+                        :class="{'workshop-focused': (name === focused_workshop)}"
                         />
                 </div>
             </div>
@@ -62,8 +60,6 @@
     </main>
 </template>
 <script setup>
-    // | (TODO) convert this into something with animation |
-
     const temp_timer = ref(0);
 
     const color_animation = ref(false);
@@ -274,6 +270,7 @@
             show_element: false
         }
     ]);
+    const img_src = useImage();
 
     const clientX = ref(0);
     const clientY = ref(0);
@@ -290,28 +287,19 @@
             focused_workshop.value = workshop;
         }, 120);
     }
-    const trackMouse = (e) => { // for translating the shapes depending on the mouse
-        // const parentRect = card_container.value.getBoundingClientRect(); // Get the parent's bounding client
-        // clientX.value = e.clientX - parentRect.left;
-        // clientY.value = e.clientY - parentRect.top;
 
-        // document.querySelectorAll("#shape-container").forEach( (shape) => {
-        //     const multiplier = shape.getAttribute("data-multiplier");
-
-        //     let x_axis = clientX.value * multiplier / 100;
-        //     let y_axis = clientY.value * multiplier / 100;
-
-        //     shape.style.transform = `translateX(${x_axis}px) translateY(${y_axis}px)`;
-        // });
-    }
+    watch(focused_workshop, (value) => {
+        
+    });
+    
     onMounted(() => {
         in_tablet.value = window.matchMedia("(min-width: 800px) and (max-width: 1480px)").matches;
         in_mobile.value = window.matchMedia("(max-width: 800px)").matches;
-        if (in_mobile.value) { // entry.boundingClientRect | intersectionRatio | intersectionRect | isIntersecting | rootBounds | target | time
+        if (in_mobile.value) {
             function observe_card_callback(entries, observer) { // callback
+                enable_background.value = true;
                 entries.forEach(({ target, intersectionRatio}) => {
                     if ((intersectionRatio * 100) > 50.00) {
-                        enable_background.value = true;
                         apply_background(target.id);
                     }
                 });

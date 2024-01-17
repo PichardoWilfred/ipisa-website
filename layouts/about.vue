@@ -7,8 +7,8 @@
                     <span class="text-blue">Página</span> <span class="text-orange">vacía</span>
                 </slot>
             </h1>
-            <div class="content">
-                <p class="default-text">
+            <div class="lg:me-10 font-raleway xl:min-w-[640px] xl:max-w-[790px] min-h-[80vh]">
+                <p class="text-black text-[1rem] lg:text-lg font-medium min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem] max-lg:mb-[3.8rem]">
                     <slot name="content">
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse sit unde porro ipsa dolor velit facilis error minima eligendi beatae? 
                         Expedita ab doloremque et voluptatum quia facilis qui corporis error?
@@ -19,8 +19,8 @@
 
         <aside class="lg:w-[360px] relative">
             <nav v-intersection-observer="[static_navigation_visible]" class="navigation">
-                <ol v-for="({ title, list }, index) in navigation_" :key="index">
-                    <h1 class="navigation-title">
+                <ol v-for="({ title, list }, index) in navigation_" :key="index" class="text-black mb-2">
+                    <h1 class="font-raleway font-bold text-black text-xl">
                         {{ title }}
                     </h1>
                     <li v-for="(section, index_) in list" :key="index_" @click.prevent="scroll_to(section.anchor)">
@@ -37,9 +37,9 @@
                 Noticias
             </h1>
             <div class="news-feed">
-                <div class="new mb-10">
-                    <nuxt-img src="/modules/home/news/new-1.png" alt="estudiantes" />
-                    <div class="author">
+                <div class="new mb-5">
+                    <nuxt-img src="/modules/home/news/new-1.png" alt="estudiantes" class="w-[480px] h-[210px] object-cover" />
+                    <div class="author flex items-center my-3">
                         <div class="avatar bg-black-600 rounded-full w-[25px] h-[25px] me-3" />
                         <h3 class="font-raleway text-md text-black-600">
                             Autor de Ejemplo
@@ -56,13 +56,13 @@
         </aside>
     </main>
 
-    <button class="mobile-navigation" ref="mobile-navigation" @click.prevent="() => { show_navigation = true; }">
+    <button class="mobile-navigation xl:hidden fixed bottom-[12px] right-[12px] bg-blue rounded-full text-white-200 font-bold p-2 hover:bg-blue-400 active:bg-blue-400 transition-all" ref="mobile-navigation" @click.prevent="() => { show_navigation = true; }">
         <Icon name="mdi-light:layers" size="48px" />
     </button>
     
     <nav class="navigation mobile" ref="mobile_navigation" :class="{ show: show_navigation }">
         <ol v-for="({ title, list }, index) in navigation_" :key="index">
-            <h1 class="navigation-title">
+            <h1 class="font-raleway font-bold text-black text-xl">
                 {{ title }}
             </h1>
             <li v-for="(section, index_) in list" :key="index_" @click.prevent="close_navigation(section.anchor, true)">
@@ -73,7 +73,7 @@
         </ol>
     </nav>
 
-    <div class="scrolled-navigation-container"
+    <div class="scrolled-navigation-container hidden md:flex"
     :class="{ 
         opened: navigation_opened,
         available: !navigation_visible,
@@ -97,7 +97,7 @@
     </div>
 
     <Transition name="fade" mode="out-in" :key="show_navigation">
-        <div v-show="show_navigation" class="mobile-navigation-mask" />
+        <div v-show="show_navigation" class="fixed top-0 left-0 h-screen w-screen bg-[#09090970] z-40" />
     </Transition>
     
 </template>
@@ -199,17 +199,10 @@
     });
 </script>
 <style scoped>
-    section div.content {
-        @apply lg:me-10 font-raleway xl:min-w-[640px] xl:max-w-[790px] min-h-[80vh];
-    }
-    section p.default-text {
-        @apply text-black text-[1rem] lg:text-lg font-medium min-h-[25vh] xl:min-h-[30vh] mb-[1.8rem] max-lg:mb-[3.8rem];
-    }
-    .mobile-navigation-mask {
-        @apply fixed top-0 left-0 h-screen w-screen bg-[#09090970] z-40;
-    }
     .scrolled-navigation-container {
-        @apply hidden md:flex items-center fixed bottom-[50%];
+        position: fixed;
+        bottom: 50%;
+        align-items: center ;
         width: max-content;
         right: -100%;
         transition: all 180ms var(--ease-1);
@@ -225,42 +218,57 @@
         transform: translateX(-390px) translateY(50%);
     }
     .scrolled-navigation-container .draggable {
-        @apply relative right-[-1px] flex flex-col justify-center items-center content-center h-[90px] w-[40px] p-2 bg-white 
-        border-2 border-r-0 border-black-500 rounded-lg rounded-br-none rounded-tr-none cursor-pointer z-10;
+        display: flex; 
+        position: relative; 
+        z-index: 10; 
+        padding: 0.5rem; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-content: center; 
+        align-items: center; 
+        border-radius: 0.5rem; 
+        border-top-right-radius: 0; 
+        border-bottom-right-radius: 0; 
+        border-width: 2px; 
+        border-right-width: 0; 
+        background-color: #ffffff; 
+        cursor: pointer; 
+        right: -1px;
+        height: 90px;
+        width: 40px;
     }
     .scrolled-navigation-container nav.navigation {
-        @apply top-0 relative p-5 z-[5] w-[390px];
+        position: relative; 
+        top: 0; 
+        padding: 1.25rem; 
+        width: 390px;
     }
     nav.navigation {
-        @apply max-xl:hidden top-[20vh] left-0 bottom-0 flex flex-col bg-white w-full p-6 lg:rounded-lg z-50 transition-all;
+        display: flex; 
+        bottom: 0; 
+        left: 0; 
+        flex-direction: column; 
+        top: 20vh;
+        background-color: #ffffff; 
+        z-index: 50; 
+        padding: 1.5rem; 
+        width: 100%; 
+        @apply max-xl:hidden lg:rounded-lg transition-all;
         transition-duration: 250ms;
         box-shadow: 0px 0.4147px 1.65879px 0px rgba(99, 160, 255, 0.35);
     }
     nav.navigation.mobile {
-        @apply flex fixed xl:hidden max-h-[420px] overflow-y-scroll;
+        position: fixed;
+        overflow-y: scroll;
+        max-height: 420px;
+        @apply flex xl:hidden overflow-y-scroll;
         top: unset !important;
         bottom: -100%;
     }
     nav.navigation.mobile.show {
         bottom: 0;
     }
-    nav.navigation ol {
-        @apply text-black mb-2;
-    }
-    nav.navigation ol h1.navigation-title {
-        @apply font-raleway font-bold text-black text-xl;
-    }
     button.mobile-navigation {
-        @apply xl:hidden fixed bottom-[12px] right-[12px] bg-blue rounded-full text-white-200 font-bold p-2 hover:bg-blue-400 active:bg-blue-400 transition-all;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    }
-    .news-feed .new {
-        @apply mb-5;
-    }
-    .news-feed .new .author {
-        @apply flex items-center my-3;
-    }
-    .news-feed .new img {
-        @apply w-[480px] h-[210px] object-cover;
     }
 </style>

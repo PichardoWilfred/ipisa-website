@@ -6,11 +6,9 @@
             <swiper :modules="[Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop 
             :autoplay="{ delay: 4000 }" effect="fade" crossFade>
                 <swiper-slide v-for="(img, index) in [1, 2, 3, 4, 5]" :key="index">
-                    <nuxt-img :src="`/modules/home/wallpaper/portrait-${img}.jpg`"
-                        class="object-cover w-screen h-screen" 
-                        sizes="400px md:1200px xl:100%"
-                        :placeholder="[50, 25, 75, 5]"
-                        densities="x1 x2" />
+                    <nuxt-img class="object-cover w-screen h-screen" sizes="600px md:1200px xl:100%"
+                        :src="`/modules/home/wallpaper/portrait-${img}.jpg`" densities="x1 x2" 
+                        :placeholder="img_src(`/modules/home/wallpaper/portrait-${img}.jpg`, { h: 10, f: 'jpg', blur: 2, q: 50 })" />
                 </swiper-slide>
             </swiper>
         </div>
@@ -44,6 +42,8 @@
     import 'swiper/css/navigation';
     import 'swiper/css/pagination';
     import 'swiper/css/effect-fade';
+
+    const img_src = useImage();
 </script>
 <style scoped>
     button.join {

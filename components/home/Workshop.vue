@@ -21,12 +21,11 @@
                 <div class="orange-background color-background" />
                 <div class="white-blur" />
             </div>
-            <div class="card-container relative w-[85%] h-full mx-auto z-40" @mousemove.passive="trackMouse">
-                <!-- :ref="(el) => { cards[index].element = el}"  -->
-                <div class="card flex flex-col justify-end rounded-[20px] cursor-pointer transition-all" 
-                v-for="({ icon, title, card_name, show_element }, index) in cards" :key="index" :id="card_name"
+            <div class="card-container relative w-[85%] h-full mx-auto z-40" @mousemove.passive="trackMouse"> <!-- :ref="(el) => { cards[index].element = el}"  -->
+                <div class="card flex flex-col justify-end rounded-[20px] cursor-pointer transition-all" @click.prevent="go_to_workshop(card_name)"
+                v-for="({ title, card_name, show_element }, index) in cards" :key="index" :id="card_name"
                 :class="[card_name, {'in-viewport': show_element }]">
-                    <nuxt-icon class="mx-auto" :name="icon" filled />
+                    <nuxt-icon class="mx-auto" :name="`workshop/${card_name}`" filled />
                     <h4>
                         <template v-for="({ name, class_, br }, title_index) in title" >
                             <span v-if="!br" :class="class_" :key="title_index">
@@ -37,9 +36,7 @@
                     </h4>
                 </div>
             </div>
-            <!-- <div class="absolute w-full h-full top-0 left-0 z-[40]" ></div> -->
         </div>
-        <!-- <hr class="border-gray-100"> -->
     </section>
 </template>
 <script setup>
@@ -48,8 +45,7 @@
     // cards
     const cards = reactive([
         {
-            icon: 'workshop/confeccion-patronaje',
-            card_name: 'confeccion',
+            card_name: 'confeccion-patronaje',
             title: [
                 {
                     class_: 'blue',
@@ -67,8 +63,7 @@
             show_element: false
         },        
         {
-            icon: 'workshop/desarrollo-aplicaciones-informaticas',
-            card_name: 'desarrollo',
+            card_name: 'desarrollo-aplicaciones-informaticas',
             title: [
                 {
                     class_: 'blue',
@@ -101,8 +96,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/electromecanica-vehiculos',
-            card_name: 'electromecanica',
+            card_name: 'electromecanica-vehiculos',
             title: [
                 {
                     class_: 'blue',
@@ -123,8 +117,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/gestion-administrativa-tributaria',
-            card_name: 'gestion',
+            card_name: 'gestion-administrativa-tributaria',
             title: [
                 {
                     class_: 'blue',
@@ -145,8 +138,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/equipos-electronicos',
-            card_name: 'equipos',
+            card_name: 'equipos-electronicos',
             title: [
                 {
                     class_: 'blue',
@@ -160,8 +152,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/ensamblaje-muebles',
-            card_name: 'ensamblaje',
+            card_name: 'ensamblaje-muebles',
             title: [
                 {
                     class_: 'blue',
@@ -179,7 +170,6 @@
             show_element: false
         },
         {
-            icon: 'workshop/mecanizado',
             card_name: 'mecanizado',
             title: [
                 {
@@ -194,8 +184,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/instalaciones-electricas',
-            card_name: 'instalaciones',
+            card_name: 'instalaciones-electricas',
             title: [
                 {
                     class_: 'blue',
@@ -209,12 +198,13 @@
             show_element: false
         }
     ]);
-
     const clientX = ref(0);
     const clientY = ref(0);
 
     const card_container = ref(null);
-
+    const go_to_workshop = async (path) => {    
+        await navigateTo({ path: `talleres/${path}`});
+    }
     const trackMouse = (e) => { // for translating the shapes depending on the mouse
         const parentRect = card_container.value.getBoundingClientRect(); // Get the parent's bounding client
         clientX.value = e.clientX - parentRect.left;
@@ -310,27 +300,27 @@
         transform: scale(1);
     }
 }
-.card.confeccion :deep(svg){
+.card.confeccion-patronaje :deep(svg){
     width: 140px;
     height: 130px;
 }
-.card.desarrollo :deep(svg){
+.card.desarrollo-aplicaciones-informaticas :deep(svg){
     width: 180px;
     height: 110px;
 }
-.card.electromecanica :deep(svg){
+.card.electromecanica-vehiculos :deep(svg){
     width: 170px;
     height: 95px;
 }
-.card.gestion :deep(svg){
+.card.gestion-administrativa-tributaria :deep(svg){
     width: 160px;
     height: 120px;
 }
-.card.equipos :deep(svg) {
+.card.equipos-electronicos :deep(svg) {
     width: 160px;
     height: 145px;
 }
-.card.ensamblaje :deep(svg) {
+.card.ensamblaje-muebles :deep(svg) {
     width: 180px;
     height: 120px;
 }
@@ -338,7 +328,7 @@
     width: 190px;
     height: 130px;
 }
-.card.instalaciones :deep(svg) {
+.card.instalaciones-electricas :deep(svg) {
     width: 130px;
     height: 110px;
 }
@@ -358,10 +348,10 @@
         transform: translateY(0px);
     }
 }
-.card.desarrollo h4 {
+.card.desarrollo-aplicaciones-informaticas h4 {
     @apply text-[0.99rem];
 }
-.card:is(.gestion, .electromecanica) h4 {
+.card:is(.gestion-administrativa-tributaria, .electromecanica-vehiculos) h4 {
     @apply text-[1.05rem];
 }
 .card-container.blue {
