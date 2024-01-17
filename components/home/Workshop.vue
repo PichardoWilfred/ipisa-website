@@ -2,23 +2,21 @@
     <section class="mt-[70px] relative pt-[2rem] h-[auto] z-20" id="workshop">
         <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[3rem] text-black">
             <h1 class="text-[2.2rem] lg:text-[3.6rem] max-lg:mb-3">
-                <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b> (testing)
+                <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b> (testing no bg)
             </h1>
             <p class="font-medium text-[1.1rem] max-w-[900px]">
                 Nuestra área técnica es el corazón de la formación que ofrece la institución. Aquí, los estudiantes tienen la oportunidad de adquirir habilidades técnicas y conocimientos especializados en una variedad de disciplinas, preparándolos para enfrentar con éxito los desafíos del mundo laboral.
                 <br><br>
                 <span class="max-md:font-semibold">
                     <span class="text-blue">A continuación, te presentaremos de manera formal </span> 
-                    <nuxt-link to="/talleres" class="text-orange-300 underline cursor-pointer">
-                        los diversos talleres disponibles en el centro.
-                    </nuxt-link>
+                    <nuxt-link to="/talleres" class="text-orange-300 underline cursor-pointer">los diversos talleres disponibles en el centro.</nuxt-link>
                 </span>
             </p>
         </div>
-        <div class="relative bg-white py-[8rem] z-10"  ref="card_container" >
-            <div class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
-                <HomeWorkshopBlueShapes v-if="!in_mobile" />
-                <HomeWorkshopOrangeShapes v-if="!in_mobile" />
+        <div class="relative bg-white py-[8rem] z-10" id="card-container" >
+            <div v-if="!in_mobile" class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
+                <HomeWorkshopBlueShapes />
+                <HomeWorkshopOrangeShapes />
                 <div class="blue-background color-background" />
                 <div class="orange-background color-background" />
                 <div class="white-blur" />
@@ -65,7 +63,7 @@
             show_element: false
         },        
         {
-            // card_name: 'desarrollo-aplicaciones-informaticas',
+            card_name: 'desarrollo-aplicaciones-informaticas',
             title: [
                 {
                     class_: 'blue',
@@ -98,7 +96,7 @@
             show_element: false
         },
         {
-            // card_name: 'electromecanica-vehiculos',
+            card_name: 'electromecanica-vehiculos',
             title: [
                 {
                     class_: 'blue',
@@ -119,7 +117,7 @@
             show_element: false
         },
         {
-            // card_name: 'gestion-administrativa-tributaria',
+            card_name: 'gestion-administrativa-tributaria',
             title: [
                 {
                     class_: 'blue',
@@ -140,7 +138,7 @@
             show_element: false
         },
         {
-            // card_name: 'equipos-electronicos',
+            card_name: 'equipos-electronicos',
             title: [
                 {
                     class_: 'blue',
@@ -154,7 +152,7 @@
             show_element: false
         },
         {
-            // card_name: 'ensamblaje-muebles',
+            card_name: 'ensamblaje-muebles',
             title: [
                 {
                     class_: 'blue',
@@ -186,7 +184,7 @@
             show_element: false
         },
         {
-            // card_name: 'instalaciones-electricas',
+            card_name: 'instalaciones-electricas',
             title: [
                 {
                     class_: 'blue',
@@ -225,6 +223,7 @@
     // mobile
     const in_mobile = ref(true);
     onMounted(() => {
+        card_container.value = document.querySelector("#card-container");
         cards.map(({ card_name }, index) => { // for showing presenting the workshop cards.
             const element = document.querySelector(`#${card_name}`);
             const { stop } = useIntersectionObserver(element, ([{ isIntersecting }], observerElement) => {
@@ -234,7 +233,7 @@
                 }
             }, { threshold: 1 });
         });
-        in_mobile.value = window.matchMedia("(max-width: 678px)").matches;
+        in_mobile.value = window.matchMedia("(max-width: 800px)").matches;
     });
 
 
