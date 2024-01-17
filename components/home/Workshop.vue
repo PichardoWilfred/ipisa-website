@@ -9,7 +9,9 @@
                 <br><br>
                 <span class="max-md:font-semibold">
                     <span class="text-blue">A continuación, te presentaremos de manera formal </span> 
-                    <nuxt-link to="/talleres" class="text-orange-300 underline cursor-pointer">los diversos talleres disponibles en el centro.</nuxt-link>
+                    <nuxt-link to="/talleres" class="text-orange-300 underline cursor-pointer">
+                        los diversos talleres disponibles en el centro.
+                    </nuxt-link>
                 </span>
             </p>
         </div>
