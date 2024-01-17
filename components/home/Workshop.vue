@@ -2,7 +2,7 @@
     <section class="mt-[70px] relative pt-[2rem] h-[auto] z-20" id="workshop">
         <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[3rem] text-black">
             <h1 class="text-[2.2rem] lg:text-[3.6rem] max-lg:mb-3">
-                <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b>
+                <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b> (testing)
             </h1>
             <p class="font-medium text-[1.1rem] max-w-[900px]">
                 Nuestra área técnica es el corazón de la formación que ofrece la institución. Aquí, los estudiantes tienen la oportunidad de adquirir habilidades técnicas y conocimientos especializados en una variedad de disciplinas, preparándolos para enfrentar con éxito los desafíos del mundo laboral.
@@ -21,7 +21,7 @@
                 <div class="orange-background color-background" />
                 <div class="white-blur" />
             </div>
-            <div class="card-container relative w-[85%] h-full mx-auto z-40" @mousemove.passive="trackMouse"> <!-- :ref="(el) => { cards[index].element = el}"  -->
+            <div class="card-container relative w-[85%] h-full mx-auto z-40" @mousemove.passive="trackMouse"> 
                 <div class="card flex flex-col justify-end rounded-[20px] cursor-pointer transition-all" @click.prevent="go_to_workshop(card_name)"
                 v-for="({ title, card_name, show_element }, index) in cards" :key="index" :id="card_name"
                 :class="[card_name, {'in-viewport': show_element }]">
@@ -63,7 +63,7 @@
             show_element: false
         },        
         {
-            card_name: 'desarrollo-aplicaciones-informaticas',
+            // card_name: 'desarrollo-aplicaciones-informaticas',
             title: [
                 {
                     class_: 'blue',
@@ -96,7 +96,7 @@
             show_element: false
         },
         {
-            card_name: 'electromecanica-vehiculos',
+            // card_name: 'electromecanica-vehiculos',
             title: [
                 {
                     class_: 'blue',
@@ -117,7 +117,7 @@
             show_element: false
         },
         {
-            card_name: 'gestion-administrativa-tributaria',
+            // card_name: 'gestion-administrativa-tributaria',
             title: [
                 {
                     class_: 'blue',
@@ -138,7 +138,7 @@
             show_element: false
         },
         {
-            card_name: 'equipos-electronicos',
+            // card_name: 'equipos-electronicos',
             title: [
                 {
                     class_: 'blue',
@@ -152,7 +152,7 @@
             show_element: false
         },
         {
-            card_name: 'ensamblaje-muebles',
+            // card_name: 'ensamblaje-muebles',
             title: [
                 {
                     class_: 'blue',
@@ -184,7 +184,7 @@
             show_element: false
         },
         {
-            card_name: 'instalaciones-electricas',
+            // card_name: 'instalaciones-electricas',
             title: [
                 {
                     class_: 'blue',
