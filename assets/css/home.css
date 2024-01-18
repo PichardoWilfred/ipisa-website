@@ -183,7 +183,7 @@ section.content-navigation .illustration.school path.parking {
 
 /* philosofy */
 .illustration.philosofy svg {
-    @apply overflow-visible;
+    overflow: visible;
 }
 
 .illustration.philosofy .show .brightness-container {
@@ -537,7 +537,7 @@ section.job-insertion .dots svg circle.dot.six { animation-delay: 600ms; }
 section.job-insertion .dots svg circle.dot.seven { animation-delay: 700ms; }
 /* swiper styles */
 .swiper {
-    @apply bg-blue-100;
+    background-color: var(--blue-100);
 }
 div.swiper.activities {
     @apply h-[40vh] xl:h-[70vh];
@@ -546,25 +546,42 @@ div.swiper.activities {
     user-select: none;
 }
 .swiper-button-prev, .swiper-button-next {
-    @apply text-blue hover:text-blue-200 transition-all;
+    @apply text-blue hover:text-blue-200;
     height: 80px !important;
     width: 70px !important;
+    transition: var(--tw-transition-1);
 }
 .swiper-pagination-bullet {
-    @apply transition-all;
+    transition: var(--tw-transition-1);
 }
-.swiper-pagination-bullet-active:nth-child(even) { @apply bg-orange-300; }
+.swiper-pagination-bullet-active:nth-child(even) { background-color: var(--orange-300); }
 
 /* swiper */
 .swiper.activities .swiper-slide { user-select: none; }
 .swiper.activities .swiper-slide img.swiper-img { user-select: none; }
 /*  */
 .swiper.activities .swiper-slide .image-text {
-    @apply absolute top-[60px] left-[50px];
+    position: absolute;
+    top: 60px;
+    left: 50px;
 }
 .swiper.activities .swiper-slide .image-text h2.image-title {
-    @apply font-raleway font-semibold text-white text-6xl mb-3;
+    font-family: var(--raleway);
+    font-weight: 500;
+    font-size: 3.75rem; /* 60px */
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.75rem;
 }
 .swiper.activities .swiper-slide .image-text p.image-description {
-    @apply font-raleway font-normal text-white text-2xl max-w-[620px] ps-2;
+    color: var(--white);
+
+    font-family: var(--raleway);
+    font-weight: 300;	
+    font-size: 1.5rem; /* 24px */
+    line-height: 2rem; /* 32px */
+
+    max-width: 620px;
+    padding-inline-start: 0.5rem; /* 8px */
+
 }

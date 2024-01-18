@@ -46,7 +46,7 @@
 </template>
 <style scoped>
     header ul.navigation li.item {
-        @apply relative cursor-pointer font-raleway font-semibold me-10 last:me-0 text-black-100 
+        @apply relative cursor-pointer font-raleway font-semibold me-10 last:me-0 text-gray-800 
         before:absolute before:bottom-[-3px] before:rounded-md before:flex before:h-[3px]
         before:bg-orange-300 before:w-0 before:content-[''] 
         hover:before:w-full before:transition-all before:origin-center;

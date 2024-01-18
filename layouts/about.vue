@@ -1,6 +1,6 @@
 <template>
     <about-portrait-component :picture="picture" />
-    <main class="article flex max-xl:flex-col justify-center px-4 lg:px-24 pt-[4rem] sm:pt-[2rem] mb-28">
+    <main class="about-article flex max-xl:flex-col justify-center px-4 lg:px-24 pt-[4rem] sm:pt-[2rem] mb-28">
         <section>
             <h1 class="title">
                 <slot name="title">
