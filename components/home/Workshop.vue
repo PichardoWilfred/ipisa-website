@@ -2,7 +2,7 @@
     <section class="mt-[70px] relative pt-[2rem] h-[auto] z-20" id="workshop">
         <div class="font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[3rem] text-black">
             <h1 class="text-[2.2rem] lg:text-[3.6rem] max-lg:mb-3">
-                <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b> (testing no bg no animations)
+                <b class="text-blue">Nuestros</b> <b class="orange">Talleres</b>
             </h1>
             <p class="font-medium text-[1.1rem] max-w-[900px]">
                 Nuestra área técnica es el corazón de la formación que ofrece la institución. Aquí, los estudiantes tienen la oportunidad de adquirir habilidades técnicas y conocimientos especializados en una variedad de disciplinas, preparándolos para enfrentar con éxito los desafíos del mundo laboral.
@@ -13,7 +13,7 @@
                 </span>
             </p>
         </div>
-        <div class="relative bg-white py-[8rem] z-10" id="card-container" >
+        <div class="relative bg-white py-[8rem] z-10" id="card-container">
             <div v-if="!in_mobile" class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
                 <HomeWorkshopBlueShapes />
                 <HomeWorkshopOrangeShapes />
@@ -221,11 +221,11 @@
             });
         }
     }
-
-    // mobile
-    const in_mobile = ref(true);
+    const in_mobile = ref(true); // mobile
     onMounted(() => {
         card_container.value = document.querySelector("#card-container");
+        
+        in_mobile.value = window.matchMedia("(max-width: 800px)").matches;
         if (!in_mobile.value) {
             cards.map(({ card_name }, index) => { // for showing presenting the workshop cards.
                 const element = document.querySelector(`#${card_name}`);
@@ -237,7 +237,6 @@
                 }, { threshold: 1 });
             });
         }
-        in_mobile.value = window.matchMedia("(max-width: 800px)").matches;
     });
 
 
@@ -391,6 +390,7 @@
 }
 
 .orange-background {
+    right: 0;
     background: linear-gradient(284deg, #FF7420 8.73%, rgba(255, 116, 32, 0.64) 10.25%, rgba(255, 116, 32, 0.00) 73.9%);
     backdrop-filter: blur(2px);
 }
@@ -403,7 +403,6 @@
         background: linear-gradient(180deg, #0478E0 19.94%, #0478E000 45.24%);
     }    
     .orange-background {
-        right: 0px;
         background: linear-gradient(300deg, #FF7420 -13.27%, rgba(255, 116, 32, 0.64) 10.25%, rgba(255, 116, 32, 0.00) 73.9%);
     }
     .card h4 {
@@ -448,7 +447,7 @@
     .card-container {
         grid-template-columns: repeat(1, min(470px, 81.5vw));
         grid-template-rows: repeat(8, 232px);
-        gap: 32px;
+        gap: 50vh;
     }
     .card:is(:nth-child(1), :nth-child(2), :nth-child(7), :nth-child(8)){ 
         box-shadow: 0px 1px 3px 0px #B2DBFF; 
