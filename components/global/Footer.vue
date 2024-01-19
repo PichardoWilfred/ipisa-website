@@ -147,7 +147,8 @@ footer {
     grid-area: job-insertion;
 }
 .about {
-    @apply flex flex-col;
+    display: flex;
+    flex-direction: column;
     grid-area: about;
 }
 .workshop {
@@ -229,10 +230,25 @@ ul.activities {
     }
 }
 .links h5.title {
-    @apply font-semibold font-raleway text-black-400 text-[18px] min-[800px]:text-[22px] mb-2;
+    color: var(--black-400);
+    margin-bottom: 0.5rem; /* 8px */
+    font-family: var(--raleway);
+    font-weight: 600;
+    @apply text-[18px] min-[800px]:text-[22px];
+    transition: var(--default-tw-transition);
 }
 .links ul.activities li.activity, li.section, li.option {
-    @apply text-black font-medium font-raleway text-[14px] min-[800px]:text-[16px] mb-1 hover:text-black-400 hover:underline cursor-pointer;
+    @apply text-[14px] min-[800px]:text-[16px];
+    color: var(--black);
+    font-weight: 500;
+    font-family: var(--raleway);
+    margin-bottom: 0.25rem;
+    cursor: pointer; 
+    transition: var(--tw-transion-1);
+}
+.links ul.activities li.activity:hover, li.section:hover, li.option:hover {
+    color: var(--black-400);
+    text-decoration: underline;
 }
 </style>
 <script setup>

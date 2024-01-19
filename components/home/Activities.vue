@@ -11,7 +11,11 @@
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, inventore. Molestiae illum ad eligendi repellendus fuga sint repellat voluptate possimus quibusdam, quasi fugiat eaque dicta dignissimos nisi odio qui sapiente.
                     </p>
                 </div> -->
-                <nuxt-img :src="`/modules/home/extracurricular/slider_${img}.JPG`" class="swiper-img object-cover w-full h-full" alt="sa" />
+                <nuxt-img 
+                :placeholder="img_src(`/modules/home/wallpaper/portrait-${img}.jpg`, { w: 10, h: 10, f: 'jpg', blur: 2, q: 'lightest' })"
+                densities="x1 x2"
+                :src="`/modules/home/extracurricular/slider_${img}.JPG`" 
+                class="swiper-img object-cover w-full h-full" alt="sa" />
             </swiper-slide>
         </swiper>
     </section>
@@ -19,4 +23,6 @@
 <script setup>
     import { Swiper, SwiperSlide } from 'swiper/vue';
     import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+    
+    const img_src = useImage();
 </script>

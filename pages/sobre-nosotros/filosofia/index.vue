@@ -132,7 +132,7 @@
                 <li v-for="({ name, img, biography, anchor }, index) in biographies" :key="index">
                     <nuxt-img :src="`/modules/about/philosofy/people/${img}`" :alt="img" class="max-[650px]:my-12" 
                     sizes="100vw sm:50vw md:400px"
-                    :placeholder="[50, 25, 75, 5]"
+                    :placeholder="img_src(`/modules/about/philosofy/people/${img}`, { w: 10, h: 10, f: 'jpg', blur: 2, q: 'lightest' })"
                     densities="x1 x2"
                     />
                     <div class="min-[650px]:ms-12">
@@ -272,6 +272,8 @@ const biographies = ref([
     ]
 }
 ]);
+
+const img_src = useImage();
 </script>
 <style scoped>
 .values-lists ul {

@@ -3,115 +3,150 @@
         <nav>
             <div class="upper">
                 <Icon v-if="!header_class.transparent" class="salesianos-logo" name="Salesianos" />
-                <nuxt-icon @click="scrollToSection('portrait')" name="general/ipisa-logo" class="logo" filled />
+                <nuxt-icon @click="scrollToSection('portrait')" name="general/ipisa-logo" class="logo cursor-pointer ms-2 me-auto lg:mx-auto" filled />
                 <div class="social-media">
                     <div v-for="({ src }, index) in social_media" class="icon">
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
                     </div>
                 </div>
-                <button class="mobile" @click.prevent="toggle_mobile_menu">
+                <button class="mobile max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md 
+        border border-black-500 hover:bg-black-500 transition-[background-color]" @click.prevent="toggle_mobile_menu">
                     <Icon name="fe:bar" size="35px"/>
                 </button>
             </div>
-            <ul class="navigation">
+            <ul class="navigation hidden lg:flex items-center transition-all">
                 <li v-for="({ label, class_, section }, index) in navigation_bar" :key="index" 
-                class="item" :class="class_" @click.prevent="scrollToSection(section)">
+                class="item relative cursor-pointer font-raleway font-semibold me-10 last:me-0 text-gray-800 
+                before:absolute before:bottom-[-3px] before:rounded-md before:flex before:h-[3px]
+                before:bg-orange-300 before:w-0 before:content-[''] 
+                hover:before:w-full before:transition-all before:origin-center" 
+                :class="class_" @click.prevent="scrollToSection(section)">
                     {{ label }}
                 </li>
             </ul>
         </nav>   
-        <ul class="mobile-navigation" :class="{ show: mobile_menu }">
-            <li v-for="({ label, class_, section }, index) in navigation_bar" :key="index" class="item" 
+        <ul class="mobile-navigation lg:hidden absolute" :class="{ show: mobile_menu }">
+            <li v-for="({ label, class_, section }, index) in navigation_bar" :key="index" 
+            class="item font-raleway font-semibold text-black hover:text-black-400 
+            py-6 border-b border-black-500 hover:bg-black-500 active:bg-gray-100" 
             :class="class_" @click.prevent="scrollToSection(section, 200)">
                 {{ label }}
             </li>
         </ul>
         <ul class="information">
             <li class="flex items-center">
-                <h4 class="text-blue me-2">
+                <h4 class="font-raleway text-blue me-2 text-end transition-all">
                     Av. Hispanoamericana, Km 1 Santiago,
                     <span class="text-blue-300">Zona Sur, República Dominicana.</span>
                 </h4>
                 <nuxt-icon name="layout/location-color" class="text-[28px] location-icon-color" filled />
             </li>
             <li class="flex items-center mt-2">
-                <h4 class="text-orange-300 me-2">
+                <h4 class="font-raleway text-orange-300 me-2 text-end transition-all">
                     <span class="text-orange-200">(809)</span> 724-5700
                 </h4>
                 <nuxt-icon name="layout/phone-color" class="text-[26px] phone-icon-color" filled />
             </li>
         </ul>
     </header>
-    <div v-if="mobile_menu" class="mask" @click="toggle_mobile_menu" />
+    <div v-if="mobile_menu" class="lg:hidden bg-[#09090970] fixed w-screen h-screen z-[40]" @click="toggle_mobile_menu" />
 </template>
 <style scoped>
-    header ul.navigation li.item {
-        @apply relative cursor-pointer font-raleway font-semibold me-10 last:me-0 text-gray-800 
-        before:absolute before:bottom-[-3px] before:rounded-md before:flex before:h-[3px]
-        before:bg-orange-300 before:w-0 before:content-[''] 
-        hover:before:w-full before:transition-all before:origin-center;
-    }
-    ul.navigation li.item.focused {
-        @apply after:absolute after:rounded-full after:w-[9px] after:h-[9px] after:bg-orange-300 after:top-[-2px] after:right-[-15px];
+    ul.navigation li.item.focused::after {
+        background-color: var(--orange-300);
+        position: absolute; 
+        border-radius: 100vmax; 
+        width: 9px;
+        height: 9px;
+        top: -2px;
+        right: -15px;
     }
     header {
-        @apply fixed w-full left-0 text-black bg-white 
-        top-0 border-b border-b-[transparent] transition-all z-[999];
-        transition-duration: 250ms;
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        border-bottom-width: 1px; 
+        border-bottom-color: transparent;
+        width: 100%; 
+        color: var(--black); 
+        background-color: white;
+        z-index: 999;
+        /* transition: var(--default-tw-transition); */
+        transition-property: all;
+        transition-duration: .15s;
+        transition-timing-function: cubic-bezier(.4,0,.2,1);
     }
     header.transparent ul.mobile-navigation {
         right: 0;
     }
     header ul.mobile-navigation {
-        @apply lg:hidden absolute top-[93px] right-0 bg-white text-center w-[70vw];
+        top: 93px;
+        text-align: center; 
+        background-color: white;
+        width: 70vw;
         right: -100%;
         height: calc(100vh - 84px);
     }
     header ul.mobile-navigation.show {
-        @apply transition-all;
+        transition: var(--default-tw-transition);
         right: 0;
     }
-    header ul.mobile-navigation li.item {
-        @apply font-raleway font-semibold text-black hover:text-black-400 
-        py-6 border-b border-black-500 hover:bg-black-500 active:bg-gray-100;
-    }
     header ul.information {
-        @apply absolute top-[4.5rem] right-[18px] max-xl:hidden flex flex-col items-end text-black font-raleway font-bold max-w-[300px] text-end text-[14px];
-    }
-    header ul.information h4 {
-        @apply transition-all;
+        @apply max-xl:hidden flex;
+        position: absolute; 
+        top: 4.5rem;
+        right: 18px;
+        flex-direction: column; 
+        align-items: flex-end; 
+        font-weight: 700; 
+        color: var(--black); 
+        max-width: 300px;
+        font-size: 14px;
     }
     header ul.information h4 {
         animation: appear 200ms ease-in-out;
     }
-    header nav div.upper .logo {
-        @apply cursor-pointer ms-2 me-auto lg:mx-auto;
-    }
     header nav div.upper .logo :deep(svg) {
-        @apply my-4 max-lg:w-[60px] lg:w-[90px] h-[60px] lg:h-[90px] transition-all;
+        @apply max-lg:w-[60px] lg:w-[90px] h-[60px] lg:h-[90px];
+        margin-block: 1rem;
+        transition-property: all;
+        transition-duration: .15s;
+        transition-timing-function: cubic-bezier(.4,0,.2,1);
     }
     header nav div.upper svg.salesianos-logo {
-        @apply hidden lg:flex absolute left-[18px] top-[32px] max-w-[100px] w-[7vw] xl:w-[11vw] h-auto;
+        height: auto;
+        position: absolute;
+        left: 18px;
+        top: 32px;
+        max-width: 100px;
+        @apply hidden lg:flex w-[7vw] xl:w-[11vw];
     }
     header nav {
-        @apply w-full flex flex-col items-center lg:mb-4 justify-center;
+        @apply lg:mb-4;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     header nav div.upper {
-        @apply flex w-full;
-    }
-    header nav ul.navigation {
-        @apply hidden lg:flex items-center transition-all;
+        display: flex;
+        width: 100%;
     }
     header nav div.upper div.social-media {
         @apply absolute flex max-lg:left-[50%] lg:right-0 max-lg:translate-x-[-50%];
     }
-    header nav div.upper button.mobile {
-        @apply max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md 
-        border border-black-500 hover:bg-black-500 transition-[background-color];
-    }
     header nav div.upper div.social-media div.icon {
-        @apply flex items-center justify-center h-[40px] w-[40px] p-3 text-white cursor-pointer transition-all;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        padding: 12px;
+        color: white;
+        cursor: pointer;
         transform: translateY(-100%);
+        transition: var(--default-tw-transition);
         animation: slide-up-bottom 200ms cubic-bezier(.68,.82,0,.8) forwards;
     }
     @keyframes slide-up-bottom {
@@ -125,70 +160,93 @@
     header nav div.upper div.social-media div.icon:nth-child(3) { animation-delay: 300ms; }
     header nav div.upper div.social-media div.icon:nth-child(4) { animation-delay: 400ms; }
     header nav div.upper div.social-media div.icon:nth-child(5) { animation-delay: 500ms; }
-    header nav div.upper div.social-media div.icon:nth-child(odd) { @apply bg-blue hover:bg-blue-300; }
-    header nav div.upper div.social-media div.icon:nth-child(even) { @apply bg-orange hover:bg-orange-300; }
+    header nav div.upper div.social-media div.icon:nth-child(odd) { 
+        background-color: var(--blue);
+    }
+    header nav div.upper div.social-media div.icon:nth-child(odd):hover {
+        background-color: var(--blue-300);
+    }
+    header nav div.upper div.social-media div.icon:nth-child(even) { 
+        background-color: var(--orange);
+    }
+    header nav div.upper div.social-media div.icon:nth-child(even):hover { 
+        background-color: var(--orange-300);
+    }
 
     header.scrolled {
-        @apply top-[-200px] border-b-black-500;
+        top: -200px;
+        border-bottom: solid 1px var(--black-500); 
     }
     header.scrolled.up {
-        @apply top-0;
+        top: 0px;
     }
     header.transparent {
-        @apply bg-[#FFFFFF00] transition-colors;
+        background-color: #FFFFFF00;
+        @apply transition-colors;
     }
     header.transparent ul.information {
-        @apply hidden;
+        display: none;
     }
     header.transparent ul.navigation li.item {
-        @apply before:w-0 text-white hover:text-[#ffffffa2];
+        color: white;
+    }
+    header.transparent ul.navigation li.item:hover { color: #ffffffa2; }
+    header.transparent ul.navigation li.item::before {
+        width: 0;
     }
     header.transparent nav div.upper div.social-media { 
-        @apply absolute top-[45px] lg:top-[32px] lg:right-[35px];
+        position: absolute;
+        @apply top-[45px] lg:top-[32px] lg:right-[35px];
     }
-    header.transparent nav div.upper button.mobile {
-        @apply border-white hover:bg-[#FFFFFF6B];
-    }
-    header.transparent nav div.upper button.mobile ::v-deep(svg) {
-        @apply text-white;
-    }
+    header.transparent nav div.upper button.mobile { border-color: #FFFFFFCC; }
+    header.transparent nav div.upper button.mobile:hover { background-color: #FFFFFF6B; }
+    header.transparent nav div.upper button.mobile ::v-deep(svg) { color: #FFFFFFCC; }
     header.transparent nav div.upper div.social-media div.icon {
         animation: none;
         transform: translateY(0%);
-        @apply text-[#FFFFFF8C] hover:text-white transition-[color];
+        color: #FFFFFF8C;
+        transition-property: color;
+    }
+    header.transparent nav div.upper div.social-media div.icon:hover {
+        color: white;
     }
     header.transparent nav div.upper div.social-media div.icon:is(:nth-child(even), :nth-child(odd)) {
-        @apply bg-[transparent];
+        background-color: #FFFFFF00;
     }
     header.transparent nav div.upper .logo :deep(svg){
         @apply lg:mx-auto my-7 w-[80px] h-[80px] lg:w-[130px] lg:h-[130px];
     }
     header.transparent nav {
-        @apply border-b-[transparent];
+        border-bottom-color: #FFFFFF00;
     }
     header.transparent ul.mobile-navigation {
-        @apply top-0 w-full translate-y-[-100%] h-auto;
+        transform: translateY(-100%);
+        top: 0;
+        width: 100%;
+        height: auto;
     }
     header.transparent ul.mobile-navigation.show {
         animation: slide-up-bottom 500ms ease-in-out forwards;
     }
     header.transparent ul.mobile-navigation li.item {
-        @apply py-6 border-b border-black-500 hover:bg-gray-100 hover:text-white;
+        padding-block: 1.5rem;
+        border-bottom: 1px solid var(--black-500);
+    }
+    header.transparent ul.mobile-navigation li.item:hover {
+        background-color: var(--black-500);
+        color: #fff;
     }
     header ul.information :deep(:is(.location-icon-color, .phone-icon-color)) svg {
-        @apply overflow-visible;
+        overflow: visible;
     }
     header.transparent ul.information :deep(svg:is(.location-icon-color, .phone-icon-color))   {
         animation: none;
     }
     header.scrolled nav ul.navigation {
-        @apply me-0;
+        margin-right: 0;
     }
     header.scrolled ul.mobile-navigation {
-        @apply top-[85px];
-    }
-    .mask {
-        @apply lg:hidden bg-[#09090970] fixed w-screen h-screen z-[40];
+        top: 85px;
     }
 </style>
 <script setup>

@@ -20,7 +20,7 @@
                             {{ word }}<span v-if="space" class="mx-[4px]"></span> 
                         </span>
                     </h1>
-                    <p class="text-justify font-medium text-black-700">
+                    <p class="text-justify font-medium text-black">
                         {{ description }}
                     </p>
                 </nuxt-link>

@@ -6,9 +6,10 @@
             <swiper :modules="[Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop 
             :autoplay="{ delay: 4000 }" effect="fade" crossFade>
                 <swiper-slide v-for="(img, index) in [1, 2, 3, 4, 5]" :key="index">
-                    <nuxt-img class="object-cover w-screen h-screen" sizes="600px md:1200px xl:100%"
-                        :src="`/modules/home/wallpaper/portrait-${img}.jpg`" densities="x1 x2" 
-                        :placeholder="img_src(`/modules/home/wallpaper/portrait-${img}.jpg`, { h: 10, f: 'jpg', blur: 2, q: 50 })" />
+                    <nuxt-img class="object-cover w-screen h-screen"
+                    sizes="600px md:1200px xl:100%"
+                    :src="`/modules/home/wallpaper/portrait-${img}.jpg`" densities="x1 x2"
+                    :placeholder="img_src(`/modules/home/wallpaper/portrait-${img}.jpg`, { w: 10, h: 10, f: 'jpg', blur: 2, q: 'lightest' })" />
                 </swiper-slide>
             </swiper>
         </div>

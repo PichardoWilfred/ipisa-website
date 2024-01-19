@@ -35,12 +35,10 @@ module.exports = {
         200: "#F3F6FA",
       },
       black: {
-        100: "#292929",
-        DEFAULT: "#4B6286",
         400: "#344661",
         500: "#CEE3FF",
         600: "#AABDD8",
-        700: "#4B6286",
+        DEFAULT: "#4B6286",
       },
       separator: "#A9C2E0",
       gray: {
@@ -48,6 +46,7 @@ module.exports = {
         200: "#B3B3B3",
         300: "#A4A4A4",
         400: "#636363",
+        800: "#292929",
       },
     },
     fontFamily: {

@@ -59,8 +59,8 @@ a.link.blink {
 }
 
 @keyframes blink-link {
-    0% { color: var(--black-700); } 
+    0% { color: var(--black); } 
     50% { color: var(--separator); }
-    100% { color: var(--black-700); }
+    100% { color: var(--black); }
 }
 </style>

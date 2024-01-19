@@ -549,10 +549,10 @@ div.swiper.activities {
     @apply text-blue hover:text-blue-200;
     height: 80px !important;
     width: 70px !important;
-    transition: var(--tw-transition-1);
+    transition: var(--default-tw-transition);
 }
 .swiper-pagination-bullet {
-    transition: var(--tw-transition-1);
+    transition: var(--default-tw-transition);
 }
 .swiper-pagination-bullet-active:nth-child(even) { background-color: var(--orange-300); }
 

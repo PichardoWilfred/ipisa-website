@@ -762,7 +762,7 @@
     @apply font-inter cursor-pointer flex items-center justify-center font-bold me-1 lg:me-2 last:me-0 text-[18px] text-black-600 w-[34px] h-[34px] lg:w-[38px] lg:h-[38px] rounded-full hover:bg-white-200;
 }
 .table-pagination .pagination li.active {
-    @apply  text-black-700 bg-white-200;
+    @apply  text-black bg-white-200;
 }
 .pagination-btn {
     @apply flex items-center justify-center cursor-pointer w-[35px] h-[35px] font-raleway text-[4rem] text-black font-bold hover:bg-white-200 rounded-full transition-all;

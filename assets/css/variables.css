@@ -1,0 +1,43 @@
+
+:root {
+    /* colors */
+    --blue-100: #C3E3FF;
+    --blue-200: #8BC8FF;
+    --blue-300: #52ADFF;
+    --blue: #0478E0;
+    --blue-400: #00488D;
+
+    --orange-100: #FFD9C2;
+    --orange-200: #FFA571;
+    --orange-300: #FF8B46;
+    --orange: #FF7320;
+
+    --white: #FFF;
+    --white-100: #f5f2f2;
+    --white-200: #F3F6FA;
+
+    --gray-800: ;
+    --black-400: #344661;
+    --black-500: #CEE3FF;
+    --black-600: #AABDD8;
+    --black: #4B6286;
+
+    --separator: #A9C2E0;
+
+    --gray-100: #E0E0E0;
+    --gray-200: #B3B3B3;
+    --gray-300: #A4A4A4;
+    --gray-400: #636363;
+    --gray-800: #292929;
+
+    /* fonts */
+    --raleway: 'Raleway', ui-sans-serif;
+    --inter: 'Inter', ui-sans-serif;
+    --garabond: 'EB Garamond', ui-monospace;
+
+    /* transition values */
+    --default-tw-transition: all .15s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* timing-functions */
+    --ease-1: cubic-bezier(0.075, 0.82, 0.165, 1);
+}

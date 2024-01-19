@@ -6,7 +6,7 @@
         cursor-pointer mb-2 lg:mb-4 transition-all">
             <b class="text-blue">Inserción</b> <b class="text-orange-300">Laboral</b>
         </h2>
-        <div class="max-w-[1100px]">
+        <div class="relative bg-white max-w-[1100px] z-20">
             <p class="section-text">
                 En nuestra institución os enfocamos en brindar educación técnica de alta calidad que prepare a nuestros estudiantes 
                 para una exitosa inserción en el <b> mundo laboral.</b> Nuestra formación se basa en la práctica y el aprendizaje de habilidades, 
@@ -24,17 +24,17 @@
                 de colaboración.</b>
             </p>
         </div>
+            <nuxt-icon class="girl-chair-shadow z-10" name="home/job-insertion/girl-chair-shadow" filled />
+            <nuxt-icon class="girl-chair z-10" name="home/job-insertion/girl-chair" filled />
 
-        <nuxt-icon class="girl-chair-shadow" name="home/job-insertion/girl-chair-shadow" filled />
-        <nuxt-icon class="girl-chair" name="home/job-insertion/girl-chair" filled />
+            <nuxt-icon class="dots z-10" name="home/job-insertion/dots" filled />
 
-        <nuxt-icon class="dots" name="home/job-insertion/dots" filled />
-
-        <nuxt-icon class="building" name="home/job-insertion/buildings" filled />
-        
-        <nuxt-icon class="bubble one" :class="{ visible }" name="home/job-insertion/bubble-1" filled />
-        <nuxt-icon class="bubble two" :class="{ visible }" name="home/job-insertion/bubble-2" filled />
-        <nuxt-icon class="bubble three" :class="{ visible }" name="home/job-insertion/bubble-3" filled />
+            <nuxt-icon class="building z-10" name="home/job-insertion/buildings" filled />
+            
+            <nuxt-icon class="bubble one z-10" :class="{ visible }" name="home/job-insertion/bubble-1" filled />
+            <nuxt-icon class="bubble two z-10" :class="{ visible }" name="home/job-insertion/bubble-2" filled />
+            <nuxt-icon class="bubble three z-10" :class="{ visible }" name="home/job-insertion/bubble-3" filled />
+        <!-- </div> -->
     </section>
 </template>
 <script setup>

@@ -19,7 +19,7 @@
 
         <aside class="lg:w-[360px] relative">
             <nav v-intersection-observer="[static_navigation_visible]" class="navigation">
-                <ol v-for="({ title, list }, index) in navigation_" :key="index" class="text-black mb-2">
+                <ol v-for="({ title, list }, index) in navigation_" :key="index" class="text-black mb-2 last:mb-0">
                     <h1 class="font-raleway font-bold text-black text-xl">
                         {{ title }}
                     </h1>
@@ -27,7 +27,7 @@
                         <span class="alphabet me-1">
                             {{ alphabet[index_] }}.
                         </span>
-                        <span class="hover:underline cursor-pointer">
+                        <span class="text-black hover:underline cursor-pointer">
                             {{ section.label }}
                         </span>
                     </li>
@@ -48,7 +48,7 @@
                     <h2 class="font-raleway font-bold text-black-400 text-xl mb-1">
                         Título de Noticia de Ejemplo
                     </h2>
-                    <p class="font-raleway text-black-700 text-[15px] leading-5">
+                    <p class="font-raleway text-black text-[15px] leading-5">
                         Estamos emocionados de dar la bienvenida a nuevos estudiantes y continuar nuestra misión de educar, inspirar y forjar un futuro mejor.
                     </p>
                 </div>
@@ -62,11 +62,11 @@
     
     <nav class="navigation mobile" ref="mobile_navigation" :class="{ show: show_navigation }">
         <ol v-for="({ title, list }, index) in navigation_" :key="index">
-            <h1 class="font-raleway font-bold text-black text-xl">
+            <h1 class="font-raleway font-bold text-black text-xl mb-2">
                 {{ title }}
             </h1>
             <li v-for="(section, index_) in list" :key="index_" @click.prevent="close_navigation(section.anchor, true)">
-                <span class="hover:underline">
+                <span class="text-black hover:underline">
                     {{ alphabet[index_] }}. {{ section.label }}
                 </span>
             </li>
@@ -84,11 +84,11 @@
         </div>
         <nav class="navigation scrolled">
             <ol v-for="({ title, list }, index) in navigation_" :key="index">
-                <h1 class="navigation-title">
+                <h1 class="font-raleway font-bold text-black text-xl">
                     {{ title }}
                 </h1>
                 <li v-for="(section, index_) in list" :key="index_" @click.prevent="scroll_to(section.anchor)">
-                    <span class="hover:underline cursor-pointer">
+                    <span class="text-black hover:underline cursor-pointer">
                         {{ alphabet[index_] }}. {{ section.label }}
                     </span>
                 </li>
@@ -225,12 +225,13 @@
         flex-direction: column; 
         justify-content: center; 
         align-content: center; 
-        align-items: center; 
+        align-items: center;
         border-radius: 0.5rem; 
         border-top-right-radius: 0; 
         border-bottom-right-radius: 0; 
         border-width: 2px; 
-        border-right-width: 0; 
+        border-right-width: 0;
+        border-color: var(--black-500);
         background-color: #ffffff; 
         cursor: pointer; 
         right: -1px;
@@ -253,9 +254,10 @@
         z-index: 50; 
         padding: 1.5rem; 
         width: 100%; 
-        @apply max-xl:hidden lg:rounded-lg transition-all;
+        transition: var(--default-tw-transition);
         transition-duration: 250ms;
         box-shadow: 0px 0.4147px 1.65879px 0px rgba(99, 160, 255, 0.35);
+        @apply max-xl:hidden lg:rounded-lg;
     }
     nav.navigation.mobile {
         position: fixed;

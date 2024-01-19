@@ -28,7 +28,7 @@
                     </template>
                     <nuxt-img v-for="({ name }, index) in cards" sizes="400px md:1200px xl:100%" densities="x1 x2"
                         :src="`/modules/workshop/${name}-1.JPG`" 
-                        :placeholder="img_src(`/modules/workshop/${name}-1.jpg`, { h: 10, f: 'jpg', blur: 2, q: 50 })" 
+                        :placeholder="img_src(`/modules/workshop/${name}-1.jpg`, { w: 10, h: 10, f: 'jpg', blur: 2, q: 'lightest' })" 
                         class="absolute top-0 left-0 w-screen h-screen md:w-full md:h-full opacity-0 object-cover transition-all" 
                         :class="{'workshop-focused': (name === focused_workshop)}"
                         />
@@ -377,7 +377,7 @@ img.workshop-focused {
 }
 .card-container.translucent .card :deep(svg) .shadow {
     opacity: 0; 
-    @apply transition-all;
+    transition: var(--default-tw-transition);
 }
 .card-container.translucent .card:hover :deep(svg) .shadow {
     opacity: 1;
@@ -416,7 +416,7 @@ img.workshop-focused {
     height: 110px;
 }
 .card-container .card :deep(svg) {
-    @apply scale-[1.1] translate-y-[15px];
+    transform: scale(1.1) translateY(15px)
 }
 .card.desarrollo h4 {
     font-size: 0.99rem;
