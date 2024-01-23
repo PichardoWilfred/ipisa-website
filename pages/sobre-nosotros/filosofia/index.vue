@@ -26,7 +26,7 @@
             <h2 class="subtitle" id="anchor-values">
                 Valores
             </h2>
-            <div class="values-lists flex max-sm:flex-col sm:flex-wrap sm:space-x-10">
+            <div class="values-lists flex max-sm:flex-col sm:flex-wrap sm:space-x-10 ps-6">
                 <ul>
                     <li>Responsabilidad</li>
                     <li>Calidad</li>
@@ -277,13 +277,26 @@ const img_src = useImage();
 </script>
 <style scoped>
 .values-lists ul {
-    @apply ps-6;
     list-style-type: disc;
 }
 ul.biographies li {
-    @apply flex items-center content-center max-[650px]:flex-col-reverse max-[650px]:flex-wrap mb-16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4rem; /* 64px */
 }
 ul.biographies li img {
-    @apply w-full h-full max-w-[270px] max-h-[430px] rounded-lg object-cover;
+    width: 100%;
+    height: 100%;
+    max-width: 270px;
+    max-height: 430px;
+    object-fit: cover;
+    border-radius: 0.5rem; /* 8px */
+}
+@media (max-width: 650px) {
+    ul.biographies li {
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
 }
 </style>

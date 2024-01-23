@@ -1,7 +1,7 @@
 <template>
     <about-portrait-component picture="/modules/home/wallpaper/portrait-2.JPG" />
-    <section class="content-navigation pt-[4rem] sm:pt-[2rem]">
-        <h1 class="font-raleway text-center font-semibold text-[2.1rem] lg:text-[3.6rem]">
+    <main class="info py-[4rem] sm:py-[2rem]">
+        <h1 class="title">
             <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>
         </h1>
         <p class="text-justify text-black font-raleway text-[1.1rem] mx-auto w-[90%] min-[1400px]:w-[50%] mb-4">
@@ -27,7 +27,7 @@
                 <div class="column-separator bg-black-500 w-[1px] min-[1300px]:h-full mx-auto" />
             </template>
         </div>
-    </section>
+    </main>
 </template>
 <script setup>
 import { useLayoutStore } from '@/store/layout';

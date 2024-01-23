@@ -284,23 +284,6 @@
         transform: scale(1) translateY(0px);
     }
 }
-/* .card-container .card.in-viewport :deep(svg) .shadow {
-    opacity: 0;
-    transform: scale(0);
-    transform-origin: bottom;
-} */
-/* .card-container .card.in-viewport :deep(svg) .shadow {
-    animation: appear-shadow 450ms cubic-bezier(.68,.82,0,.8)  forwards 600ms;
-}
-@keyframes appear-shadow {
-    from {
-        opacity: 0;
-        transform: scale(0);
-    } to {
-        opacity: 1;
-        transform: scale(1);
-    }
-} */
 .card.confeccion-patronaje :deep(svg){
     width: 140px;
     height: 130px;

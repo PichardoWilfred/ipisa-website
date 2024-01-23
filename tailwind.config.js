@@ -39,6 +39,7 @@ module.exports = {
         500: "#CEE3FF",
         600: "#AABDD8",
         DEFAULT: "#4B6286",
+        700: "#7D96BD"
       },
       separator: "#A9C2E0",
       gray: {

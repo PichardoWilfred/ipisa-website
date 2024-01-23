@@ -26,28 +26,33 @@
     opacity: 0;
 }
 
-h1.title {
+main.info h1.title {
     color: var(--black);
     font-family: var(--raleway);
     font-weight: 600;
+    font-size: 2.4rem;
+    text-align: center;
+    margin-bottom: 0.5rem; /* 8px */
     cursor: pointer;
-    @apply text-[1.8rem] sm:text-[2.1rem] lg:text-[3.8rem] mb-2 lg:mb-3;
 }
-
-h1.secondary-title {
+main.info h1.secondary-title {
     font-family: var(--raleway);
     font-weight: 600;
-    @apply leading-[1.9rem] text-[1.8rem] sm:text-[2rem] sm:leading-[46px] lg:leading-[3rem] lg:text-[2.6rem] mb-5 sm:my-10;
-}
-main.about-article h2.subtitle {
-    margin-bottom: 0.8rem;
-    color: var(--black);
-    font-family: var(--raleway);
-    font-weight: 700; 
     font-size: 1.8rem;
+    line-height: 1.9rem;
+    margin-bottom: 1.25rem; /* 20px */
+    margin-top: 1.5rem;
+}
+main.info h2.subtitle {
+    font-family: var(--raleway);
+    font-size: 1.4rem;
+    font-weight: 700; 
+    color: var(--black);
+    margin-top: 2rem; /* 32px */
+    margin-bottom: 0.4rem;
     transition: var(--default-tw-transition);
 }
-main.about-article h2.subtitle.highlight {
+main.info h2.subtitle.highlight {
     animation: highlight-subtitle 700ms ease-out 2;
 }
 @keyframes highlight-subtitle {
@@ -56,3 +61,27 @@ main.about-article h2.subtitle.highlight {
     to { filter: brightness(100%); }
 }
 
+@media (min-width: 560px) {
+    main.info h1.secondary-title {
+        font-size: 2rem;
+        line-height: 46px;
+    }
+    main.info h2.subtitle {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+}
+@media (min-width: 992px) {
+    main.info h1.title {
+        font-size: 3.8rem;
+        margin-bottom: 0.75rem;
+    }
+    main.info h1.secondary-title {
+        margin-top: 2rem;
+        font-size: 2.6rem;
+        line-height: 3rem;
+    }
+    main.info h2.subtitle {
+        margin-top: 2rem; /* 64px */
+    }
+}

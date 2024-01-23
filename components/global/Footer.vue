@@ -18,10 +18,9 @@
             </div>
         </div>
         <div class="links">
-            <div class="extracurricular-activities">
+            <div class="extracurricular-activities"> <!-- Actividades Extracurriculares -->
                 <h5 class="title">
                     Pastoral
-                    <!-- Actividades Extracurriculares -->
                 </h5>
                 <ul class="activities">
                     <li v-for="({label, address }, index) in extracurricular_activities" :key="index" class="activity">

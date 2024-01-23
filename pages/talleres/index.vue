@@ -1,7 +1,7 @@
 <template>
-    <about-portrait-component picture="/modules/home/wallpaper/portrait-2.JPG" />
-    <main class="py-7">
-        <h1 class="font-raleway text-center font-semibold text-[2.1rem] lg:text-[3.6rem] mb-4">
+    <about-portrait-component picture="/modules/workshop/hub.jpg" />
+    <main class="info py-[4rem] sm:py-[2rem]">
+        <h1 class="title">
             <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
         </h1>
         <p class="text-justify text-black font-raleway text-[1.1rem] mx-auto w-[90%] min-[1400px]:w-[50%] mb-14">
@@ -36,11 +36,12 @@
             </div>
             <div class="card-container max-md:border-0 md:border-[5px] md:border-[white] md:radius-[30px] z-30" 
             ref="card_container" :class="{'translucent': enable_background}">
-                <div class="card max-[1480px]:min-[800px]:flex-row max-[1480px]:min-[800px]:items-center 
-                flex flex-col justify-center md:bg-white text-[#7D96BD] object-cover cursor-pointer transition-all" 
-                v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name" :class="[name]"
-                @mouseenter.prevent="apply_background(name)">
-                    <nuxt-icon class="no-shadow mx-auto max-[1480px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5" :name="icon" filled />
+                <div class="card max-[1480px]:min-[800px]:flex-row max-[1480px]:min-[800px]:items-center
+                flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all" 
+                v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name" :class="[name]" 
+                @click.prevent="go_to_workshop(icon)" @mouseenter.prevent="apply_background(name)">
+                    <nuxt-icon class="no-shadow mx-auto max-[1480px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5" 
+                    :name="`workshop/${icon}`" filled />
                     <div class="flex flex-col max-[1480px]:min-[800px]:items-start max-md:pb-10">
                         <h4 class="max-[1480px]:min-[800px]:text-start text-center my-[10px] font-bold font-raleway text-[1.3rem] leading-[20px]">
                             <template v-for="({ name, class_, br }, title_index) in title" >
@@ -60,6 +61,9 @@
     </main>
 </template>
 <script setup>
+    const go_to_workshop = async (path) => {    
+        await navigateTo({ path: `talleres/${path}`});
+    }
     const temp_timer = ref(0);
 
     const color_animation = ref(false);
@@ -93,7 +97,7 @@
     // cards
     const cards = reactive([
         {
-            icon: 'workshop/confeccion-patronaje',
+            icon: 'confeccion-patronaje',
             name: 'confeccion',
             title: [
                 {
@@ -114,7 +118,7 @@
             show_element: false
         },        
         {
-            icon: 'workshop/desarrollo-aplicaciones-informaticas',
+            icon: 'desarrollo-aplicaciones-informaticas',
             name: 'desarrollo',
             title: [
                 {
@@ -150,7 +154,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/electromecanica-vehiculos',
+            icon: 'electromecanica-vehiculos',
             name: 'electromecanica',
             title: [
                 {
@@ -174,7 +178,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/gestion-administrativa-tributaria',
+            icon: 'gestion-administrativa-tributaria',
             name: 'gestion',
             title: [
                 {
@@ -198,7 +202,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/equipos-electronicos',
+            icon: 'equipos-electronicos',
             name: 'equipos',
             title: [
                 {
@@ -215,7 +219,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/ensamblaje-muebles',
+            icon: 'ensamblaje-muebles',
             name: 'ensamblaje',
             title: [
                 {
@@ -236,7 +240,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/mecanizado',
+            icon: 'mecanizado',
             name: 'mecanizado',
             title: [
                 {
@@ -253,7 +257,7 @@
             show_element: false
         },
         {
-            icon: 'workshop/instalaciones-electricas',
+            icon: 'instalaciones-electricas',
             name: 'instalaciones',
             title: [
                 {
@@ -331,6 +335,9 @@
     });
 </script>
 <style scoped>
+div.portrait :deep(img.wallpaper) {
+    object-position: 0px 35%;
+}
 .card-container {
     position: relative;
     display: grid;
@@ -372,7 +379,7 @@ img.workshop-focused {
 }
 .card-container.translucent .card:hover {
     background-color: white;
-    color: #7D96BD;
+    color: var(--black-700);
     border-color: transparent;
 }
 .card-container.translucent .card :deep(svg) .shadow {

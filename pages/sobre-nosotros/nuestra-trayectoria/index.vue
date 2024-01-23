@@ -1,10 +1,10 @@
 <template>
-    <NuxtLayout name="about">
+    <NuxtLayout name="about" picture="/modules/about/history/origin/Imagen0.jpg">
         <template #title>
             <span class="text-blue">Historia</span> <span class="separator">del</span> <span class="text-orange">Centro</span>
         </template>
         <template #content>
-            <h2 class="subtitle mt-4" id="anchor-origin">
+            <h2 class="subtitle" id="anchor-origin">
                 Origen y Fundación
             </h2>
             El Instituto Politécnico Industrial de Santiago (IPISA) tuvo su génesis en la apremiante demanda empresarial del norte del país por técnicos 
@@ -19,7 +19,7 @@
             Inspector de las Antillas. Este acuerdo fue recibido con entusiasmo no solo por el empresariado sino por toda la región del Cibao.
             <br><br>
 
-            <h2 class="subtitle mt-4" id="anchor-beginning">
+            <h2 class="subtitle" id="anchor-beginning">
                 Inicios y Desarrollo
             </h2>
             La génesis de IPISA se materializó el <b>11 de enero de 1988</b>, cuando con la participación de <b>131 estudiantes</b>, se dio inicio a sus 
@@ -28,7 +28,7 @@
             correspondientes al segundo semestre del año escolar 1987-1988.
             <br><br>
 
-            <h2 class="subtitle mt-4" id="anchor-development">
+            <h2 class="subtitle" id="anchor-development">
                 Crecimiento y Adaptación
             </h2>
             La evolución de IPISA continuó con la creación en <b>2007</b> de dos nuevos talleres de servicios: Informática y Contabilidad y Finanzas. Estos avances 
@@ -43,7 +43,7 @@
             San Juan Bosco.
             <br><br>
             
-            <h2 class="subtitle mt-4" id="anchor-community">
+            <h2 class="subtitle" id="anchor-community">
                 Comunidad y Logros
             </h2>
             La comunidad de IPISA se enriquece con la Asociación de Exalumnos, cuyo respaldo y continua participación brindan un apoyo invaluable a la institución.
