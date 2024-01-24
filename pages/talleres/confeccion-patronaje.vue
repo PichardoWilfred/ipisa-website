@@ -59,11 +59,8 @@
                 <li>Emprendimiento.</li>
                 <li>Formación y Orientación Laboral.</li>
             </ul>
-            <br>
-            <h1 class="font-bold text-center mx-auto opacity-20 text-3xl">
-                GALERIA
-            </h1>
-            <br>
+        </template>
+        <template #workshop-summary>
             Los graduados de este taller están preparados para integrarse en la industria del calzado y la marroquinería, 
             desempeñando roles esenciales en la producción y manufactura de productos de cuero. Están capacitados para trabajar 
             en empresas de diversos tamaños y sectores productivos, ofreciendo una contribución valiosa a cada fase del proceso productivo.
