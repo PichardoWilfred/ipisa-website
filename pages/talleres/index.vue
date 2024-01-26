@@ -276,9 +276,6 @@
     ]);
     const img_src = useImage();
 
-    const clientX = ref(0);
-    const clientY = ref(0);
-
     const focused_workshop = ref(null);
     const background_image_timer = ref(0);
     const enable_background = ref(false);
@@ -291,10 +288,6 @@
             focused_workshop.value = workshop;
         }, 120);
     }
-
-    watch(focused_workshop, (value) => {
-        
-    });
     
     onMounted(() => {
         in_tablet.value = window.matchMedia("(min-width: 800px) and (max-width: 1480px)").matches;

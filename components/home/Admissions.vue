@@ -7,18 +7,18 @@
                     <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator" />
                 </span>
             </h2>
-            <p class="text-[1.1rem] text-black font-medium font-raleway max-w-[900px] mb-10 mx-auto">
+            <p class="text-justify text-[1.1rem] text-black font-medium font-raleway max-w-[860px] mb-10 mx-auto">
                 Para formar parte de la comunidad educativa del Instituto Politécnico Industrial de Santiago <b>(IPISA),</b> es importante 
-                seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes. A continuación, detallamos 
-                los requisitos necesarios para aplicar:
+                seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes. <i>A continuación, detallamos 
+                los requisitos necesarios para aplicar:</i>
             </p>
             <p class="hidden text-[1.2rem] text-black font-medium font-raleway max-w-[1200px] mb-14">
                 Cumplir con estos requisitos es fundamental para iniciar tu proceso de admisión en IPISA y dar el primer paso hacia una educación técnica de calidad.
             </p>
         </div>
-        <div class="requirements-list">
-            <div class="requirement" v-for="({ label, label_class, content, icon }, index) in requirements" :key="index"
-            :class="index % 2 === 0 ? 'orange':'blue'">
+        <div class="requirements-list mt-16">
+            <div class="requirement" v-for="({ label, content, icon }, index) in requirements" :key="index"
+            :class="(index % 2 === 0) ? 'orange':'blue'">
                 <div class="number">
                     <span>
                         {{ index + 1 }}
@@ -32,7 +32,8 @@
                         {{ content }}
                     </p>
                 </div>
-                <div class="icon-container">
+                <div class="icon-container absolute top-[83%] lg:top-[75%] lg:right-[-8%] max-lg:left-[50%] max-lg:translate-x-[-50%]
+                flex justify-center items-center rounded-full w-[85px] h-[85px] z-[5]">
                     <nuxt-icon filled :name="`home/requirements/requirement-${icon}`" class="text-[4rem]" />
                 </div>
             </div>
@@ -51,68 +52,129 @@
 <style scoped>
 .requirements-list {
     display: grid;
-    justify-items: center;
+    justify-content: center;
+
     grid-template-columns: 1fr;
-    grid-template-rows: 180px;
-    column-gap: 120px;
-    row-gap: 40px;
-}
-@media (max-width: 768px) {
-    .requirements-list {
-    grid-template-rows: 380px;
-}
-}
-@media (min-width: 1200px) {
-    .requirements-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    grid-template-rows: repeat(5, auto);
+
+    column-gap: 65px;
+    row-gap: 125px;
 }
 .requirement {
-    @apply bg-white flex rounded-lg items-center justify-center relative max-w-[680px] border-[8px] h-[300px] lg:h-[180px];
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #ffffff; 
+
+    height: 100%;
+    width: 100%;
+
+    border-radius: 0.5rem;
+    border: 3px solid transparent;
+
+    margin-inline: auto;
 }
-.requirement.orange {
-    @apply border-[#FFA36C]
-}
-.requirement.blue {
-    @apply border-blue-200
-}
+.requirement.orange { border-color: #ffc39f; }
+.requirement.blue { border-color: var(--blue-200); }
 .requirement .text {
-    @apply pl-6 pr-16 lg:pl-10 lg:pr-20 lg:py-7 relative z-10;
+    position: relative;
+    padding: 4rem 30px;
+    z-index: 10;
 }
 .requirement .text h2 {
-    @apply font-bold text-[1.2rem];
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1;
+    text-align: justify;
+    margin-bottom: 0.7rem;
 }
-.requirement.orange .text h2 {
-    @apply text-orange;
-}
-.requirement.blue .text h2 {
-    @apply text-blue;
-}
+.requirement.orange .text h2 { color: var(--orange); }
+.requirement.blue .text h2 { color: var(--blue); }
 .requirement .text p {
-    @apply font-medium;
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: justify;
 }
 .requirement .number {
-    @apply absolute flex items-center justify-center top-[-8%] lg:top-[50%] translate-y-[-50%] left-[-22%] lg:left-[-12%] translate-x-[12%] bg-white p-8 text-[4rem] font-raleway text-center rounded-full w-[120px] h-[120px];
+    display: flex; 
+    position: absolute; 
+    padding: 1rem; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 9999px; 
+    text-align: center; 
+    background-color: #ffffff; 
+    border: 3px solid;
+
+    top: -12%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 4rem;
+    width: 85px;
+    height: 85px;
 }
 .requirement .number span {
-    @apply font-bold text-[4rem] leading-3;
+    font-size: 2.5rem;
+    line-height: .75rem; 
+    font-weight: 700; 
 }
 .requirement.orange .number span {
-    @apply text-orange-200 text-[#FFA36C];
-}
-
-.requirement .icon-container {
-    @apply absolute right-[-24%] max-lg:top-[70%] lg:right-[-12%] translate-x-[-12%] flex justify-center items-center rounded-full w-[120px] h-[120px] z-[5];
+    font-size: #FFA36C;
 }
 .requirement .icon-container :deep(svg) {
-    @apply mb-0;
+    margin-bottom: 0;
+    padding: 5px;
 }
 .requirement.blue .icon-container {
-    @apply bg-[#CEE8FF];
+    background-color: #CEE8FF; 
 }
 .requirement.orange .icon-container {
-    @apply text-orange-200 bg-[#FFE9DC];
+    color: var(--orange-200);
+    background-color: #FFE9DC;
 }
+@media (min-width: 768px) {
+    .requirements-list {
+        row-gap: 65px;
+    }
+}
+@media (min-width: 992px) {
+    .requirement {
+        max-width: 680px;
+    }
+    .requirement .text h2 {
+        line-height: 1.3;
+        font-size: 1.2rem;
+        text-align: start;
+        margin-bottom: 0.2rem;
+    }
+    .requirement .text {
+        padding: 1.75rem 2.8vw;
+    }
+    .requirement .text p {
+        font-size: inherit;
+    }
+    .requirement .number {
+        top: -23%;
+        left: -7%;
+        transform: translateX(0%);
+    }
+}
+@media (min-width: 1300px) {
+    .requirements-list {
+        grid-template-columns: repeat(2, 580px);
+        column-gap: 75px;
+        row-gap: 65px;
+    }
+}
+/* @media (max-width: 768px) {
+    .requirements-list {
+        grid-template-rows: auto;
+        row-gap: 100px;
+    }
+} */
 </style>
 <script setup>
     const requirements = ref([
@@ -124,7 +186,7 @@
     },
     {
         label: 'Fotografías 2×2',
-        content: 'Se requieren dos fotografías recientes a color, en formato 2 x 2, donde tu rostro esté claramente visible. Evita usar aretes, maquillaje excesivo, blusas sin mangas, cortes de pelo extravagantes o tintes llamativos. La presentación debe ser sobria.',
+        content: 'Se requieren dos fotografías recientes a color, en formato 2 x 2, donde tu rostro esté claramente visible. Evita usar aretes, maquillaje excesivo, blusas sin mangas, cortes de pelo extravagantes o tintes llamativos.',
         label_class: '',
         icon: 'picture'
     },

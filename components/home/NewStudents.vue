@@ -7,7 +7,7 @@
                 <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator mb-1" />
             </span>
         </h2>
-        <p class="text-justify lg:text-center text-[1.1rem] text-black font-medium font-raleway max-sm:leading-7 max-w-[900px] mb-5 mx-auto">
+        <p class="text-justify text-[1.1rem] text-black font-medium font-raleway max-sm:leading-7 max-w-[900px] max-lg:mb-5 lg:text-center mx-auto">
             <b>¡Felicidades a todos los estudiantes que han sido admitidos en el centro! </b> Vuestra admisión
             es un paso importante en vuestro viaje educativo y profesional, y estamos emocionados de teneros 
             como parte de <b class="text-blue">nuestra</b> <b class="orange">comunidad.</b> Esperamos que vuestro tiempo con nosotros sea una experiencia enriquecedora 
