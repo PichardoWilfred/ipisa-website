@@ -14,9 +14,9 @@
                     <nuxt-link :to="sections[selected_index].route">
                         <Transition name="fade" mode="out-in">
                             <h1 class="flex items-end font-semibold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all" :key="selected_index" >
-                                <a class="hover:underline text-black-400">
+                                <span class="hover:underline text-black-400">
                                     {{ selected_section.title }}
-                                </a>
+                                </span>
                                 <span class="max-lg:hidden">
                                     <Icon name="fe:link" class=" ms-1 text-[2.5rem] separator mb-3" />
                                 </span>

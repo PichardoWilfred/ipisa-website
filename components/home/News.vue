@@ -1,6 +1,6 @@
 <template>
     <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[6rem] mb-[8rem] z-20" id="news">
-        <h2 class="flex items-center text-black font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.8rem] cursor-pointer mb-2 lg:mb-4 transition-all">
+        <h2 class="flex items-center text-black font-raleway text-[2.2rem] lg:text-[3.8rem] cursor-pointer mb-2 lg:mb-4 transition-all">
             <b class="me-2 lg:me-5 text-blue">Últimas</b> <b class="text-orange-300">Noticias</b>
         </h2>
         <div class="news-feed">

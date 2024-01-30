@@ -32,7 +32,7 @@
                         {{ content }}
                     </p>
                 </div>
-                <div class="icon-container absolute top-[83%] lg:top-[75%] lg:right-[-8%] max-lg:left-[50%] max-lg:translate-x-[-50%]
+                <div class="icon-container absolute top-[89%] lg:top-[75%] lg:right-[-8%] max-lg:left-[50%] max-lg:translate-x-[-50%]
                 flex justify-center items-center rounded-full w-[85px] h-[85px] z-[5]">
                     <nuxt-icon filled :name="`home/requirements/requirement-${icon}`" class="text-[4rem]" />
                 </div>
@@ -54,8 +54,8 @@
     display: grid;
     justify-content: center;
 
+    grid-template-rows: repeat(10, 60vh);
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, auto);
 
     column-gap: 65px;
     row-gap: 125px;
@@ -86,8 +86,8 @@
 .requirement .text h2 {
     font-weight: 600;
     font-size: 1.5rem;
-    line-height: 1;
-    text-align: justify;
+    line-height: 1.1;
+    text-align: start;
     margin-bottom: 0.7rem;
 }
 .requirement.orange .text h2 { color: var(--orange); }
@@ -95,6 +95,7 @@
 .requirement .text p {
     font-weight: 500;
     font-size: 1.2rem;
+    line-height: 1.3;
     text-align: justify;
 }
 .requirement .number {
@@ -135,23 +136,21 @@
     color: var(--orange-200);
     background-color: #FFE9DC;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .requirements-list {
+        grid-template-rows: repeat(5, auto);
         row-gap: 65px;
     }
-}
-@media (min-width: 992px) {
     .requirement {
         max-width: 680px;
     }
     .requirement .text h2 {
         line-height: 1.3;
         font-size: 1.2rem;
-        text-align: start;
         margin-bottom: 0.2rem;
     }
     .requirement .text {
-        padding: 1.75rem 2.8vw;
+        padding: 1.35rem 5vw;
     }
     .requirement .text p {
         font-size: inherit;
@@ -162,31 +161,31 @@
         transform: translateX(0%);
     }
 }
-@media (min-width: 1300px) {
+@media (min-width: 1200px) {
+    
+    .requirement .text {
+        padding: 1.35rem 3vw;
+    }
+}
+@media (min-width: 1400px) {
     .requirements-list {
         grid-template-columns: repeat(2, 580px);
         column-gap: 75px;
         row-gap: 65px;
     }
 }
-/* @media (max-width: 768px) {
-    .requirements-list {
-        grid-template-rows: auto;
-        row-gap: 100px;
-    }
-} */
 </style>
 <script setup>
     const requirements = ref([
     {
         label: 'Formulario de Admisión Completo',
         content: 'Debes completar el formulario de admisión proporcionado por la institución, asegurándote de no realizar alteraciones en el mismo.',
-        label_class: 'cursor-pointer',
+        label_class: '',
         icon: 'form'
     },
     {
         label: 'Fotografías 2×2',
-        content: 'Se requieren dos fotografías recientes a color, en formato 2 x 2, donde tu rostro esté claramente visible. Evita usar aretes, maquillaje excesivo, blusas sin mangas, cortes de pelo extravagantes o tintes llamativos.',
+        content: 'Se requieren dos fotografías recientes a color, en formato 2 × 2, donde tu rostro esté claramente visible. Evita usar aretes, maquillaje excesivo, blusas sin mangas, cortes de pelo extravagantes o tintes llamativos.',
         label_class: '',
         icon: 'picture'
     },
