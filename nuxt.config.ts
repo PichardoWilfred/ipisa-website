@@ -1,5 +1,9 @@
 export default defineNuxtConfig({
-  ssr: true,
+  routeRules: {
+    // Homepage pre-rendered at build time
+    '/': { prerender: true },
+    // Products page generated on demand, revalidates in background, cached until API response changes
+  },
   devtools: { enabled: true },
   css: [
     '@/assets/css/main.css',
@@ -21,9 +25,9 @@ export default defineNuxtConfig({
     }
   },
   image: {
-    provider: 'netlify',
-    netlify: {
-      baseURL: 'https://stellular-nasturtium-aaff86.netlify.app/',
+    provider: 'storyblok',
+    storyblok: {
+      baseURL: 'https://a.storyblok.com',
       modifiers: {
         effect: 'sharpen:100',
         quality: 'auto:best',
