@@ -1,5 +1,5 @@
 <template>
-    <about-portrait-component :picture="picture" />
+    <about-portrait-component :picture="picture" :picture_name="picture_name" :wallpaper_phrase="wallpaper_phrase"/>
     <main class="about-article info flex max-xl:flex-col justify-center px-4 lg:px-24 pt-[4rem] mb-28">
         <section>
             <h1 class="title">
@@ -36,6 +36,7 @@
             <h1 class="font-raleway font-[700] text-[28px] lg:text-[36px] text-black-400 mt-3 lg:mt-20 mb-4">
                 Noticias
             </h1>
+            
             <div class="news-feed">
                 <div class="new mb-5">
                     <nuxt-img src="/modules/home/news/new-1.png" alt="estudiantes" class="w-[480px] h-[210px] object-cover" />
@@ -187,7 +188,7 @@
         });
     });
     
-    const { picture } = useAttrs();
+    const { picture, picture_name, wallpaper_phrase } = useAttrs();
 
     onBeforeUnmount(() => {
         observer.value.disconnect();

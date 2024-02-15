@@ -1,5 +1,6 @@
 <template>
-    <NuxtLayout name="workshop" picture="mecanizado" workshop_name="mecanizado" type="Industrial" internship="720">
+    <NuxtLayout name="workshop" picture="https://a.storyblok.com/f/272924/6000x4000/b57f103738/mecanizado-1.JPG" 
+    workshop_name="mecanizado" type="Industrial" internship="720">
         <template #workshop-title>
             <span class="text-blue">Mecani</span><span class="text-orange">zado</span>
         </template>

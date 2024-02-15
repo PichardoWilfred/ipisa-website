@@ -1,5 +1,9 @@
 <template>
-    <about-portrait-component picture="/modules/home/wallpaper/portrait-2.JPG" />
+    <about-portrait-component 
+    picture="https://a.storyblok.com/f/272924/6000x4000/ba2ae85481/portrait-2.jpg"
+    picture_name="about-us-wallpaper"
+    wallpaper_phrase="Sobre nosotros"
+    />
     <main class="info py-[4rem] sm:py-[2rem]">
         <h1 class="title">
             <span class="text-blue">Conoce </span> <span class="separator"> al </span><span class="orange"> Centro </span>

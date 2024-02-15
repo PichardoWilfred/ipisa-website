@@ -1,5 +1,9 @@
 <template>
-    <NuxtLayout name="about" picture="/modules/about/history/origin/Imagen0.jpg">
+    <NuxtLayout name="about" 
+    picture="https://a.storyblok.com/f/272924/4000x3000/5ae8578647/history-wallpaper.jpg"
+    picture_name="history"
+    wallpaper_phrase="Trayectoria del Centro"
+    >
         <template #title>
             <span class="text-blue">Historia</span> <span class="separator">del</span> <span class="text-orange">Centro</span>
         </template>

@@ -7,3 +7,23 @@ div.portrait img.wallpaper.zoom-in {
     filter: blur(10px);
     transform: scale(1.3);
 }
+div.portrait img.wallpaper.philosofy {
+    object-position: 40% 50%;
+}
+div.portrait img.wallpaper.about-us-wallpaper {
+    object-position: -117px 0px;
+}
+@media (min-width: 576px) {
+    div.portrait img.wallpaper.philosofy {
+        object-position: 0px 50%;
+    }
+    div.portrait img.wallpaper.about-us-wallpaper {
+        object-position: 0px -180px;
+    }
+    div.portrait img.wallpaper.history {
+        object-position: 0px -180px;
+    }
+    div.portrait img.wallpaper.workshop {
+        object-position: 0px -180px;
+    }
+}

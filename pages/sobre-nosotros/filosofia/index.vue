@@ -1,5 +1,8 @@
 <template>
-    <NuxtLayout name="about" picture="/modules/home/wallpaper/portrait-3.JPG">
+    <NuxtLayout name="about"
+        picture="https://a.storyblok.com/f/272924/4000x3000/c884634ae7/portrait-6.jpg" 
+        picture_name="philosofy"
+        wallpaper_phrase="Nuestra filosofía">
         <template #title>
             <span class="text-blue">Filosofía</span> <span class="separator">del</span> <span class="text-orange">IPISA</span>
         </template>
@@ -11,10 +14,10 @@
             <br><br>
             <h2 class="subtitle" id="anchor-mision">
                 Misión
-            </h2>
+            </h2>   
             Ofrecer a adolescentes y jóvenes una formación integral centrada en los aspectos humano, ético, técnico y académico, que les permita su inserción en el mundo laboral 
             y de los estudios superiores, proyectándose como
-            <span class="text-blue font-bold">Buenos Cristianos </span> <span class="separator font-bold">Y</span> <span class="text-orange font-bold">Honrados Ciudadanos.</span>
+            <span class="text-blue font-bold">Buenos Cristianos </span> <span class="separator font-bold">&</span> <span class="text-orange font-bold">Honrados Ciudadanos.</span>
             <br><br>
             <h2 class="subtitle" id="anchor-vision">
                 Visión
@@ -130,9 +133,8 @@
             <br><br>
             <ul class="biographies">
                 <li v-for="({ name, img, biography, anchor }, index) in biographies" :key="index">
-                    <nuxt-img :src="`/modules/about/philosofy/people/${img}`" :alt="img" class="max-[650px]:my-12" 
+                    <nuxt-img :src="img" :alt="img" class="max-[650px]:my-12" 
                     sizes="100vw sm:50vw md:400px"
-                    :placeholder="img_src(`/modules/about/philosofy/people/${img}`, { w: 10, h: 10, f: 'jpg', blur: 2, q: 'lightest' })"
                     densities="x1 x2"
                     />
                     <div class="min-[650px]:ms-12">
@@ -149,6 +151,7 @@
 </template>
 <script setup>
 import { useLayoutStore } from '@/store/layout';
+
 const layout_store = useLayoutStore();
 const about_navigation = [
     {
@@ -224,7 +227,7 @@ layout_store.$patch({ about_navigation });
 const biographies = ref([
 {
     name: "San Juan Bosco",
-    img: "don_bosco.jpg",
+    img: "https://a.storyblok.com/f/272924/575x901/55330e95d0/don_bosco.jpg",
     anchor: 'bosco',
     biography: [
         "Juan Melchor Bosco Ochiennao, Don Bosco (en italiano Giovanni Melchiorre Bosco Ochienna). nace en en Becchi, <b>16 de agosto de 1815.</b> Fue un sacerdote católico, educador y escritor italiano del siglo XIX.",
@@ -236,7 +239,7 @@ const biographies = ref([
 },
 {
     name: "San Francisco de Sales",
-    img: "francisco_sales.jpg",
+    img: "https://a.storyblok.com/f/272924/575x901/d0dc58d554/francisco_sales.jpg",
     anchor: 'sales',
     biography: [
     "Nacido en Sales Saboya, <b> 21 de agosto de 1567 </b>, fue un santo del norte de Italia, quien fue obispo de Ginebra. Tiene el título de Doctor de la Iglesia, es titular y patrono de la familia Salesiana (fundada por San Juan Bosco) y también patrono de los escritores y periodistas.",
@@ -244,7 +247,7 @@ const biographies = ref([
 },
 {
 	name: "María Dominga Mazzarelló",
-	img: "maria_mazzarello.jpg",
+	img: "https://a.storyblok.com/f/272924/575x901/42c7f17238/maria_mazzarello.jpg",
     anchor: 'mazzarello',
 	biography: [
         "María Dominga Mazzarelló, Madre Mazzarello, nace en Mornés, Alessandria, <b>9 de mayo de 1837</b>",
@@ -254,7 +257,7 @@ const biographies = ref([
 },
 {
 	name: "Laura Vicuña",
-	img: "vicuna_laura.jpg",
+	img: "https://a.storyblok.com/f/272924/575x901/467f79b70c/vicuna_laura.jpg",
     anchor: 'laura',
 	biography: [
         "Laura del Carmen Vicuña Pino. Nace en Santiago de Chile, <b>5 de abril de 1891.</b> Es patrona de las víctimas de abusos, víctimas de incestos, huérfanos, mártires de Argentina.",
@@ -264,7 +267,7 @@ const biographies = ref([
 },
 {
 	name: "Domingo Savio (Doménico Savio)",
-	img: "domingo_savio.jpg",
+	img: "https://a.storyblok.com/f/272924/575x901/314d267e5d/domingo_savio.jpg",
     anchor: 'savio',
 	biography: [
         "Doménico Savio. Nace en San Giovanni da Riva, Italia el <b>2 de abril de 1842.</b> Fue un alumno de San Juan Bosco, en el Oratorio de San Francisco de Sales, que se propuso ser santo y murió a la edad de 14 años faltando 3 semanas para cumplir sus 15 años de edad, siendo el santo no mártir más joven de la Iglesia Católica.",
@@ -273,7 +276,6 @@ const biographies = ref([
 }
 ]);
 
-const img_src = useImage();
 </script>
 <style scoped>
 .values-lists ul {
@@ -299,4 +301,6 @@ ul.biographies li img {
         flex-wrap: wrap;
     }
 }
+
+
 </style>

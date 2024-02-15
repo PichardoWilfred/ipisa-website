@@ -5,12 +5,10 @@
             <div class="bg-[#00488D99] z-20 absolute top-0 left-0 w-full h-full" />
             <swiper :modules="[Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop 
             :autoplay="{ delay: 4000 }" effect="fade" crossFade>
-            <!-- https://a.storyblok.com -->
-            <!-- :placeholder="img_src(`/modules/home/wallpaper/portrait-${img}.jpg`, { w: 10, h: 10, f: 'jpg', blur: 2, q: 'lightest' })" -->
                 <swiper-slide v-for="(img, index) in imgs_" :key="index">
                     <nuxt-img class="object-cover w-screen h-screen"
                     format="webp"
-                    sizes="600px md:1200px xl:2000px"
+                    sizes="1200px lg:2200px"
                     :src="`/f/272924/6000x4000/${img}/portrait-${(index + 1)}.jpg`" densities="x1 x2"
                     />
                 </swiper-slide>
@@ -47,14 +45,14 @@
     import 'swiper/css/pagination';
     import 'swiper/css/effect-fade';
 
-    const img_src = useImage();
     const imgs_ = ref([
         '937f525625',
         'ba2ae85481',
         'cde67643b8',
         '5edb50ab78',
-        '85adbb31f6'
-    ])
+        '85adbb31f6',
+        'c884634ae7'
+    ]);
 </script>
 <style scoped>
     button.join {

@@ -75,7 +75,7 @@ main.info h2.subtitle.highlight {
 @media (min-width: 992px) {
     main.info h1.title {
         font-size: 3.8rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 1.2rem;
     }
     main.info h1.secondary-title {
         margin-top: 2rem;

@@ -1,5 +1,8 @@
 <template>
-    <about-portrait-component picture="/modules/workshop/hub.jpg" />
+    <about-portrait-component 
+    picture="https://a.storyblok.com/f/272924/4000x3000/8a38807947/portrait-7.jpg" 
+    picture_name="philosofy"
+    wallpaper_phrase="Los Talleres" />
     <main class="info py-[4rem] sm:py-[2rem]">
         <h1 class="title">
             <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
@@ -26,19 +29,18 @@
                     <template v-else>
                         <div class="absolute opacity-30 md:opacity-0 top-0 left-0 w-full h-full bg-white z-20" />
                     </template>
-                    <nuxt-img v-for="({ name }, index) in cards" sizes="400px md:1200px xl:100%" densities="x1 x2"
-                        :src="`/modules/workshop/${name}-1.JPG`" 
-                        :placeholder="img_src(`/modules/workshop/${name}-1.jpg`, { w: 10, h: 10, f: 'jpg', blur: 2, q: 'lightest' })" 
-                        class="absolute top-0 left-0 w-screen h-screen md:w-full md:h-full opacity-0 object-cover transition-all" 
-                        :class="{'workshop-focused': (name === focused_workshop)}"
-                        />
+                    <nuxt-img v-for="({ img, name }, index) in cards" 
+                    :src="`https://a.storyblok.com/f/272924/6000x4000/${img}/${name}-1.JPG`" sizes="600px md:1200px" densities="x1 x2"
+                    class="absolute top-0 left-0 w-screen h-screen md:w-full md:h-full opacity-0 object-cover transition-all" 
+                    :class="{'workshop-focused': (name === focused_workshop)}"
+                    />
                 </div>
             </div>
             <div class="card-container max-md:border-0 md:border-[5px] md:border-[white] md:radius-[30px] z-30" 
             ref="card_container" :class="{'translucent': enable_background}">
                 <div class="card max-[1480px]:min-[800px]:flex-row max-[1480px]:min-[800px]:items-center
                 flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all" 
-                v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name" :class="[name]" 
+                v-for="({ name, icon, title, description,  }, index) in cards" :key="index" :id="name" :class="[name]" 
                 @click.prevent="go_to_workshop(icon)" @mouseenter.prevent="apply_background(name)">
                     <nuxt-icon class="no-shadow mx-auto max-[1480px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5" 
                     :name="`workshop/${icon}`" filled />
@@ -99,6 +101,7 @@
         {
             icon: 'confeccion-patronaje',
             name: 'confeccion',
+            img: 'c42bb835ec',
             title: [
                 {
                     class_: 'blue',
@@ -120,6 +123,7 @@
         {
             icon: 'desarrollo-aplicaciones-informaticas',
             name: 'desarrollo',
+            img: '57f64b960e',
             title: [
                 {
                     class_: 'blue',
@@ -156,6 +160,7 @@
         {
             icon: 'electromecanica-vehiculos',
             name: 'electromecanica',
+            img: 'cd58eae062',
             title: [
                 {
                     class_: 'blue',
@@ -180,6 +185,7 @@
         {
             icon: 'gestion-administrativa-tributaria',
             name: 'gestion',
+            img: 'f44213de5b',
             title: [
                 {
                     class_: 'blue',
@@ -204,6 +210,7 @@
         {
             icon: 'equipos-electronicos',
             name: 'equipos',
+            img: '0b7d736aa0',
             title: [
                 {
                     class_: 'blue',
@@ -221,6 +228,7 @@
         {
             icon: 'ensamblaje-muebles',
             name: 'ensamblaje',
+            img: 'c20dbecd13',
             title: [
                 {
                     class_: 'blue',
@@ -242,6 +250,7 @@
         {
             icon: 'mecanizado',
             name: 'mecanizado',
+            img: 'b57f103738',
             title: [
                 {
                     class_: 'blue',
@@ -259,6 +268,7 @@
         {
             icon: 'instalaciones-electricas',
             name: 'instalaciones',
+            img: '99374acc05',
             title: [
                 {
                     class_: 'blue',

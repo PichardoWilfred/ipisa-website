@@ -2,19 +2,12 @@
     <section class="relative w-full z-20 pt-[4rem] lg:pt-[6rem]" id="activities" data-offset="80">
         <swiper class="activities" :modules="[Pagination, Navigation, Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop pagination navigation 
         :autoplay="{ delay: 20000}" effect="fade" crossFade>
-            <swiper-slide v-for="(img, index) in [1, 2, 3, 4]" :key="index">
-                <!-- <div class="image-text">
-                    <h2 class="image-title">
-                        Titular de Ejemplo grande
-                    </h2>
-                    <p class="image-description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, inventore. Molestiae illum ad eligendi repellendus fuga sint repellat voluptate possimus quibusdam, quasi fugiat eaque dicta dignissimos nisi odio qui sapiente.
-                    </p>
-                </div> -->
+            <swiper-slide v-for="(img, index) in images" :key="index">
                 <nuxt-img 
-                :placeholder="img_src(`/modules/home/wallpaper/portrait-${img}.jpg`, { w: 10, h: 10, f: 'jpg', blur: 2, q: 'lightest' })"
+                format="webp"
+                sizes="600px md:1200px lg:2200px"
+                :src="`/f/272924/6000x4000/${img}/slider_${(index + 1)}.JPG`" 
                 densities="x1 x2"
-                :src="`/modules/home/extracurricular/slider_${img}.JPG`" 
                 class="swiper-img object-cover w-full h-full" alt="sa" />
             </swiper-slide>
         </swiper>
@@ -25,4 +18,6 @@
     import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
     
     const img_src = useImage();
+
+    const images = [ '8840c32062', '2de373f659', '8dfb4f902d', '9363f0d6da']
 </script>

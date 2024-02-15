@@ -1,5 +1,8 @@
 <template>
-    <NuxtLayout name="workshop" picture="confeccion" workshop_name="confeccion-patronaje" type="Servicio" internship="360">
+    <NuxtLayout name="workshop"
+    picture="https://a.storyblok.com/f/272924/6000x4000/c42bb835ec/confeccion-1.JPG" 
+    workshop_name="confeccion-patronaje" 
+    type="Servicio" internship="360">
         <template #workshop-title>
             <span class="text-blue">Confección</span> 
             <span class="separator mx-3 lg:mx-4">&</span> 

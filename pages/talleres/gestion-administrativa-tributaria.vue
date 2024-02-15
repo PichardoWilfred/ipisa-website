@@ -1,5 +1,7 @@
 <template>
-    <NuxtLayout name="workshop" picture="gestion" workshop_name="gestion-administrativa-tributaria" type="Servicio" internship="360">
+    <NuxtLayout name="workshop" 
+    picture="https://a.storyblok.com/f/272924/6000x4000/f44213de5b/gestion-1.JPG"
+    workshop_name="gestion-administrativa-tributaria" type="Servicio" internship="360">
         <template #workshop-title>
             <span id="anchor-ipisa" class="text-blue">Gestión Administrativa</span> 
             <span class="separator mx-3 lg:mx-4">&</span> 

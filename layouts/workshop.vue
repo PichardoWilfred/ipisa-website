@@ -1,5 +1,6 @@
 <template>
-    <about-portrait-component :picture="`modules/workshop/${picture}-1.JPG`" :class="workshop_name" />
+    <about-portrait-component :picture="picture" 
+    :class="workshop_name" />
     <main class="info workshop-detail flex flex-col justify-center 
     px-4 lg:px-24 pt-[4rem] sm:pt-[2rem] mb-28 mx-auto w-full 
     md:max-w-[1020px] min-h-[80vh]" 

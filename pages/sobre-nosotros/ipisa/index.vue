@@ -1,5 +1,7 @@
 <template>
-    <NuxtLayout name="about" picture="/modules/home/wallpaper/portrait-2.JPG">
+    <NuxtLayout name="about" 
+    picture="https://a.storyblok.com/f/272924/6000x4000/c3bec000d3/portrait-5.jpg" 
+    wallpaper_phrase="Sobre IPISA">
         <template #title>
             <span class="text-blue">¿Qué</span> <span class="separator">es</span> <span class="text-orange">IPISA?</span>
         </template>

@@ -1,5 +1,7 @@
 <template>
-    <NuxtLayout name="workshop" picture="electromecanica" workshop_name="electromecanica-vehiculos" type="Industrial" internship="720">
+    <NuxtLayout name="workshop" 
+    picture="https://a.storyblok.com/f/272924/6000x4000/cd58eae062/electromecanica-1.JPG" workshop_name="electromecanica-vehiculos"
+    type="Industrial" internship="720">
         <template #workshop-title>
             <span id="anchor-ipisa" class="text-blue">Electromecánica</span> 
             <span class="separator mx-2 md:mx-3">de</span> 
