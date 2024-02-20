@@ -737,7 +737,7 @@
     @apply overflow-hidden;
 }
 .table-container ul.column li.row {
-    @apply flex overflow-hidden font-raleway font-[600] text-black py-[8px] px-3 odd:bg-white-200 border-b border-black-500;
+    @apply flex items-center overflow-hidden font-raleway font-[600] text-black py-[7px] px-3 odd:bg-white-200 border-b border-black-500;
 }
 .table-container ul.column li.row {
     @apply last:border-[0px];

@@ -1,7 +1,7 @@
 <template>
     <HomePortrait />
     <div class="wallpaper-one relative overflow-hidden z-10">
-        <!-- <HomeWallpaperContainerOne /> -->
+        <HomeWallpaperContainerOne />
         <HomeAbout />
         <HomeNews />
     </div>

@@ -1,10 +1,9 @@
 <template>
     <!-- I know this is a war crime, but I swear there's not other way around it, not with dynamic components nor layouts -->
     <template v-if="index === 0">
-        El 
-        <NuxtLink to="sobre-nosotros" v-intersection-observer="[onView, { threshold: 0.9 }]" class="link underline cursor-pointer" :class="{blink: blink}">Instituto Politécnico Industrial de Santiago <b>(IPISA)</b>
-        </NuxtLink> es 
-        una institución educativa de renombre que destaca por su enfoque en la formación técnica y su firme compromiso 
+        El <NuxtLink to="sobre-nosotros" v-intersection-observer="[onView, { threshold: 0.9 }]" 
+        class="link underline cursor-pointer" :class="{ blink: blink }">Instituto Politécnico Industrial de Santiago <b>(IPISA)</b>
+        </NuxtLink> es una institución educativa de renombre que destaca por su enfoque en la formación técnica y su firme compromiso 
         con los valores cristianos. Su lema: <b class="text-blue">"Buenos Cristianos</b> <b class="separator">y</b> 
         <b class="orange"> Honrados Ciudadanos",</b> encapsula su misión de brindar una educación integral que combine 
         habilidades técnicas y valores éticos. 
@@ -45,8 +44,7 @@
     </template>
 </template>
 <script setup>
-    
-import { vIntersectionObserver } from '@vueuse/components';
+    import { vIntersectionObserver } from '@vueuse/components';
     const blink = ref(false);
     const onView = ([{ isIntersecting }]) => {
         blink.value = isIntersecting;

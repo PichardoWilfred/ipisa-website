@@ -1,20 +1,17 @@
-div.portrait:is(
-    .confeccion-patronaje, 
-    .desarrollo-aplicaciones-informaticas, 
-    .electromecanica-vehiculos,
-    .equipos-electronicos,
-    .mecanizado
-    ) 
-img.wallpaper {
+div.portrait:is(.confeccion-patronaje, .desarrollo-aplicaciones-informaticas, 
+    .equipos-electronicos, .mecanizado) img.wallpaper {
     object-position: 0px 50%;
 }
-div.portrait:is(
-    .gestion-administrativa-tributaria,
-    .equipos-electronicos, 
-    .ensamblaje-muebles, 
-    .instalaciones-electricas
-    ) img.wallpaper {
+div.portrait:is(.electromecanica-vehiculos) img.wallpaper {
+    object-position: -250px 0px;
+}
+div.portrait:is(.gestion-administrativa-tributaria, .equipos-electronicos, 
+    .ensamblaje-muebles, .instalaciones-electricas) img.wallpaper {
     object-position: 0px 20%;
+}
+
+div.portrait:is(.gestion-administrativa-tributaria) img.wallpaper {
+    object-position: 67% 0px;
 }
 main.info.workshop-detail div.workshop-hero svg {
     margin-bottom: 18px;
@@ -95,13 +92,16 @@ main.ensamblaje-muebles.workshop-detail
 div.workshop-hero h1.workshop-title {
     font-size: 1.775rem;
 }
-/*  */
-@media (min-width: 640px) {
-    main.info.workshop-detail ul.workshop-list {
-        margin-top: 0.75rem; 
+
+@media (min-width: 576px) {
+    main.info.workshop-detail ul.workshop-list { margin-top: 0.75rem; }
+    div.portrait:is(.electromecanica-vehiculos) img.wallpaper { object-position: 0px 50%; }
+}
+@media (min-width: 768px) {
+    div.portrait:is(.gestion-administrativa-tributaria) img.wallpaper {
+        object-position: 0px 0px;
     }
 }
-
 @media (min-width: 992px) {
     main.info.workshop-detail p.description {
         margin-bottom: 1.8rem;

@@ -66,7 +66,7 @@
     justify-content: center;
     align-items: center;
 
-    background-color: #ffffff; 
+    background-color: #FFF;
 
     height: 100%;
     width: 100%;
@@ -84,8 +84,8 @@
     z-index: 10;
 }
 .requirement .text h2 {
-    font-weight: 600;
     font-size: 1.5rem;
+    font-weight: 600;
     line-height: 1.1;
     text-align: start;
     margin-bottom: 0.7rem;
@@ -93,45 +93,41 @@
 .requirement.orange .text h2 { color: var(--orange); }
 .requirement.blue .text h2 { color: var(--blue); }
 .requirement .text p {
-    font-weight: 500;
     font-size: 1.2rem;
+    font-weight: 500;
     line-height: 1.3;
     text-align: justify;
 }
 .requirement .number {
-    display: flex; 
-    position: absolute; 
-    padding: 1rem; 
-    justify-content: center; 
-    align-items: center; 
-    border-radius: 9999px; 
-    text-align: center; 
-    background-color: #ffffff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 9999px;
+    text-align: center;
+    background-color: #ffffff;
     border: 3px solid;
-
+    
+    position: absolute;
     top: -12%;
     left: 50%;
     transform: translateX(-50%);
 
     font-size: 4rem;
-    width: 85px;
-    height: 85px;
+    width: 70px;
+    height: 70px;
 }
 .requirement .number span {
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: .75rem; 
     font-weight: 700; 
 }
-.requirement.orange .number span {
-    font-size: #FFA36C;
-}
+.requirement.orange .number span { }
 .requirement .icon-container :deep(svg) {
     margin-bottom: 0;
     padding: 5px;
 }
-.requirement.blue .icon-container {
-    background-color: #CEE8FF; 
-}
+.requirement.blue .icon-container { background-color: #CEE8FF; }
 .requirement.orange .icon-container {
     color: var(--orange-200);
     background-color: #FFE9DC;
@@ -152,9 +148,7 @@
     .requirement .text {
         padding: 1.35rem 5vw;
     }
-    .requirement .text p {
-        font-size: inherit;
-    }
+    .requirement .text p { font-size: inherit; }
     .requirement .number {
         top: -23%;
         left: -7%;
@@ -162,9 +156,8 @@
     }
 }
 @media (min-width: 1200px) {
-    
     .requirement .text {
-        padding: 1.35rem 3vw;
+        padding: 1rem 2vw;
     }
 }
 @media (min-width: 1400px) {
@@ -238,7 +231,23 @@
         icon: 'bill'
     },
 ]);
-    const copy_requirements = () => {
-        
+    async function  copy_requirements () {
+        try {
+            const text_ = `Requisitos de admisión:
+            1- Formulario de Admisión Completo 
+            2- Fotografías 2×2 
+            3- Acta de Nacimiento para Fines Escolares 
+            4- Cédula de Identidad de los Padres 
+            5- Certificado Médico 
+            6- Certificado de Conducta Estudiantil 
+            7- Tipificación Sanguínea 
+            8- Tarjeta de Vacunas 
+            9- Reporte de Calificaciones Actuales de Octavo 
+            10- Recibo de Contribución de Gastos de Pre-inscripción`
+            await navigator.clipboard.writeText(text_);
+
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
     }
 </script>

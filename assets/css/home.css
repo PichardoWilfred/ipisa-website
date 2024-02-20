@@ -35,14 +35,18 @@
     animation-duration: 12s;
 }
 
-.illustration.school g:is(.building, .platform, .flag-base, .flag, .don-bosco-statue), 
-.illustration.school rect.flag-pole, .illustration.school path.parking {
+section#about .illustration.school g:is(.building, .platform, .flag-base, .flag, .don-bosco-statue), 
+section#about .illustration.school rect.flag-pole, 
+section#about .illustration.school path.parking {
     opacity: 0;
 }
-/* sobre-nosotros route */
-section.content-navigation .illustration.school g:is(.building, .platform, .flag-base, .flag, .don-bosco-statue), 
+section.content-navigation .illustration.school g:is(.building, .platform, .flag-base, .flag, .don-bosco-statue), /* sobre-nosotros route */
 section.content-navigation .illustration.school rect.flag-pole, 
 section.content-navigation .illustration.school path.parking {
+    opacity: 1;
+}
+section#about .illustration.school .idle g:is(.building, .platform, .flag-base, .flag, .don-bosco-statue), 
+section#about .illustration.school .idle rect.flag-pole, .idle .illustration.school path.parking {
     opacity: 1;
 }
 

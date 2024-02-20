@@ -23,6 +23,8 @@
                 y está dispuesta a contribuir al crecimiento y desarrollo de futuros talentos, lo invitamos a completar <b class="underline"> nuestro formulario 
                 de colaboración.</b>
             </p>
+            <button class="flex font-raleway font-bold"></button>
+
         </div>
             <nuxt-icon class="girl-chair-shadow z-10" name="home/job-insertion/girl-chair-shadow" filled />
             <nuxt-icon class="girl-chair z-10" name="home/job-insertion/girl-chair" filled />

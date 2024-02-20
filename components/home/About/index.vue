@@ -8,7 +8,7 @@
                     :class="{'show': selected_section.show, 'idle': selected_section.idle}" filled />
                 </div>
             </Transition>
-
+            
             <div class="content">
                 <div class="flex relative items-center max-lg:mb-3">
                     <nuxt-link :to="sections[selected_index].route">

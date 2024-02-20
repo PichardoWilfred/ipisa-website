@@ -13,8 +13,10 @@
             </h2>
             El Instituto Politécnico Industrial de Santiago (IPISA) tuvo su génesis en la apremiante demanda empresarial del norte del país por técnicos 
             altamente competentes. Esta necesidad resonó con <b>Monseñor Roque Adames</b>, entonces Obispo de la Diócesis de Santiago, quien, sensibilizado 
-            ante este requerimiento, propuso a la Secretaría de Estado de Educación Bellas Artes y Cultos (actual Ministerio de Educación de la República 
-            Dominicana, MINERD) la instauración de un politécnico bajo la dirección de la congregación salesiana. Esta recomendación se cimentaba en la 
+            ante este requerimiento, propuso a la Secretaría de Estado de Educación Bellas Artes y Cultos <i>(actual Ministerio de Educación de la República 
+            Dominicana, MINERD)</i> la instauración de un politécnico bajo la dirección de la congregación salesiana. 
+            <br><br>
+            Esta recomendación se cimentaba en la 
             filosofía distintiva de los salesianos de formar individuos íntegros como "<b>Buenos Cristianos y Honrados Ciudadanos</b>", junto con su vasta 
             experiencia en educación técnica.
             <br><br>

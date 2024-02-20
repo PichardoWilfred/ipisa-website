@@ -7,7 +7,7 @@
             <p class="font-medium text-[1.1rem] max-w-[900px]">
                 Nuestra área técnica es el corazón de la formación que ofrece la institución. Aquí, los estudiantes tienen la oportunidad de adquirir habilidades técnicas y conocimientos especializados en una variedad de disciplinas, preparándolos para enfrentar con éxito los desafíos del mundo laboral.
                 <br><br>
-                <span class="max-md:font-semibold">
+                <span class="font-semibold">
                     <span class="text-blue">A continuación, te presentaremos de manera formal </span> 
                     <nuxt-link to="/talleres" class="text-orange-300 underline cursor-pointer">los diversos talleres disponibles en el centro.</nuxt-link>
                 </span>

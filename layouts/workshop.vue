@@ -1,10 +1,8 @@
 <template>
-    <about-portrait-component :picture="picture" 
-    :class="workshop_name" />
-    <main class="info workshop-detail flex flex-col justify-center 
-    px-4 lg:px-24 pt-[4rem] sm:pt-[2rem] mb-28 mx-auto w-full 
-    md:max-w-[1020px] min-h-[80vh]" 
-    :class="workshop_name">
+    <about-portrait-component :picture="picture" :class="workshop_name" />
+    <main class="info workshop-detail flex flex-col justify-center
+    px-4 lg:px-24 pt-[4rem] sm:pt-[2rem] mb-28 mx-auto w-full
+    md:max-w-[1120px] min-h-[80vh]" :class="workshop_name">
         <section class="w-full">
             <div class="workshop-hero font-raleway">
                 <nuxt-icon class="workshop-logo-wrapper" :name="`workshop/${workshop_name}`" filled />
@@ -17,7 +15,7 @@
                 </p>
             </div>
             <p class="description flex flex-col items-center">
-                <span class="font-semibold text-[1.8rem] lg:text-2xl">
+                <span class="font-bold text-[1.8rem] lg:text-2xl">
                     Modelo
                 </span>
                 <span class="font-medium text-[1.4rem] lg:text-xl">
@@ -41,7 +39,7 @@
                 <slot name="workshop-summary"></slot>
             </p>
             <p class="description flex flex-col justify-center items-center">
-                <span class="font-semibold text-[1.8rem] lg:text-2xl">Horas de pasantía</span>
+                <span class="font-bold text-[1.8rem] lg:text-2xl">Horas de pasantía</span>
                 <span class="font-medium text-[1.4rem] lg:text-xl">{{ internship }} horas</span>
             </p>
         </section>

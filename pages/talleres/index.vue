@@ -18,8 +18,8 @@
             educación de calidad. </b>
         </p>
         <div class="relative top-0 left-0 max-sm:py-[6rem] w-full min-[1480px]:w-[85%] mx-auto mb-[10rem] md:rounded-[35px] md:overflow-hidden">
-            <div class="max-md:absolute top-0 left-0 w-full h-full">
-                <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-full md:h-full transition-all z-20">
+            <!-- <div class="max-md:absolute top-0 left-0 w-full h-full"> -->
+                <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:h-[120vh] md:w-screen lg:w-full lg:h-full transition-all z-20">
                     <template v-if="!in_mobile">
                         <div v-if="in_tablet" class="tablet-color-bg relative w-full h-full overflow-hidden transition-all" 
                         :class="[{'blue-animation': blue_animation, 'orange-animation': orange_animation}]" />
@@ -35,7 +35,7 @@
                     :class="{'workshop-focused': (name === focused_workshop)}"
                     />
                 </div>
-            </div>
+            <!-- </div> -->
             <div class="card-container max-md:border-0 md:border-[5px] md:border-[white] md:radius-[30px] z-30" 
             ref="card_container" :class="{'translucent': enable_background}">
                 <div class="card max-[1480px]:min-[800px]:flex-row max-[1480px]:min-[800px]:items-center
@@ -301,7 +301,7 @@
     
     onMounted(() => {
         in_tablet.value = window.matchMedia("(min-width: 800px) and (max-width: 1480px)").matches;
-        in_mobile.value = window.matchMedia("(max-width: 800px)").matches;
+        in_mobile.value = window.matchMedia("(max-width: 992px)").matches;
         if (in_mobile.value) {
             function observe_card_callback(entries, observer) { // callback
                 enable_background.value = true;
