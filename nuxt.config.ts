@@ -1,13 +1,6 @@
 export default defineNuxtConfig({
-  routeRules: {
-    // Homepage pre-rendered at build time
-    '/': { prerender: true },
-    // Products page generated on demand, revalidates in background, cached until API response changes
-  },
   devtools: { enabled: true },
-  css: [
-    '@/assets/css/main.css',
-  ],
+  css: [ '@/assets/css/main.css'],
   app: {
     pageTransition: false,
     layoutTransition: false,
@@ -46,6 +39,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/image',
+    ['@storyblok/nuxt', { accessToken: process.env.STORYBLOK_TOKEN }],
     '@nuxtjs/tailwindcss', // styles
     '@pinia/nuxt', // state management
     'nuxt-icon', // importing preset icons

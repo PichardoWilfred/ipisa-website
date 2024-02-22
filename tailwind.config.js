@@ -1,5 +1,6 @@
 module.exports = {
   content: [
+    "./storyblok/**/*.{html,js,ts,vue}",
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",

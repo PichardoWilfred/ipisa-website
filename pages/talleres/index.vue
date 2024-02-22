@@ -7,7 +7,7 @@
         <h1 class="title">
             <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
         </h1>
-        <p class="text-justify text-black font-raleway text-[1.1rem] mx-auto w-[90%] min-[1400px]:w-[50%] mb-14">
+        <p class="text-justify text-black font-raleway text-[1.1rem] mx-auto w-[90%] min-[1482px]:w-[42%] mb-14">
             En IPISA, cada taller es una puerta de entrada a la excelencia académica y técnica. 
             Desde el fascinante universo de la Electrónica hasta la precisión del Mecanizado, nuestros programas están diseñados para nutrir 
             a los estudiantes con habilidades prácticas y conocimientos especializados. 
@@ -17,9 +17,10 @@
             <b> Te invitamos a explorar cada taller en detalle y descubrir cómo en IPISA, estamos construyendo el futuro a través de la 
             educación de calidad. </b>
         </p>
-        <div class="relative top-0 left-0 max-sm:py-[6rem] w-full min-[1480px]:w-[85%] mx-auto mb-[10rem] md:rounded-[35px] md:overflow-hidden">
-            <!-- <div class="max-md:absolute top-0 left-0 w-full h-full"> -->
-                <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:h-[120vh] md:w-screen lg:w-full lg:h-full transition-all z-20">
+        <div class="workshop-menu-container relative top-0 left-0 max-sm:py-[6rem] w-full min-[1480px]:w-[85%] mx-auto mb-[10rem] min-[1480px]:rounded-[35px] md:overflow-hidden">
+            
+            <div class="absolute top-0 left-0 w-full lg:w-[112%] h-full">
+                <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-screen md:h-[120vh] lg:w-[112%] lg:h-[105%] transition-all z-20">
                     <template v-if="!in_mobile">
                         <div v-if="in_tablet" class="tablet-color-bg relative w-full h-full overflow-hidden transition-all" 
                         :class="[{'blue-animation': blue_animation, 'orange-animation': orange_animation}]" />
@@ -29,18 +30,19 @@
                     <template v-else>
                         <div class="absolute opacity-30 md:opacity-0 top-0 left-0 w-full h-full bg-white z-20" />
                     </template>
-                    <nuxt-img v-for="({ img, name }, index) in cards" 
-                    :src="`https://a.storyblok.com/f/272924/6000x4000/${img}/${name}-1.JPG`" sizes="600px md:1200px" densities="x1 x2"
-                    class="absolute top-0 left-0 w-screen h-screen md:w-full md:h-full opacity-0 object-cover transition-all" 
+                    <nuxt-img v-for="({ img, name }, index) in cards" :key="index"
+                    :src="`https://a.storyblok.com/f/272924/6000x4000/${img}/${name}-1.JPG`" sizes="600px md:1400px" densities="x1 x2"
+                    class="absolute top-0 left-0 w-screen h-screen md:w-[112%] md:h-full opacity-0 object-cover transition-all" 
                     :class="{'workshop-focused': (name === focused_workshop)}"
                     />
                 </div>
-            <!-- </div> -->
-            <div class="card-container max-md:border-0 md:border-[5px] md:border-[white] md:radius-[30px] z-30" 
+            </div>
+
+            <div class="card-container md:radius-[30px] z-30" 
             ref="card_container" :class="{'translucent': enable_background}">
                 <div class="card max-[1480px]:min-[800px]:flex-row max-[1480px]:min-[800px]:items-center
                 flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all" 
-                v-for="({ name, icon, title, description,  }, index) in cards" :key="index" :id="name" :class="[name]" 
+                v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name" :class="[name]" 
                 @click.prevent="go_to_workshop(icon)" @mouseenter.prevent="apply_background(name)">
                     <nuxt-icon class="no-shadow mx-auto max-[1480px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5" 
                     :name="`workshop/${icon}`" filled />
@@ -284,7 +286,6 @@
             show_element: false
         }
     ]);
-    const img_src = useImage();
 
     const focused_workshop = ref(null);
     const background_image_timer = ref(0);
@@ -300,7 +301,7 @@
     }
     
     onMounted(() => {
-        in_tablet.value = window.matchMedia("(min-width: 800px) and (max-width: 1480px)").matches;
+        in_tablet.value = window.matchMedia("(min-width: 768px) and (max-width: 1480px)").matches;
         in_mobile.value = window.matchMedia("(max-width: 992px)").matches;
         if (in_mobile.value) {
             function observe_card_callback(entries, observer) { // callback
@@ -338,6 +339,13 @@
     });
 </script>
 <style scoped>
+/* .workshop-menu-container {
+    box-shadow:
+        0 0 0 5px var(--white),
+        0 0 0 10px var(--orange-100),
+        0 0 0 15px var(--white),
+        0 0 0 20px var(--blue-100);
+} */
 div.portrait :deep(img.wallpaper) {
     object-position: 0px 35%;
 }
@@ -379,6 +387,10 @@ img.workshop-focused {
     
     border-left: 2px solid white;
     border-bottom: 2px solid white;
+}
+@media (min-width: 1480px) {
+    .card-container.translucent .card:is(.equipos, .ensamblaje, .mecanizado, .instalaciones) { border-bottom: 0; }
+    .card-container.translucent .card:is(.confeccion, .equipos) { border-left: 0; }
 }
 .card-container.translucent .card:hover {
     background-color: white;
@@ -551,7 +563,7 @@ img.workshop-focused {
         background: linear-gradient(270deg, #FFD9C2 0.3%, #FFBF99 23.3%, #FF7320 51.83%, #FFCAAB 74.8%, #FFD9C2 100.3%);
     }
 }
-@media (min-width: 800px) and (max-width: 1480px) {
+@media (min-width: 768px) and (max-width: 1480px) {
     .card-container {
         grid-template-columns: repeat(2, 50%);
         grid-template-rows: repeat(4, 270px);
@@ -591,7 +603,7 @@ img.workshop-focused {
         height: 100%;
     }
 }
-@media (max-width: 800px) {
+@media (max-width: 768px) {
     .card-container {
         grid-template-columns: repeat(1, min(470px, 81.5vw));
         grid-template-rows: repeat(8, 80vh);

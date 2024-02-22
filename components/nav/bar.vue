@@ -291,7 +291,7 @@ const navigation_bar = [
 const addresses = {
     'portrait': '/',
     'about': '/sobre-nosotros',
-    'news': '',
+    'news': '/noticias',
     'workshop': '/talleres',
     'admissions': '',
     'activities': '',
@@ -299,18 +299,10 @@ const addresses = {
 }
 // socialmedia
 const social_media = [
-    {
-        src: 'fe:instagram'
-    },
-    {
-        src: 'icon-park-outline:facebook'
-    },
-    {
-        src: 'fe:mail'
-    },
-    {
-        src: 'ic:baseline-whatsapp'
-    }
+    { src: 'fe:instagram' },
+    { src: 'icon-park-outline:facebook' },
+    { src: 'fe:mail' },
+    { src: 'ic:baseline-whatsapp' },
 ];
 // navigation bar styles
 let prevScrollY;
