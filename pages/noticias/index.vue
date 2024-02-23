@@ -10,7 +10,7 @@
             
         </div>
         <main class="min-h-[50vh] bg-white">
-            <StoryblokComponent v-if="story" :blok="story.component" />
+            <!-- <StoryblokComponent v-if="story" :blok="story.component" /> -->
         </main>
     </div>
 </template>

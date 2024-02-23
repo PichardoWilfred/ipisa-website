@@ -9,10 +9,10 @@
             <div class="news" v-for="({title, img, description, highlight, date}, index) in news_feed" :key="index">
                 <div class="header">
                     <div class="flex items-center font-inter">
-                        <author class="pe-5 me-5 border-r-2 border-r-blue-100">
+                        <div class="author pe-5 me-5 border-r-2 border-r-blue-100">
                             Daniela Vicente
-                        </author>
-                        <time class="">
+                        </div>
+                        <time>
                             {{ date }}
                         </time>
                     </div>
@@ -20,14 +20,14 @@
                         <nuxt-icon name="home/news/options" filled class="text-[1.8rem]"/>
                     </button>
                 </div>
-                <div class="bg-blue-100 h-[250px] rounded-[0.5rem]" />
+                <div class="bg-[#] h-[250px] rounded-[0.5rem]" />
                 <h2> {{ title }} </h2>
                 <p> {{ description }} </p>
                 <div class="header">
                     <div class="flex items-center font-inter">
-                        <author class="pe-5 me-5 border-r-2 border-r-blue-100">
+                        <div class="author pe-5 me-5 border-r-2 border-r-blue-100">
                             Institucional
-                        </author>
+                        </div>
                         <time class="">
                             {{ index + 1 }} minutos leyendo
                         </time>
@@ -75,7 +75,7 @@ const news_feed = ref([
 .news .header {
     @apply relative flex items-center justify-between h-[40px];
 }
-.news .header :is(time, author) {
+.news .header :is(time, div.author) {
     @apply font-normal text-[1rem] leading-[1.35rem] ;
     color:  var(--separator);
 }
