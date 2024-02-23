@@ -39,7 +39,6 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/image',
-    ['@storyblok/nuxt', { accessToken: process.env.STORYBLOK_TOKEN }],
     '@nuxtjs/tailwindcss', // styles
     '@pinia/nuxt', // state management
     'nuxt-icon', // importing preset icons

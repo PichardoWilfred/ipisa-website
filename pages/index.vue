@@ -9,7 +9,6 @@
         meta: [ { property: 'og:title', content: `Instituto Politécnico Industrial de Santiago` } ]
     });
 
-    const story = await useAsyncStoryblok('home', { version: 'draft' });
 </script>
 <template>
     <HomePortrait />
@@ -20,7 +19,6 @@
 
         <div class="my-[5rem] py-[5rem] bg-blue-100">
         </div>
-        <!-- <StoryblokComponent v-if="story" :blok="story.content" /> -->
     </div>
     <div class="wallpaper-two relative overflow-hidden z-10 bg-white">
         <!-- <HomeWallpaperContainerTwo /> -->
