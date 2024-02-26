@@ -5,12 +5,13 @@
                 <Icon v-if="!header_class.transparent" class="salesianos-logo" name="Salesianos" />
                 <nuxt-icon @click="scrollToSection('portrait')" name="general/ipisa-logo" class="logo cursor-pointer ms-2 me-auto lg:mx-auto" filled />
                 <div class="social-media">
-                    <div v-for="({ src }, index) in social_media" class="icon">
+                    <a v-for="({ src, link, email }, index) in social_media" class="icon" :href="link" 
+                    target="_blank">
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
-                    </div>
+                    </a>
                 </div>
                 <button class="mobile max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md 
-        border border-black-500 hover:bg-black-500 transition-[background-color]" @click.prevent="toggle_mobile_menu">
+                            border border-black-500 hover:bg-black-500 transition-[background-color]" @click.prevent="toggle_mobile_menu">
                     <Icon name="fe:bar" size="35px"/>
                 </button>
             </div>
@@ -34,14 +35,17 @@
             </li>
         </ul>
         <ul class="information">
-            <li class="flex items-center">
-                <h4 class="font-raleway text-blue me-2 text-end transition-all">
-                    Av. Hispanoamericana, Km 1 Santiago,
-                    <span class="text-blue-300">Zona Sur, República Dominicana.</span>
-                </h4>
-                <nuxt-icon name="layout/location-color" class="text-[28px] location-icon-color" filled />
+            <li class="cursor-pointer">
+                <a class="flex items-center" href="https://maps.app.goo.gl/tq2JfxfJoc67brRX7" target="_blank">
+                    <h4 class="font-raleway text-blue me-2 text-end transition-all">
+                        Av. Hispanoamericana, Km 1 Santiago,
+                        <span class="text-blue-300">Zona Sur, República Dominicana.</span>
+                    </h4>
+                    <nuxt-icon name="layout/location-color" class="text-[28px] location-icon-color" filled />
+                </a>
             </li>
-            <li class="flex items-center mt-2">
+            <li class="cursor-pointer flex items-center mt-2" @click.passive="copy_phone">
+                <Icon name="ic:outline-content-copy" class="me-2 font-bold text-[16px] separator" />
                 <h4 class="font-raleway text-orange-300 me-2 text-end transition-all">
                     <span class="text-orange-200">(809)</span> 724-5700
                 </h4>
@@ -136,7 +140,7 @@
     header nav div.upper div.social-media {
         @apply absolute flex max-lg:left-[50%] lg:right-0 max-lg:translate-x-[-50%];
     }
-    header nav div.upper div.social-media div.icon {
+    header nav div.upper div.social-media a.icon {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -156,20 +160,20 @@
             transform: translateY(0%);
         }
     }
-    header nav div.upper div.social-media div.icon:nth-child(2) { animation-delay: 200ms; }
-    header nav div.upper div.social-media div.icon:nth-child(3) { animation-delay: 300ms; }
-    header nav div.upper div.social-media div.icon:nth-child(4) { animation-delay: 400ms; }
-    header nav div.upper div.social-media div.icon:nth-child(5) { animation-delay: 500ms; }
-    header nav div.upper div.social-media div.icon:nth-child(odd) { 
+    header nav div.upper div.social-media a.icon:nth-child(2) { animation-delay: 200ms; }
+    header nav div.upper div.social-media a.icon:nth-child(3) { animation-delay: 300ms; }
+    header nav div.upper div.social-media a.icon:nth-child(4) { animation-delay: 400ms; }
+    header nav div.upper div.social-media a.icon:nth-child(5) { animation-delay: 500ms; }
+    header nav div.upper div.social-media a.icon:nth-child(odd) { 
         background-color: var(--blue);
     }
-    header nav div.upper div.social-media div.icon:nth-child(odd):hover {
+    header nav div.upper div.social-media a.icon:nth-child(odd):hover {
         background-color: var(--blue-300);
     }
-    header nav div.upper div.social-media div.icon:nth-child(even) { 
+    header nav div.upper div.social-media a.icon:nth-child(even) { 
         background-color: var(--orange);
     }
-    header nav div.upper div.social-media div.icon:nth-child(even):hover { 
+    header nav div.upper div.social-media a.icon:nth-child(even):hover { 
         background-color: var(--orange-300);
     }
 
@@ -201,16 +205,16 @@
     header.transparent nav div.upper button.mobile { border-color: #FFFFFFCC; }
     header.transparent nav div.upper button.mobile:hover { background-color: #FFFFFF6B; }
     header.transparent nav div.upper button.mobile ::v-deep(svg) { color: #FFFFFFCC; }
-    header.transparent nav div.upper div.social-media div.icon {
+    header.transparent nav div.upper div.social-media a.icon {
         animation: none;
         transform: translateY(0%);
         color: #FFFFFF8C;
         transition-property: color;
     }
-    header.transparent nav div.upper div.social-media div.icon:hover {
+    header.transparent nav div.upper div.social-media a.icon:hover {
         color: white;
     }
-    header.transparent nav div.upper div.social-media div.icon:is(:nth-child(even), :nth-child(odd)) {
+    header.transparent nav div.upper div.social-media a.icon:is(:nth-child(even), :nth-child(odd)) {
         background-color: #FFFFFF00;
     }
     header.transparent nav div.upper .logo :deep(svg){
@@ -252,6 +256,23 @@
 <script setup>
 import { useLayoutStore } from '@/store/layout';
 const layout = useLayoutStore();
+
+const copy_phone = async () => {
+    try {
+        await navigator.clipboard.writeText('8097245700');
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+    }
+}
+
+const copy_map = async () => {
+    try {
+        await navigator.clipboard.writeText(''); 
+    }
+    catch (err) {
+        console.error('Failed to copy: ', err);
+    }
+}
 
 // router
 const router = useRouter();
@@ -299,10 +320,19 @@ const addresses = {
 }
 // socialmedia
 const social_media = [
-    { src: 'fe:instagram' },
-    { src: 'icon-park-outline:facebook' },
-    { src: 'fe:mail' },
-    { src: 'ic:baseline-whatsapp' },
+    {   src: 'fe:instagram', 
+        link: "https://www.instagram.com/ipisasdb?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" 
+    },
+    {   src: 'icon-park-outline:facebook', 
+        link: "https://www.facebook.com/IPISASDB/?locale=es_LA" 
+    },
+    {   src: 'fe:mail', 
+        link: "mailto:info@ipisa.edu.do?cc=acct3@example.com?subject=test%20email",
+        email: true,
+    },
+    {   src: 'ic:baseline-whatsapp' ,
+        link: "<wa.link>"
+    },
 ];
 // navigation bar styles
 let prevScrollY;
