@@ -59,5 +59,6 @@ export default defineNuxtConfig({
         },
       }
     }],
+    ["@storyblok/nuxt", { accessToken: process.env.STORYBLOK_TOKEN }]
   ],
 })
