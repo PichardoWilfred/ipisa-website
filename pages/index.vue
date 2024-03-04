@@ -2,6 +2,8 @@
     import { useLayoutStore } from '@/store/layout';
 
     const layout = useLayoutStore();
+
+    
     layout.$reset();
 
     useHead({
