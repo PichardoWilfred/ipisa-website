@@ -1,5 +1,8 @@
 <template>
-    <NuxtLink :to="'/noticias/' + slug" v-editable="article" class="w-full h-full border rounded-[5px] text-left overflow-hidden">
+    <div>
+        article card
+    </div>
+    <!-- <NuxtLink :to="'/noticias/' + slug" v-editable="article" class="w-full h-full border rounded-[5px] text-left overflow-hidden">
         <img :src="article.image.filename + '/m/600x0'" :alt="article.image.alt"
         class="w-full h-48 xl:h-72 object-cover pointer-events-none" />
         <div class="p-4">
@@ -11,9 +14,9 @@
                 {{ article.description }}
             </div>
         </div>
-    </NuxtLink>
+    </NuxtLink> -->
 </template>
 
 <script setup>
-defineProps({ article: Object, slug: String })
+// defineProps({ article: Object, slug: String })
 </script>

@@ -314,9 +314,9 @@ const addresses = {
     'about': '/sobre-nosotros',
     'news': '/noticias',
     'workshop': '/talleres',
-    'admissions': '',
-    'activities': '',
-    'job-insertion': '',
+    'admissions': '/admisiones',
+    'activities': '/pastoral',
+    'job-insertion': '/insercion-laboral',
 }
 // socialmedia
 const social_media = [
@@ -331,7 +331,7 @@ const social_media = [
         email: true,
     },
     {   src: 'ic:baseline-whatsapp' ,
-        link: "<wa.link>"
+        link: "https://crear.wa.link/"
     },
 ];
 // navigation bar styles
@@ -371,23 +371,21 @@ const toggle_mobile_menu = () => {
     }
 }
 // scroll navigation
-async function scrollToSection (section_, delay = 0 ) {
+async function scrollToSection (section_, delay = 0 ) { 
+    //temporarily it will automatically navigate to the routes
     const in_mobile = window.matchMedia("(max-width: 768px)").matches;
     const in_home = computed(() => router.currentRoute.value.name === 'index');
 
-    if (!in_home.value) {
-        await navigateTo({ path: addresses[section_]});
-        if (in_mobile && mobile_menu.value) toggle_mobile_menu();
-
-        return;
-    }
-    setTimeout(() => {
-        const section = document.querySelector(`section#${section_}`);
-        const section_offset = parseInt(section.dataset.offset) || 0;
-        const y = section.getBoundingClientRect().top + window.pageYOffset - (in_mobile ? 60 : 140) + section_offset;
+    await navigateTo({ path: addresses[section_]});
+    if (in_mobile && mobile_menu.value) toggle_mobile_menu();
+    // if (!in_home.value) { return; }
+    // setTimeout(() => {
+    //     const section = document.querySelector(`section#${section_}`);
+    //     const section_offset = parseInt(section.dataset.offset) || 0;
+    //     const y = section.getBoundingClientRect().top + window.pageYOffset - (in_mobile ? 60 : 140) + section_offset;
         
-        window.scrollTo({ top: y, behavior: 'smooth' });
-    }, delay);
+    //     window.scrollTo({ top: y, behavior: 'smooth' });
+    // }, delay);
 
     if (in_mobile && mobile_menu.value) {
         toggle_mobile_menu();

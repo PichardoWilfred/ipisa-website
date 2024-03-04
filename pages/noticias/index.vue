@@ -1,9 +1,9 @@
 
 <script setup>
-    const story = await useStoryblok('/noticias', { version: 'draft' });
-    onMounted(() => {
-        console.log(story.value);
-    });
+    // const story = await useStoryblok('/noticias', { version: 'draft' });
+    // onMounted(() => {
+    //     console.log(story.value);
+    // });
 </script>
 <template>
     <div>
@@ -14,7 +14,8 @@
                 wallpaper_phrase="Sobre nosotros" />
         </header>
         <main class="min-h-[50vh] bg-white">
-            <StoryblokComponent v-if="story" :blok="story.content" />
+            article wrapper
+            <!-- <StoryblokComponent v-if="story" :blok="story.content" /> -->
         </main>
     </div>
 </template>

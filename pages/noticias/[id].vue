@@ -6,6 +6,7 @@
             wallpaper_phrase="Sobre nosotros" />
     </header>
     <main class="min-h-[50vh] bg-white">
+        id wrapper route
         <!-- <div v-editable="blok" class="container mx-auto grid md:grid-cols-3 gap-12 my-12 place-items-center"> -->
             <!-- <StoryblokComponent v-if="story" :blok="story.content" /> -->
         <!-- </div> -->

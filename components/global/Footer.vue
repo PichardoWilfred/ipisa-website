@@ -31,7 +31,7 @@
                     </h5>
                     <ul class="activities">
                         <li v-for="({label, address }, index) in extracurricular_activities" :key="index" class="activity">
-                            <a href="">{{ label }}</a>
+                            <a href="#">{{ label }}</a>
                         </li>
                     </ul>
                 </div>
@@ -76,7 +76,7 @@
                     </h5>
                     <ul class="workshop-list">
                         <li v-for="({label, address }, index) in workshops" :key="index" class="option">
-                            <a :href="address">
+                            <a href="#">
                                 {{ label }}
                             </a>
                         </li>
@@ -140,7 +140,7 @@
                 <a href="mailto:info@ipisa.edu.do?cc=acct3@example.com?subject=test%20email">
                     <nuxt-icon name="layout/mail" class="cursor-pointer text-[30px]" filled />
                 </a>
-                <a href="">
+                <a href="https://create.wa.link/" target="_blank">
                     <nuxt-icon name="layout/whatsapp" class="cursor-pointer text-[30px]" filled />
                 </a>
             </div>
