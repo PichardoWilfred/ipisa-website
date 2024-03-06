@@ -17,7 +17,5 @@
     import { Swiper, SwiperSlide } from 'swiper/vue';
     import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
     
-    const img_src = useImage();
-
     const images = [ '8840c32062', '2de373f659', '8dfb4f902d', '9363f0d6da']
 </script>

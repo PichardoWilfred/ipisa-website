@@ -21,6 +21,7 @@
                     {{ search_by_error_label }}
                 </span>
             </div>
+
             <div class="input-container" :class="{'error': search_by_error}" >
                 <icon name="fe:search" filled size="24px" class="search-icon text-black-500 me-2 transition-all" />
                 
@@ -703,35 +704,6 @@
 .table-header {
     @apply flex flex-col items-end mb-4;
 }
-.table-header .input-container {
-    @apply flex items-center border-2 border-black-500 ps-2 py-1 max-md:mb-4 rounded-md w-full sm:max-w-[320px] min-h-[42px] transition-all;
-}
-.table-header .input-container.error {
-    @apply border-orange-200;
-}
-.table-header .input-container.error .search-icon{
-    @apply text-orange-300;
-}
-.table-header .input-container input.search {
-    @apply text-base text-black font-semibold font-raleway grow
-    placeholder:text-[15px] placeholder:text-[#AABDD8];
-}
-.table-header .input-container.error input.search {
-    @apply text-orange-300 placeholder:text-orange-100;
-}
-.table-header .input-container button.search {
-    @apply flex items-center hover:bg-[#CEE3FF80] active:bg-[#CEE3FF80] rounded-full p-1 me-1 text-black transition-all;
-}
-.table-header .input-container button.search :deep(svg path) {
-    @apply transition-all delay-75;
-}
-.table-header .input-container button.search :deep(svg.error path) {
-    fill: #FF8B46;
-    stroke: #FF8B46;
-}
-.table-header .input-container input.search:is(:focus, :focus-within, :focus-visible) {
-    @apply outline-none;
-}
 
 .table-container ul.column {
     @apply overflow-hidden;
@@ -745,37 +717,7 @@
 .table-container ul.column li.row.with-border {
     @apply border-l border-black-500;
 }
-.table-pagination {
-    @apply flex justify-center items-center mt-6;
-}
-.table-pagination.disabled {
-    opacity: 0.3;
-    pointer-events: none;
-}
-.table-pagination.mobile {
-    @apply w-full lg:hidden mt-0;
-}
-.table-pagination .pagination {
-    @apply flex mx-auto lg:mx-3;
-}
-.table-pagination .pagination li {
-    @apply font-inter cursor-pointer flex items-center justify-center font-bold me-1 lg:me-2 last:me-0 text-[18px] text-black-600 w-[34px] h-[34px] lg:w-[38px] lg:h-[38px] rounded-full hover:bg-white-200;
-}
-.table-pagination .pagination li.active {
-    @apply  text-black bg-white-200;
-}
-.pagination-btn {
-    @apply flex items-center justify-center cursor-pointer w-[35px] h-[35px] font-raleway text-[4rem] text-black font-bold hover:bg-white-200 rounded-full transition-all;
-}
-.pagination-btn .left {
-    @apply ps-[2px];
-    transform: rotate(180deg) translateY(1.5px);
-    transform-origin: center;
-}
 
-.pagination-btn .right {
-    transform:translateY(.5px);
-}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

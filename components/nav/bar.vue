@@ -318,7 +318,7 @@ const addresses = {
     'activities': '/pastoral',
     'job-insertion': '/insercion-laboral',
 }
-// socialmedia
+// social-media
 const social_media = [
     {   src: 'fe:instagram', 
         link: "https://www.instagram.com/ipisasdb?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" 

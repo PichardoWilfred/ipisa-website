@@ -1,8 +1,5 @@
 <template>
-    <about-portrait-component 
-    picture="https://a.storyblok.com/f/272924/4000x3000/8a38807947/portrait-7.jpg" 
-    picture_name="philosofy"
-    wallpaper_phrase="Los Talleres" />
+    <about-portrait-component  picture="https://a.storyblok.com/f/272924/4000x3000/8a38807947/portrait-7.jpg" picture_name="philosofy" wallpaper_phrase="Los Talleres" />
     <main class="info py-[4rem] sm:py-[2rem]">
         <h1 class="title">
             <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
