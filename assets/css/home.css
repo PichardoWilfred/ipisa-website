@@ -590,33 +590,3 @@ div.swiper.activities {
     padding-inline-start: 0.5rem; /* 8px */
 }
 
-
-.news-feed-header .input-container {
-    @apply flex items-center border-2 border-black-500 ps-2 py-1 max-md:mb-4 rounded-md w-full sm:max-w-[320px] min-h-[42px] transition-all;
-}
-.news-feed-header .input-container.error {
-    @apply border-orange-200;
-}
-.news-feed-header .input-container.error .search-icon {
-    @apply text-orange-300;
-}
-.news-feed-header .input-container input.search {
-    @apply text-base text-black font-semibold font-raleway grow
-    placeholder:text-[15px] placeholder:text-[#AABDD8];
-}
-.news-feed-header .input-container.error input.search {
-    @apply text-orange-300 placeholder:text-orange-100;
-}
-.news-feed-header .input-container button.search {
-    @apply flex items-center hover:bg-[#CEE3FF80] active:bg-[#CEE3FF80] rounded-full p-1 me-1 text-black transition-all;
-}
-.news-feed-header .input-container button.search :deep(svg path) {
-    @apply transition-all delay-75;
-}
-.news-feed-header .input-container button.search :deep(svg.error path) {
-    fill: #FF8B46;
-    stroke: #FF8B46;
-}
-.news-feed-header .input-container input.search:is(:focus, :focus-within, :focus-visible) {
-    @apply outline-none;
-}
