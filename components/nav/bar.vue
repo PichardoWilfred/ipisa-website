@@ -6,7 +6,7 @@
                 <nuxt-icon @click="scrollToSection('portrait')" name="general/ipisa-logo" class="logo cursor-pointer ms-2 me-auto lg:mx-auto" filled />
                 <div class="social-media">
                     <a v-for="({ src, link, email }, index) in social_media" class="icon" :href="link" 
-                    target="_blank">
+                    target="_blank" @click.prevent="window.open('tel:+8097245700')">
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
                     </a>
                 </div>

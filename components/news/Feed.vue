@@ -8,7 +8,7 @@
 </script>
 <template>
     <div class="relative flex flex-col">
-        <div class="absolute w-full bg-white h-[40px] top-[-20px] rounded-[80px]"></div>
+        <div class="min-[880px]:hidden absolute w-full bg-white h-[40px] top-[-20px] rounded-[80px]"></div>
 
         <div class="hidden max-[880px]:flex justify-between w-full max-w-[1620px] mx-auto px-[1.4rem] mt-[2.5rem]">
             <h1 class=" font-raleway text-black text-[2.2rem] leading-[2rem] font-bold">
@@ -18,7 +18,7 @@
             class="search-icon text-black ms-auto me-2 cursor-pointer transition-all" />
         </div>
 
-        <div class="relative flex w-full bg-[#D6E9FF] h-[2px] translate-y-[5px] mt-[1rem] min-[880px]:mt-[8rem]">
+        <div class="relative flex w-full bg-[#D6E9FF] h-[2px] translate-y-[5px] mt-[1rem] min-[880px]:mt-[7rem]">
             <div class="hidden max-[880px]:flex absolute top-[-50%] left-[20px] w-[140px] translate-y-[-30%] square-blue bg-blue h-[12px]"></div>
             <div class="hidden max-[880px]:flex absolute top-[-50%] translate-y-[-30%] square-orange bg-orange-300 left-[180px] w-[80px] h-[12px]"></div>
         </div>
@@ -188,7 +188,7 @@
                         </div>
                         <div class="article-info flex-1">
                             <div class="article-content-header flex justify-between items-center">
-                                <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[175px] mb-2"></div>
+                                <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[175px] max-[880px]:me-8 mb-4"></div>
                                 <button class="share absolute min-[1070px]:top-[-5%] top-[3%] min-[1070px]:right-[-8%] right-[-5%] flex items-center content-center justify-center bg-white hover:bg-[#F1F8FF] rounded-full w-[40px] h-[40px]">
                                     <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
                                 </button>

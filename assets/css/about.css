@@ -44,3 +44,8 @@ div.portrait img.wallpaper.history {
         object-position: 0px -180px;
     }
 }
+
+
+div.portrait img.wallpaper.news-wallpaper {
+    object-position: 0px -190px;
+}
