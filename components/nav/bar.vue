@@ -6,7 +6,7 @@
                 <nuxt-icon @click="scrollToSection('portrait')" name="general/ipisa-logo" class="logo cursor-pointer ms-2 me-auto lg:mx-auto" filled />
                 <div class="social-media">
                     <a v-for="({ src, link, email }, index) in social_media" class="icon" :href="link" 
-                    target="_blank" @click.prevent="window.open('tel:+8097245700')">
+                    target="_blank" @click.prevent="call(index)">
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
                     </a>
                 </div>
@@ -257,6 +257,9 @@
 import { useLayoutStore } from '@/store/layout';
 const layout = useLayoutStore();
 
+const call = (index) => {
+    if (index === 3) {window.open('tel:+8097245700')}
+}
 const copy_phone = async () => {
     try {
         await navigator.clipboard.writeText('8097245700');
