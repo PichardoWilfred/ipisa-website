@@ -9,6 +9,9 @@ dist
 # Node dependencies
 node_modules
 
+# hosting static files zip
+web_files.zip
+
 # Logs
 logs
 *.log
