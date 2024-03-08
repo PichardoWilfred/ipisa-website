@@ -37,10 +37,10 @@ p.article-description {
             <div class="profile-pic bg-black-500 rounded-full h-[80px] w-[80px]"></div>
             <div class="ms-4 flex flex-col justify-center">
                 <h3 class="text-black-700 text-[1.2rem] leading-[1.4rem] min-[880px]:text-[1.4rem] min-[880px]:leading-[1.6rem] max-[880px]:mb-1 font-bold">Daniela Vicente</h3>
-                <div class="flex flex-wrap items-center">
-                    <span class="text-black-700 text-[12px] min-[880px]:text-[16px]">8 minutos de lectura</span>
+                <div class="flex flex-wrap items-center text-[12px] min-[880px]:text-[16px]">
+                    <span class="text-black-700">8 minutos de lectura</span>
                     <span class="rounded-full bg-black-500 h-[6px] w-[6px] mx-3"></span>
-                    <span class="text-black-700 text-[12px] min-[880px]:text-[16px]">23 de Marzo 2024</span>
+                    <span class="text-black-700">23 de Marzo 2024</span>
                 </div>
             </div>
         </div>
