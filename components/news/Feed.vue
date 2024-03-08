@@ -1,5 +1,6 @@
 <script setup>
     import { Swiper, SwiperSlide } from 'swiper/vue';
+    import { Pagination } from 'swiper/modules';
 
     let layout_mode = ref(false);
     const change_layout = () => {
@@ -11,7 +12,7 @@
         <div class="min-[880px]:hidden absolute w-full bg-white h-[40px] top-[-20px] rounded-[80px]"></div>
 
         <div class="hidden max-[880px]:flex justify-between w-full max-w-[1620px] mx-auto px-[1.4rem] mt-[2.5rem]">
-            <h1 class=" font-raleway text-black text-[2.2rem] leading-[2rem] font-bold">
+            <h1 class="font-raleway text-black text-[2.2rem] leading-[2rem] font-bold">
                 Noticias
             </h1>
             <icon name="fe:search" filled size="38px" 
@@ -27,7 +28,7 @@
 
     <section class="w-full max-w-[1620px] mx-auto px-[1.4rem] lg:px-[4rem] mt-[2rem] min-[880px]:mt-[4rem] mb-[8rem] overflow-hidden">
 
-        <div class="news-feed-header flex items-end justify-between flex-wrap max-lg:mb-6">
+        <div class="news-feed-header flex items-end justify-between flex-wrap">
 
             <h1 class="min-[880px]:flex hidden font-raleway text-separator text-[2.2rem] lg:text-[4.2rem] lg:leading-[4.2rem] lg:h-[4.2rem] font-bold">
                 <span class="orange">Noticias</span><span class="mx-2 lg:mx-3">del</span><span class="text-blue"> Centro</span>
@@ -39,11 +40,10 @@
                     <input type="text" class="search" placeholder="Titular de noticia" pattern="[A-Za-z]+" />
                 </div>    
             </div>
-            
-            <div class="w-full max-w-[800px] max-[880px]:flex hidden">
-                <swiper class="mobile-portrait-news-feed bg-white mt-4 h-[320px]" :slides-per-view="1.2" :space-between="20">
-                    <swiper-slide v-for="(article, index) in [1, 2, 3, 4, 5, 6, 7, 8]" :key="index"
-                    class="article bg-white p-3 ps-0">
+            <!-- portrait-news -->
+            <div class="w-full min-[880px]:hidden">
+                <swiper :modules="[Pagination]" :slides-per-view="1.15" :space-between="20" pagination class="mobile-portrait-news-feed bg-white mt-4 h-[340px]">
+                    <swiper-slide v-for="(article, index) in [1, 2, 3, 4, 5, 6, 7, 8]" :key="index" class="article bg-white py-3 pe-3 h-[350px]">
                         <div class="article-container overflow-hidden">
                             <div class="article-image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[170px]"></div>
                             <div class="article-info flex-1 mt-2">
@@ -51,7 +51,7 @@
                                     <h3 class="article-title font-raleway text-black font-bold text-[20px] leading-[22px] mb-3">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     </h3>
-                                    <p class="article-description text-[16px] leading-[18px] font-raleway text-black-700">
+                                    <p class="article-description text-[16px] leading-[18px] font-raleway text-separator">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                                     </p>
                                 </div>
@@ -60,6 +60,7 @@
                     </swiper-slide>
                 </swiper>
             </div>
+
         </div>
         <!-- min-[1460px]:flex hidden -->
         <div class="news-feed-content flex flex-wrap justify-start space-between">
@@ -104,78 +105,34 @@
                         </Transition>
                     </button>
                 </div>
-                <!--   -->
                 <!-- layout-mode -->
                 <template v-if="layout_mode">
                     <div class="recommended-articles flex flex-col h-full mt-6">
-                        <div v-for="(article, index) in [1, 2, 3, 4, 5]" :key="index" class="article flex flex-wrap h-[115px] w-full mb-8 last:mb-0 min-[1520px]:last:hidden">
-                            <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-[160px] h-full"></div>
-                            <div class="article-info flex-1 ms-6">
-                                <div class="article-content-header flex justify-between items-center mb-2 h-[20px]">
-                                    <div class="flex font-raleway text-[#CDDFFC] h-full">
-                                        <span class="author text-[14px]">
-                                            Daniela Vicente
-                                        </span>
-                                        <span class="bg-[#D6E9FF] w-[2px] h-full mx-3"></span>
-                                        <span class="author text-[14px]">
-                                            24 de Agosto 2023
-                                        </span>
-                                    </div>
-                                    <button class="share flex items-center content-center justify-center bg-white hover:bg-[#F1F8FF] rounded-full w-[30px] h-[30px]">
-                                        <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
-                                    </button>
-                                </div>
-                                <div class="article-content max-w-[360px]">
-                                    <h3 class="font-raleway text-black font-bold text-[18px] leading-[20px] mb-[0.2rem]">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </h3>
-                                    <p class="font-raleway text-separator text-[14px]">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut. 
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- v-for="(article, index) in [1, 2, 3, 4, 5]" :key="index" -->
+                        <!-- to="noticias/noticia-1" -->
+                        <NewsArticle v-for="(article, index) in [1, 2, 3, 4, 5]" :key="index" longVersion />
                     </div>
                 </template>
                 <template v-else>
                     <div class="featured-news flex flex-wrap">
-                        <div v-for="(article, index) in [1, 2, 3, 4, 5, 6, 7, 8, 9]" :key="index" 
-                        class="relative article flex flex-wrap w-[33.33%] mt-6 pt-1">
-                            <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-[160px] h-[105px]"></div>
-                            <div class="article-info flex-1 mt-2">
-                                <div class="article-content-header absolute top-[-5%] right-[2%] flex justify-between items-center mb-2 h-[20px]">
-                                    <button class="share flex items-center content-center justify-center bg-white hover:bg-[#F1F8FF] rounded-full w-[30px] h-[30px]">
-                                        <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
-                                    </button>
-                                </div>
-                                <div class="article-content max-w-[360px]">
-                                    <h3 class="article-title font-raleway text-black font-bold text-[14px] leading-[16px] mb-[0.2rem]">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </h3>
-                                    <div class="flex items-center font-raleway text-separator text-[14px]">
-                                        <span>
-                                            8 min
-                                        </span>
-                                        <div class="circle bg-[#B5D1FF] rounded-full h-[6px] w-[6px] mx-2"></div>
-                                        <span class="">
-                                            24/08/2023
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <NewsArticle v-for="(article, index) in [1, 2, 3, 4, 5, 6, 7, 8, 9]" :key="index" smallVersion />
+                        <!-- to="noticias/noticia-1" -->
                     </div>
                 </template>
             </div>
 
-            <div class="small-recommended-news max-[1520px]:flex hidden flex-col flex-1 lg:mt-8 min-[880px]:ms-8 min-[880px]:mt-8">
+            <div class="small-recommended-news max-[1520px]:flex hidden flex-col flex-1 lg:mt-8 min-[880px]:ms-8 mt-8">
                 <div>
                     <div class="featured-news-decoration relative flex bg-[#D6E9FF] h-[2px] translate-y-[5px] w-full"></div>
-                    <h2 class="font-raleway text-black text-[1.6rem] min-[880px]:text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold mt-4 mb-6">Recomendadas</h2>
+                    <h2 class="font-raleway text-black text-[1.6rem] min-[880px]:text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold mt-4 mb-6">
+                        Recomendadas
+                    </h2>
                 </div>
                 
                 <div class="relative flex items-stretch flex-wrap justify-between pb-[42px] min-[880px]:pb-[20px]">
-                    <div v-for="(article, index) in [1, 2, 3, 4]" :key="index"
+                    
+                    <NewsArticle v-for="(article, index) in [1, 2, 3, 4,]" :key="index" />
+                    <!-- <div v-for="(article, index) in [1, 2, 3, 4]" :key="index"
                     class="article relative flex flex-col flex-wrap max-w-[380px] w-full min-[880px]:w-[45%] pb-[1.85rem]">
                         <div class="min-[1070px]:hidden flex font-raleway mb-2 text-separator h-[20px]">
                             <span>
@@ -188,8 +145,10 @@
                         </div>
                         <div class="article-info flex-1">
                             <div class="article-content-header flex justify-between items-center">
-                                <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[175px] max-[880px]:me-8 mb-4"></div>
-                                <button class="share absolute min-[1070px]:top-[-5%] top-[3%] min-[1070px]:right-[-8%] right-[-5%] flex items-center content-center justify-center bg-white hover:bg-[#F1F8FF] rounded-full w-[40px] h-[40px]">
+                                <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[175px] mb-4"></div>
+                                <button class="share absolute top-[10px] right-[-12px] min-[880px]:top-[1%] min-[880px]:right-[-5%] min-[1070px]:top-[-5%] min-[1070px]:right-[-20px]
+                                flex items-center content-center justify-center
+                                bg-white hover:bg-[#F1F8FF] rounded-full w-[40px] h-[40px]">
                                     <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
                                 </button>
                             </div>
@@ -197,7 +156,7 @@
                                 <h3 class="article-title font-raleway text-black font-bold text-[20px] leading-[22px] mb-[0.2rem]">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 </h3>
-                                <p class="article-description text-[16px] leading-[18px] font-raleway text-black-700">
+                                <p class="article-description text-[16px] leading-[18px] font-raleway text-separator">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                                 </p>
                                 <div class="flex items-center font-raleway text-separator text-[14px] mt-3 w-full truncate">
@@ -211,7 +170,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="absolute bottom-[0px] max-[1070px]:flex hidden justify-center w-full">
                         <div class="table-pagination">
                             <button class="pagination-btn">
@@ -231,49 +190,14 @@
             </div>
 
             <div class="recommended-news min-[1520px]:flex hidden flex-col flex-1 lg:mt-8 ms-8 mt-8">
-                <div>
+                <div> <!-- title-card -->
                     <div class="featured-news-decoration relative flex bg-[#D6E9FF] h-[2px] translate-y-[5px] w-full"></div>
                     <h2 class="font-raleway text-black text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold mt-4 mb-6">Recomendadas</h2>
                 </div>
                 
                 <div class="relative flex items-stretch flex-wrap justify-between pb-[20px]">
-                    <div v-for="(article, index) in [1, 2, 3, 4, 5, 6, 7, 8]" :key="index" 
-                    class="article relative flex flex-wrap w-[320px] pb-[2rem] mr-[0.8rem]">
-                        <div class="flex font-raleway mb-2 text-separator h-[20px]">
-                            <span>
-                                Daniela Vicente
-                            </span>
-                            <span class="mx-4 bg-blue-100 w-[2px] h-full"></span>
-                            <span>
-                                October 23, 2024
-                            </span>
-                        </div>
-                        <div class="article-info flex-1">
-                            <div class="article-content-header flex justify-between items-center">
-                                <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[175px] mb-2"></div>
-                                <button class="share absolute min-[1070px]:top-[-5%] top-[3%] min-[1070px]:right-[-8%] right-[-5%] flex items-center content-center justify-center bg-white hover:bg-[#F1F8FF] rounded-full w-[40px] h-[40px]">
-                                    <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
-                                </button>
-                            </div>
-                            <div class="article-content max-w-[360px] overflow-hidden">
-                                <h3 class="article-title font-raleway text-black font-bold text-[20px] leading-[22px] mb-[0.2rem]">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </h3>
-                                <p class="article-description text-[16px] leading-[18px] font-raleway text-black-700">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                </p>
-                                <div class="flex items-center font-raleway text-separator text-[14px] mt-3 w-full truncate">
-                                    <span>
-                                        Extracurricular
-                                    </span>
-                                    <div class="circle bg-[#B5D1FF] rounded-full h-[6px] w-[6px] mx-2"></div>
-                                    <span>
-                                        8 minutos
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <NewsArticle v-for="(article, index) in [1, 2, 3, 4, 5, 6, 7, 8]" :key="index" />
+                    <!-- recommended-articles-navigation -->
                     <div class="absolute bottom-[0px] min-[1070px]:flex hidden justify-center w-full">
                         <div class="table-pagination">
                             <button class="pagination-btn">
@@ -294,44 +218,3 @@
         </div>
     </section>
 </template>
-
-<style>
-span.date {
-    /* overflow: hidden; */
-    /* display: -webkit-box; */
-    /*-webkit-line-clamp: 1;  number of lines to show */
-    /* line-clamp: 1;  */
-    /* -webkit-box-orient: vertical; */
-}
-.recommended-articles .article:last-child {
-    padding-bottom: 0;
-}
-/* .mobile-portrait-news-feed */
-:is(.small-recommended-news, .featured-news, .recommended-news, .mobile-portrait-news-feed) .article .article-content :is(p.article-description, h3.article-title) {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* number of lines to show */
-            line-clamp: 2; 
-    -webkit-box-orient: vertical;
-}
-.mobile-portrait-news-feed .article .article-content p.article-description {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-            line-clamp: 3; 
-    -webkit-box-orient: vertical;
-}
-button.share {
-    box-shadow: 0px 0.761455px 3.04582px rgba(181, 209, 255, 0.25);
-}
-
-.news-feed-header .news-word {
-    color: var(--black); /* text-black min-[800px]:orange */
-}
-
-@media (min-width: 880px) {
-    .news-feed-header .news-word {
-        color: var(--orange-300); /* text-black min-[800px]:orange */
-    }
-}
-</style>

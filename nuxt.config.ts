@@ -39,6 +39,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/image',
+    '@nuxt/content', // content
     '@nuxtjs/tailwindcss', // styles
     '@pinia/nuxt', // state management
     'nuxt-icon', // importing preset icons

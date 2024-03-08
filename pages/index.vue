@@ -19,8 +19,7 @@
         <HomeAbout />
         <HomeNews />
 
-        <div class="my-[5rem] py-[5rem] bg-blue-100">
-        </div>
+        <div class="my-[5rem] py-[5rem] bg-blue-100"></div>
     </div>
     <div class="wallpaper-two relative overflow-hidden z-10 bg-white">
         <!-- <HomeWallpaperContainerTwo /> -->

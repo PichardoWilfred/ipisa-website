@@ -1,24 +1,24 @@
 @import "./variables.css";
 @import "./layout.css";
+@import "./news.css";
 @import "./home.css";
 @import "./about.css";
 @import "./workshop.css";
+
+
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-fade';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 /* general utilies */
-.blue {
-    color: var(--blue-300);
-}
-.orange {
-    color: var(--orange-300);
-}
-.separator {
-    color: var(--separator);
-}
+.blue { color: var(--blue-300); }
+.orange { color: var(--orange-300); }
+.separator { color: var(--separator); }
 
 .v-enter-active, .v-leave-active {
     transition: all 150ms cubic-bezier(.68,.82,0,.8);

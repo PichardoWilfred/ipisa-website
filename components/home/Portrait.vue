@@ -38,11 +38,6 @@
 <script setup>
     import { Swiper, SwiperSlide } from 'swiper/vue';
     import { Autoplay, EffectFade } from 'swiper/modules';
-    
-    import 'swiper/css';  // swiper
-    import 'swiper/css/navigation';
-    import 'swiper/css/pagination';
-    import 'swiper/css/effect-fade';
 
     const imgs_ = ref([
         '937f525625', // 1
