@@ -1,5 +1,7 @@
 <template>
-    <about-portrait-component  picture="https://a.storyblok.com/f/272924/4000x3000/8a38807947/portrait-7.jpg" picture_name="philosofy" wallpaper_phrase="Los Talleres" />
+    <about-portrait-component  
+    picture="https://a.storyblok.com/f/272924/4000x3000/8a38807947/portrait-7.jpg" 
+    picture_name="philosofy" wallpaper_phrase="Los Talleres" />
     <main class="info py-[4rem] sm:py-[2rem]">
         <h1 class="title">
             <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
@@ -27,8 +29,8 @@
                     <template v-else>
                         <div class="absolute opacity-30 md:opacity-0 top-0 left-0 w-full h-full bg-white z-20" />
                     </template>
-                    <nuxt-img v-for="({ img, name }, index) in cards" :key="index"
-                    :src="`https://a.storyblok.com/f/272924/6000x4000/${img}/${name}-1.JPG`" sizes="600px md:700px" densities="x1 x2"
+                    <nuxt-img v-for="({ img, name }, index) in cards" :key="index" loading="lazy"
+                    :src="`https://a.storyblok.com/f/272924/6000x4000/${img}/${name}-1.JPG`" sizes="600px md:800px" densities="x1 x2"
                     class="absolute top-0 left-0 w-screen h-screen md:w-[112%] md:h-full opacity-0 object-cover transition-all" 
                     :class="{'workshop-focused': (name === focused_workshop)}"
                     />

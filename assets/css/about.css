@@ -33,6 +33,10 @@ div.portrait img.wallpaper.history {
     div.portrait img.wallpaper.about-us-wallpaper {
         object-position: 0px -180px;
     }
+    
+    div.portrait img.wallpaper.news-wallpaper {
+        object-position: 0px -190px;
+    }
 }
 @media (min-width: 992px) {
     div.portrait img.wallpaper.about-us-wallpaper {
@@ -43,8 +47,4 @@ div.portrait img.wallpaper.history {
     div.portrait img.wallpaper.about-us-wallpaper {
         object-position: 0px -180px;
     }
-}
-
-div.portrait img.wallpaper.news-wallpaper {
-    object-position: 0px -190px;
 }

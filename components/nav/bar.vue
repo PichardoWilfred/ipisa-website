@@ -11,7 +11,8 @@
                     </a>
                 </div>
                 <button class="mobile max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md 
-                            border border-black-500 hover:bg-black-500 transition-[background-color]" @click.prevent="toggle_mobile_menu">
+                    border border-black-500 hover:bg-black-500 transition-[background-color]" 
+                    @click.prevent="toggle_mobile_menu">
                     <Icon name="fe:bar" size="35px"/>
                 </button>
             </div>
@@ -32,6 +33,12 @@
             py-6 border-b border-black-500 hover:bg-black-500 active:bg-gray-100" 
             :class="class_" @click.prevent="scrollToSection(section, 200)">
                 {{ label }}
+            </li>
+            <li>
+
+            </li>
+            <li>
+                
             </li>
         </ul>
         <ul class="information">
@@ -75,7 +82,6 @@
         color: var(--black); 
         background-color: white;
         z-index: 999;
-        /* transition: var(--default-tw-transition); */
         transition-property: all;
         transition-duration: .15s;
         transition-timing-function: cubic-bezier(.4,0,.2,1);
@@ -96,7 +102,7 @@
         right: 0;
     }
     header ul.information {
-        @apply max-xl:hidden flex;
+        @apply max-[1300px]:hidden flex;
         position: absolute; 
         top: 4.5rem;
         right: 18px;
@@ -293,6 +299,10 @@ const header_class = reactive({
 })
 const navigation_bar = [
     {
+        label: 'INICIO',
+        section: 'home'
+    },
+    {
         label: 'NOSOTROS',
         section: 'about'
     },
@@ -319,6 +329,7 @@ const navigation_bar = [
     },
 ];
 const addresses = {
+    'home': '/',
     'portrait': '/',
     'about': '/sobre-nosotros',
     'news': '/noticias',
@@ -345,8 +356,12 @@ const social_media = [
 ];
 // navigation bar styles
 let prevScrollY;
+onBeforeMount(() => {
+    
+})
 onMounted(() => {
     prevScrollY = ref(window.scrollY);
+    
     window.addEventListener('scroll', handleScroll);
     handleScroll() // in case
 });

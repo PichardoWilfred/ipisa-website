@@ -20,7 +20,7 @@ p.article-description {
     <main class="article w-full max-w-[1180px] mx-auto px-[1.4rem] lg:px-[4rem] my-[2rem] bg-white">
 
         <div class="article-image-container rounded-[1rem] overflow-hidden">
-            <nuxt-img class="wallpaper w-full h-[320px] min-[880px]:h-[700px] object-cover" format="webp" sizes="100vw sm:50vw md:1400px lg:1200px" densities="x1 x2"
+            <nuxt-img class="wallpaper w-full h-[320px] min-[880px]:h-[700px] object-cover" loading="lazy" format="webp" sizes="100vw sm:50vw md:1400px lg:1200px" densities="x1 x2"
             src="https://a.storyblok.com/f/272924/6000x4000/ba6925f59b/img_6247.JPG" />
         </div>
         

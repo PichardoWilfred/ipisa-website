@@ -7,15 +7,15 @@
             effect="fade" crossFade>
                 <swiper-slide v-for="(img, index) in imgs_" :key="index">
                     <nuxt-img class="object-cover w-screen h-screen"
-                    format="webp"
-                    sizes="1200px lg:1200px xl:2000"
                     loading="lazy"
+                    format="webp"
+                    sizes="600px md:1000 lg:1200px xl:100vw"
                     :src="`/f/272924/${(index === 5 ? '4000x3000':'6000x4000')}/${img}/portrait-${(index + 1)}.jpg`" densities="x1 x2"
                     />
                 </swiper-slide>
             </swiper>
         </div>
-        <div class="relative w-full flex flex-col items-center mb-10 z-30">
+        <div class="relative w-full flex flex-col items-center mb-16 xl:mb-10 z-30">
             <div class="flex flex-col bg-gradient-to-b from-blue-400 to-[#004F9600] 
             pb-3 md:pb-10 pt-8 md:pt-12 px-8 lg:px-16 mb-[1rem] sm:mb-[2rem] md:mt-[10rem] lg:mt-[16rem] 
             md:rounded-xl w-full md:max-w-[600px] lg:max-w-[700px]">
@@ -30,9 +30,11 @@
                     Te invitamos a ser parte de nuestra trayectoria educativa y descubrir cómo podemos impulsar tu futuro.
                 </p>
             </div>
-            <button class="join font-raleway font-bold text-[1.1rem] text-white hover:text-[#FFFFFFE6] py-3 rounded-xl min-w-[300px] lg:min-w-[370px]">
-                ÚNETE A NOSOTROS
-            </button>
+            <nuxt-link to="/sobre-nosotros" prefetch>
+                <button class="join font-raleway font-bold text-[1.1rem] text-white hover:text-[#FFFFFFE6] py-3 rounded-xl min-w-[300px] lg:min-w-[370px]">
+                    CONOCE A IPISA
+                </button>
+            </nuxt-link>
         </div>
     </section>
 </template>

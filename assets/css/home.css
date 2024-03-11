@@ -552,11 +552,16 @@ div.swiper.activities {
     user-select: none;
 }
 .swiper-button-prev, .swiper-button-next {
-    @apply text-blue hover:text-blue-200;
+    color: var(--blue) !important;
     height: 80px !important;
     width: 70px !important;
     transition: var(--default-tw-transition);
 }
+
+.swiper-button-prev:hover, .swiper-button-next:hover {
+    color: var(--orange) !important;
+}
+
 .swiper-pagination-bullet {
     transition: var(--default-tw-transition);
 }
@@ -590,4 +595,6 @@ div.swiper.activities {
     max-width: 620px;
     padding-inline-start: 0.5rem; /* 8px */
 }
+
+
 

@@ -39,7 +39,9 @@
             
             <div class="news-feed">
                 <div class="new mb-5">
-                    <nuxt-img src="/modules/home/news/new-1.png" alt="estudiantes" class="w-[480px] h-[210px] object-cover" />
+                    <nuxt-img src="/modules/home/news/new-1.png" 
+                    loading="lazy" 
+                    alt="estudiantes" class="w-[480px] h-[210px] object-cover" />
                     <div class="author flex items-center my-3">
                         <div class="avatar bg-black-600 rounded-full w-[25px] h-[25px] me-3" />
                         <h3 class="font-raleway text-md text-black-600">

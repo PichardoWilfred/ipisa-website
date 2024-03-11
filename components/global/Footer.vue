@@ -9,7 +9,7 @@
         </div>
 
         <div class="footer-content relative overflow-hidden flex flex-col bg-white px-4 lg:px-8 pb-5 pt-10">
-            <div class="flex flex-col align-center logo min-[800px]:max-w-[320px]">
+            <nuxt-link to="/" class="flex flex-col align-center logo min-[800px]:max-w-[320px]">
                 <h4 class="font-raleway text-black-400 font-semibold text-[22px] min-[1400px]:text-[26px] max-md:text-center">
                     ¡Sigue contactándonos!
                 </h4>
@@ -23,7 +23,7 @@
                         <b class="text-orange">Honrados Ciudadanos.</b>
                     </h4>
                 </div>
-            </div>
+            </nuxt-link>
             <div class="links">
                 <div class="extracurricular-activities"> <!-- Actividades Extracurriculares -->
                     <h5 class="title">
@@ -126,10 +126,13 @@
 
         <div class="separator border-b border-gray-100 my-4" />
 
-        <div class="flex max-[800px]:flex-col items-center w-full justify-between px-6 min-[800px]:px-10 pb-8 min-[800px]:pb-16 pt-2">
-            <p class="text-gray-200 font-raleway text-[14px] min-[800px]:text-[16px] max-[800px]:mb-4">
+        <div class="flex max-[800px]:flex-col items-center w-full justify-between px-6 min-[800px]:px-8 pb-8 min-[800px]:pb-16 pt-2">
+            <p class="text-gray-200 font-raleway text-[15px] max-[800px]:mb-4 min-[800px]:max-w-[164px]">
                 {{ new Date().getFullYear() }} © IPISA, Todos los Derechos Reservados.
             </p>
+            <nuxt-link to="/" class="max-[800px]:mb-6 max-[800px]:mt-4">
+                <nuxt-icon name="layout/ipisa-logo-grayscale" class="cursor-pointer text-[90px] min-[800px]:text-[60px]" filled />
+            </nuxt-link>
             <div class="flex space-x-2 min-[800px]:space-x-4 social-media">
                 <a href="https://www.instagram.com/ipisasdb?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank">
                     <nuxt-icon name="layout/instagram" class="cursor-pointer text-[30px]" filled />
@@ -140,8 +143,8 @@
                 <a href="mailto:info@ipisa.edu.do?cc=acct3@example.com?subject=test%20email">
                     <nuxt-icon name="layout/mail" class="cursor-pointer text-[30px]" filled />
                 </a>
-                <a href="https://create.wa.link/" target="_blank">
-                    <nuxt-icon name="layout/whatsapp" class="cursor-pointer text-[30px]" filled />
+                <a href="#" @click.prevent="copy_phone" target="_blank">
+                    <nuxt-icon name="layout/phone" class="cursor-pointer text-[25px]" filled />
                 </a>
             </div>
         </div>
