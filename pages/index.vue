@@ -8,7 +8,16 @@
 
     useHead({
         title: 'IPISA - Buenos Cristianos y Honrados Ciudadanos',
-        meta: [ { property: 'og:title', content: `Instituto Politécnico Industrial de Santiago` } ]
+        meta: [ 
+            { 
+                property: 'og:title', 
+                content: `Instituto Politécnico Industrial de Santiago` 
+            },
+            {
+                name: 'description', 
+                content: 'IPISA es una institución educativa de renombre que destaca por su enfoque en la formación técnica y su firme compromiso con los valores cristianos. Su lema: "Buenos Cristianos y Honrados Ciudadanos", encapsula su misión de brindar una educación integral que combine habilidades técnicas y valores éticos.' 
+            }
+        ]
     });
 
 </script>
@@ -18,15 +27,13 @@
         <!-- <HomeWallpaperContainerOne /> -->
         <HomeAbout />
         <HomeNews />
-
-        <div class="my-[5rem] py-[5rem] bg-blue-100"></div>
+        <HomeActivities />
+        <HomeWorkshop />
     </div>
     <div class="wallpaper-two relative overflow-hidden z-10 bg-white">
         <!-- <HomeWallpaperContainerTwo /> -->
-        <HomeActivities />
-        <HomeWorkshop />
-        <HomeNewStudents />
-        <HomeAdmissions />
-        <HomeJobInsertion />
+        <!-- <HomeNewStudents /> -->
+        <!--  -->
+        <!-- <HomeJobInsertion /> -->
     </div>
 </template>

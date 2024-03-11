@@ -1,5 +1,4 @@
 <template>
-    <div>
-        Admisiones
-    </div>
+    <HomeAdmissions />
+    <HomeNewStudents /> 
 </template>

@@ -1,13 +1,14 @@
 <template>
-    <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[6rem] mb-[8rem] z-20" id="news">
+    <section class="relative w-full max-w-[1680px] mx-auto px-[5vw] pt-[6rem] mb-[2rem] z-20" id="news">
         <h2 class="flex items-center text-black font-raleway text-[2.2rem] lg:text-[3.8rem] cursor-pointer mb-2 lg:mb-4 transition-all">
             <nuxt-link to="/noticias">
                 <b class="me-2 lg:me-5 text-blue">Últimas</b><b class="text-orange-300">Noticias</b>
             </nuxt-link>
         </h2>
         <div class="news-feed">
-            <div class="news" v-for="({title, img, description, highlight, date}, index) in news_feed" :key="index">
-                <div class="header">
+            <div class="news flex flex-col justify-start font-raleway cursor-pointer" 
+            v-for="({title, img, description, highlight, date}, index) in news_feed" :key="index">
+                <div class="header relative flex items-center justify-between h-[40px]">
                     <div class="flex items-center font-inter">
                         <div class="author pe-5 me-5 border-r-2 border-r-blue-100">
                             Daniela Vicente
@@ -16,13 +17,17 @@
                             {{ date }}
                         </time>
                     </div>
-                    <button class="options">
+                    <button class="absolute right-0 flex items-center content-center justify-center hover:bg-white-100 rounded-full h-[38px] w-[38px] transition-all">
                         <nuxt-icon name="home/news/options" filled class="text-[1.8rem]"/>
                     </button>
                 </div>
-                <div class="bg-[#] h-[250px] rounded-[0.5rem]" />
-                <h2> {{ title }} </h2>
-                <p> {{ description }} </p>
+                <div class="h-[250px] rounded-[0.5rem]">
+                    <!-- my-3 min-[1200px]:my-3  -->
+                    <nuxt-img class="wallpaper w-full h-full rounded-lg object-cover" 
+                    format="webp" sizes="100vw md:800px lg:600px" densities="x1 x2" :src="img" />
+                </div>
+                <h2 class="news-title text-black font-bold min-[800px]:leading-7 text-[1.25rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] mt-4 mb-1 truncate"> {{ title }} </h2>
+                <p class="font-medium text-black-700 min-[800px]:text-[15px] min-[1200px]:text-[1rem] leading-6 mb-2"> {{ description }} </p>
                 <div class="header">
                     <div class="flex items-center font-inter">
                         <div class="author pe-5 me-5 border-r-2 border-r-blue-100">
@@ -32,7 +37,7 @@
                             {{ index + 1 }} minutos leyendo
                         </time>
                     </div>
-                    <button class="options">
+                    <button class="hidden options">
                         <nuxt-icon name="home/news/options" filled class="text-[1.8rem]"/>
                     </button>
                 </div>
@@ -46,51 +51,37 @@
 <script setup>
 const news_feed = ref([
     {
-        img: 'new-1.png',
-        title: 'Inauguración del Nuevo Laboratorio de Tecnología',
-        description: 'El IPISA se complace en anunciar la apertura de su moderno laboratorio de tecnología, equipado con tecnología de vanguardia para potenciar la formación de nuestros estudiantes.',
+        img: 'https://a.storyblok.com/f/272924/1080x1080/4d742223d3/admision-2.jpg',
+        title: 'Proceso de admisión año escolar 2024-2025',
+        description: 'La admisión y disponibilidad de formularios será limitada. Desde el viernes 01 de marzo hasta el viernes 22 de marzo 2024.',
         highlight: false,
-        date: '3 de Enero 2023'
+        date: '23 de Febrero 2024'
     },
     {
-        img: 'new-2.png',
-        title: 'Excelentes Resultados en la Competencia Regional de Electrónica',
-        description: 'Nuestros talentosos estudiantes de electrónica lograron destacarse en la competencia regional, demostrando su habilidad y conocimiento en esta disciplina.',
+        img: 'https://a.storyblok.com/f/272924/1440x960/322d285ce2/dia-del-estudiante-1.jpg',
+        title: 'Feliz día del Estudiante',
+        description: 'La educación es el arma más poderosa para cambiar el mundo. Nelson Mandela. ¡Felicidades a ti estudiante, que realizas una de las labores más nobles: estudiar!.',
         highlight: false,
-        date: '15 de Febrero 2023'
+        date: '18 de Febrero 2024'
     },
     {
-        img: 'new-3.png',
-        title: 'Nuevo Taller de Robótica para la Formación de Futuros Ingenieros',
-        description: 'El IPISA continúa ampliando sus recursos educativos con la incorporación de un taller de robótica de última generación, preparando a nuestros estudiantes para carreras en ingeniería.',
+        img: '',
+        title: 'Miércoles de Ceniza 2024',
+        description: 'Con la imposición de la ceniza se marca el comienzo de la cuaresma, la cual nos llama a seguir el camino hacia Jesucristo, escuchando la Palabra de Dios, orando, compartiendo con el prójimo y haciendo obras buenas. Nos invita a vivir una serie de actitudes cristianas que nos ayudan a parecernos más a Jesús.',
         highlight: false,
-        date: '7 de Abril 2023'
+        date: '14 de febrero 2024'
     },
 ]);
 </script>
 <style scoped>
-.news {
-    @apply flex flex-col justify-start font-raleway cursor-pointer;
-}
-.news .header {
-    @apply relative flex items-center justify-between h-[40px];
-}
 .news .header :is(time, div.author) {
     @apply font-normal text-[1rem] leading-[1.35rem] ;
     color:  var(--separator);
 }
 .news .header button.options {
-    @apply hidden absolute right-0 flex items-center content-center justify-center hover:bg-white-100 rounded-full h-[38px] w-[38px] transition-all;
     transition-duration: 150ms;
 }
-.news img {
-    @apply my-3 min-[1200px]:my-3 w-full h-[320px] object-cover rounded-lg;
-}
-.news h2 {
-    @apply mt-4 mb-1 text-black font-bold min-[800px]:leading-9 text-[1.25rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] truncate;
-}
 .news p {
-    @apply font-medium text-black-700 min-[800px]:text-[15px] min-[1200px]:text-[1rem] leading-6 mb-2;
     width: 100%;
     overflow: hidden;
     -webkit-box-orient: vertical;
@@ -150,7 +141,7 @@ const news_feed = ref([
 @media (min-width: 1200px) {
     .news-feed {
         grid-template-columns: repeat(3, minmax(320px, 1fr));
-        grid-template-rows: 470px;
+        grid-template-rows: 490px;
         gap: 2%;
     }
 }

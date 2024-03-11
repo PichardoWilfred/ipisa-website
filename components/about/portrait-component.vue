@@ -11,15 +11,17 @@
         <div class="absolute top-0 left-0 w-full h-full bg-[#00488D70] z-10" />
 
         <div class="parallax-layer rellax absolute md:top-[-330px] lg:top-[-135px] left-0 bottom-0 right-0 w-full h-full" data-rellax-percentage="0.1" data-rellax-speed="-7">
-            <nuxt-img class="wallpaper w-full h-[105%] object-cover transition-all z-[9]" :class="[{'zoom-in': zoom}, picture_name]"
-            format="webp" :src="picture" sizes="100vw sm:50vw md:1400px lg:1700px" densities="x1 x2" />
+            <nuxt-img 
+            class="wallpaper w-full h-[105%] object-cover transition-all z-[9]" 
+            :class="[{'zoom-in': zoom}, picture_name]"
+            format="webp" :src="picture" 
+            sizes="100vw sm:50vw md:600px lg:800px" densities="x1 x2" />
         </div>
 
     </div>
 </template>
 <script setup>
     import Rellax from 'rellax';
-
     const { picture, picture_name, wallpaper_phrase } = defineProps(['picture', 'picture_name', 'wallpaper_phrase']);
 
     let zoom_timeout;

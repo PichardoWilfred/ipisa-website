@@ -1,5 +1,3 @@
 <template>
-    <div>
-        Inserción Laboral
-    </div>
+    <HomeJobInsertion />
 </template>

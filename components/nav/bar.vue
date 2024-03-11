@@ -335,7 +335,7 @@ const social_media = [
         link: "mailto:info@ipisa.edu.do?cc=acct3@example.com?subject=test%20email",
         email: true,
     },
-    {   src: 'ic:baseline-whatsapp' ,
+    {   src: 'material-symbols:phone-in-talk-watchface-indicator-sharp' ,
         link: "https://crear.wa.link/"
     },
 ];
@@ -383,6 +383,7 @@ async function scrollToSection (section_, delay = 0 ) {
 
     await navigateTo({ path: addresses[section_]});
     if (in_mobile && mobile_menu.value) toggle_mobile_menu();
+    
     // if (!in_home.value) { return; }
     // setTimeout(() => {
     //     const section = document.querySelector(`section#${section_}`);

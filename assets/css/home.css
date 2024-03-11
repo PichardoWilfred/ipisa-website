@@ -46,7 +46,8 @@ section.content-navigation .illustration.school path.parking {
     opacity: 1;
 }
 section#about .illustration.school .idle g:is(.building, .platform, .flag-base, .flag, .don-bosco-statue), 
-section#about .illustration.school .idle rect.flag-pole, .idle .illustration.school path.parking {
+section#about .illustration.school .idle rect.flag-pole, 
+section#about .illustration.school .idle path.parking {
     opacity: 1;
 }
 
