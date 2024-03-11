@@ -15,7 +15,7 @@
             class="wallpaper w-full h-[105%] object-cover transition-all z-[9]" 
             :class="[{'zoom-in': zoom}, picture_name]"
             format="webp" :src="picture" 
-            sizes="100vw sm:50vw md:600px lg:800px" densities="x1 x2" />
+            sizes="100vw sm:50vw md:600px lg:900px" densities="x1 x2" />
         </div>
 
     </div>

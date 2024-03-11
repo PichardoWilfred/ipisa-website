@@ -17,17 +17,21 @@
                             {{ date }}
                         </time>
                     </div>
-                    <button class="absolute right-0 flex items-center content-center justify-center hover:bg-white-100 rounded-full h-[38px] w-[38px] transition-all">
-                        <nuxt-icon name="home/news/options" filled class="text-[1.8rem]"/>
+                    <!-- flex  -->
+                    <button class="share absolute flex items-center content-center justify-center bg-white hover:bg-[#F1F8FF] rounded-full w-[45px] h-[45px] right-[-20px] bottom-[-20px]">
+                        <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
                     </button>
                 </div>
-                <div class="h-[250px] rounded-[0.5rem]">
-                    <!-- my-3 min-[1200px]:my-3  -->
+                <div class="h-[400px] min-[1500px]:h-[250px] rounded-[0.5rem]">
                     <nuxt-img class="wallpaper w-full h-full rounded-lg object-cover" 
-                    format="webp" sizes="100vw md:800px lg:600px" densities="x1 x2" :src="img" />
+                    format="webp" sizes="600px lg:300px" densities="x1 x2" :src="img" />
                 </div>
-                <h2 class="news-title text-black font-bold min-[800px]:leading-7 text-[1.25rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] mt-4 mb-1 truncate"> {{ title }} </h2>
-                <p class="font-medium text-black-700 min-[800px]:text-[15px] min-[1200px]:text-[1rem] leading-6 mb-2"> {{ description }} </p>
+                <h2 class="news-title text-black font-bold min-[800px]:leading-7 text-[1.25rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] mt-4 mb-1 truncate"> 
+                    {{ title }} 
+                </h2>
+                <p class="font-medium text-black-700 min-[800px]:text-[15px] min-[1200px]:text-[1rem] leading-6 mb-2"> 
+                    {{ description }} 
+                </p>
                 <div class="header">
                     <div class="flex items-center font-inter">
                         <div class="author pe-5 me-5 border-r-2 border-r-blue-100">
@@ -65,17 +69,24 @@ const news_feed = ref([
         date: '18 de Febrero 2024'
     },
     {
-        img: '',
+        img: 'https://a.storyblok.com/f/272924/1440x1440/aee3556b1c/miercoles-de-ceniza-1.jpg',
         title: 'Miércoles de Ceniza 2024',
         description: 'Con la imposición de la ceniza se marca el comienzo de la cuaresma, la cual nos llama a seguir el camino hacia Jesucristo, escuchando la Palabra de Dios, orando, compartiendo con el prójimo y haciendo obras buenas. Nos invita a vivir una serie de actitudes cristianas que nos ayudan a parecernos más a Jesús.',
         highlight: false,
         date: '14 de febrero 2024'
     },
+    {
+        img: 'https://a.storyblok.com/f/272924/2048x1365/9d69ca0da3/425781172_823463636461297_4355531572615429854_n.jpg',
+        title: 'Dia de San Juan Bosco 2024',
+        description: 'Con la imposición de la ceniza se marca el comienzo de la cuaresma, la cual nos llama a seguir el camino hacia Jesucristo, escuchando la Palabra de Dios, orando, compartiendo con el prójimo y haciendo obras buenas. Nos invita a vivir una serie de actitudes cristianas que nos ayudan a parecernos más a Jesús.',
+        highlight: false,
+        date: '7 de febrero 2024'
+    }
 ]);
 </script>
 <style scoped>
 .news .header :is(time, div.author) {
-    @apply font-normal text-[1rem] leading-[1.35rem] ;
+    @apply font-normal text-[1rem] leading-[1.35rem];
     color:  var(--separator);
 }
 .news .header button.options {
@@ -138,10 +149,10 @@ const news_feed = ref([
         gap: 3%;
     }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1500px) {
     .news-feed {
-        grid-template-columns: repeat(3, minmax(320px, 1fr));
-        grid-template-rows: 490px;
+        grid-template-columns: repeat(4, minmax(320px, 1fr));
+        grid-template-rows: auto;
         gap: 2%;
     }
 }

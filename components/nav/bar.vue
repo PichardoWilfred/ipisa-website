@@ -6,7 +6,7 @@
                 <nuxt-icon @click="scrollToSection('portrait')" name="general/ipisa-logo" class="logo cursor-pointer ms-2 me-auto lg:mx-auto" filled />
                 <div class="social-media">
                     <a v-for="({ src, link, email }, index) in social_media" class="icon" :href="link" 
-                    target="_blank" @click="call(evt, index)">
+                    target="_blank" @click="call($event, index)">
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
                     </a>
                 </div>
@@ -257,9 +257,13 @@
 import { useLayoutStore } from '@/store/layout';
 const layout = useLayoutStore();
 
-function call (index) {
-    if (index === 3) { 
+function call (evt, index) {
+    evt.preventDefault();
+    
+    if ((index === 3) && window.matchMedia("(max-width: 768px)").matches) { 
         window.open('tel:+8097245700');
+    }else {
+        copy_phone();
     }
 }
 const copy_phone = async () => {
@@ -336,7 +340,7 @@ const social_media = [
         email: true,
     },
     {   src: 'material-symbols:phone-in-talk-watchface-indicator-sharp' ,
-        link: "https://crear.wa.link/"
+        link: ""
     },
 ];
 // navigation bar styles

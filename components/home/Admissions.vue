@@ -8,7 +8,7 @@
                 </span>
             </h2>
             <p class="text-justify text-[1.1rem] text-black font-medium font-raleway max-w-[860px] mb-10 mx-auto">
-                Para formar parte de la comunidad educativa del Instituto Politécnico Industrial de Santiago <b>(IPISA),</b> es importante 
+                Para formar parte de nuestra comunidad educativa es importante 
                 seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes. <i>A continuación, detallamos 
                 los requisitos necesarios para aplicar:</i>
             </p>
