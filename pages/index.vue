@@ -27,8 +27,8 @@
         <!-- <HomeWallpaperContainerOne /> -->
         <HomeAbout />
         <HomeNews />
-        <HomeWorkshop />
-        <HomeActivities />
+        <LazyHomeWorkshop />
+        <LazyHomeActivities />
     </div>
     <div class="wallpaper-two relative overflow-hidden z-10 bg-white">
         <!-- <HomeWallpaperContainerTwo /> -->

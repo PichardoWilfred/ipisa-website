@@ -148,7 +148,7 @@
                                 <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[175px] mb-4"></div>
                                 <button class="share absolute top-[10px] right-[-12px] min-[880px]:top-[1%] min-[880px]:right-[-5%] min-[1070px]:top-[-5%] min-[1070px]:right-[-20px]
                                 flex items-center content-center justify-center
-                                bg-white hover:bg-[#F1F8FF] rounded-full w-[40px] h-[40px]">
+                                bg-white hover:bg-black-200 rounded-full w-[40px] h-[40px]">
                                     <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
                                 </button>
                             </div>
