@@ -84,14 +84,13 @@ const sections = ref([
     },
 ]);
 
-
 useSeoMeta({
     title: 'IPISA - Sobre Nosotros',
     ogTitle: () => `IPISA - Sobre Nosotros`,
     ogDescription: () => `Descubre más sobre el Instituto Politécnico Industrial de Santiago (IPISA) explorando lo que tenemos para ofrecerte. Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de valores cristianos.`,
     description: () => `Descubre más sobre el Instituto Politécnico Industrial de Santiago (IPISA) explorando lo que tenemos para ofrecerte. Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de valores cristianos.`,
-    ogImage: () => 'https://a.storyblok.com/f/272924/1055x582/125792b188/seo-main-panel-small.png',
-    twitterCard: () => 'https://a.storyblok.com/f/272924/1055x582/125792b188/seo-main-panel-small.png',
+    ogImage: () => 'https://a.storyblok.com/f/272924/1055x582/db867763fd/sobre-nosotros.png',
+    twitterCard: () => 'https://a.storyblok.com/f/272924/1055x582/db867763fd/sobre-nosotros.png',
     language: () => `es` 
 });
 

@@ -22,7 +22,6 @@
         <div class="h-[3px] w-full bg-black-200 mt-[3rem]"></div>
         <HomeNews />
         <LazyHomeWorkshop />
-        
         <div class="h-[3px] w-full bg-black-200 mt-[6rem] lg:mt-[12rem]"></div>
         <LazyHomeActivities />
     </div>

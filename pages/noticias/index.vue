@@ -11,3 +11,14 @@
         </main>
     </div>
 </template>
+<script setup>
+useSeoMeta({
+    title: 'IPISA - Noticias',
+    ogTitle: () => `IPISA - Noticias`,
+    ogDescription: () => `Entérate de las últimas noticias del Centro.`,
+    description: () => `Entérate de las últimas noticias del Centro.`,
+    ogImage: () => 'https://a.storyblok.com/f/272924/1055x582/b5381de68b/noticias-del-centro.png',
+    twitterCard: () => 'https://a.storyblok.com/f/272924/1055x582/b5381de68b/noticias-del-centro.png',
+    language: () => `es` 
+});
+</script>

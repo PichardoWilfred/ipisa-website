@@ -6,3 +6,15 @@
     <div class="bg-[#CEE3FF] w-full h-[1px] mt-[8rem]" />
     <HomeNewStudents /> 
 </template>
+<script setup>
+
+useSeoMeta({
+    title: 'IPISA - Requisitos de Admisión',
+    ogTitle: () => `IPISA - Requisitos de Admisión`,
+    ogDescription: () => `Para formar parte de nuestra comunidad educativa es importante seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes.`,
+    description: () => `Para formar parte de nuestra comunidad educativa es importante seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes.`,
+    ogImage: () => 'https://a.storyblok.com/f/272924/1055x582/f87cfe4837/admisiones-del-centro.png',
+    twitterCard: () => 'https://a.storyblok.com/f/272924/1055x582/f87cfe4837/admisiones-del-centro.png',
+    language: () => `es` 
+});
+</script>
