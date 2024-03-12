@@ -6,7 +6,7 @@
         <h1 class="title">
             <span class="text-blue">Nuestros</span> <span class="orange">Talleres</span>
         </h1>
-        <p class="text-justify text-black font-raleway text-[1.1rem] mx-auto w-[90%] min-[1482px]:w-[42%] mb-14">
+        <p class="text-justify text-black font-raleway text-[1.1rem] mx-auto w-[90%] min-[1482px]:w-[64%] mb-14">
             En IPISA, cada taller es una puerta de entrada a la excelencia académica y técnica. 
             Desde el fascinante universo de la Electrónica hasta la precisión del Mecanizado, nuestros programas están diseñados para nutrir 
             a los estudiantes con habilidades prácticas y conocimientos especializados. 
@@ -16,7 +16,7 @@
             <b> Te invitamos a explorar cada taller en detalle y descubrir cómo en IPISA, estamos construyendo el futuro a través de la 
             educación de calidad. </b>
         </p>
-        <div class="workshop-menu-container relative top-0 left-0 max-sm:py-[6rem] w-full min-[1480px]:w-[85%] mx-auto mb-[10rem] min-[1480px]:rounded-[35px] md:overflow-hidden">
+        <div class="workshop-menu-container relative top-0 left-0 max-sm:py-[6rem] w-full min-[1280px]:w-[95%] mx-auto mb-[10rem] min-[1080px]:rounded-[35px] md:overflow-hidden">
             
             <div class="absolute top-0 left-0 w-full lg:w-[112%] h-full">
                 <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-screen md:h-[120vh] lg:w-[112%] lg:h-[105%] transition-all z-20">
@@ -39,14 +39,14 @@
 
             <div class="card-container md:radius-[30px] z-30" 
             ref="card_container" :class="{'translucent': enable_background}">
-                <div class="card max-[1480px]:min-[800px]:flex-row max-[1480px]:min-[800px]:items-center
+                <div class="card max-[1080px]:min-[800px]:flex-row max-[1080px]:min-[800px]:items-center
                 flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all" 
                 v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name" :class="[name]" 
                 @click.prevent="go_to_workshop(icon)" @mouseenter.prevent="apply_background(name)">
-                    <nuxt-icon class="no-shadow mx-auto max-[1480px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5" 
+                    <nuxt-icon class="no-shadow mx-auto max-[1080px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5" 
                     :name="`workshop/${icon}`" filled />
-                    <div class="flex flex-col max-[1480px]:min-[800px]:items-start max-md:pb-10">
-                        <h4 class="max-[1480px]:min-[800px]:text-start text-center my-[10px] font-bold font-raleway text-[1.3rem] leading-[20px]">
+                    <div class="flex flex-col max-[1080px]:min-[800px]:items-start items-center max-md:pb-10">
+                        <h4 class="max-[1080px]:min-[800px]:text-start text-center my-[10px] font-bold font-raleway text-[1.3rem] leading-[20px]">
                             <template v-for="({ name, class_, br }, title_index) in title" >
                                 <span v-if="!br" :class="class_" :key="title_index">
                                     {{ name }}
@@ -54,7 +54,7 @@
                                 <br v-else />
                             </template>
                         </h4>
-                        <p class="max-[1480px]:min-[800px]:text-start text-center font-raleway leading-[18px] max-w-[310px] md:mb-5 mx-auto">
+                        <p class="max-[1080px]:min-[800px]:text-start text-center font-raleway min-[1080px]:mx-4 min-[1080px]:text-[16px] leading-[18px] max-w-[310px] md:mb-5 mx-auto">
                             {{ description }}
                         </p>
                     </div>
@@ -312,7 +312,7 @@
     }
     
     onMounted(() => {
-        in_tablet.value = window.matchMedia("(min-width: 768px) and (max-width: 1480px)").matches;
+        in_tablet.value = window.matchMedia("(min-width: 768px) and (max-width: 1080px)").matches;
         in_mobile.value = window.matchMedia("(max-width: 992px)").matches;
         if (in_mobile.value) {
             function observe_card_callback(entries, observer) { // callback
@@ -399,7 +399,7 @@ img.workshop-focused {
     border-left: 2px solid white;
     border-bottom: 2px solid white;
 }
-@media (min-width: 1480px) {
+@media (min-width: 1080px) {
     .card-container.translucent .card:is(.equipos, .ensamblaje, .mecanizado, .instalaciones) { border-bottom: 0; }
     .card-container.translucent .card:is(.confeccion, .equipos) { border-left: 0; }
 }
@@ -574,7 +574,7 @@ img.workshop-focused {
         background: linear-gradient(270deg, #FFD9C2 0.3%, #FFBF99 23.3%, #FF7320 51.83%, #FFCAAB 74.8%, #FFD9C2 100.3%);
     }
 }
-@media (min-width: 768px) and (max-width: 1480px) {
+@media (min-width: 768px) and (max-width: 1080px) {
     .card-container {
         grid-template-columns: repeat(2, 50%);
         grid-template-rows: repeat(4, 270px);
@@ -607,7 +607,7 @@ img.workshop-focused {
     }
 }
 
-@media (min-width: 1480px) {
+@media (min-width: 1080px) {
     .card-container {
         grid-template-columns: repeat(4, 25%);
         grid-template-rows: repeat(2, 50%);

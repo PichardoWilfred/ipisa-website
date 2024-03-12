@@ -19,10 +19,10 @@
     <div class="wallpaper-one relative overflow-hidden z-10">
         <!-- <HomeWallpaperContainerOne /> -->
         <HomeAbout />
-        <div class="h-[3px] w-full bg-black-200 mt-[3rem]"></div>
+        <div class="h-[3px] w-full bg-black-100 mt-[3rem]"></div>
         <HomeNews />
         <LazyHomeWorkshop />
-        <div class="h-[3px] w-full bg-black-200 mt-[6rem] lg:mt-[12rem]"></div>
+        <div class="h-[3px] w-full bg-black-100 mt-[6rem] lg:mt-[12rem]"></div>
         <LazyHomeActivities />
     </div>
     <div class="wallpaper-two relative overflow-hidden z-10 bg-white">

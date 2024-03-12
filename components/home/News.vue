@@ -18,13 +18,13 @@
                         </time>
                     </div>
                     <!-- flex  -->
-                    <button class="share absolute flex items-center content-center justify-center bg-white hover:bg-black-200 rounded-full w-[45px] h-[45px] right-[-20px] bottom-[-20px]">
+                    <button class="share absolute flex items-center content-center justify-center bg-white hover:bg-black-100 rounded-full w-[45px] h-[45px] right-[-20px] bottom-[-20px]">
                         <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
                     </button>
                 </div>
                 <div class="h-[400px] min-[1500px]:h-[250px] rounded-[0.5rem]">
                     <nuxt-img class="wallpaper w-full h-full rounded-lg object-cover" loading="lazy"
-                    format="webp" sizes="600px lg:300px" densities="x1 x2" :src="`${img}`" />
+                    format="webp" sizes="600px lg:700px" densities="x1 x2" :src="`${img}`" />
                 </div>
                 <h2 class="news-title text-black font-bold min-[800px]:leading-7 text-[1.25rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] mt-4 mb-1 truncate"> 
                     {{ title }} 
@@ -38,7 +38,7 @@
                             Institucional
                         </span>
                         <time class="">
-                            {{ index + 1 }} minutos leyendo
+                            1 minutos leyendo
                         </time>
                     </div>
                 </div>
@@ -57,37 +57,36 @@ const formatId = (text) => {
     return `${formattedText}-${currentTime}`; // Return the formatted text followed by the current time
 }
 
-
 const news_feed = ref([
     {
         id: formatId("Proceso de admisión año escolar 2024-2025"),
-        img: 'https://a.storyblok.com/f/272924/1080x1080/4d742223d3/admision-2.jpg',
         title: 'Proceso de admisión año escolar 2024-2025',
         description: 'La admisión y disponibilidad de formularios será limitada. Desde el viernes 01 de marzo hasta el viernes 22 de marzo 2024.',
+        img: 'https://a.storyblok.com/f/272924/1080x1080/4d742223d3/admision-2.jpg',
         highlight: false,
         date: '23 de Febrero 2024'
     },
     {
         id: formatId("Feliz día del Estudiante"),
-        img: 'https://a.storyblok.com/f/272924/1440x960/322d285ce2/dia-del-estudiante-1.jpg',
         title: 'Feliz día del Estudiante',
         description: 'La educación es el arma más poderosa para cambiar el mundo. Nelson Mandela. ¡Felicidades a ti estudiante, que realizas una de las labores más nobles: estudiar!.',
+        img: 'https://a.storyblok.com/f/272924/1440x960/322d285ce2/dia-del-estudiante-1.jpg',
         highlight: false,
         date: '18 de Febrero 2024'
     },
     {
         id: formatId("Miércoles de Ceniza 2024"),
-        img: 'https://a.storyblok.com/f/272924/1440x1440/aee3556b1c/miercoles-de-ceniza-1.jpg',
         title: 'Miércoles de Ceniza 2024',
         description: 'Con la imposición de la ceniza se marca el comienzo de la cuaresma, la cual nos llama a seguir el camino hacia Jesucristo, escuchando la Palabra de Dios, orando, compartiendo con el prójimo y haciendo obras buenas. Nos invita a vivir una serie de actitudes cristianas que nos ayudan a parecernos más a Jesús.',
+        img: 'https://a.storyblok.com/f/272924/1440x1440/aee3556b1c/miercoles-de-ceniza-1.jpg',
         highlight: false,
         date: '14 de febrero 2024'
     },
     {
         id: formatId("Dia de San Juan Bosco 2024"),
-        img: 'https://a.storyblok.com/f/272924/2048x1365/9d69ca0da3/425781172_823463636461297_4355531572615429854_n.jpg',
         title: 'Dia de San Juan Bosco 2024',
-        description: 'Con la imposición de la ceniza se marca el comienzo de la cuaresma, la cual nos llama a seguir el camino hacia Jesucristo, escuchando la Palabra de Dios, orando, compartiendo con el prójimo y haciendo obras buenas. Nos invita a vivir una serie de actitudes cristianas que nos ayudan a parecernos más a Jesús.',
+        description: 'El día de Don Bosco, muy especial para todas las casas salesianas porque celebramos la fiesta de nuestro fundador, San Juan Bosco.',
+        img: 'https://a.storyblok.com/f/272924/2048x1365/9d69ca0da3/425781172_823463636461297_4355531572615429854_n.jpg',
         highlight: false,
         date: '7 de febrero 2024'
     }
@@ -142,13 +141,15 @@ const news_feed = ref([
     .news-feed {
         display: grid;
         grid-template-columns: repeat(1, minmax(320px, 1fr));
-        gap: 4%;
+        grid-template-rows: auto;
+        gap: 60px;
     }
 }
 @media (min-width: 800px) {
     .news-feed {
         display: grid;
         grid-template-columns: repeat(2, minmax(320px, 1fr));
+        grid-template-rows: auto;
         gap: 3%;
     }
 }

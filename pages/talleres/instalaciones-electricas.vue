@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="workshop" picture="https://a.storyblok.com/f/272924/6000x4000/99374acc05/instalaciones-1.JPG" 
-    workshop_name="instalaciones-electricas" type="Industrial" internship="720">
+    workshop_name="instalaciones-electricas" type="Industrial" internship="720" portrait_title="Instalaciones Eléctricas">
         <template #workshop-title>
             <span class="text-blue me-3">Instalaciones </span> 
             <span class="text-orange">Eléctricas</span>

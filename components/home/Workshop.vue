@@ -430,7 +430,7 @@
     .card-container {
         grid-template-columns: repeat(1, min(470px, 81.5vw));
         grid-template-rows: repeat(8, 232px);
-        gap: 50vh;
+        gap: 6vh;
     }
     .card:is(:nth-child(1), :nth-child(2), :nth-child(7), :nth-child(8)){ 
         box-shadow: 0px 1px 3px 0px #B2DBFF; 

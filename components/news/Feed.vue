@@ -2,7 +2,7 @@
     import { Swiper, SwiperSlide } from 'swiper/vue';
     import { Pagination } from 'swiper/modules';
 
-    let layout_mode = ref(false);
+    let layout_mode = ref(true);
     const change_layout = () => {
         layout_mode.value = !layout_mode.value; 
     }
@@ -74,14 +74,12 @@
                     </div>
                     <div class="flex flex-col min-w-[315px]">
                         <h2 class="translate-y-[-12px] font-raleway text-black font-bold text-[3rem] leading-[3.3rem] xl:text-[3.3vw] xl:leading-[3.6vw] mb-4">
-                            IPISA encabeza competición de las Naciones Unidas
+                            IPISA celebra el día de Don Bosco 2024.
                         </h2>
                         <p class="font-raleway text-black-700 text-[1.2rem] leading-[20px]">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                            El día de Don Bosco, muy especial para todas las casas salesianas porque celebramos la fiesta de nuestro fundador, San Juan Bosco.
                             <br><br>
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris ut labore et dolore magna aliqua.
+                            Comenzamos el día con las competiciones deportivas (incluyendo volleyball, football, backetball etc.)
                         </p>
                     </div>
                 </div>
@@ -109,14 +107,12 @@
                 <template v-if="layout_mode">
                     <div class="recommended-articles flex flex-col h-full mt-6">
                         <!-- v-for="(article, index) in [1, 2, 3, 4, 5]" :key="index" -->
-                        <!-- to="noticias/noticia-1" -->
                         <NewsArticle v-for="(article, index) in [1, 2, 3, 4, 5]" :key="index" longVersion />
                     </div>
                 </template>
                 <template v-else>
                     <div class="featured-news flex flex-wrap">
                         <NewsArticle v-for="(article, index) in [1, 2, 3, 4, 5, 6, 7, 8, 9]" :key="index" smallVersion />
-                        <!-- to="noticias/noticia-1" -->
                     </div>
                 </template>
             </div>
@@ -148,7 +144,7 @@
                                 <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[175px] mb-4"></div>
                                 <button class="share absolute top-[10px] right-[-12px] min-[880px]:top-[1%] min-[880px]:right-[-5%] min-[1070px]:top-[-5%] min-[1070px]:right-[-20px]
                                 flex items-center content-center justify-center
-                                bg-white hover:bg-black-200 rounded-full w-[40px] h-[40px]">
+                                bg-white hover:bg-black-100 rounded-full w-[40px] h-[40px]">
                                     <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
                                 </button>
                             </div>

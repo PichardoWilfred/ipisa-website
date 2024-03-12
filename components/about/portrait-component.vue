@@ -1,8 +1,8 @@
 <template>
     <div class="portrait parallax-container relative overflow-hidden h-screen md:h-[30vh] lg:h-[55vh]">
 
-        <div v-if="wallpaper_phrase_ !== '' " class="absolute md:hidden top-[50%] left-0 w-full z-20 py-10">
-            <h1 class="flex justify-center items-end font-raleway font-bold text-[#ffffffbd] mx-auto text-center text-[32px]">
+        <div v-if="wallpaper_phrase_ !== '' " class="absolute md:hidden top-[40%] left-0 w-full z-20 py-10">
+            <h1 class="flex justify-center items-end font-raleway font-bold text-[#ffffffbd] text-center text-[32px] mx-[3rem]">
                 {{ wallpaper_phrase_ }}
                 <div class="blinking-cursor bg-white mb-2 ms-1 h-[4px] w-[16px]" :class="{ 'removed': remove_typewritter }"></div>
             </h1>
@@ -16,7 +16,7 @@
                 class="wallpaper w-full h-[105%] object-cover transition-all z-[9]" 
                 :class="[{'zoom-in': zoom}, picture_name]"
                 format="webp" :src="picture" 
-                sizes="700px sm:600px lg:900px" densities="x1 x2" />
+                sizes="600px sm:600px lg:900px" densities="x1 x2" />
         </div>
 
     </div>

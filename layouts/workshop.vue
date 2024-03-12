@@ -1,5 +1,5 @@
 <template>
-    <about-portrait-component :picture="picture" :class="workshop_name" />
+    <about-portrait-component :picture="picture" :class="workshop_name" :wallpaper_phrase="portrait_title" />
     <main class="info workshop-detail flex flex-col justify-center
     px-4 lg:px-24 pt-[4rem] sm:pt-[2rem] mb-28 mx-auto w-full
     md:max-w-[1120px] min-h-[80vh]" :class="workshop_name">
@@ -67,5 +67,5 @@
     </main>
 </template>
 <script setup>
-    const { picture, workshop_name, type, internship } = useAttrs();
+    const { picture, workshop_name, type, internship, portrait_title } = useAttrs();
 </script>

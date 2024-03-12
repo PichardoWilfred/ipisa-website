@@ -81,7 +81,7 @@ p.article-description {
                 <div class="article-info flex-1">
                     <div class="article-content-header flex justify-between items-center">
                         <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[175px] mb-4"></div>
-                        <button class="share absolute min-[1070px]:top-[2%] top-[3%] min-[1070px]:right-[-7%] right-[-5%] flex items-center content-center justify-center bg-white hover:bg-black-200 rounded-full w-[40px] h-[40px]">
+                        <button class="share absolute min-[1070px]:top-[2%] top-[3%] min-[1070px]:right-[-7%] right-[-5%] flex items-center content-center justify-center bg-white hover:bg-black-100 rounded-full w-[40px] h-[40px]">
                             <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
                         </button>
                     </div>

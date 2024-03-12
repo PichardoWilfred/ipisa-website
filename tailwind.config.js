@@ -36,10 +36,12 @@ module.exports = {
         200: "#F3F6FA",
       },
       black: {
-        200: "#F1F8FF",
+        100: "#F1F8FF",
+        200: "#D6E9FF",
         DEFAULT: "#4B6286",
         400: "#344661",
         500: "#CEE3FF",
+        
         600: "#AABDD8",
         700: "#7D96BD"
       },

@@ -2,7 +2,8 @@
     <NuxtLayout name="workshop" 
     picture="https://a.storyblok.com/f/272924/6000x4000/57f64b960e/desarrollo-1.JPG"  
     workshop_name="desarrollo-aplicaciones-informaticas" 
-    type="Servicio" internship="360">
+    type="Servicio" internship="360"
+    portrait_title="Desarrollo & Administración de Aplicaciones Informáticas">
         <template #workshop-title>
             <span class="text-blue">Desarrollo</span> 
             <span class="separator mx-2 md:mx-3">&</span> 

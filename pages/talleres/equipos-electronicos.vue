@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="workshop" picture="https://a.storyblok.com/f/272924/6000x4000/0b7d736aa0/equipos-1.JPG" 
-    workshop_name="equipos-electronicos" type="Industrial" internship="720">
+    workshop_name="equipos-electronicos" type="Industrial" internship="720" portrait_title="Equipos Electrónicos">
         <template #workshop-title>
             <span id="anchor-ipisa" class="text-blue me-3">Equipos </span>
             <span class="text-orange">Electrónicos</span>
