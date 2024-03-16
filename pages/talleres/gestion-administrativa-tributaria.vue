@@ -1,7 +1,10 @@
 <template>
     <NuxtLayout name="workshop" 
-    picture="https://a.storyblok.com/f/272924/6000x4000/f44213de5b/gestion-1.JPG"
-    workshop_name="gestion-administrativa-tributaria" type="Servicio" internship="360" portrait_title="Gestión Administrativa y Tributaria">
+    picture="https://a.storyblok.com/f/272924/6000x4000/90ab2f2f06/gestion-1.JPG"
+    workshop_name="gestion-administrativa-tributaria" 
+    type="Servicio" internship="360" 
+    portrait_title="Gestión Administrativa y Tributaria"
+    :workshop_imgs="workshop_imgs">
         <template #workshop-title>
             <span id="anchor-ipisa" class="text-blue">Gestión Administrativa</span> 
             <span class="separator mx-3 lg:mx-4">&</span> 
@@ -61,3 +64,29 @@
         </template>
     </NuxtLayout>
 </template>
+<script setup>
+
+    useSeoMeta({
+        title: 'Gestión Administrativa y Tributaria',
+        ogTitle: () => `Gestión Administrativa y Tributaria`,
+        ogDescription: () => `El taller de Gestión Administrativa, antes conocido como contabilidad ofrece una formación integral en el registro, análisis y gestión financiera, 
+                fundamentales para comprender y aplicar los principios contables en entornos empresariales. A través de 
+                diversas unidades de competencia, los estudiantes adquieren habilidades en contabilidad, gestión tributaria, 
+                manejo de documentación, y más, proporcionando una base sólida para incursionar en el mundo laboral con 
+                conocimientos especializados en el ámbito contable.`,
+        description: () => `El taller de Gestión Administrativa, antes conocido como contabilidad ofrece una formación integral en el registro, análisis y gestión financiera, 
+                fundamentales para comprender y aplicar los principios contables en entornos empresariales. A través de 
+                diversas unidades de competencia, los estudiantes adquieren habilidades en contabilidad, gestión tributaria, 
+                manejo de documentación, y más, proporcionando una base sólida para incursionar en el mundo laboral con 
+                conocimientos especializados en el ámbito contable.`,
+        ogImage: () => `https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png`,
+        twitterCard: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+        language: () => `es`
+    });
+
+    const workshop_imgs = ref([
+        "https://a.storyblok.com/f/272924/6000x4000/90ab2f2f06/gestion-1.JPG",
+        "https://a.storyblok.com/f/272924/4000x6000/ba4a8ca4c0/gestion-2.JPG",
+        "https://a.storyblok.com/f/272924/6000x4000/3a1d413234/gestion-3.JPG",
+    ]);
+</script>

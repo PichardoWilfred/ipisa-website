@@ -10,7 +10,7 @@
         </template>
         
         <template #content>
-            El taller de <b>Equipos Electrónicos</b>, conocido también como Electricidad, ofrece una formación especializada en el montaje,
+            El taller de <b>Instalaciones Eléctricas</b>, conocido también como Electricidad, ofrece una formación especializada en el montaje,
             mantenimiento y desarrollo de sistemas eléctricos. Este programa capacita a los participantes para intervenir en la fabricación, 
             ensamblaje y mantenimiento de equipos, abarcando desde la instalación y reparación hasta la creación de circuitos y sistemas 
             automatizados. 
@@ -59,3 +59,26 @@
         </template>
     </NuxtLayout>
 </template>
+<script setup>
+
+useSeoMeta({
+    title: 'Instalaciones Eléctricas',
+    ogTitle: () => `Instalaciones Eléctricas`,
+    ogDescription: () => `El taller de Instalaciones Eléctricas, conocido también como Electricidad, ofrece una formación especializada en el montaje,
+            mantenimiento y desarrollo de sistemas eléctricos. Este programa capacita a los participantes para intervenir en la fabricación, 
+            ensamblaje y mantenimiento de equipos, abarcando desde la instalación y reparación hasta la creación de circuitos y sistemas 
+            automatizados.`,
+    description: () => `El taller de Instalaciones Eléctricas, conocido también como Electricidad, ofrece una formación especializada en el montaje,
+            mantenimiento y desarrollo de sistemas eléctricos. Este programa capacita a los participantes para intervenir en la fabricación, 
+            ensamblaje y mantenimiento de equipos, abarcando desde la instalación y reparación hasta la creación de circuitos y sistemas 
+            automatizados.`,
+    ogImage: () => `https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png`,
+    twitterCard: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+    language: () => `es`
+});
+
+const workshop_imgs = ref([
+    "https://a.storyblok.com/f/272924/6000x4000/4fc50fd670/instalaciones-1.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/44652b631f/instalaciones-2.JPG",
+]);
+</script>

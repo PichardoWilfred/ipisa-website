@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="workshop" picture="https://a.storyblok.com/f/272924/6000x4000/c20dbecd13/ensamblaje-1.JPG" 
-    workshop_name="ensamblaje-muebles" type="Industrial" internship="720" portrait_title="Ensamblaje de Muebles">
+    workshop_name="ensamblaje-muebles" type="Industrial" internship="720" portrait_title="Ensamblaje de Muebles" :workshop_imgs="workshop_imgs">
         <template #workshop-title>
             <span class="text-blue">Ensamblaje</span> 
             <span class="separator mx-3 lg:mx-4">de</span> 
@@ -83,3 +83,28 @@
         </template>
     </NuxtLayout>
 </template>
+<script setup>
+
+useSeoMeta({
+    title: 'Ensamblaje de Muebles',
+    ogTitle: () => `Ensamblaje de Muebles`,
+    ogDescription: () => `El taller de Ensamblaje de Muebles representa un espacio de formación especializada en el desarrollo, elaboración 
+            e instalación de elementos de madera. A través de una serie de unidades de competencia, este taller ofrece una 
+            sólida capacitación en la creación de productos, control de prototipos, logística de almacén, ensamblado, instalación
+            y más, abarcando desde la planificación hasta la concreción del mobiliario y elementos de carpintería.`,
+    description: () => `El taller de Ensamblaje de Muebles representa un espacio de formación especializada en el desarrollo, elaboración 
+            e instalación de elementos de madera. A través de una serie de unidades de competencia, este taller ofrece una 
+            sólida capacitación en la creación de productos, control de prototipos, logística de almacén, ensamblado, instalación
+            y más, abarcando desde la planificación hasta la concreción del mobiliario y elementos de carpintería.`,
+    ogImage: () => `https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png`,
+    twitterCard: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+    language: () => `es`
+});
+
+const workshop_imgs = ref([
+    "https://a.storyblok.com/f/272924/6000x4000/d5638d146d/ensamblaje-2.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/c20dbecd13/ensamblaje-1.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/8b1ad29283/ensamblaje-3.JPG",
+    "https://a.storyblok.com/f/272924/4000x6000/d24a9293ce/ensamblaje-4.JPG",
+]);
+</script>

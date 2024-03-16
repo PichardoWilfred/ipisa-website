@@ -77,3 +77,24 @@
         </template>
     </NuxtLayout>
 </template>
+<script setup>
+
+useSeoMeta({
+    title: 'Mecanizado',
+    ogTitle: () => `Mecanizado`,
+    ogDescription: () => `El taller de Mecanizado constituye un espacio de aprendizaje que prepara a los profesionales en la implementación 
+            de procesos fundamentales en la fabricación de productos mecánicos.`,
+    description: () => `El taller de Mecanizado constituye un espacio de aprendizaje que prepara a los profesionales en la implementación 
+            de procesos fundamentales en la fabricación de productos mecánicos.`,
+    ogImage: () => `https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png`,
+    twitterCard: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+    language: () => `es`
+});
+
+const workshop_imgs = ref([
+    "https://a.storyblok.com/f/272924/6000x4000/b57f103738/mecanizado-1.JPG",
+    "https://a.storyblok.com/f/272924/4000x6000/488ba299e5/mecanizado-2.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/3acd3183a4/mecanizado-3.JPG",
+    "https://a.storyblok.com/f/272924/4000x3000/271ba2f039/mecanizado-4.jpg"
+]);
+</script>

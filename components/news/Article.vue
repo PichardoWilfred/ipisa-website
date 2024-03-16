@@ -23,7 +23,8 @@
             </div>
         </div>
     </NuxtLink>
-    <NuxtLink v-else-if="longVersion" to="/noticias/noticia-1" class="article flex flex-wrap h-[115px] w-full mb-8 last:mb-0 min-[1520px]:last:hidden">
+    <NuxtLink v-else-if="longVersion" to="/noticias/noticia-1" class="article flex flex-wrap h-[115px] w-full mb-8 last:mb-0">
+        <!-- min-[1520px]:last:hidden -->
         <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-[160px] h-full"></div>
         <div class="article-info flex-1 ms-6">
             <div class="article-content-header flex justify-between items-center mb-2 h-[20px]">

@@ -3,7 +3,7 @@
     picture="https://a.storyblok.com/f/272924/6000x4000/57f64b960e/desarrollo-1.JPG"  
     workshop_name="desarrollo-aplicaciones-informaticas" 
     type="Servicio" internship="360"
-    portrait_title="Desarrollo & Administración de Aplicaciones Informáticas">
+    portrait_title="Desarrollo & Administración de Aplicaciones Informáticas" :workshop_imgs="workshop_imgs">
         <template #workshop-title>
             <span class="text-blue">Desarrollo</span> 
             <span class="separator mx-2 md:mx-3">&</span> 
@@ -93,3 +93,25 @@
         </template>
     </NuxtLayout>
 </template>
+<script setup>
+
+useSeoMeta({
+    title: 'Desarrollo & Administración de Aplicaciones Informáticas',
+    ogTitle: () => `Desarrollo & Administración de Aplicaciones Informáticas`,
+    ogDescription: () => ` El taller de Desarrollo y Administración de Aplicaciones Informáticas, antes conocido simplemente como Informática, ofrece 
+            desde análisis de sistemas hasta diseño de bases de datos y desarrollo web. Este taller proporciona habilidades clave para 
+            enfrentar los desafíos del sector informático actual.`,
+    description: () => ` El taller de Desarrollo y Administración de Aplicaciones Informáticas, antes conocido simplemente como Informática, ofrece 
+            desde análisis de sistemas hasta diseño de bases de datos y desarrollo web. Este taller proporciona habilidades clave para 
+            enfrentar los desafíos del sector informático actual.`,
+    ogImage: () => 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+    twitterCard: () => 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+    language: () => `es`
+});
+
+const workshop_imgs = ref([
+    "https://a.storyblok.com/f/272924/6000x4000/57f64b960e/desarrollo-1.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/e0dcda4c8d/desarrollo-2.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/0265888fd5/desarrollo-3.JPG"
+]);
+</script>

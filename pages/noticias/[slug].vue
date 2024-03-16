@@ -49,9 +49,9 @@ const route = useRoute().params;
             </p>
         </main>
     </ContentDoc>
-    <div class="mt-3"></div>
-    <ContentSlot class="mt-3" :use="$slots.gallery" />
-    <div class="mt-3"></div>
+    <div class="mt-5"></div>
+    <ContentSlot class="mt-5" :use="$slots.gallery" />
+    <div class="mt-5"></div>
     <!-- <div class="bg-[#37393b] h-[2px] mt-[2rem] mb-[1rem]"></div> -->
 
     <div class="recommended-articles w-full max-w-[1180px] flex items-stretch flex-wrap justify-between px-[1.4rem] lg:px-[4rem] pb-[42px] min-[880px]:pb-[20px] mx-auto">

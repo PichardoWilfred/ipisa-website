@@ -74,9 +74,11 @@
                     </div>
                     <div class="relative flex flex-col min-w-[315px]">
                         <h2 class="translate-y-[-12px] font-raleway text-black font-bold text-[3rem] leading-[3.3rem] xl:text-[3.3vw] xl:leading-[3.6vw] mb-4">
-                            IPISA celebra el día de Don Bosco 2024.
+                            <nuxt-link to="/noticias/dia-de-san-juan-bosco-2024">
+                                IPISA celebra el día de Don Bosco 2024.
+                            </nuxt-link>
                         </h2>
-                        <p class="relative font-raleway text-black-700 text-[1.2rem] leading-[23px] max-height-[484px] overflow-hidden">
+                        <p class="relative font-raleway text-black-700 text-[1.2rem] leading-[23px] max-height-[420px] overflow-hidden">
                             San Juan Bosco hizo de ilusionista y malabarista para divertir y educar a los jóvenes. 
                             En 1953, en España, Don Bosco fue proclamado patrono de los magos e ilusionistas.
                             <br><br>
@@ -90,20 +92,24 @@
                             recurren los actores de doblaje, los capellanes de cárceles, y las personas que trabajan en el circo.
                         </p>
                         
-                        <div class="flex justify-center items-center bg-gradient-to-t from-[#FFFFFF] to-[#ffffff00] absolute left-0 bottom-0 w-full h-[35px]">
-                            <button class="see-more font-raleway text-black-600 text-[16px] min-[800px]:text-md font-[500] mt-6 h-[40px] w-[120px]">
-                                <b class="first font-semibold">Ver</b> <b class="second font-semibold">más</b>
-                                <Icon name="fe:arrow-down" class="ms-2 text-[1.6rem] transition-all" filled />
-                            </button>
+                        <div class="flex justify-center items-center bg-gradient-to-t from-[#FFFFFF] to-[#ffffff00] absolute left-0 bottom-0 w-full h-[65px] transition-all">
+                            <nuxt-link to="/noticias/dia-de-san-juan-bosco-2024">
+                                <button class="see-more font-raleway text-black-600 text-[16px] min-[800px]:text-md font-[500] mt-12 h-[40px] w-[120px]">
+                                    <b class="first font-semibold">Ver</b> <b class="second font-semibold">más</b>
+                                    <Icon name="fe:arrow-down" class="ms-2 text-[1.6rem] transition-all" filled />
+                                </button>
+                            </nuxt-link>
                         </div>
                     </div>
                 </div>
                 <!--  -->
                 <!-- feature-image -->
                 <div class="bg-[#E3F0FF] h-full w-full min-w-[400px] rounded-lg overflow-hidden">
-                    <nuxt-img class="swiper-img object-cover w-full h-full" alt="" src="https://a.storyblok.com/f/272924/2048x1365/9d69ca0da3/425781172_823463636461297_4355531572615429854_n.jpg"
-                    loading="lazy" format="webp" sizes="600px md:800px lg:1200px" placeholder
-                    densities="x1 x2" />
+                    <nuxt-link to="/noticias/dia-de-san-juan-bosco-2024">
+                        <nuxt-img class="swiper-img object-cover w-full h-full" alt="" src="https://a.storyblok.com/f/272924/2048x1365/9d69ca0da3/425781172_823463636461297_4355531572615429854_n.jpg"
+                        loading="lazy" format="webp" sizes="600px md:800px lg:1200px" placeholder
+                        densities="x1 x2" />
+                    </nuxt-link>
                 </div>
             </div>
 
@@ -125,9 +131,9 @@
                 </div>
                 <!-- layout-mode -->
                 <template v-if="layout_mode">
-                    <div class="recommended-articles flex flex-col h-full mt-6">
+                    <div class="recommended-articles flex flex-col justify-between h-full mt-6">
                         <!-- v-for="(article, index) in [1, 2, 3, 4, 5]" :key="index" -->
-                        <NewsArticle v-for="(article, index) in [1, 2, 3, 4, 5]" :key="index" longVersion />
+                        <NewsArticle v-for="(article, index) in [1, 2, 3, 4]" :key="index" longVersion />
                     </div>
                 </template>
                 <template v-else>
@@ -146,47 +152,7 @@
                 </div>
                 
                 <div class="relative flex items-stretch flex-wrap justify-between pb-[42px] min-[880px]:pb-[20px]">
-                    
                     <NewsArticle v-for="(article, index) in [1, 2, 3, 4,]" :key="index" />
-                    <!-- <div v-for="(article, index) in [1, 2, 3, 4]" :key="index"
-                    class="article relative flex flex-col flex-wrap max-w-[380px] w-full min-[880px]:w-[45%] pb-[1.85rem]">
-                        <div class="min-[1070px]:hidden flex font-raleway mb-2 text-separator h-[20px]">
-                            <span>
-                                Daniela Vicente
-                            </span>
-                            <span class="mx-4 bg-blue-100 w-[2px] h-full"></span>
-                            <span>
-                                October 23, 2024
-                            </span>
-                        </div>
-                        <div class="article-info flex-1">
-                            <div class="article-content-header flex justify-between items-center">
-                                <div class="image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[175px] mb-4"></div>
-                                <button class="share absolute top-[10px] right-[-12px] min-[880px]:top-[1%] min-[880px]:right-[-5%] min-[1070px]:top-[-5%] min-[1070px]:right-[-20px]
-                                flex items-center content-center justify-center
-                                bg-white hover:bg-black-100 rounded-full w-[40px] h-[40px]">
-                                    <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
-                                </button>
-                            </div>
-                            <div class="article-content max-w-[360px] overflow-hidden">
-                                <h3 class="article-title font-raleway text-black font-bold text-[20px] leading-[22px] mb-[0.2rem]">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </h3>
-                                <p class="article-description text-[16px] leading-[18px] font-raleway text-separator">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                </p>
-                                <div class="flex items-center font-raleway text-separator text-[14px] mt-3 w-full truncate">
-                                    <span>
-                                        Extracurricular
-                                    </span>
-                                    <div class="circle bg-[#B5D1FF] rounded-full h-[6px] w-[6px] mx-2"></div>
-                                    <span>
-                                        8 minutos
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="absolute bottom-[0px] max-[1070px]:flex hidden justify-center w-full">
                         <div class="table-pagination">
                             <button class="pagination-btn">
@@ -234,3 +200,23 @@
         </div>
     </section>
 </template>
+<style scoped>
+button.see-more:hover b.first {
+    color: var(--blue);
+}
+button.see-more:hover b.second {
+    color: var(--orange-300);
+}
+button.see-more:hover svg {
+    animation: bounce-arrow 950ms ease-in-out forwards infinite;
+}
+@keyframes bounce-arrow {
+    0% {
+        transform: translateY(0px);
+    } 50% {        
+        transform: translateY(-6px);
+    } 100% {
+        transform: translateY(0px);
+    }
+}
+</style>
