@@ -8,9 +8,10 @@
             <div v-for="(teeth, index) in Array.from( Array(40).keys() )" class="bg-white w-[40px] h-[50px] first:ms-[12px] mx-[18px]" :key="teeth" />
         </div>
 
-        <div class="footer-content relative overflow-hidden flex flex-col bg-white px-4 lg:px-8 pb-5 pt-10">
+        <!-- flex flex-col -->
+        <div class="footer-content relative overflow-hidden bg-white px-4 lg:px-8 pb-5 pt-10">
             <nuxt-link to="/" class="flex flex-col align-center logo min-[800px]:max-w-[320px]">
-                <h4 class="font-raleway text-black-400 font-semibold text-[22px] min-[1400px]:text-[26px] max-md:text-center">
+                <h4 class="font-raleway text-black-400 font-bold text-[22px] min-[1400px]:text-[26px] max-md:text-center">
                     ¡Sigue contactándonos!
                 </h4>
                 <p class="text-black font-raleway font-medium max-w-[372px] text-[14px] min-[800px]:text-[17px] mt-1 mb-2 max-md:text-center max-md:mx-auto">
@@ -26,8 +27,8 @@
             </nuxt-link>
             <div class="links">
                 <div class="extracurricular-activities"> <!-- Actividades Extracurriculares -->
-                    <h5 class="title">
-                        Pastoral
+                    <h5 class="title hover:underline">
+                        <NuxtLink to="/pastoral">Pastoral</NuxtLink>
                     </h5>
                     <ul class="activities">
                         <li v-for="({label, address }, index) in extracurricular_activities" :key="index" class="activity">
@@ -36,8 +37,8 @@
                     </ul>
                 </div>
                 <div class="job-insertion">
-                    <h5 class="title">
-                        Inserción Laboral
+                    <h5 class="title hover:underline">
+                        <NuxtLink to="/insercion-laboral">Inserción Laboral</NuxtLink>
                     </h5>
                     <ul class="options">
                         <li class="option">
@@ -49,8 +50,8 @@
                     </ul>
                 </div>
                 <div class="about">
-                    <h5 class="title">
-                        Sobre Nosotros
+                    <h5 class="title hover:underline">
+                        <NuxtLink to="/sobre-nosotros">Sobre Nosotros</NuxtLink>
                     </h5>
                     <ul class="sections">
                         <li class="section">
@@ -71,8 +72,8 @@
                     </ul>
                 </div>
                 <div class="workshop">
-                    <h5 class="title">
-                        Talleres
+                    <h5 class="title hover:underline">
+                        <NuxtLink to="/talleres">Talleres</NuxtLink>
                     </h5>
                     <ul class="workshop-list">
                         <li v-for="({label, address }, index) in workshops" :key="index" class="option">
@@ -84,8 +85,8 @@
                 </div>
                 <div class="admissions-info">
                     <div>
-                        <h5 class="title">
-                            Admisiones
+                        <h5 class="title hover:underline">
+                            <NuxtLink to="/admisiones">Admisiones</NuxtLink>
                         </h5>
                         <ul class="admission-options">
                             <li class="option">
@@ -100,8 +101,8 @@
                         </ul>
                     </div>
                     <div class="max-md:mt-8">
-                        <h5 class="title">
-                            Informaciones
+                        <h5 class="title hover:underline">
+                            <NuxtLink to="/pastoral"></NuxtLink> Informaciones
                         </h5>
                         <ul class="information">
                             <li class="option">
@@ -153,9 +154,12 @@
 <style scoped>
 footer .footer-content {
     display: grid;
+     /* display: flex; grid */
+    /* justify-content: space-between; */
 }
 .links {
-    display: grid;
+    /* grid */
+    display: grid; 
     gap: 10px;
 }
 .extracurricular-activities {

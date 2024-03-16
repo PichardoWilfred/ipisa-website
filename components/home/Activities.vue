@@ -1,7 +1,6 @@
 <template>
     <section class="relative w-full z-20 pt-[4rem] lg:pt-[6rem] mb-[8rem]" id="activities" data-offset="80">
-        <div></div>
-        <h2 class="text-center font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[2rem] text-black text-[2.2rem] lg:text-[3.6rem] lg:leading-[3.8rem]">
+        <h2 class="text-center font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[0.5rem] text-black text-[1.8rem] lg:text-[3.4rem] lg:leading-[3.8rem]">
             <nuxt-link to="/pastoral">
                 <b class="text-blue">Galería</b><b class="mx-2 lg:mx-5 text-separator">de</b><b class="text-orange-300">Recuerdos</b>
             </nuxt-link>
@@ -10,7 +9,7 @@
         :autoplay="{ delay: 20000}" effect="fade" crossFade>
             <swiper-slide v-for="({ img_src }, index) in images" :key="index">
                 <nuxt-img class="swiper-img object-cover w-full h-full" alt="" :src="img_src"
-                loading="lazy" format="webp" sizes="600px md:800px lg:2200px"
+                loading="lazy" format="webp" sizes="600px md:800px lg:2200px" placeholder
                 densities="x1 x2" />
             </swiper-slide>
         </swiper>

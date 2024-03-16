@@ -72,19 +72,39 @@
                         <div class="w-full bg-blue h-[120px] mb-4" />
                         <div class="w-full bg-orange-300 h-[70px]" />
                     </div>
-                    <div class="flex flex-col min-w-[315px]">
+                    <div class="relative flex flex-col min-w-[315px]">
                         <h2 class="translate-y-[-12px] font-raleway text-black font-bold text-[3rem] leading-[3.3rem] xl:text-[3.3vw] xl:leading-[3.6vw] mb-4">
                             IPISA celebra el día de Don Bosco 2024.
                         </h2>
-                        <p class="font-raleway text-black-700 text-[1.2rem] leading-[20px]">
-                            El día de Don Bosco, muy especial para todas las casas salesianas porque celebramos la fiesta de nuestro fundador, San Juan Bosco.
+                        <p class="relative font-raleway text-black-700 text-[1.2rem] leading-[23px] max-height-[484px] overflow-hidden">
+                            San Juan Bosco hizo de ilusionista y malabarista para divertir y educar a los jóvenes. 
+                            En 1953, en España, Don Bosco fue proclamado patrono de los magos e ilusionistas.
                             <br><br>
-                            Comenzamos el día con las competiciones deportivas (incluyendo volleyball, football, backetball etc.)
+                            También los soldados del Cuerpo de Especialistas del Ejército de Tierra tiene asignado como patrón a Don Bosco, 
+                            según explica el arzobispado Castrense, por concesión de la Congregación para el Culto Divino.
+                            <br><br>
+                            Don Bosco, además, es patrón de los Editores Católicos desde 1946; en el 1958 fue declarado patrono de los 
+                            aprendices de Italia. En España, además, es el santo protector de los estudiantes de Formación Profesional y su 
+                            fiesta, hasta hace poco, se celebraba en todos los centros educativos que impartían este tipo de formación. 
+                            En algunas listas de patronos celestiales de oficios muy terrenales, Don Bosco aparece como el santo al que 
+                            recurren los actores de doblaje, los capellanes de cárceles, y las personas que trabajan en el circo.
                         </p>
+                        
+                        <div class="flex justify-center items-center bg-gradient-to-t from-[#FFFFFF] to-[#ffffff00] absolute left-0 bottom-0 w-full h-[35px]">
+                            <button class="see-more font-raleway text-black-600 text-[16px] min-[800px]:text-md font-[500] mt-6 h-[40px] w-[120px]">
+                                <b class="first font-semibold">Ver</b> <b class="second font-semibold">más</b>
+                                <Icon name="fe:arrow-down" class="ms-2 text-[1.6rem] transition-all" filled />
+                            </button>
+                        </div>
                     </div>
                 </div>
+                <!--  -->
                 <!-- feature-image -->
-                <div class="bg-[#E3F0FF] h-full w-full min-w-[400px] rounded-lg"></div>
+                <div class="bg-[#E3F0FF] h-full w-full min-w-[400px] rounded-lg overflow-hidden">
+                    <nuxt-img class="swiper-img object-cover w-full h-full" alt="" src="https://a.storyblok.com/f/272924/2048x1365/9d69ca0da3/425781172_823463636461297_4355531572615429854_n.jpg"
+                    loading="lazy" format="webp" sizes="600px md:800px lg:1200px" placeholder
+                    densities="x1 x2" />
+                </div>
             </div>
 
             <div class="featured-new max-w-[520px] max-[1070px]:hidden flex flex-col flex-2 lg:mt-8">

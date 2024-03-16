@@ -7,9 +7,7 @@
             effect="fade" crossFade>
                 <swiper-slide v-for="(img, index) in imgs_" :key="index">
                     <nuxt-img class="object-cover w-screen h-screen"
-                    loading="lazy"
-                    format="webp"
-                    sizes="600px sm:800px lg:1200px xl:100vw"
+                    placeholder format="webp" sizes="600px sm:800px lg:1200px xl:100vw"
                     :src="`/f/272924/${(index === 5 ? '4000x3000':'6000x4000')}/${img}/portrait-${(index + 1)}.jpg`" densities="x1 x2"
                     />
                 </swiper-slide>

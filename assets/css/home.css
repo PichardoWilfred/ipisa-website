@@ -557,6 +557,11 @@ div.swiper.activities {
     width: 70px !important;
     transition: var(--default-tw-transition);
 }
+@media (max-width: 576px) {
+    .swiper .swiper-button-prev, .swiper .swiper-button-next {
+        display: none;
+    }
+}
 
 .swiper-button-prev:hover, .swiper-button-next:hover {
     color: var(--orange) !important;

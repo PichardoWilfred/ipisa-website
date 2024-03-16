@@ -17,12 +17,12 @@
                 </button>
             </div>
             <ul class="navigation hidden lg:flex items-center transition-all">
-                <li v-for="({ label, class_, section }, index) in navigation_bar" :key="index" 
+                <li v-for="({ label, class_, section, route }, index) in navigation_bar" :key="index" 
                 class="item relative cursor-pointer font-raleway font-semibold me-10 last:me-0 text-gray-800 
                 before:absolute before:bottom-[-3px] before:rounded-md before:flex before:h-[3px]
                 before:bg-orange-300 before:w-0 before:content-[''] 
                 hover:before:w-full before:transition-all before:origin-center" 
-                :class="class_" @click.prevent="scrollToSection(section)">
+                :class="[class_, in_route(route) ? 'before:w-full':'' ]" @click.prevent="scrollToSection(section)">
                     {{ label }}
                 </li>
             </ul>
@@ -34,11 +34,23 @@
             :class="class_" @click.prevent="scrollToSection(section, 200)">
                 {{ label }}
             </li>
-            <li>
-
+            <li v-if="!header_class.transparent" class="cursor-pointer my-5 me-4">
+                <a class="flex items-center justify-end text-[13px] font-bold" href="https://maps.app.goo.gl/tq2JfxfJoc67brRX7" target="_blank">
+                    <h4 class="font-raleway text-blue me-2 text-end transition-all">
+                        Av. Hispanoamericana, Km 1 Santiago,
+                        <span class="text-blue-300">Zona Sur, República Dominicana.</span>
+                    </h4>
+                    <nuxt-icon name="layout/location-color" class="text-[28px] location-icon-color" filled />
+                </a>
             </li>
-            <li>
-                
+            <li v-if="!header_class.transparent" class="cursor-pointer my-5 me-4">
+                <a class="flex justify-end text-[17px] font-bold" @click.prevent="copy_phone">
+                    <Icon name="ic:outline-content-copy" class="me-2 text-[16px] separator" />
+                    <h4 class="font-raleway text-orange-300 me-2 text-end transition-all">
+                        <span class="text-orange-200">(809)</span> 724-5700
+                    </h4>
+                    <nuxt-icon name="layout/phone-color" class="text-[26px] phone-icon-color" filled />
+                </a>
             </li>
         </ul>
         <ul class="information">
@@ -95,9 +107,10 @@
         background-color: white;
         width: 70vw;
         right: -100%;
-        height: calc(100vh - 84px);
+        height: calc(100vh - 94px);
     }
     header ul.mobile-navigation.show {
+        overflow-y: scroll;
         transition: var(--default-tw-transition);
         right: 0;
     }
@@ -264,10 +277,10 @@ import { useLayoutStore } from '@/store/layout';
 const layout = useLayoutStore();
 
 function call (evt, index) {
-    evt.preventDefault();
     
-    if ((index === 3) && window.matchMedia("(max-width: 768px)").matches) { 
-        window.open('tel:+8097245700');
+    if ((index === 3) && window.matchMedia("(max-width: 768px)").matches) {
+        evt.preventDefault();
+        window.open('tel:8097245700');
     }else {
         copy_phone();
     }
@@ -280,17 +293,13 @@ const copy_phone = async () => {
     }
 }
 
-const copy_map = async () => {
-    try {
-        await navigator.clipboard.writeText(''); 
-    }
-    catch (err) {
-        console.error('Failed to copy: ', err);
-    }
-}
+const in_route = (route) => { 
+    return router.currentRoute.value.path === route;
+};
 
 // router
 const router = useRouter();
+
 //navigation bar classes
 const header_class = reactive({
     transparent: true,
@@ -300,32 +309,39 @@ const header_class = reactive({
 const navigation_bar = [
     {
         label: 'INICIO',
-        section: 'home'
+        section: 'home',
+        route: '/',
     },
     {
         label: 'NOSOTROS',
-        section: 'about'
+        section: 'about',
+        route: '/sobre-nosotros',
     },
     {
         label: 'NOTICIAS',
-        section: 'news'
+        section: 'news',
+        route: '/noticias',
     },
     {
         label: 'TALLERES',
-        section: 'workshop'
+        section: 'workshop',
+        route: '/talleres',
     },
     {
         label: 'ADMISIONES',
         section: 'admissions',
+        route: '/admisiones',
         class_: 'focused'
     },
     {
         label: 'PASTORAL',
-        section: 'activities'
+        section: 'activities',
+        route: '/pastoral',
     },
     {
         label: 'INSERCIÓN LABORAL',
-        section: 'job-insertion'
+        section: 'job-insertion',
+        route: '/insercion-laboral',
     },
 ];
 const addresses = {
@@ -398,7 +414,7 @@ const toggle_mobile_menu = () => {
 async function scrollToSection (section_, delay = 0 ) { 
     //temporarily it will automatically navigate to the routes
     const in_mobile = window.matchMedia("(max-width: 768px)").matches;
-    const in_home = computed(() => router.currentRoute.value.name === 'index');
+    // const in_home = computed(() => router.currentRoute.value.name === 'index');
 
     await navigateTo({ path: addresses[section_]});
     if (in_mobile && mobile_menu.value) toggle_mobile_menu();

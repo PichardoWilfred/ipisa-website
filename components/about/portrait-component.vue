@@ -11,12 +11,12 @@
         <div class="absolute top-0 left-0 w-full h-full bg-[#00488D70] z-10" />
 
         <div class="parallax-layer rellax absolute md:top-[-330px] lg:top-[-135px] left-0 bottom-0 right-0 w-full h-full" data-rellax-percentage="0.1" data-rellax-speed="-7">
-            <nuxt-img 
-                loading="lazy"
+            <nuxt-img
+                placeholder
                 class="wallpaper w-full h-[105%] object-cover transition-all z-[9]" 
-                :class="[{'zoom-in': zoom}, picture_name]"
+                :class="[{ 'zoom-in': zoom }, picture_name]"
                 format="webp" :src="picture" 
-                sizes="600px sm:600px lg:900px" densities="x1 x2" />
+                sizes="600px lg:950px" densities="x1 x2" />
         </div>
 
     </div>
@@ -61,7 +61,7 @@
         wallpaper = document.querySelector("img.wallpaper");
         wallpaper.addEventListener('load', apply_zoom, true);
         zoom_timeout = setTimeout(() => {
-            if (wallpaper.complete) { zoom.value = false; }
+            if (wallpaper.complete) { apply_zoom(); }
         }, 0);
         // mobile type writter animation
         type_writter(wallpaper_phrase, wallpaper_phrase_, 85).then(() => {
