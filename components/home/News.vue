@@ -6,8 +6,8 @@
             </nuxt-link>
         </h2>
         <div class="news-feed">
-            <ContentList :query="query" path="/noticias" fields="title,description,img" v-slot="{ list }">
-                <nuxt-link :to="'noticias/'+item.id" v-for="(item, index) in list" class="news flex flex-col font-raleway cursor-pointer">
+            <ContentList :query="query" path="/noticias" v-slot="{ list }">
+                <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list" class="news flex flex-col font-raleway cursor-pointer">
                     <NewsPortraitArticle :item="item"/>
                 </nuxt-link>
             </ContentList>
@@ -21,7 +21,6 @@ const formatId = (text) => {
     return `${formattedText}-${currentTime}`; // Return the formatted text followed by the current time
 }
 
-// const news_feed = await queryContent('/noticias/firstdoc').findOne();
 // Create a query looking into content/articles directory
 const query = { path: '/noticias', where: [{ visibility: 'portrait' }], limit: 4 }
 

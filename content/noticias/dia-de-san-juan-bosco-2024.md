@@ -11,13 +11,13 @@ date: "7 de febrero 2024"
 author: Daniela Vicente
 ---
 El día de Don Bosco, muy especial para todas las casas salesianas porque celebramos la fiesta de nuestro fundador, San Juan Bosco.
-<br><br>
+
 San Juan Bosco hizo de ilusionista y malabarista para divertir y educar a los jóvenes. 
 En 1953, en España, Don Bosco fue proclamado patrono de los magos e ilusionistas.
-<br><br>
+
 También los soldados del Cuerpo de Especialistas del Ejército de Tierra tiene asignado como patrón a Don Bosco, 
 según explica el arzobispado Castrense, por concesión de la Congregación para el Culto Divino.
-<br><br>
+
 Don Bosco, además, es patrón de los Editores Católicos desde 1946; en el 1958 fue declarado patrono de los 
 aprendices de Italia. En España, además, es el santo protector de los estudiantes de Formación Profesional y su 
 fiesta, hasta hace poco, *se celebraba* en todos los centros educativos que impartían este tipo de formación. 

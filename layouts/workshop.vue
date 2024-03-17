@@ -54,7 +54,7 @@
             </h1>
             <div class="news-feed flex max-sm:flex-col w-full">
                 <ContentList :query="query" path="/noticias" fields="title,description,img" v-slot="{ list }">
-                    <nuxt-link :to="'noticias/'+item.id" v-for="(item, index) in list" class="news flex flex-col font-raleway cursor-pointer me-5 w-[500px]">
+                    <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list" class="news flex flex-col font-raleway cursor-pointer me-5 w-[500px]">
                         <NewsPortraitArticle :item="item"/>
                     </nuxt-link>
                 </ContentList>
