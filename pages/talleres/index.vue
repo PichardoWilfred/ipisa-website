@@ -16,10 +16,10 @@
             <b> Te invitamos a explorar cada taller en detalle y descubrir cómo en IPISA, estamos construyendo el futuro a través de la 
             educación de calidad. </b>
         </p>
-        <div class="workshop-menu-container relative top-0 left-0 max-sm:py-[6rem] w-full min-[1280px]:w-[95%] mx-auto mb-[10rem] min-[1080px]:rounded-[35px] md:overflow-hidden">
+        <div class="workshop-menu-container relative top-0 left-0 w-full min-[1280px]:w-[95%] mx-auto mb-[10rem] min-[1080px]:rounded-[35px] md:overflow-hidden">
             
             <div class="absolute top-0 left-0 w-full lg:w-[112%] h-full">
-                <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-screen md:h-[120vh] lg:w-[112%] lg:h-[105%] transition-all z-20">
+                <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-screen md:h-[100vh] lg:w-[112%] lg:h-[105%] transition-all z-20">
                     <template v-if="!in_mobile">
                         <div v-if="in_tablet" class="tablet-color-bg relative w-full h-full overflow-hidden transition-all" 
                         :class="[{'blue-animation': blue_animation, 'orange-animation': orange_animation}]" />
@@ -37,10 +37,10 @@
                 </div>
             </div>
 
-            <div class="card-container md:radius-[30px] z-30" 
+            <div class="card-container md:radius-[30px] z-30 max-md:h-[100vh] max-md:snap-y max-md:snap-mandatory max-md:overflow-scroll"
             ref="card_container" :class="{'translucent': enable_background}">
                 <div class="card max-[1080px]:min-[800px]:flex-row max-[1080px]:min-[800px]:items-center
-                flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all" 
+                flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all snap-center" 
                 v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name" :class="[name]" 
                 @click.prevent="go_to_workshop(icon)" @mouseenter.prevent="apply_background(name)">
                     <nuxt-icon class="no-shadow mx-auto max-[1080px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5" 
@@ -88,6 +88,15 @@
 
     const observer = ref(null);
     const once = ref(true);
+
+    // TODO: fix auto center scrollable view of talleres
+    // function go_to_position(target) {
+    //     if (window.scrollY !== target.offsetParent.offsetTop) {
+    //         setInterval(() => {
+    //             target.scrollIntoView()
+    //         }, 1000)   
+    //     }
+    // }
 
     function trigger_animation() {
         once.value = false;
@@ -198,7 +207,7 @@
         {
             icon: 'gestion-administrativa-tributaria',
             name: 'gestion',
-            img: 'f44213de5b',
+            img: '90ab2f2f06',
             title: [
                 {
                     class_: 'blue',
@@ -281,7 +290,7 @@
         {
             icon: 'instalaciones-electricas',
             name: 'instalaciones',
-            img: '99374acc05',
+            img: '4fc50fd670',
             title: [
                 {
                     class_: 'blue',
@@ -323,6 +332,10 @@
                     }
                 });
             }
+
+            // TODO: fix auto center scrollable view of talleres
+            // document.querySelector('.card-container').addEventListener('scroll', ({target}) => go_to_position(target))
+            
             observer.value = new IntersectionObserver(observe_card_callback, { threshold: in_tablet.value ? 0.5 : 1 }); // to disconnect it later
             cards.map(({ name }) => {
                 const element = document.querySelector(`#${name}`);
@@ -617,11 +630,8 @@ img.workshop-focused {
 @media (max-width: 768px) {
     .card-container {
         grid-template-columns: repeat(1, min(470px, 81.5vw));
-        grid-template-rows: repeat(8, 80vh);
-        row-gap: 20vh;
+        grid-template-rows: repeat(8, 100vh);
     }
-    .card-container .card:first-child { padding-top: 20vh; }
-    .card-container .card:last-child { padding-bottom: 20vh; }
     .card-container.translucent .card {
         border-color: transparent;
     }
