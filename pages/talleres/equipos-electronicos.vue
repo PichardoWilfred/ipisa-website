@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="workshop" picture="https://a.storyblok.com/f/272924/6000x4000/0b7d736aa0/equipos-1.JPG" 
-    workshop_name="equipos-electronicos" type="Industrial" internship="720" portrait_title="Equipos Electrónicos">
+    workshop_name="equipos-electronicos" type="Industrial" internship="720" portrait_title="Equipos Electrónicos" :workshop_imgs="workshop_imgs">
         <template #workshop-title>
             <span id="anchor-ipisa" class="text-blue me-3">Equipos </span>
             <span class="text-orange">Electrónicos</span>
@@ -62,3 +62,27 @@
         </template>
     </NuxtLayout>
 </template>
+<script setup>
+
+useSeoMeta({
+    title: 'Equipos Electrónicos',
+    ogTitle: () => `Equipos Electrónicos`,
+    ogDescription: () => `El taller de Equipos Electrónicos, antes conocido como "Electrónica", ofrece una formación integral en el montaje, 
+            mantenimiento y reparación de dispositivos eléctricos y electrónicos. Con un enfoque práctico y especializado, 
+            este programa instruye en las competencias fundamentales necesarias para desenvolverse en un entorno profesional 
+            diverso y dinámico.`,
+    description: () => `El taller de Equipos Electrónicos, antes conocido como "Electrónica", ofrece una formación integral en el montaje, 
+            mantenimiento y reparación de dispositivos eléctricos y electrónicos. Con un enfoque práctico y especializado, 
+            este programa instruye en las competencias fundamentales necesarias para desenvolverse en un entorno profesional 
+            diverso y dinámico.`,
+    ogImage: () => `https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png`,
+    twitterCard: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+    language: () => `es`
+});
+
+const workshop_imgs = ref([
+    "https://a.storyblok.com/f/272924/6000x4000/0b7d736aa0/equipos-1.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/903395218c/equipos-2.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/1397530d06/equipos-3.JPG",
+]);
+</script>

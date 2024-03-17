@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="workshop" 
     picture="https://a.storyblok.com/f/272924/6000x4000/cd58eae062/electromecanica-1.JPG" workshop_name="electromecanica-vehiculos"
-    type="Industrial" internship="720" portrait_title="Electromecánica de Vehículos">
+    type="Industrial" internship="720" portrait_title="Electromecánica de Vehículos" :workshop_imgs="workshop_imgs">
         <template #workshop-title>
             <span id="anchor-ipisa" class="text-blue">Electromecánica</span> 
             <span class="separator mx-2 md:mx-3">de</span> 
@@ -80,3 +80,27 @@
         </template>
     </NuxtLayout>
 </template>
+<script setup>
+useSeoMeta({
+    title: 'Electromecánica de Vehículos',
+    ogTitle: () => `Electromecánica de Vehículos`,
+    ogDescription: () => `El Taller de Electromecánica de Vehículos, se enfoca en la formación especializada en el mantenimiento y reparación de vehículos. 
+            Proporciona habilidades técnicas clave para abordar sistemas de motor, dirección, suspensión, transmisión, sistemas eléctricos y electrónicos, 
+            entre otros.`,
+    description: () => `El Taller de Electromecánica de Vehículos, se enfoca en la formación especializada en el mantenimiento y reparación de vehículos. 
+            Proporciona habilidades técnicas clave para abordar sistemas de motor, dirección, suspensión, transmisión, sistemas eléctricos y electrónicos, 
+            entre otros.`,
+    ogImage: () => `https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png`,
+    twitterCard: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+    language: () => `es`
+});
+
+const workshop_imgs = ref([
+    "https://a.storyblok.com/f/272924/6000x4000/cd58eae062/electromecanica-1.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/5c28a0add2/electromecanica-2.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/387935ba73/electromecanica-3.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/c1d80a9e73/electromecanica-4.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/e3432b7f19/electromecanica-5.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/f269e2ba0d/electromecanica-6.JPG",
+]);
+</script>

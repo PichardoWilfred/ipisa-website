@@ -38,23 +38,11 @@
             </h1>
             
             <div class="news-feed">
-                <div class="new mb-5">
-                    <nuxt-img src="/modules/home/news/new-1.png" 
-                    loading="lazy" 
-                    alt="estudiantes" class="w-[480px] h-[210px] object-cover" />
-                    <div class="author flex items-center my-3">
-                        <div class="avatar bg-black-600 rounded-full w-[25px] h-[25px] me-3" />
-                        <h3 class="font-raleway text-md text-black-600">
-                            Autor de Ejemplo
-                        </h3>
-                    </div>
-                    <h2 class="font-raleway font-bold text-black-400 text-xl mb-1">
-                        Título de Noticia de Ejemplo
-                    </h2>
-                    <p class="font-raleway text-black text-[15px] leading-5">
-                        Estamos emocionados de dar la bienvenida a nuevos estudiantes y continuar nuestra misión de educar, inspirar y forjar un futuro mejor.
-                    </p>
-                </div>
+                <ContentList :query="query" path="/noticias" fields="title,description,img" v-slot="{ list }">
+                    <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list" class="news flex flex-col font-raleway cursor-pointer mb-12">
+                        <NewsPortraitArticle :item="item"/>
+                    </nuxt-link>
+                </ContentList>
             </div>
         </aside>
     </main>
@@ -112,7 +100,10 @@
     const layout = useLayoutStore();
     // origin
     const navigation_ = ref(layout.about_navigation); // getting it's page navigation.
+
     
+    const query = { path: '/noticias', where: [{ visibility: 'portrait' }], limit: 2 }
+
     const scroll_timeout = ref(0);
     const scroll_highlight = ref(0);
     const observer = ref(null);

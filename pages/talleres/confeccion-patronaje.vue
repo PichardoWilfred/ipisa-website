@@ -3,7 +3,7 @@
     picture="https://a.storyblok.com/f/272924/6000x4000/c42bb835ec/confeccion-1.JPG" 
     workshop_name="confeccion-patronaje" 
     type="Servicio" internship="360"
-    portrait_title="Confección y Patronaje" >
+    portrait_title="Confección y Patronaje" :workshop_imgs="workshop_imgs">
         <template #workshop-title>
             <span class="text-blue">Confección</span> 
             <span class="separator mx-3 lg:mx-4">&</span> 
@@ -71,7 +71,27 @@
         </template>
     </NuxtLayout>
 </template>
-<script setup></script>
+<script setup>
+
+useSeoMeta({
+        title: 'Confección y Patronaje',
+        ogTitle: () => `Confección y Patronaje`,
+        ogDescription: () => `El Taller de Confección y Patronaje, anteriormente conocido como Diseño & Confección de Modas, representa un espacio de formación 
+            integral en la industria del calzado y la marroquinería. Este taller proporciona habilidades fundamentales para la fabricación de 
+            productos de alta calidad, desde el corte y ensamblaje hasta el acabado de calzado y artículos de cuero.`,
+        description: () => `El Taller de Confección y Patronaje, anteriormente conocido como Diseño & Confección de Modas, representa un espacio de formación 
+            integral en la industria del calzado y la marroquinería. Este taller proporciona habilidades fundamentales para la fabricación de 
+            productos de alta calidad, desde el corte y ensamblaje hasta el acabado de calzado y artículos de cuero.`,
+        ogImage: () => 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+        twitterCard: () => 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+        language: () => `es`
+    });
+
+const workshop_imgs = ref([
+    "https://a.storyblok.com/f/272924/6000x4000/c42bb835ec/confeccion-1.JPG",
+    "https://a.storyblok.com/f/272924/6000x4000/c8dfb700e2/confeccion-2.JPG",
+]);
+</script>
 <style>
     h1.title {
         line-height: 38px;

@@ -1,3 +1,8 @@
+<style>
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+</style>
 <template>
     <NuxtLayout name="about" 
     picture="https://a.storyblok.com/f/272924/4000x3000/5ae8578647/history-wallpaper.jpg"
@@ -49,6 +54,21 @@
             San Juan Bosco.
             <br><br>
             
+            <h2 class="subtitle" id="history">
+                Transcurso de la Institución
+            </h2>
+            <div class="gallery rounded-[18px] overflow-hidden">
+                <swiper :modules="[Autoplay, EffectFade, Navigation, Pagination]" :slides-per-view="1" :space-between="10" :autoplay="{ delay: 4000 }" 
+                    effect="fade" crossFade loop navigation pagination class="mt-3 rounded-[18px]">
+                    <swiper-slide v-for="(img, index) in images" :key="index">
+                        <nuxt-img class="object-cover w-full h-[450px]"
+                        placeholder format="webp" sizes="600px sm:800px lg:1200px"
+                        :src="img" densities="x1 x2" />
+                    </swiper-slide>
+                </swiper>
+            </div>
+
+
             <h2 class="subtitle" id="anchor-community">
                 Comunidad y Logros
             </h2>
@@ -61,6 +81,9 @@
 </template>
 <script setup>
 import { useLayoutStore } from '@/store/layout';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { EffectFade, Autoplay, Navigation, Pagination } from 'swiper/modules';
+
 const layout_store = useLayoutStore();
 const about_navigation = [
     {
@@ -79,6 +102,10 @@ const about_navigation = [
                 anchor: 'development'
             },
             {
+                label: 'Transcurso de la Institución',
+                anchor: 'history'
+            },
+            {
                 label: 'Comunidad y Logros',
                 anchor: 'community'
             },
@@ -86,4 +113,14 @@ const about_navigation = [
     },
 ]
 layout_store.$patch({ about_navigation });
+
+const images = ref([
+    "https://a.storyblok.com/f/272924/452x300/b80e2ded6a/inaguration.jpg",
+    "https://a.storyblok.com/f/272924/640x480/6c561778a2/past-students.jpg",
+    "https://a.storyblok.com/f/272924/720x364/6300ec8950/imagen0.jpg",
+    "https://a.storyblok.com/f/272924/720x472/33d0eab369/imagen2.jpg",
+    "https://a.storyblok.com/f/272924/720x400/c971c3ea89/imagen4.jpg",
+    "https://a.storyblok.com/f/272924/720x356/0a264b66a3/imagen3.jpg",
+    "https://a.storyblok.com/f/272924/612x612/b80c42c32a/building.jpg"
+])
 </script>
