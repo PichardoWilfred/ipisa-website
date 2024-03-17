@@ -1,4 +1,9 @@
-RewriteEngine On
-RewriteCond %{SERVER_PORT} 443
-RewriteRule ^index.php(.*) http://%{HTTP_HOST}:3000/$1 [P,L]
-RewriteRule (.*) http://%{HTTP_HOST}:3000/$1 [P,L]
+Options +FollowSymLinks -Indexes 
+
+IndexIgnore * 
+
+ DirectoryIndex 
+ <IfModule mod_rewrite.c> 
+ RewriteEngine on 
+ RewriteRule ^(.*)$ http://localhost:<your Port>/$1 [P] 
+ </IfModule>
