@@ -9,6 +9,12 @@
     "postinstall": "nuxt prepare",
     "proxy": "mkcert -install && mkcert localhost && local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem"
   },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0", 
+      "port": "3000"
+    }
+  },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/google-fonts": "^3.0.2",
