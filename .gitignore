@@ -26,6 +26,9 @@ logs
 .env.*
 !.env.example
 
+# GitHub
+.git
+
 # HTTPS Proxy certificates
 localhost.pem
 localhost-key.pem

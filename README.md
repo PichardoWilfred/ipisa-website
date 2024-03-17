@@ -4,6 +4,8 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
 ## Setup
 
+First of all, use `.env.example` to create the `.env` file filling all the variables in it, you can ignore the ones that show the `(optional)` label. 
+
 Make sure to install the dependencies:
 
 ```bash
