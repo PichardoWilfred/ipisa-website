@@ -1,12 +1,12 @@
 <template>
     <section id="portrait" class="relative flex flex-col justify-end md:justify-center items-center lg:px-8 
-    h-[650px] lg:h-screen overflow-hidden">
+    h-[650px] lg:h-auto lg:min-h-screen overflow-hidden">
         <div class="absolute md:w-full h-full top-0 left-0">
             <div class="bg-[#00488D99] z-20 absolute top-0 left-0 w-full h-full" />
             <swiper :modules="[Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop :autoplay="{ delay: 4000 }" 
             effect="fade" crossFade>
                 <swiper-slide v-for="(img, index) in imgs_" :key="index">
-                    <nuxt-img class="object-cover w-screen h-screen"
+                    <nuxt-img class="object-cover w-screen h-full"
                     placeholder format="webp" sizes="600px sm:800px lg:1200px xl:100vw"
                     :src="`/f/272924/${(index === 5 ? '4000x3000':'6000x4000')}/${img}/portrait-${(index + 1)}.jpg`" densities="x1 x2"
                     />
