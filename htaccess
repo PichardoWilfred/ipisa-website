@@ -5,5 +5,5 @@ IndexIgnore *
  DirectoryIndex 
  <IfModule mod_rewrite.c> 
  RewriteEngine on 
- RewriteRule ^(.*)$ http://localhost:<your Port>/$1 [P] 
+ RewriteRule ^(.*)$ http://localhost:3000/$1 [P] 
  </IfModule>
