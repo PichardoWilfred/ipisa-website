@@ -21,8 +21,8 @@
                 <div class="orange-background color-background" />
                 <div class="white-blur" />
             </div>
-            <div class="card-container relative w-[85%] h-full mx-auto z-40" @mousemove.passive="trackMouse"> 
-                <div class="card flex flex-col justify-center min-[800px]:justify-end rounded-[20px] cursor-pointer transition-all" @click.prevent="go_to_workshop(card_name)"
+            <div class="card-container relative w-[85%] h-[100vh] mx-auto z-40 max-md:snap-y max-md:snap-mandatory max-md:overflow-scroll" @mousemove.passive="trackMouse"> 
+                <div class="card flex flex-col justify-center min-[800px]:justify-end rounded-[20px] cursor-pointer transition-all snap-center" @click.prevent="go_to_workshop(card_name)"
                 v-for="({ title, card_name, show_element }, index) in cards" :key="index" :id="card_name"
                 :class="[card_name, {'in-viewport': show_element }]">
                     <nuxt-icon class="mx-auto max-[800px]:mt-[22px]" :name="`workshop/${card_name}`" filled />
@@ -429,7 +429,7 @@
 @media (max-width: 800px) {
     .card-container {
         grid-template-columns: repeat(1, min(470px, 81.5vw));
-        grid-template-rows: repeat(8, 232px);
+        grid-template-rows: repeat(8, 100vh);
         gap: 6vh;
     }
     .card:is(:nth-child(1), :nth-child(2), :nth-child(7), :nth-child(8)){ 
