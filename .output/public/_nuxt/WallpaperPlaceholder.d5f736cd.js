@@ -1,0 +1,1 @@
+import{_ as e,o as c,c as r}from"./entry.1631774a.js";const s={},a={class:"wallpaper bg-[#00488D99] h-screen sm:h-[80vh] mb-10 lg:mb-16"};function o(t,l){return c(),r("div",a)}const _=e(s,[["render",o]]);export{_ as default};
