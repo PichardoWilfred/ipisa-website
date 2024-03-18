@@ -294,7 +294,16 @@ const copy_phone = async () => {
 }
 
 const in_route = (route) => { 
-    return router.currentRoute.value.path === route;
+    const actual_route = router.currentRoute.value.path.substring(1);
+    const route_name = route.substring(1);
+    
+    let index = actual_route.indexOf("/");
+    
+    if (index === -1) { //if we are dealing with a root route
+        return actual_route === route_name; // just compare it raw
+    }else { // cut the part besides de backslash, and compare that
+        return route_name === actual_route.substring(0, index);
+    }
 };
 
 // router
