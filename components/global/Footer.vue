@@ -128,13 +128,13 @@
         <div class="separator border-b border-gray-100 my-4" />
 
         <div class="flex max-[800px]:flex-col items-center w-full justify-between px-6 min-[800px]:px-8 pb-8 min-[800px]:pb-16 pt-2">
-            <p class="text-gray-200 font-raleway text-[15px] max-[800px]:mb-4 min-[800px]:max-w-[164px]">
+            <p class="text-gray-200 font-raleway text-[15px] max-[800px]:mb-4 min-[800px]:max-w-[362px]">
                 {{ new Date().getFullYear() }} © IPISA, Todos los Derechos Reservados.
             </p>
             <nuxt-link to="/" class="max-[800px]:mb-6 max-[800px]:mt-4">
                 <nuxt-icon name="layout/ipisa-logo-grayscale" class="cursor-pointer text-[90px] min-[800px]:text-[60px]" filled />
             </nuxt-link>
-            <div class="flex space-x-2 min-[800px]:space-x-4 social-media">
+            <div class="flex space-x-2 min-[800px]:space-x-4 min-[800px]:max-w-[362px] social-media">
                 <a href="https://www.instagram.com/ipisasdb?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank">
                     <nuxt-icon name="layout/instagram" class="cursor-pointer text-[30px]" filled />
                 </a>

@@ -4,7 +4,7 @@
         <div class="absolute md:w-full h-full top-0 left-0">
             <div class="bg-[#00488D99] z-20 absolute top-0 left-0 w-full h-full" />
             <swiper :modules="[Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop :autoplay="{ delay: 4000 }" 
-            effect="fade" crossFade>
+            effect="fade" crossFade class="h-full">
                 <swiper-slide v-for="(img, index) in imgs_" :key="index">
                     <nuxt-img class="object-cover w-screen h-full"
                     placeholder format="webp" sizes="600px sm:800px lg:1200px xl:100vw"
