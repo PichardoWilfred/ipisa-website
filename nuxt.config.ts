@@ -1,7 +1,7 @@
 const path = require('path');
 export default defineNuxtConfig({nitro: {
   output: {
-    publicDir: path.join(__dirname, './static-build/public')
+    publicDir: path.join(__dirname, './static-build/public_html')
     }
   },
   devtools: { enabled: true },
