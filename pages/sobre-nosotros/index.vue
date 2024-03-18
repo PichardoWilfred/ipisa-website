@@ -13,7 +13,7 @@
             Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de 
             <b class="text-blue font-bold">valores</b> <b class="orange">cristianos.</b>
             Aprende sobre nuestra filosofía educativa, inspirada en el sistema preventivo de Don Bosco, que promueve <b>la razón, la religión</b> 
-            y <b>el amor</b> como pilares de formación. <b>( Prueba nueva )</b>
+            y <b>el amor</b> como pilares de formación.
         </p>
         <div class="about-modules">
             <template v-for="({ title, description, icon, link }, index) in sections">
