@@ -1,0 +1,12 @@
+const t=`<svg width="30" height="37" viewBox="0 0 30 37" fill="none" xmlns="http://www.w3.org/2000/svg">\r
+<rect x="0.918919" y="0.918919" width="28.1622" height="35.1622" rx="2.75676" stroke="white" stroke-width="1.83784"/>\r
+<path d="M12 6H5L8.5 16L12 6Z" fill="#FFF2EB"/>\r
+<path d="M5 18L25 18" stroke="white"/>\r
+<path d="M14 7L25 7" stroke="white"/>\r
+<path d="M14 13L25 13" stroke="white"/>\r
+<path d="M14 10L25 10" stroke="white"/>\r
+<path d="M5 22H25" stroke="white"/>\r
+<path d="M5 26H25" stroke="white"/>\r
+<path d="M5 30H25" stroke="white"/>\r
+</svg>\r
+`;export{t as default};
