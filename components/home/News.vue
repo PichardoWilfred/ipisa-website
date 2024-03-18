@@ -15,6 +15,7 @@
     </section>
 </template>
 <script setup>
+// SSR
 const formatId = (text) => {
     const formattedText = text.toLowerCase().replace(/ /g, '-'); // Convert to lowercase and replace spaces with hyphens
     const currentTime = new Date().getTime().toString().substr(-7); // Get the current time as an arbitrary 7-digit number

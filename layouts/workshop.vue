@@ -58,20 +58,6 @@
                         <NewsPortraitArticle :item="item"/>
                     </nuxt-link>
                 </ContentList>
-                <!-- <div class="new mb-5">
-                    <div class="author flex items-center my-3">
-                        <div class="avatar bg-black-600 rounded-full w-[25px] h-[25px] me-3" />
-                        <h3 class="font-raleway text-md text-black-600">
-                            Autor de Ejemplo
-                        </h3>
-                    </div>
-                    <h2 class="font-raleway font-bold text-black-400 text-xl mb-1">
-                        Título de Noticia de Ejemplo
-                    </h2>
-                    <p class="font-raleway text-black text-[15px] leading-5">
-                        Estamos emocionados de dar la bienvenida a nuevos estudiantes y continuar nuestra misión de educar, inspirar y forjar un futuro mejor.
-                    </p>
-                </div> -->
             </div>
         </div>
     </main>
