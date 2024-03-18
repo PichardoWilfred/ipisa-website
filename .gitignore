@@ -10,6 +10,7 @@ node_modules
 
 # hosting static files zip
 web_files.zip
+web.zip
 
 # Logs
 logs
