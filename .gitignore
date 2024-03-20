@@ -1,4 +1,7 @@
 # Nuxt dev/build outputs
+public
+ipisa-production-build
+.output
 .data
 .nuxt
 .nitro
