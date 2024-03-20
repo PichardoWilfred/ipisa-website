@@ -219,8 +219,8 @@
         icon: 'vax'
     },
     {
-        label: 'Reporte de Calificaciones Actuales de Octavo',
-        content: 'Presenta una copia del reporte de calificaciones actual correspondiente al octavo grado. Este documento reflejará tu desempeño académico en la educación primaria.',
+        label: 'Reporte de Calificaciones Actuales de 2do de Secundaria',
+        content: 'Presenta una copia del reporte de calificaciones actual correspondiente al 2do grado. Este documento reflejará tu desempeño académico en la educación primaria.',
         label_class: '',
         icon: 'grades'
     },
@@ -242,7 +242,7 @@
             6- Certificado de Conducta Estudiantil 
             7- Tipificación Sanguínea 
             8- Tarjeta de Vacunas 
-            9- Reporte de Calificaciones Actuales de Octavo 
+            9- Reporte de Calificaciones Actuales de 2do de Secundaria 
             10- Recibo de Contribución de Gastos de Pre-inscripción`
             await navigator.clipboard.writeText(text_);
 

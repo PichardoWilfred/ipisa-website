@@ -3,8 +3,8 @@
         <b class="text-blue">Ga</b><b class="text-separator">le</b><b class="text-orange-300">ría</b>
     </h2>
     <swiper :modules="[Autoplay, EffectFade, Navigation, Pagination]" :slides-per-view="1" :space-between="10" loop :autoplay="{ delay: 4000 }" 
-        effect="fade" crossFade class="" navigation :pagination="{ dynamicBullets: true }">
-        <swiper-slide v-for="(img, index) in img" :key="index">
+        effect="fade" crossFade class="overflow-hidden rounded-[18px]" navigation :pagination="{ dynamicBullets: true }">
+        <swiper-slide v-for="(img, index) in img" :key="index" class="">
             <nuxt-img class="object-cover w-full h-[500px]"
             placeholder format="webp" sizes="600px sm:800px lg:1200px"
             :src="img" densities="x1 x2" />

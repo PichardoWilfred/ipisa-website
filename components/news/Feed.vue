@@ -8,6 +8,7 @@
     }
 
     // Create a query looking into content/articles directory
+    const recommended_query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 16 }
     const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 10 }
     //featured_query
     const featured_query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 4 }
@@ -75,62 +76,49 @@
                 </swiper>
             </ContentList>
             </div>
-
         </div>
-        <!-- min-[1460px]:flex hidden -->
         <div class="news-feed-content flex flex-wrap justify-start space-between">
-            <!-- featured article -->
-            <div class="featured-article flex-1 hidden min-[800px]:flex max-xl:min-h-[480px] min-[1460px]:pe-10 mt-8">
-                <!-- featured-article-content -->
-                <div class="featured-article-title flex items-start max-w-[520px] me-8">
-                    <div class="flex flex-col w-[150px] h-[200px] me-[15px]">
-                        <div class="w-full bg-blue h-[120px] mb-4" />
-                        <div class="w-full bg-orange-300 h-[70px]" />
-                    </div>
-                    <div class="relative flex flex-col min-w-[315px]">
-                        <h2 class="translate-y-[-12px] font-raleway text-black font-bold text-[3rem] leading-[3.3rem] xl:text-[3.3vw] xl:leading-[3.6vw] mb-4">
-                            <nuxt-link to="/noticias/dia-de-san-juan-bosco-2024">
-                                IPISA celebra el día de Don Bosco 2024.
-                            </nuxt-link>
-                        </h2>
-                        <p class="relative font-raleway text-black-700 text-[1.2rem] leading-[23px] max-height-[420px] overflow-hidden">
-                            San Juan Bosco hizo de ilusionista y malabarista para divertir y educar a los jóvenes. 
-                            En 1953, en España, Don Bosco fue proclamado patrono de los magos e ilusionistas.
-                            <br><br>
-                            También los soldados del Cuerpo de Especialistas del Ejército de Tierra tiene asignado como patrón a Don Bosco, 
-                            según explica el arzobispado Castrense, por concesión de la Congregación para el Culto Divino.
-                            <br><br>
-                            Don Bosco, además, es patrón de los Editores Católicos desde 1946; en el 1958 fue declarado patrono de los 
-                            aprendices de Italia. En España, además, es el santo protector de los estudiantes de Formación Profesional y su 
-                            fiesta, hasta hace poco, se celebraba en todos los centros educativos que impartían este tipo de formación. 
-                            En algunas listas de patronos celestiales de oficios muy terrenales, Don Bosco aparece como el santo al que 
-                            recurren los actores de doblaje, los capellanes de cárceles, y las personas que trabajan en el circo.
-                        </p>
-                        
-                        <div class="flex justify-center items-center bg-gradient-to-t from-[#FFFFFF] to-[#ffffff00] absolute left-0 bottom-0 w-full h-[65px] transition-all">
-                            <nuxt-link to="/noticias/dia-de-san-juan-bosco-2024">
-                                <button class="see-more font-raleway text-black-600 text-[16px] min-[800px]:text-md font-[500] mt-12 h-[40px] w-[120px]">
-                                    <b class="first font-semibold">Ver</b> <b class="second font-semibold">más</b>
-                                    <Icon name="fe:arrow-down" class="ms-2 text-[1.6rem] transition-all" filled />
-                                </button>
-                            </nuxt-link>
+            <div class="featured-article flex-1 hidden min-[800px]:flex max-xl:min-h-[480px] min-[1460px]:pe-10 mt-8"> <!-- featured article -->
+
+                <ContentQuery path="/noticias/dia-de-san-juan-bosco-2024" find="one" v-slot="{ data: featured_article }">
+                    <div class="featured-article-title flex items-start max-w-[520px] me-8"> <!-- featured-article-content -->
+                        <div class="flex flex-col w-[90px] h-[200px] me-[15px]">
+                            <div class="w-full bg-blue h-[120px] mb-4" />
+                            <div class="w-full bg-orange-300 h-[70px]" />
+                        </div>
+                        <div class="relative flex flex-col min-w-[315px]">  
+                            <h2 class="translate-y-[-12px] font-raleway text-black font-bold text-[3rem] leading-[3.3rem] xl:text-[3.3vw] xl:leading-[3.6vw] mb-4">
+                                <nuxt-link to="/noticias/dia-de-san-juan-bosco-2024">
+                                    {{ featured_article.title }}
+                                </nuxt-link>
+                            </h2>
+                            <p v-for="(paragraph, index) in featured_article.description" :key="index"
+                            class="relative font-raleway text-black-700 text-[1.2rem] leading-[23px] max-height-[420px] overflow-hidden">
+                                {{ paragraph }}
+                                <br /><br />
+                            </p>
+                            <div class="flex justify-center items-center bg-gradient-to-t from-[#FFFFFF] to-[#ffffff00] absolute left-0 bottom-0 w-full h-[65px] transition-all">
+                                <nuxt-link :to="`/noticias/${featured_article.id}`">
+                                    <button class="see-more font-raleway text-black-600 text-[16px] min-[800px]:text-md font-[500] mt-12 h-[40px] w-[120px]">
+                                        <b class="first font-semibold">Ver</b> <b class="second font-semibold">más</b>
+                                        <Icon name="fe:arrow-down" class="ms-2 text-[1.6rem] transition-all" filled />
+                                    </button>
+                                </nuxt-link>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--  -->
-                <!-- feature-image -->
-                <div class="bg-[#E3F0FF] h-full w-full min-w-[400px] rounded-lg overflow-hidden">
-                    <nuxt-link to="/noticias/dia-de-san-juan-bosco-2024">
-                        <nuxt-img class="swiper-img object-cover w-full h-full" alt="" src="https://a.storyblok.com/f/272924/2048x1365/9d69ca0da3/425781172_823463636461297_4355531572615429854_n.jpg"
-                        loading="lazy" format="webp" sizes="600px md:800px lg:1200px" placeholder
-                        densities="x1 x2" />
-                    </nuxt-link>
-                </div>
+                    <div class="bg-[#E3F0FF] h-full w-full min-w-[400px] rounded-lg overflow-hidden"> <!-- feature-image -->
+                        <nuxt-link to="/noticias/dia-de-san-juan-bosco-2024">
+                            <nuxt-img class="swiper-img object-cover w-full h-full" alt="" :src="featured_article.img"
+                            loading="lazy" format="webp" sizes="600px md:800px lg:1200px" placeholder
+                            densities="x1 x2" />
+                        </nuxt-link>
+                    </div>
+                </ContentQuery>
             </div>
 
             <div class="featured-new w-full max-w-[520px] max-[1070px]:hidden flex flex-col items-between flex-2 h-full lg:mt-8">
-                <!-- news-header -->
-                <div class="featured-new-decoration relative flex bg-[#D6E9FF] h-[3px] translate-y-[5px]">
+                <div class="featured-new-decoration relative flex bg-[#D6E9FF] h-[3px] translate-y-[5px]"> <!-- news-header -->
                     <div class="absolute top-[-50%] translate-y-[-30%] square-blue bg-blue w-[220px] h-[12px]"></div>
                     <div class="absolute top-[-50%] translate-y-[-30%] square-orange bg-orange-300 left-[240px] w-[80px] h-[12px]"></div>
                 </div>
@@ -201,7 +189,7 @@
                 </div>
                 
                 <div class="news relative flex items-stretch flex-wrap pb-[32px]">
-                    <ContentList :query="query" path="/noticias" v-slot="{ list }"> <!-- Default view -->
+                    <ContentList :query="recommended_query" path="/noticias" v-slot="{ list }"> <!-- Default view -->
                         <NewsArticle v-for="(article, index) in list" :article_info="article" :key="index" class="min-w-[23%] w-full max-w-[23%]" />
                     </ContentList>
                 </div>
@@ -225,12 +213,15 @@
         </div>
     </section>
 </template>
-<style>
-:is(.recommended-news, .small-recommended-news) .article .image-container {
+<style scoped>
+:is(.recommended-news, .small-recommended-news) :deep(.article .image-container) {
     height: 220px;
 }
 .recommended-news .article {
-    margin-right: 2% !important;
+    margin-right: 2.6% !important;
+}
+.recommended-news .article:nth-child(4n) {
+    margin-right: 0 !important;
 }
 .small-recommended-news .article {
     width: 100%;

@@ -17,7 +17,7 @@
             <nuxt-img class="wallpaper w-full h-full rounded-lg object-cover" loading="lazy"
             format="webp" sizes="600px lg:700px" densities="x1 x2" :src="`${item.img}`" />
         </div>
-        <h2 class="news-title text-black font-bold min-[800px]:leading-7 text-[1.25rem] min-[800px]:text-[1.4rem] min-[1200px]:text-[1.6rem] mt-4 mb-1 truncate"> 
+        <h2 class="news-title text-black font-bold min-[800px]:leading-7 text-[1.25rem] min-[800px]:text-[1.4rem] mt-4 mb-1 truncate"> 
             {{ item.title }} 
         </h2>
         <p v-for="(paragraph, index) in item.description" :key="index"
@@ -39,7 +39,15 @@
             <Icon name="fe:arrow-down" class="ms-2 text-[1.6rem] transition-all" filled />
         </button>
 </template>
-<style>
+<style scoped>
+
+p.article-description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}
 .news .header :is(time, span.author) {
     font-weight: 400;
     font-size: 1rem;

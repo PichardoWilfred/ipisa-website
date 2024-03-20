@@ -1,15 +1,16 @@
 <template>
-    <NuxtLink v-if="smallVersion" :to="`/noticias/${article_info.id}`" class="article relative flex flex-wrap w-[33.33%] mt-6 pt-1" to="/noticias">
-        <div class="image-container flex-2 rounded-[8px] w-[160px] h-[105px] overflow-hidden">
+    <div v-if="smallVersion" class="article small relative flex flex-wrap w-[30%] mr-[3.33%] mt-6 pt-1">
+        <NuxtLink :to="`/noticias/${article_info.id}`" class="image-container flex-2 rounded-[8px] w-[160px] h-[105px] overflow-hidden">
             <nuxt-img class="object-cover w-full h-full" placeholder format="webp" sizes="200px" :src="article_info.img" densities="x1 x2" />
-        </div>
+        </NuxtLink>
         <div class="article-info flex-1 mt-2">
-            <div class="article-content-header absolute top-[-5%] right-[2%] flex justify-between items-center mb-2 h-[20px]">
-                <button class="share flex items-center content-center justify-center bg-white hover:bg-black-100 rounded-full w-[30px] h-[30px]">
+            <div class="article-content-header absolute top-[-5%] right-[-14px] flex justify-between items-center mb-2 h-[20px]">
+                <button @click.prevent="open_share(article_info)" 
+                class="share flex items-center content-center justify-center bg-white hover:bg-black-100 rounded-full w-[35px] h-[35px]">
                     <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
                 </button>
             </div>
-            <div class="article-content max-w-[360px]">
+            <NuxtLink :to="`/noticias/${article_info.id}`" class="article-content max-w-[360px]">
                 <h3 class="article-title font-raleway text-black font-bold text-[14px] leading-[16px] mb-[0.2rem]">
                     {{ article_info.title }}
                 </h3>
@@ -22,16 +23,19 @@
                         {{ article_info.short_date }}
                     </span>
                 </div>
-            </div>
+            </NuxtLink>
         </div>
-    </NuxtLink>
+    </div>
 
-    <NuxtLink v-else-if="longVersion" :to="`/noticias/${article_info.id}`" class="article flex h-[130px] w-full mb-5 last:mb-0">
+    <div v-else-if="longVersion" class="article relative flex h-[130px] w-full mb-5 last:mb-0">
         
-        <div class="image-container flex min-w-[160px] max-w-[160px] h-full rounded-[8px] overflow-hidden">
+        <button class="share absolute top-[-15px] right-[-15px] flex items-center content-center justify-center bg-white hover:bg-black-100 rounded-full w-[40px] h-[40px]">
+            <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
+        </button>
+        <NuxtLink :to="`/noticias/${article_info.id}`" class="image-container flex min-w-[160px] max-w-[160px] h-full rounded-[8px] overflow-hidden">
             <nuxt-img class="object-cover w-full h-full" placeholder format="webp" 
             sizes="380px" :src="article_info.img" densities="x1 x2" />
-        </div>
+        </NuxtLink>
 
         <div class="article-info flex flex-col justify-center ms-6">
 
@@ -45,24 +49,21 @@
                         {{ article_info.date }}
                     </span>
                 </div>
-                <button class="share flex items-center content-center justify-center bg-white hover:bg-black-100 rounded-full w-[30px] h-[30px]">
-                    <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
-                </button>
             </div>
 
-            <div class="article-content max-w-[360px]">
+            <NuxtLink :to="`/noticias/${article_info.id}`" class="article-content max-w-[360px]">
                 <h3 class="article-title font-raleway text-black font-bold text-[18px] leading-[20px] mb-[0.2rem]">
                     {{ article_info.title }}
                 </h3>
                 <p class="article-description font-raleway text-black-700 font-medium text-[16px] leading-[18px]">
                     {{ article_info.description[0] }}
                 </p>
-            </div>
+            </NuxtLink>
 
         </div>
-    </NuxtLink>
+    </div>
 
-    <NuxtLink v-else class="article relative flex flex-wrap pb-[2rem]" :to="`/noticias/${article_info.id}`">
+    <div v-else class="article relative flex flex-col flex-wrap pb-[2rem]">
 
         <div v-if="!noHeader" class="flex font-raleway mb-2 text-separator h-[20px]">
             <span>
@@ -76,15 +77,15 @@
 
         <div class="article-info w-full">
             <div class="article-content-header flex justify-between items-center">
-                <div class="image-container flex-2 rounded-md w-full min-h-[175px] mb-2 overflow-hidden">
+                <NuxtLink :to="`/noticias/${article_info.id}`" class="image-container flex-2 rounded-md w-full min-h-[175px] mb-2 overflow-hidden">
                     <nuxt-img class="object-cover w-full h-full" placeholder format="webp" sizes="800px" :src="article_info.img" densities="x1 x2" />
-                </div>
+                </NuxtLink>
                 <button class="share absolute min-[1520px]:top-[2%] top-[3%] right-[-20px] min-[1520px]:right-[-20px] flex items-center content-center justify-center bg-white hover:bg-black-100 rounded-full w-[40px] h-[40px]">
                     <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
                 </button>
             </div>
 
-            <div class="article-content w-full overflow-hidden ">
+            <NuxtLink :to="`/noticias/${article_info.id}`" class="article-content w-full overflow-hidden ">
                 <h3 class="article-title font-raleway text-black font-bold text-[22px] leading-[24px] mb-[0.2rem]">
                     {{ article_info.title }}
                 </h3>
@@ -100,10 +101,10 @@
                         2 minutos de Lectura 
                     </span>
                 </div>
-            </div>
+            </NuxtLink>
         </div>
 
-    </NuxtLink>
+    </div>
 </template>
 <script setup>
     const { noHeader } = defineProps({
@@ -129,8 +130,14 @@
             }
         }
     });
+    const open_share = (article) => {
+        console.dir(article);
+    }
 </script>
 <style scoped>
+    .article.small:nth-child(3n) {
+        margin-right: 0;
+    }
     .article:hover p.article-description {
         color: var(--black);
     }
@@ -139,6 +146,13 @@
         display: -webkit-box !important;
         -webkit-line-clamp: 1 !important; /* number of lines to show */
         line-clamp: 1 !important; 
+        -webkit-box-orient: vertical !important;
+    }
+    .article.small h3.article-title {
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important; /* number of lines to show */
+        line-clamp: 2 !important; 
         -webkit-box-orient: vertical !important;
     }
     p.article-description {

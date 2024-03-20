@@ -58,7 +58,7 @@ const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 3 }
     <div class="recommended-articles-separator relative flex bg-[#D6E9FF] h-[2px] w-full" />
 
     <div class="recommended-articles w-full max-w-[1180px] flex items-stretch flex-wrap justify-between px-[1.4rem] lg:px-[4rem] pb-[42px] min-[880px]:pb-[20px] mx-auto">
-        <h2 class="font-raleway text-black text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold leading-[1.1] mt-2 mb-6 min-[880px]:mb-4">
+        <h2 class="font-raleway text-black text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold leading-[1.1] mt-10 mb-3 min-[880px]:mb-4">
             Noticias Recomendadas
         </h2>
         <div class="flex flex-wrap justify-between">
@@ -72,6 +72,9 @@ const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 3 }
 
 </template>
 <style scoped>
+.featured-news .article:last-child {
+    margin-right: 0 !important;
+}
 .recommended-articles :deep(.article) .image-container {
     height: 220px;
 }
@@ -80,7 +83,7 @@ const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 3 }
 }
 .recommended-articles :deep(.article) {
     width: 100%;
-    max-width: 325px;
+    max-width: 330px;
 }
 p.article-description {
     font-family: var(--raleway);

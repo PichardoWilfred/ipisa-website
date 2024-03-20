@@ -39,7 +39,8 @@
             
             <div class="news-feed">
                 <ContentList :query="query" path="/noticias" v-slot="{ list }">
-                    <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list" class="news flex flex-col font-raleway cursor-pointer mb-12">
+                    <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list" 
+                    class="news flex flex-col font-raleway cursor-pointer mb-12">
                         <NewsPortraitArticle :item="item"/>
                     </nuxt-link>
                 </ContentList>

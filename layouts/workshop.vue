@@ -48,7 +48,7 @@
                 <span class="font-medium text-[1.4rem] lg:text-xl">{{ internship }} horas</span>
             </p>
         </section>
-        <div class="news-section relative">
+        <div class="hidden news-section relative">
             <h1 class="font-raleway font-[700] text-[28px] lg:text-[36px] text-black-400 mt-3 lg:mt-10 mb-4">
                 Noticias
             </h1>
