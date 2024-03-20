@@ -5,7 +5,8 @@
                 <b class="text-blue">Galería</b><b class="mx-2 lg:mx-5 text-separator">de</b><b class="text-orange-300">Recuerdos</b>
             </nuxt-link>
         </h2>
-        <swiper class="activities" :modules="[Pagination, Navigation, Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop pagination navigation 
+        <swiper class="activities" :modules="[Pagination, Navigation, Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop 
+        :pagination="{ dynamicBullets: true }" navigation 
         :autoplay="{ delay: 20000}" effect="fade" crossFade>
             <swiper-slide v-for="({ img_src }, index) in images" :key="index">
                 <nuxt-img class="swiper-img object-cover w-full h-full" alt="" :src="img_src"

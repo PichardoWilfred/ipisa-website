@@ -1,6 +1,8 @@
 <script setup>
 const route = useRoute().params;
 
+//featured_query
+const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 3 }
 
 </script>
 <template>
@@ -53,15 +55,33 @@ const route = useRoute().params;
     <ContentSlot class="mt-5" :use="$slots.gallery" />
     <div class="mt-5"></div>
 
+    <div class="recommended-articles-separator relative flex bg-[#D6E9FF] h-[2px] w-full" />
+
     <div class="recommended-articles w-full max-w-[1180px] flex items-stretch flex-wrap justify-between px-[1.4rem] lg:px-[4rem] pb-[42px] min-[880px]:pb-[20px] mx-auto">
-        <h2 class="font-raleway text-black text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold leading-[1.1] mt-2 mb-6 min-[880px]:mb-4">Noticias Recomendadas</h2>
+        <h2 class="font-raleway text-black text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold leading-[1.1] mt-2 mb-6 min-[880px]:mb-4">
+            Noticias Recomendadas
+        </h2>
         <div class="flex flex-wrap justify-between">
-            <!-- <NewsArticle v-for="(article, index) in [1, 2, 3, 4, 5, 6]" :key="index" /> -->
+        <ContentList :query="query" path="/noticias" v-slot="{ list }">
+            <div class="featured-news flex flex-wrap">
+                <NewsArticle v-for="(article, index) in list" :key="index" :article_info="article" />
+            </div>
+        </ContentList>
         </div>
     </div>
 
 </template>
 <style scoped>
+.recommended-articles :deep(.article) .image-container {
+    height: 220px;
+}
+.recommended-articles :deep(.article) {
+    margin-right: 25px !important;
+}
+.recommended-articles :deep(.article) {
+    width: 100%;
+    max-width: 325px;
+}
 p.article-description {
     font-family: var(--raleway);
     font-weight: 500;

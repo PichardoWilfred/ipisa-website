@@ -8,7 +8,10 @@
     }
 
     // Create a query looking into content/articles directory
-    const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 5 }
+    const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 10 }
+    //featured_query
+    const featured_query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 4 }
+
 </script>
 <template>
     <div class="relative flex flex-col">
@@ -45,30 +48,39 @@
             </div>
             <!-- portrait-news -->
             <div class="w-full min-[880px]:hidden">
-                <swiper :modules="[Pagination]" :slides-per-view="1.15" :space-between="20" pagination class="mobile-portrait-news-feed bg-white mt-4 h-[340px]">
-                    <swiper-slide v-for="(article, index) in [1, 2, 3, 4, 5, 6, 7, 8]" :key="index" class="article bg-white py-3 pe-3 h-[350px]">
-                        <div class="article-container overflow-hidden">
-                            <div class="article-image-container flex-2 bg-[#CDDFFC] rounded-md w-full h-[170px]"></div>
-                            <div class="article-info flex-1 mt-2">
+                
+            <ContentList :query="featured_query" path="/noticias" v-slot="{ list }">
+                <swiper :modules="[Pagination]" :slides-per-view="1.15" :space-between="20" pagination 
+                class="mobile-portrait-news-feed bg-white mt-4 h-[340px]">
+                    <swiper-slide v-for="(article, index) in list" :key="index" class="article bg-white py-3 pe-3 h-[350px]">
+                        <nuxt-link :to="`/noticias/${article.id}`" class="article-container overflow-hidden">
+                            <div class="article-image-container bg-[#CDDFFC] rounded-[12px] w-full h-[170px] overflow-hidden">
+                                <nuxt-img class="swiper-img object-cover w-full h-full" alt="" 
+                                :src="article.img"
+                                loading="lazy" format="webp" sizes="600px md:800px lg:1200px" placeholder
+                                densities="x1 x2" />
+                            </div>
+                            <div class="article-info flex-1 mt-3">
                                 <div class="article-content">
-                                    <h3 class="article-title font-raleway text-black font-bold text-[20px] leading-[22px] mb-3">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    <h3 class="article-title font-raleway text-black font-bold text-[20px] leading-[22px] mb-2">
+                                        {{ article.title }}
                                     </h3>
-                                    <p class="article-description text-[16px] leading-[18px] font-raleway text-separator">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                    <p class="article-description text-[16px] leading-[18px] font-raleway text-black-700 font-medium">
+                                        {{ article.description[0] }}
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </nuxt-link>
                     </swiper-slide>
                 </swiper>
+            </ContentList>
             </div>
 
         </div>
         <!-- min-[1460px]:flex hidden -->
         <div class="news-feed-content flex flex-wrap justify-start space-between">
             <!-- featured article -->
-            <div class="featured-article flex-1 hidden min-[800px]:flex max-xl:min-h-[480px] min-[1460px]:pe-10 lg:mt-8">
+            <div class="featured-article flex-1 hidden min-[800px]:flex max-xl:min-h-[480px] min-[1460px]:pe-10 mt-8">
                 <!-- featured-article-content -->
                 <div class="featured-article-title flex items-start max-w-[520px] me-8">
                     <div class="flex flex-col w-[150px] h-[200px] me-[15px]">
@@ -135,7 +147,7 @@
                 <!-- layout-mode -->
                 <Transition name="fade-fast-2" mode="out-in">
                     <div v-if="layout_mode" class="h-full">
-                        <ContentList :query="query" path="/noticias" v-slot="{ list }">
+                        <ContentList :query="featured_query" path="/noticias" v-slot="{ list }">
                                 <div class="recommended-articles flex flex-col justify-between h-full mt-6">
                                     <NewsArticle v-for="(article, index) in list" :key="index" :article_info="article" longVersion />
                                 </div>
@@ -150,8 +162,8 @@
                     </div>
                 </Transition>
             </div>
-
-            <div class="small-recommended-news max-[1520px]:flex hidden flex-col flex-1 lg:mt-8 min-[880px]:ms-8 mt-8">
+            <!-- small-recommended-news -->
+            <div class="small-recommended-news max-[1620px]:flex hidden flex-col flex-1 lg:mt-8 min-[880px]:ms-8 mt-8">
                 <div>
                     <div class="featured-news-decoration relative flex bg-[#D6E9FF] h-[2px] translate-y-[5px] w-full"></div>
                     <h2 class="font-raleway text-black text-[1.6rem] min-[880px]:text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold mt-4 mb-6">
@@ -161,11 +173,10 @@
                 
                 <div class="relative flex items-stretch flex-wrap justify-between pb-[42px] min-[880px]:pb-[20px]">
                     
-                    <ContentList :query="query" path="/noticias" v-slot="{ list }">
+                    <ContentList :query="query" path="/noticias" v-slot="{ list }"> <!-- news-article-navigation -->
                         <NewsArticle v-for="(article, index) in list" :article_info="article" :key="index" />
                     </ContentList>
-
-                    <div class="absolute bottom-[0px] max-[1070px]:flex hidden justify-center w-full">
+                    <div class="absolute bottom-[0px] max-[1070px]:flex hidden justify-center w-full opacity-25">
                         <div class="table-pagination">
                             <button class="pagination-btn">
                                 <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
@@ -183,13 +194,13 @@
                 </div>
             </div>
 
-            <div class="recommended-news relative min-[1520px]:flex hidden flex-col flex-1 lg:mt-8 ms-8 mt-8 overflow-visible">
+            <div class="recommended-news relative min-[1620px]:flex hidden flex-col flex-1 lg:mt-8 ms-8 mt-8 overflow-visible">
                 <div> <!-- title-card -->
                     <div class="featured-news-decoration relative flex bg-[#D6E9FF] h-[2px] translate-y-[5px] w-full"></div>
                     <h2 class="font-raleway text-black text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold mt-4 mb-6">Recomendadas</h2>
                 </div>
                 
-                <div class="news relative flex items-stretch flex-wrap justify-between pb-[32px]">
+                <div class="news relative flex items-stretch flex-wrap pb-[32px]">
                     <ContentList :query="query" path="/noticias" v-slot="{ list }"> <!-- Default view -->
                         <NewsArticle v-for="(article, index) in list" :article_info="article" :key="index" class="min-w-[23%] w-full max-w-[23%]" />
                     </ContentList>
@@ -214,7 +225,24 @@
         </div>
     </section>
 </template>
-<style scoped>
+<style>
+:is(.recommended-news, .small-recommended-news) .article .image-container {
+    height: 220px;
+}
+.recommended-news .article {
+    margin-right: 2% !important;
+}
+.small-recommended-news .article {
+    width: 100%;
+    max-width: 350px;
+}
+
+@media (max-width: 690px) {
+    .small-recommended-news .article {
+        width: 100%;
+        max-width: unset;
+    }
+}
 button.see-more:hover b.first {
     color: var(--blue);
 }

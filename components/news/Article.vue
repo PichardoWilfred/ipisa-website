@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink v-if="smallVersion" :to="`/noticias/${article_info.id}`" class="relative article flex flex-wrap w-[33.33%] mt-6 pt-1" to="/noticias">
+    <NuxtLink v-if="smallVersion" :to="`/noticias/${article_info.id}`" class="article relative flex flex-wrap w-[33.33%] mt-6 pt-1" to="/noticias">
         <div class="image-container flex-2 rounded-[8px] w-[160px] h-[105px] overflow-hidden">
             <nuxt-img class="object-cover w-full h-full" placeholder format="webp" sizes="200px" :src="article_info.img" densities="x1 x2" />
         </div>
@@ -15,7 +15,7 @@
                 </h3>
                 <div class="flex items-center font-raleway text-separator text-[14px]">
                     <span>
-                        8 min
+                        2 min
                     </span>
                     <div class="circle bg-[#B5D1FF] rounded-full h-[6px] w-[6px] mx-2"></div>
                     <span class="">
@@ -62,7 +62,7 @@
         </div>
     </NuxtLink>
 
-    <NuxtLink v-else class="article relative flex flex-wrap pb-[2rem] mr-[0.8rem] last:mr-0" :to="`/noticias/${article_info.id}`">
+    <NuxtLink v-else class="article relative flex flex-wrap pb-[2rem]" :to="`/noticias/${article_info.id}`">
 
         <div v-if="!noHeader" class="flex font-raleway mb-2 text-separator h-[20px]">
             <span>
@@ -76,10 +76,10 @@
 
         <div class="article-info w-full">
             <div class="article-content-header flex justify-between items-center">
-                <div class="image-container flex-2 rounded-md w-full h-[175px] mb-2 overflow-hidden">
+                <div class="image-container flex-2 rounded-md w-full min-h-[175px] mb-2 overflow-hidden">
                     <nuxt-img class="object-cover w-full h-full" placeholder format="webp" sizes="800px" :src="article_info.img" densities="x1 x2" />
                 </div>
-                <button class="share absolute min-[1520px]:top-[2%] top-[3%] min-[1520px]:right-[-7%] right-[-5%] flex items-center content-center justify-center bg-white hover:bg-black-100 rounded-full w-[40px] h-[40px]">
+                <button class="share absolute min-[1520px]:top-[2%] top-[3%] right-[-20px] min-[1520px]:right-[-20px] flex items-center content-center justify-center bg-white hover:bg-black-100 rounded-full w-[40px] h-[40px]">
                     <nuxt-icon name="home/news/share" class="phone-icon-color text-[18px] translate-x-[-1px] translate-y-[2px] text-center" filled />
                 </button>
             </div>
@@ -88,7 +88,7 @@
                 <h3 class="article-title font-raleway text-black font-bold text-[22px] leading-[24px] mb-[0.2rem]">
                     {{ article_info.title }}
                 </h3>
-                <p class="article-description text-[16px] leading-[18px] font-raleway text-black-700 mt-2 transition-all">
+                <p class="article-description font-medium text-[16px] leading-[18px] font-raleway text-black-700 mt-2 transition-all">
                     {{ article_info.description[0] }}
                 </p>
                 <div class="flex items-center font-raleway text-separator text-[14px] mt-2 w-full truncate">

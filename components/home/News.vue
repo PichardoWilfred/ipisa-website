@@ -7,8 +7,8 @@
         </h2>
         <div class="news-feed">
             <ContentList :query="query" path="/noticias" v-slot="{ list }">
-                <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list" class="news flex flex-col font-raleway cursor-pointer">
-                    <NewsPortraitArticle :item="item"/>
+                <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list" class="article flex flex-col font-raleway cursor-pointer">
+                    <NewsPortraitArticle :item="item" />
                 </nuxt-link>
             </ContentList>
         </div>
@@ -27,6 +27,16 @@ const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 4 }
 
 </script>
 <style scoped>
+.article :deep(p.article-description) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}
+.news-feed .article:hover :deep(p.article-description){
+    color: var(--black)
+}
 /* bounce dot animation on home.css */
 @media (max-width: 800px) {
     .news-feed {
