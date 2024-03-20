@@ -1,6 +1,6 @@
 <template>
-    <section id="portrait" class="relative flex flex-col justify-end md:justify-center items-center lg:px-8 
-    h-[650px] lg:h-auto lg:min-h-screen overflow-hidden">
+    <section id="portrait" class="relative flex flex-col justify-end md:justify-center items-center lg:px-8
+    h-[780px] lg:h-auto lg:min-h-screen overflow-hidden">
         <div class="absolute md:w-full h-full top-0 left-0">
             <div class="bg-[#00488D99] z-20 absolute top-0 left-0 w-full h-full" />
             <swiper :modules="[Autoplay, EffectFade]" :slides-per-view="1" :space-between="10" loop :autoplay="{ delay: 4000 }" 

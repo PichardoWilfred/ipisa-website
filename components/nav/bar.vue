@@ -17,14 +17,14 @@
                 </button>
             </div>
             <ul class="navigation hidden lg:flex items-center transition-all">
-                <li v-for="({ label, class_, section, route }, index) in navigation_bar" :key="index" 
-                class="item relative cursor-pointer font-raleway font-semibold me-10 last:me-0 text-gray-800 
-                before:absolute before:bottom-[-3px] before:rounded-md before:flex before:h-[3px]
-                before:bg-orange-300 before:w-0 before:content-[''] 
-                hover:before:w-full before:transition-all before:origin-center" 
-                :class="[class_, in_route(route) ? 'before:w-full':'' ]" @click.prevent="scrollToSection(section)">
-                    {{ label }}
-                </li>
+                <a v-for="({ label, class_, section, route }, index) in navigation_bar" :key="index" @click.prevent="scrollToSection(section)" class="me-10">
+                    <li class="item relative cursor-pointer font-raleway font-semibold last:me-0 text-gray-800
+                    before:absolute before:bottom-[-3px] before:rounded-md before:flex before:h-[3px]
+                    before:bg-orange-300 before:w-0 before:content-['']
+                    hover:before:w-full before:transition-all before:origin-center" :class="[class_, in_route(route) ? 'before:w-full':'' ]" >
+                        {{ label }}
+                    </li>
+                </a>
             </ul>
         </nav>   
         <ul class="mobile-navigation lg:hidden absolute" :class="{ show: mobile_menu }">

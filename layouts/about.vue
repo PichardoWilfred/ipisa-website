@@ -38,7 +38,7 @@
             </h1>
             
             <div class="news-feed">
-                <ContentList :query="query" path="/noticias" fields="title,description,img" v-slot="{ list }">
+                <ContentList :query="query" path="/noticias" v-slot="{ list }">
                     <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list" class="news flex flex-col font-raleway cursor-pointer mb-12">
                         <NewsPortraitArticle :item="item"/>
                     </nuxt-link>
@@ -101,8 +101,7 @@
     // origin
     const navigation_ = ref(layout.about_navigation); // getting it's page navigation.
 
-    
-    const query = { path: '/noticias', where: [{ visibility: 'portrait' }], limit: 2 }
+    const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 2 }
 
     const scroll_timeout = ref(0);
     const scroll_highlight = ref(0);

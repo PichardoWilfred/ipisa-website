@@ -52,11 +52,9 @@
             <h1 class="font-raleway font-[700] text-[28px] lg:text-[36px] text-black-400 mt-3 lg:mt-10 mb-4">
                 Noticias
             </h1>
-            <div class="news-feed flex max-sm:flex-col w-full">
-                <ContentList :query="query" path="/noticias" fields="title,description,img" v-slot="{ list }">
-                    <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list" class="news flex flex-col font-raleway cursor-pointer me-5 w-[500px]">
-                        <NewsPortraitArticle :item="item"/>
-                    </nuxt-link>
+            <div class="relative flex items-stretch flex-wrap justify-between pb-[32px]">
+                <ContentList :query="query" path="/noticias" v-slot="{ list }">
+                    <NewsArticle v-for="(article, index) in list" :article_info="article" :key="index" class="min-w-[48%] w-full max-w-[48%]" />
                 </ContentList>
             </div>
         </div>
@@ -68,5 +66,5 @@
 
     const { picture, workshop_name, type, internship, portrait_title, workshop_imgs } = useAttrs();
     
-    const query = { path: '/noticias', where: [{ visibility: 'portrait' }], limit: 2 }
+    const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 2 }
 </script>

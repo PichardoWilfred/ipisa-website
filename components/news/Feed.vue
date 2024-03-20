@@ -6,6 +6,9 @@
     const change_layout = () => {
         layout_mode.value = !layout_mode.value; 
     }
+
+    // Create a query looking into content/articles directory
+    const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 5 }
 </script>
 <template>
     <div class="relative flex flex-col">
@@ -15,7 +18,7 @@
             <h1 class="font-raleway text-black text-[2.2rem] leading-[2rem] font-bold">
                 Noticias
             </h1>
-            <icon name="fe:search" filled size="38px" 
+            <Icon name="fe:search" filled size="38px" 
             class="search-icon text-black ms-auto me-2 cursor-pointer transition-all" />
         </div>
 
@@ -68,7 +71,7 @@
             <div class="featured-article flex-1 hidden min-[800px]:flex max-xl:min-h-[480px] min-[1460px]:pe-10 lg:mt-8">
                 <!-- featured-article-content -->
                 <div class="featured-article-title flex items-start max-w-[520px] me-8">
-                    <div class="flex flex-col w-[54px] h-[200px] me-[15px]">
+                    <div class="flex flex-col w-[150px] h-[200px] me-[15px]">
                         <div class="w-full bg-blue h-[120px] mb-4" />
                         <div class="w-full bg-orange-300 h-[70px]" />
                     </div>
@@ -113,7 +116,7 @@
                 </div>
             </div>
 
-            <div class="featured-new max-w-[520px] max-[1070px]:hidden flex flex-col flex-2 lg:mt-8">
+            <div class="featured-new w-full max-w-[520px] max-[1070px]:hidden flex flex-col items-between flex-2 h-full lg:mt-8">
                 <!-- news-header -->
                 <div class="featured-new-decoration relative flex bg-[#D6E9FF] h-[3px] translate-y-[5px]">
                     <div class="absolute top-[-50%] translate-y-[-30%] square-blue bg-blue w-[220px] h-[12px]"></div>
@@ -122,7 +125,7 @@
 
                 <div class="featured-news-header flex flex-wrap justify-between mt-4">
                     <h2 class="font-raleway text-black text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold">Historias destacadas</h2>
-                    <button @click.prevent="change_layout" class="flex justify-center items-center bg-[#D6E9FF] rounded-full w-[40px] h-[40px] transition-all">
+                    <button @click.prevent="change_layout" class="flex justify-center items-center bg-white active:bg-[#D6E9FF] rounded-full w-[40px] h-[40px] transition-all">
                         <Transition name="fade-fast-2" mode="out-in">
                             <nuxt-icon v-if="layout_mode" name="home/news/layout-options" class="layout-list text-[20px] text-center" filled />
                             <nuxt-icon v-else name="home/news/list-options" class="layout-list text-[20px] text-center" filled />
@@ -130,17 +133,22 @@
                     </button>
                 </div>
                 <!-- layout-mode -->
-                <template v-if="layout_mode">
-                    <div class="recommended-articles flex flex-col justify-between h-full mt-6">
-                        <!-- v-for="(article, index) in [1, 2, 3, 4, 5]" :key="index" -->
-                        <NewsArticle v-for="(article, index) in [1, 2, 3, 4]" :key="index" longVersion />
+                <Transition name="fade-fast-2" mode="out-in">
+                    <div v-if="layout_mode" class="h-full">
+                        <ContentList :query="query" path="/noticias" v-slot="{ list }">
+                                <div class="recommended-articles flex flex-col justify-between h-full mt-6">
+                                    <NewsArticle v-for="(article, index) in list" :key="index" :article_info="article" longVersion />
+                                </div>
+                        </ContentList>
                     </div>
-                </template>
-                <template v-else>
-                    <div class="featured-news flex flex-wrap">
-                        <NewsArticle v-for="(article, index) in [1, 2, 3, 4, 5, 6, 7, 8, 9]" :key="index" smallVersion />
+                    <div v-else class="h-full">
+                        <ContentList :query="query" path="/noticias" v-slot="{ list }">
+                            <div class="featured-news flex flex-wrap">
+                                <NewsArticle v-for="(article, index) in list" :key="index" :article_info="article" smallVersion />
+                            </div>
+                        </ContentList>
                     </div>
-                </template>
+                </Transition>
             </div>
 
             <div class="small-recommended-news max-[1520px]:flex hidden flex-col flex-1 lg:mt-8 min-[880px]:ms-8 mt-8">
@@ -152,7 +160,11 @@
                 </div>
                 
                 <div class="relative flex items-stretch flex-wrap justify-between pb-[42px] min-[880px]:pb-[20px]">
-                    <NewsArticle v-for="(article, index) in [1, 2, 3, 4,]" :key="index" />
+                    
+                    <ContentList :query="query" path="/noticias" v-slot="{ list }">
+                        <NewsArticle v-for="(article, index) in list" :article_info="article" :key="index" />
+                    </ContentList>
+
                     <div class="absolute bottom-[0px] max-[1070px]:flex hidden justify-center w-full">
                         <div class="table-pagination">
                             <button class="pagination-btn">
@@ -171,29 +183,31 @@
                 </div>
             </div>
 
-            <div class="recommended-news min-[1520px]:flex hidden flex-col flex-1 lg:mt-8 ms-8 mt-8">
+            <div class="recommended-news relative min-[1520px]:flex hidden flex-col flex-1 lg:mt-8 ms-8 mt-8 overflow-visible">
                 <div> <!-- title-card -->
                     <div class="featured-news-decoration relative flex bg-[#D6E9FF] h-[2px] translate-y-[5px] w-full"></div>
                     <h2 class="font-raleway text-black text-[2.2rem] lg:text-[1.8rem] lg:h-[2.4rem] font-bold mt-4 mb-6">Recomendadas</h2>
                 </div>
                 
-                <div class="relative flex items-stretch flex-wrap justify-between pb-[20px]">
-                    <NewsArticle v-for="(article, index) in [1, 2, 3, 4, 5, 6, 7, 8]" :key="index" />
-                    <!-- recommended-articles-navigation -->
-                    <div class="absolute bottom-[0px] min-[1070px]:flex hidden justify-center w-full">
-                        <div class="table-pagination">
-                            <button class="pagination-btn">
-                                <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
-                            </button>
-                            <ul class="pagination">
-                                <li v-for="(page, index_) of [1,2,3,4,5]" :key="index_">
-                                    {{ page }}
-                                </li>
-                            </ul>
-                            <button class="pagination-btn">
-                                <nuxt-icon name="home/new-students/arrow-table" class="right text-[18px]" filled />
-                            </button>
-                        </div>
+                <div class="news relative flex items-stretch flex-wrap justify-between pb-[32px]">
+                    <ContentList :query="query" path="/noticias" v-slot="{ list }"> <!-- Default view -->
+                        <NewsArticle v-for="(article, index) in list" :article_info="article" :key="index" class="min-w-[23%] w-full max-w-[23%]" />
+                    </ContentList>
+                </div>
+                
+                <div class="absolute bottom-[0px] min-[1070px]:flex hidden justify-center w-full opacity-40"> <!-- recommended-articles-navigation -->
+                    <div class="table-pagination">
+                        <button class="pagination-btn">
+                            <nuxt-icon name="home/new-students/arrow-table" class="left text-[18px]" filled />
+                        </button>
+                        <ul class="pagination">
+                            <li v-for="(page, index_) of [1,2,3,4,5]" :key="index_">
+                                {{ page }}
+                            </li>
+                        </ul>
+                        <button class="pagination-btn">
+                            <nuxt-icon name="home/new-students/arrow-table" class="right text-[18px]" filled />
+                        </button>
                     </div>
                 </div>
             </div>

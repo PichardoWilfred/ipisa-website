@@ -63,7 +63,7 @@
 }
 /* hover */
 .news:hover p {
-    color: var(--black);
+    /* color: var(--black); */
 }
 
 .news:hover button.see-more b.first {
