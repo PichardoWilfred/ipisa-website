@@ -102,11 +102,11 @@
                     </div>
                     <div class="max-md:mt-8">
                         <h5 class="title hover:underline">
-                            <NuxtLink to="/pastoral"></NuxtLink> Informaciones
+                            <NuxtLink to="/pastoral"></NuxtLink> Noticias
                         </h5>
                         <ul class="information">
                             <li class="option">
-                                Noticias de la Institución
+                                Tablero de Noticias
                             </li>
                         </ul>
                     </div>

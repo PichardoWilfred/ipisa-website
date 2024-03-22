@@ -34,10 +34,6 @@
                 </time>
             </div>
         </div>
-        <button class="see-more text-black-500 text-[16px] min-[800px]:text-md font-[500] mt-6 mx-auto">
-            <b class="first font-semibold">Ver</b> <b class="second font-semibold">más</b> 
-            <Icon name="fe:arrow-down" class="ms-2 text-[1.6rem] transition-all" filled />
-        </button>
 </template>
 <style scoped>
 
@@ -68,25 +64,6 @@ p.article-description {
 }
 .news-feed .article button.see-more :is(b, span::deep(svg path)) {
     @apply transition-all;
-}
-/* hover */
-.news-feed .article:hover button.see-more b.first {
-    color: var(--blue);
-}
-.news-feed .article:hover button.see-more b.second {
-    color: var(--orange-300);
-}
-.news-feed .article:hover button.see-more svg {
-    animation: bounce-arrow 950ms ease-in-out forwards infinite;
-}
-@keyframes bounce-arrow {
-    0% {
-        transform: translateY(0px);
-    } 50% {        
-        transform: translateY(-6px);
-    } 100% {
-        transform: translateY(0px);
-    }
 }
 </style>
 <script setup>

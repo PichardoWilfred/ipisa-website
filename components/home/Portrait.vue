@@ -29,7 +29,7 @@
                 </p>
             </div>
             <nuxt-link to="/sobre-nosotros" prefetch>
-                <button class="join font-raleway font-bold text-[1.1rem] text-white hover:text-[#FFFFFFE6] py-3 rounded-xl min-w-[300px] lg:min-w-[370px]">
+                <button class="join font-raleway font-bold text-[1.1rem] active:scale-95 text-white hover:text-[#FFFFFFE6] py-3 rounded-xl min-w-[300px] lg:min-w-[370px] transition-all">
                     CONOCE A IPISA
                 </button>
             </nuxt-link>

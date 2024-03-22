@@ -3,9 +3,12 @@
         <div class="relative content z-30">
             <h2 class="flex justify-center items-center text-black font-normal font-raleway text-[1.6rem] sm:text-[2.1rem] lg:text-[3.1rem] cursor-pointer mb-2 lg:mb-4 transition-all">
                 <b class="text-blue">Requisitos </b> <b class="separator mx-3">de</b> <b class="text-orange-300">Admisión</b>
-                <span class="copy-requirements" @click.prevent="copy_requirements">
-                    <Icon name="ic:outline-content-copy" class="ms-4 font-bold text-[1.8rem] separator" />
-                </span>
+                <button class="copy-requirements tooltip rounded-full ms-2 flex items-center justify-center
+                bg-white hover:bg-black-100 active:bg-black-500 p-2" 
+                @click.prevent="copy_requirements">
+                    <span class="tooltip-text text-[16px] mx-3">{{ requirements_copied_text }}</span>
+                    <Icon name="ic:outline-content-copy" class="font-bold text-[1.5rem] separator" />
+                </button>
             </h2>
             <p class="text-justify text-[1.1rem] text-black font-medium font-raleway max-w-[860px] mb-10 mx-auto">
                 Para formar parte de nuestra comunidad educativa es importante 
@@ -167,6 +170,7 @@
         row-gap: 65px;
     }
 }
+/* w3c tooltip */
 </style>
 <script setup>
     const requirements = ref([
@@ -231,6 +235,7 @@
         icon: 'bill'
     },
 ]);
+    const requirements_copied_text = ref("Copiar requisitos de admisión");
     async function  copy_requirements () {
         try {
             const text_ = `Requisitos de admisión:
@@ -245,6 +250,7 @@
             9- Reporte de Calificaciones Actuales de 2do de Secundaria 
             10- Recibo de Contribución de Gastos de Pre-inscripción`
             await navigator.clipboard.writeText(text_);
+            requirements_copied_text.value = "Requisitos copiados!";
 
         } catch (err) {
             console.error('Failed to copy: ', err);

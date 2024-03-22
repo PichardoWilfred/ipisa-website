@@ -65,6 +65,7 @@ export default defineNuxtConfig({
         },
       }
     }],
-    ["@storyblok/nuxt", { accessToken: process.env.STORYBLOK_TOKEN }]
+    ["@storyblok/nuxt", { accessToken: process.env.STORYBLOK_TOKEN }],
+    '@stefanobartoletti/nuxt-social-share'
   ],
 })

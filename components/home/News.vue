@@ -5,12 +5,9 @@
                 <b class="me-2 lg:me-5 text-blue">Últimas</b><b class="text-orange-300">Noticias</b>
             </nuxt-link>
         </h2>
-        <div class="news-feed">
+        <div class="news-feed flex">
             <ContentList :query="query" path="/noticias" v-slot="{ list }">
-                <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list"
-                    class="article flex flex-col font-raleway cursor-pointer">
-                    <NewsPortraitArticle :item="item" />
-                </nuxt-link>
+                <NewsArticle v-for="(item, index) in list" :article_info="item" :key="index" see_more_btn />
             </ContentList>
         </div>
     </section>
@@ -34,6 +31,9 @@ const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 4 }
     -webkit-line-clamp: 3; /* number of lines to show */
     line-clamp: 3; 
     -webkit-box-orient: vertical;
+}
+.news-feed :deep(.article) .image-container {
+    height: 220px;
 }
 .news-feed .article:hover :deep(p.article-description){
     color: var(--black)
