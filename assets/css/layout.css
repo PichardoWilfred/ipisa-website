@@ -52,3 +52,14 @@
     header ul.information .phone-icon-color path.wave-1 { animation-delay: 200ms; }
     header ul.information .phone-icon-color path.wave-2 { animation-delay: 400ms; }
     header ul.information .phone-icon-color path.wave-3 { animation-delay: 600ms; }
+
+    footer .social-media a svg path {
+        transition: all 150ms cubic-bezier(.68,.82,0,.8);
+    }
+    footer .social-media a:hover svg path {
+        stroke: var(--gray-300);
+    }
+    footer .social-media a.phone:hover svg path {
+        stroke: unset;
+        fill: var(--gray-300);
+    }

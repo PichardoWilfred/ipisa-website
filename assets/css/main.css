@@ -202,7 +202,11 @@ main.info h2.subtitle.highlight {
 .tooltip.copy-requirements .tooltip-text::after {
     left: unset;
     right: 10px;
-}   
+}
+.tooltip.copy-number .tooltip-text::after {
+    left: unset;
+    right: 27px;
+}
 .tooltip:hover .tooltip-text {
     visibility: visible;
     opacity: 1;

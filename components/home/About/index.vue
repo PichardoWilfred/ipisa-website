@@ -87,18 +87,18 @@
             { 
                 label: 'Nosotros',
                 icon: "school",
-                route: '/sobre-nosotros/ipisa',
                 show: false,
                 idle: false,
                 title: '¿Qué es IPISA?',
+                route: '/sobre-nosotros/ipisa',
             },
             {
                 label: 'Filosofía',
                 icon: 'philosofy',
-                route: '/sobre-nosotros/filosofia',
                 show: false,
                 idle: false,
                 title: 'Filosofía del centro',
+                route: '/sobre-nosotros/filosofia',
             },
             {
                 label: 'Historia',
@@ -114,6 +114,7 @@
                 show: false,
                 idle: false,
                 title: 'Reconocimientos',
+                route: '/sobre-nosotros/reconocimientos',
             },
     ]);
 

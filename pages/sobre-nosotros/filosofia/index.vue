@@ -276,6 +276,15 @@ const biographies = ref([
 }
 ]);
 
+useSeoMeta({
+    title: 'Filosofía del Centro',
+    ogTitle: `Filosofía del Centro`,
+    ogDescription: `Ser una institución modelo en la educación técnico profesional, con propuestas educativas y pastorales concretas y de calidad, con un personal altamente cualificado e identificado con el estilo pedagógico salesiano, que involucre la familia y promueva el liderazgo con equidad de género, conservando la credibilidad y la confianza de la sociedad y el empresariado, estando a la vanguardia de la tecnología y las innovaciones educativas, que nos permita ofrecer una formación integral que responda a las exigencias del mundo actual.`,
+    description: `Ser una institución modelo en la educación técnico profesional, con propuestas educativas y pastorales concretas y de calidad, con un personal altamente cualificado e identificado con el estilo pedagógico salesiano, que involucre la familia y promueva el liderazgo con equidad de género, conservando la credibilidad y la confianza de la sociedad y el empresariado, estando a la vanguardia de la tecnología y las innovaciones educativas, que nos permita ofrecer una formación integral que responda a las exigencias del mundo actual.`,
+    ogImage: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+    twitterCard: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+    language: `es`
+});
 </script>
 <style scoped>
 .values-lists ul {

@@ -501,4 +501,14 @@ svg.ipisa-logo-colored g.emblem-core.colored g:is(.gear, .anvil, .rays, .hammer,
     function apply_color(value) { emblem_section.value = value; }
     const workshop_selected = ref(null);
     function highlight_workshop(value) { workshop_selected.value = value; }
+    
+    useSeoMeta({
+        title: 'Conoce IPISA',
+        ogTitle: `Conoce IPISA`,
+        ogDescription: `El Instituto Politécnico Industrial de Santiago (IPISA) es un referente en la educación técnica y profesional en la Región Norte de la República Dominicana. Con una fuerte orientación hacia la excelencia académica, nos esforzamos por empoderar a nuestros estudiantes para que se conviertan en individuos capacitados y con sólidos valores.`,
+        description: `El Instituto Politécnico Industrial de Santiago (IPISA) es un referente en la educación técnica y profesional en la Región Norte de la República Dominicana. Con una fuerte orientación hacia la excelencia académica, nos esforzamos por empoderar a nuestros estudiantes para que se conviertan en individuos capacitados y con sólidos valores.`,
+        ogImage: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+        twitterCard: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
+        language: `es`
+    });
 </script>

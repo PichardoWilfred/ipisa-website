@@ -42,7 +42,9 @@
                     </h5>
                     <ul class="options">
                         <li class="option">
-                            Requisitos Esenciales
+                            <NuxtLink to="/insercion-laboral">
+                                Requisitos Esenciales
+                            </NuxtLink>
                         </li>
                         <li class="option">
                             Formulario de Solicitud
@@ -55,16 +57,24 @@
                     </h5>
                     <ul class="sections">
                         <li class="section">
-                            IPISA
+                            <NuxtLink to="/sobre-nosotros/ipisa">
+                                IPISA
+                            </NuxtLink>
                         </li>
                         <li class="section">
-                            Filosofía
+                            <NuxtLink to="/sobre-nosotros/filosofia">
+                                Filosofía
+                            </NuxtLink>
                         </li>
                         <li class="section">
-                            Nuestra Trayectoria
+                            <NuxtLink to="/sobre-nosotros/nuestra-trayectoria">
+                                Nuestra Trayectoria
+                            </NuxtLink>
                         </li>
                         <li class="section">
-                            Reconocimientos
+                            <NuxtLink to="/sobre-nosotros/nuestra-trayectoria">
+                                Reconocimientos
+                            </NuxtLink>
                         </li>
                         <li class="section">
                             Promociones
@@ -77,9 +87,9 @@
                     </h5>
                     <ul class="workshop-list">
                         <li v-for="({label, address }, index) in workshops" :key="index" class="option">
-                            <a href="#">
+                            <nuxt-link :to="`/talleres/${address}`">
                                 {{ label }}
-                            </a>
+                            </nuxt-link>
                         </li>
                     </ul>
                 </div>
@@ -90,7 +100,7 @@
                         </h5>
                         <ul class="admission-options">
                             <li class="option">
-                                Requisitos de Admisión
+                                <NuxtLink to="/admisiones">Requisitos de Admisión</NuxtLink>
                             </li>
                             <li class="option">
                                 Formulario Virtual
@@ -102,11 +112,11 @@
                     </div>
                     <div class="max-md:mt-8">
                         <h5 class="title hover:underline">
-                            <NuxtLink to="/pastoral"></NuxtLink> Noticias
+                            <NuxtLink to="/noticias">Noticias</NuxtLink>
                         </h5>
                         <ul class="information">
                             <li class="option">
-                                Tablero de Noticias
+                                <NuxtLink to="/noticias">Tablero de Noticias</NuxtLink>
                             </li>
                         </ul>
                     </div>
@@ -134,17 +144,17 @@
             <nuxt-link to="/" class="max-[800px]:mb-6 max-[800px]:mt-4">
                 <nuxt-icon name="layout/ipisa-logo-grayscale" class="cursor-pointer text-[90px] min-[800px]:text-[60px]" filled />
             </nuxt-link>
-            <div class="flex space-x-2 min-[800px]:space-x-4 min-[800px]:max-w-[362px] social-media">
-                <a href="https://www.instagram.com/ipisasdb?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank">
+            <div class="social-media flex space-x-2 min-[800px]:space-x-4 min-[800px]:max-w-[362px]">
+                <a class="instagram" href="https://www.instagram.com/ipisasdb?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank">
                     <nuxt-icon name="layout/instagram" class="cursor-pointer text-[30px]" filled />
                 </a>
-                <a href="https://www.facebook.com/IPISASDB/?locale=es_LA" target="_blank">
+                <a class="facebook" href="https://www.facebook.com/IPISASDB/?locale=es_LA" target="_blank">
                     <nuxt-icon name="layout/facebook" class="cursor-pointer text-[30px]" filled />
                 </a>
-                <a href="mailto:info@ipisa.edu.do?cc=acct3@example.com?subject=test%20email">
+                <a class="mail" href="mailto:info@ipisa.edu.do?cc=acct3@example.com?subject=test%20email">
                     <nuxt-icon name="layout/mail" class="cursor-pointer text-[30px]" filled />
                 </a>
-                <a href="#" @click.prevent="copy_phone" target="_blank">
+                <a class="phone" href="#" @click="call($event)" target="_blank">
                     <nuxt-icon name="layout/phone" class="cursor-pointer text-[25px]" filled />
                 </a>
             </div>
@@ -274,6 +284,22 @@ ul.activities {
 }
 </style>
 <script setup>
+
+    function call(evt) {
+        evt.preventDefault();
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            window.open('tel:8097245700');
+        }else {
+            copy_phone();
+        }
+    }
+    const copy_phone = async () => {
+        try {
+            await navigator.clipboard.writeText('8097245700');
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+    }
     const extracurricular_activities = ref([
         {
             label: 'Clubes deportivos',
@@ -327,35 +353,35 @@ ul.activities {
     const workshops = ref([
         {
             label: 'Confección & Patronaje',
-            address: '',
+            address: 'confeccion-patronaje',
         },
         {
             label: 'Equipos Electrónicos',
-            address: '',
+            address: 'equipos-electronicos',
         },
         {
             label: 'Desarrollo & Administración de Aplicaciones Informáticas',
-            address: '',
+            address: 'desarrollo-aplicaciones-informaticas',
         },
         {
             label: 'Gestión Administrativa &  Tributaria',
-            address: '',
+            address: 'gestion-administrativa-tributaria',
         },
         {
             label: 'Electromecánica de Vehículos',
-            address: '',
+            address: 'electromecanica-vehiculos',
         },
         {
             label: 'Ensamblaje de Muebles',
-            address: '',
+            address: 'ensamblaje-muebles',
         },
         {
             label: 'Mecanizado',
-            address: '',
+            address: 'mecanizado',
         },
         {
             label: 'Instalaciones Eléctricas',
-            address: '',
+            address: 'instalaciones-electricas',
         },
     ])
 </script>

@@ -49,7 +49,7 @@ const sections = ref([
             { color: 'blue', word: 'Filo' },
             { color: 'orange', word: 'sofía' },
         ],
-        link: 'sobre-nosotros/filosofia',
+        link: '/sobre-nosotros/filosofia',
         icon: 'philosofy',
         description: "Arraigada en el sistema preventivo de Don Bosco. Nuestra visión es formar a jóvenes fuertes en valores éticos y ciudadanos comprometidos con la sociedad."
     },
@@ -59,7 +59,7 @@ const sections = ref([
             { space: true },
             { color: 'orange', word: 'Nosotros' },
         ],
-        link: 'sobre-nosotros/ipisa',
+        link: '/sobre-nosotros/ipisa',
         icon: 'school',
         description: "Descubre en IPISA una educación técnica de calidad que se basa en sólidos valores cristianos y una misión de formación integral."
     },
@@ -69,7 +69,7 @@ const sections = ref([
             { space: true },
             { color: 'orange', word: 'Trayectoria' },
         ],
-        link: 'sobre-nosotros/nuestra-trayectoria',
+        link: '/sobre-nosotros/nuestra-trayectoria',
         icon: 'history',
         description: "Con un testimonio de más de 30 años dedicados a la formación de jóvenes con excelencia. Desde su fundación en 1988, el centro ha pasado por cambios importantes."
     },
@@ -78,7 +78,7 @@ const sections = ref([
             { color: 'blue', word: 'Recono' },
             { color: 'orange', word: 'cimientos' },
         ],
-        link: '',
+        link: '/sobre-nosotros/reconocimientos',
         icon: 'awards',
         description: "Arraigada en el sistema preventivo de Don Bosco. Nuestra visión es formar a jóvenes fuertes en valores éticos y ciudadanos comprometidos con la sociedad."
     },

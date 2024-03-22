@@ -54,7 +54,7 @@
             </li>
         </ul>
         <ul class="information">
-            <li class="cursor-pointer">
+            <li class="school-address cursor-pointer">
                 <a class="flex items-center" href="https://maps.app.goo.gl/tq2JfxfJoc67brRX7" target="_blank">
                     <h4 class="font-raleway text-blue me-2 text-end transition-all">
                         Av. Hispanoamericana, Km 1 Santiago,
@@ -63,12 +63,16 @@
                     <nuxt-icon name="layout/location-color" class="text-[28px] location-icon-color" filled />
                 </a>
             </li>
-            <li class="cursor-pointer flex items-center mt-2" @click.passive="copy_phone">
-                <Icon name="ic:outline-content-copy" class="me-2 font-bold text-[16px] separator" />
+            <li class="phone-number cursor-pointer flex items-center mt-2" @click.passive="copy_phone">
+                <button class="copy-number tooltip flex justify-center items-center p-2 me-2 rounded-full hover:bg-black-100 active:bg-black-500">
+                    <span class="tooltip-text text-[16px] mx-3 font-normal">{{ requirements_copied_text }}</span>
+                    <Icon name="ic:outline-content-copy" class="font-bold text-[16px] separator" />
+                </button>
                 <h4 class="font-raleway text-orange-300 me-2 text-end transition-all">
                     <span class="text-orange-200">(809)</span> 724-5700
                 </h4>
                 <nuxt-icon name="layout/phone-color" class="text-[26px] phone-icon-color" filled />
+                <div class=""></div>
             </li>
         </ul>
     </header>
@@ -83,6 +87,31 @@
         height: 9px;
         top: -2px;
         right: -15px;
+    }
+    ul.information li:is(.school-address, .phone-number) {
+        position: relative;
+        z-index: 2;
+    }
+    ul.information li:is(.school-address, .phone-number) > * {
+        position: relative;
+        z-index: 2;
+    }
+    ul.information li:is(.school-address, .phone-number)::after {
+        content:'';
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        width: 105%;
+        height: 120%;
+        z-index: 1;
+        border-radius: 5px;
+        transition: all 130ms cubic-bezier(.68,.82,0,.8);
+    }
+    ul.information li:is(.school-address, .phone-number):hover::after {
+        background-color: var(--black-100);
+    }
+    ul.information li:is(.school-address, .phone-number):active::after {
+        background-color: var(--black-200);
     }
     header {
         position: fixed; 
@@ -276,8 +305,9 @@
 import { useLayoutStore } from '@/store/layout';
 const layout = useLayoutStore();
 
+const requirements_copied_text = ref('Copiar número telefónico');
+
 function call (evt, index) {
-    
     if ((index === 3) && window.matchMedia("(max-width: 768px)").matches) {
         evt.preventDefault();
         window.open('tel:8097245700');
@@ -288,6 +318,7 @@ function call (evt, index) {
 const copy_phone = async () => {
     try {
         await navigator.clipboard.writeText('8097245700');
+        requirements_copied_text.value = 'Número telefónico copiado!'
     } catch (err) {
         console.error('Failed to copy: ', err);
     }

@@ -115,21 +115,13 @@ const about_navigation = [
 layout_store.$patch({ about_navigation });
 
 const images = ref([
-    "https://a.storyblok.com/f/272924/452x300/b80e2ded6a/inaguration.jpg",
-    "https://a.storyblok.com/f/272924/640x480/6c561778a2/past-students.jpg",
-    "https://a.storyblok.com/f/272924/720x364/6300ec8950/imagen0.jpg",
-    "https://a.storyblok.com/f/272924/720x472/33d0eab369/imagen2.jpg",
-    "https://a.storyblok.com/f/272924/720x400/c971c3ea89/imagen4.jpg",
-    "https://a.storyblok.com/f/272924/720x356/0a264b66a3/imagen3.jpg",
-    "https://a.storyblok.com/f/272924/4000x3000/ce60b1d9cc/history.jpg",
-    "https://a.storyblok.com/f/272924/612x612/b80c42c32a/building.jpg"
-]);
-    
+])
+
 useSeoMeta({
-    title: 'Trayectoria del IPISA',
-    ogTitle: `Trayectoria del IPISA`,
-    ogDescription: `El Instituto Politécnico Industrial de Santiago (IPISA) tuvo su génesis en la apremiante demanda empresarial del norte del país por técnicos altamente competentes. Esta necesidad resonó con Monseñor Roque Adames, entonces Obispo de la Diócesis de Santiago, quien, sensibilizado ante este requerimiento, propuso a la Secretaría de Estado de Educación Bellas Artes y Cultos (actual Ministerio de Educación de la República Dominicana, MINERD) la instauración de un politécnico bajo la dirección de la congregación salesiana.`,
-    description: `El Instituto Politécnico Industrial de Santiago (IPISA) tuvo su génesis en la apremiante demanda empresarial del norte del país por técnicos altamente competentes. Esta necesidad resonó con Monseñor Roque Adames, entonces Obispo de la Diócesis de Santiago, quien, sensibilizado ante este requerimiento, propuso a la Secretaría de Estado de Educación Bellas Artes y Cultos (actual Ministerio de Educación de la República Dominicana, MINERD) la instauración de un politécnico bajo la dirección de la congregación salesiana.`,
+    title: 'Reconocimientos del Centro',
+    ogTitle: `Reconocimientos del Centro`,
+    ogDescription: `Ser una institución modelo en la educación técnico profesional, con propuestas educativas y pastorales concretas y de calidad, con un personal altamente cualificado e identificado con el estilo pedagógico salesiano, que involucre la familia y promueva el liderazgo con equidad de género, conservando la credibilidad y la confianza de la sociedad y el empresariado, estando a la vanguardia de la tecnología y las innovaciones educativas, que nos permita ofrecer una formación integral que responda a las exigencias del mundo actual.`,
+    description: `Ser una institución modelo en la educación técnico profesional, con propuestas educativas y pastorales concretas y de calidad, con un personal altamente cualificado e identificado con el estilo pedagógico salesiano, que involucre la familia y promueva el liderazgo con equidad de género, conservando la credibilidad y la confianza de la sociedad y el empresariado, estando a la vanguardia de la tecnología y las innovaciones educativas, que nos permita ofrecer una formación integral que responda a las exigencias del mundo actual.`,
     ogImage: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
     twitterCard: 'https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png',
     language: `es`
