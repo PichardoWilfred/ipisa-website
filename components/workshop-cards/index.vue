@@ -1,6 +1,7 @@
 <template>
   <div
     class="workshop-menu-container relative top-0 left-0 w-full min-[1280px]:w-[95%] mx-auto mb-[10rem] min-[1080px]:rounded-[35px] md:overflow-hidden"
+    :class="{ '!rounded-[0px] !mx-[0px] !w-full': variant === 'cards' }"
   >
     <div class="absolute top-0 left-0 w-full lg:w-[112%] h-full">
       <div
@@ -28,7 +29,19 @@
             class="absolute opacity-30 md:opacity-0 top-0 left-0 w-full h-full bg-white z-20"
           />
         </template>
+        <div
+          v-if="variant === 'cards'"
+          class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0 blur"
+          ref="container"
+        >
+          <HomeWorkshopBlueShapes />
+          <HomeWorkshopOrangeShapes />
+          <div class="blue-background color-background" />
+          <div class="orange-background color-background" />
+          <div class="white-blur" />
+        </div>
         <nuxt-img
+          v-if="variant !== 'cards' || in_mobile"
           v-for="({ img, name }, index) in cards"
           :key="index"
           loading="lazy"
@@ -42,21 +55,30 @@
     </div>
 
     <div
-      class="card-container md:radius-[30px] z-30 max-md:h-[100vh] max-md:snap-y max-md:snap-mandatory max-md:overflow-scroll translucent"
+      class="card-container md:radius-[30px] z-30 max-md:h-[100vh] max-md:snap-y max-md:snap-mandatory max-md:overflow-scroll"
+      :class="{
+        translucent: variant !== 'cards',
+        'flex p-10 gap-4 radius-none': variant === 'cards' && !in_mobile,
+      }"
       ref="card_container"
       @scroll="apply_background"
     >
       <div
-        class="card max-[1080px]:min-[800px]:flex-row max-[1080px]:min-[800px]:items-center flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all snap-center"
+        class="card max-[1080px]:min-[800px]:flex-row max-[1080px]:min-[800px]:items-center flex flex-col justify-center bg-none md:bg-white text-black-700 object-cover cursor-pointer transition-all snap-center"
         v-for="({ name, icon, title, description }, index) in cards"
         :key="index"
         :id="name"
-        :class="[name]"
+        :class="{
+          'justify-center rounded-[20px] bg-white m-3 p-2 drop-shadow-2xl':
+            variant === 'cards' && !in_mobile,
+          [name]: true,
+        }"
         @click.prevent="go_to_workshop(icon)"
         @mouseenter.prevent="apply_background_desktop(name)"
       >
         <nuxt-icon
           class="no-shadow mx-auto max-[1080px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5"
+          :class="{ '': variant === 'cards' }"
           :name="`workshop/${icon}`"
           filled
         />
@@ -74,6 +96,7 @@
             </template>
           </h4>
           <p
+            v-if="variant !== 'cards' || in_mobile"
             class="max-[1080px]:min-[800px]:text-start text-center font-raleway min-[1080px]:mx-4 min-[1080px]:text-[16px] leading-[18px] max-w-[310px] md:mb-5 mx-auto"
           >
             {{ description }}
@@ -98,6 +121,10 @@ useSeoMeta({
   twitterCard: () =>
     "https://a.storyblok.com/f/272924/1055x582/742e24fb5e/nuestro-talleres.png",
   language: () => `es`,
+});
+
+const { variant } = defineProps({
+  variant: String,
 });
 
 const go_to_workshop = async (path) => {
@@ -134,8 +161,7 @@ function trigger_animation() {
     color_animation.value = !color_animation.value; // ternary cause of debugging purposes
   }
   background_image_timer.value = setTimeout(
-    () => {
-    },
+    () => {},
     in_tablet.value ? 1300 : 650
   );
 }
@@ -350,13 +376,10 @@ const apply_background = ({ target }) => {
   const newIndex = Math.floor(
     target?.scrollTop / target?.firstElementChild?.clientHeight
   );
-  if (lastIndex != newIndex) {
+  if (lastIndex != newIndex && (variant !== "cards" || in_mobile)) {
     clearTimeout(background_timer.value);
     background_timer.value = setTimeout(() => {
-      if (
-        focused_workshop.value === cards[newIndex || 0]?.name
-      )
-        return;
+      if (focused_workshop.value === cards[newIndex || 0]?.name) return;
       focused_workshop.value = cards[newIndex || 0]?.name;
     }, 120);
     lastIndex = newIndex;
@@ -366,7 +389,7 @@ const apply_background = ({ target }) => {
 const apply_background_desktop = (workshop) => {
   clearTimeout(background_timer.value);
   background_timer.value = setTimeout(() => {
-    if (focused_workshop.value === workshop) return;
+    if (focused_workshop.value === workshop || variant === "cards") return;
     focused_workshop.value = workshop;
   }, 120);
 };
@@ -485,6 +508,20 @@ img.workshop-focused {
   background-color: white;
   color: var(--black-700);
   border-color: transparent;
+}
+.blue-background {
+  background: linear-gradient(118deg, #0478e0 13.94%, #0478e000 66.24%);
+  backdrop-filter: blur(2px);
+}
+.orange-background {
+  right: 0;
+  background: linear-gradient(
+    284deg,
+    #ff7420 8.73%,
+    rgba(255, 116, 32, 0.64) 10.25%,
+    rgba(255, 116, 32, 0) 73.9%
+  );
+  backdrop-filter: blur(2px);
 }
 .card-container.translucent .card :deep(svg) .shadow {
   opacity: 0;
@@ -774,5 +811,54 @@ img.workshop-focused {
   .card-container.translucent .card:hover {
     background-color: transparent;
   }
+}
+@media (max-width: 800px) {
+  .blue-background {
+    background: linear-gradient(180deg, #0478e0 19.94%, #0478e000 45.24%);
+  }
+  .orange-background {
+    background: linear-gradient(
+      300deg,
+      #ff7420 -13.27%,
+      rgba(255, 116, 32, 0.64) 10.25%,
+      rgba(255, 116, 32, 0) 73.9%
+    );
+  }
+  .card h4 {
+    opacity: 1;
+  }
+  .card-container .card :deep(svg) {
+    transform: unset;
+    transform-origin: unset;
+  }
+}
+@media (max-width: 1160px) {
+  .blue-background {
+    background: linear-gradient(120deg, #0478e0 3.94%, #0478e000 30.24%);
+  }
+  .orange-background {
+    background: linear-gradient(
+      284deg,
+      #ff7420 2.73%,
+      rgba(255, 116, 32, 0.64) 34.25%,
+      rgba(255, 116, 32, 0) 73.9%
+    );
+  }
+}
+@media (max-width: 850px) {
+  .blue-background {
+    background: linear-gradient(120deg, #0478e0 3.94%, #0478e000 30.24%);
+  }
+  .orange-background {
+    background: linear-gradient(
+      284deg,
+      #ff7420 2.73%,
+      rgba(255, 116, 32, 0.64) 34.25%,
+      rgba(255, 116, 32, 0) 73.9%
+    );
+  }
+}
+.color-background {
+  @apply absolute w-full h-full min-[800px]:w-[40%] min-[800px]:h-full z-10 opacity-[0.6];
 }
 </style>
