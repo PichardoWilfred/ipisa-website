@@ -41,7 +41,6 @@ module.exports = {
         DEFAULT: "#4B6286",
         400: "#344661",
         500: "#CEE3FF",
-        
         600: "#AABDD8",
         700: "#7D96BD"
       },

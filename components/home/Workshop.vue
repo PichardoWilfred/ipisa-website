@@ -13,7 +13,7 @@
                 </span>
             </p>
         </div>
-        <div class="relative bg-white py-[8rem] z-10" id="card-container">
+        <div class="flex items-center content-center relative bg-white z-10" id="card-container">
             <div v-if="!in_mobile" class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0" ref="container">
                 <HomeWorkshopBlueShapes />
                 <HomeWorkshopOrangeShapes />
@@ -21,7 +21,7 @@
                 <div class="orange-background color-background" />
                 <div class="white-blur" />
             </div>
-            <div class="card-container relative w-[85%] h-[100vh] mx-auto z-40 max-md:snap-y max-md:snap-mandatory max-md:overflow-scroll" @mousemove.passive="trackMouse"> 
+            <div class="card-container relative w-[85%] h-max-content mx-auto my-[150px] z-40 max-md:snap-y max-md:snap-mandatory max-md:overflow-scroll" @mousemove.passive="trackMouse"> 
                 <div class="card flex flex-col justify-center min-[800px]:justify-end rounded-[20px] cursor-pointer transition-all snap-center" @click.prevent="go_to_workshop(card_name)"
                 v-for="({ title, card_name, show_element }, index) in cards" :key="index" :id="card_name"
                 :class="[card_name, {'in-viewport': show_element }]">
@@ -36,6 +36,7 @@
                     </h4>
                 </div>
             </div>
+            <WorkshopCards class="max-[800px]:block hidden" variant="cards"/>
         </div>
     </section>
 </template>
@@ -428,6 +429,7 @@
 }
 @media (max-width: 800px) {
     .card-container {
+        display: none;
         grid-template-columns: repeat(1, min(470px, 81.5vw));
         grid-template-rows: repeat(8, 100vh);
         gap: 6vh;

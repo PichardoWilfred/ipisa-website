@@ -17,7 +17,6 @@
             educación de calidad. </b>
         </p>
         <div class="workshop-menu-container relative top-0 left-0 w-full min-[1280px]:w-[95%] mx-auto mb-[10rem] min-[1080px]:rounded-[35px] md:overflow-hidden">
-            
             <div class="absolute top-0 left-0 w-full lg:w-[112%] h-full">
                 <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-screen md:h-[100vh] lg:w-[112%] lg:h-[105%] transition-all z-20">
                     <template v-if="!in_mobile">
@@ -39,6 +38,16 @@
 
             <div ref="card_container" class="card-container md:radius-[30px] z-30 max-md:h-[100vh] max-md:snap-y max-md:snap-mandatory max-md:overflow-scroll"
             :class="{'translucent': enable_background}">
+                <Transition name="fade-fast-2">
+                    <div v-if="show_dragger" class="mouse-dragger">
+                        <div class="flex flex-col items-center" @mouseover.prevent="() => {show_dragger = false}">
+                            <nuxt-icon class="workshop-cursor-icon text-[4rem]" name="workshop/cursor-dragger" filled />
+                            <p class="font-raleway text-black-600 font-medium text-[2rem]">
+                                Arrastra el cursor
+                            </p>
+                        </div>
+                    </div>
+                </Transition>
                 <div class="card max-[1080px]:min-[800px]:flex-row max-[1080px]:min-[800px]:items-center
                 flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all snap-center" 
                 v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name" :class="[name]" 
@@ -60,12 +69,12 @@
                     </div>
                 </div>
             </div>
+            
+            <WorkshopCards class="max-[800px]:block hidden" variant="cards"/>
         </div>
     </main>
 </template>
 <script setup>
-
-    
     useSeoMeta({
         title: 'IPISA - Nuestros Talleres',
         ogTitle: () => `IPISA - Nuestros Talleres`,
@@ -111,6 +120,7 @@
         }
         background_image_timer.value = setTimeout(() => {
             enable_background.value = true;
+            show_dragger.value = true;
         }, in_tablet.value ? 1300 : 650);
     }
     const card_container = ref(null);
@@ -309,7 +319,10 @@
 
     const focused_workshop = ref(null);
     const background_image_timer = ref(0);
+
+    const show_dragger = ref(false);
     const enable_background = ref(false);
+
     const background_timer = ref(0);
 
     const apply_background = (workshop) => {
@@ -380,6 +393,31 @@ div.portrait :deep(img.wallpaper) {
     justify-content: center;
     gap: 2px;
 }
+.card-container .mouse-dragger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffffa6;
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-container .mouse-dragger .workshop-cursor-icon {
+    animation: circular-motion 5s infinite cubic-bezier(.68,.82,0,.8); 
+}
+@keyframes circular-motion { 
+    0% { 
+        transform: rotate(0deg) translateY(100px) rotate(0deg); 
+    }
+    100% { 
+        transform: rotate(360deg) translateY(100px) rotate(-360deg); 
+    } 
+} 
+
 img.workshop-focused {
     opacity: 0.25;
     animation: zoom-in 150ms ease-in-out forwards;
@@ -640,6 +678,7 @@ img.workshop-focused {
 }
 @media (max-width: 768px) {
     .card-container {
+        display: none;
         grid-template-columns: repeat(1, min(470px, 81.5vw));
         grid-template-rows: repeat(8, 100vh);
     }

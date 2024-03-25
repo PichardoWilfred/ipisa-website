@@ -22,8 +22,7 @@
         <HomeAbout />
         <div class="h-[3px] w-full bg-black-100 mt-[3rem]"></div>
         <HomeNews />
-        <WorkshopCards variant="cards"/>
-        <!-- <LazyHomeWorkshop /> -->
+        <LazyHomeWorkshop />
         <div class="h-[3px] w-full bg-black-100 mt-[6rem] lg:mt-[9rem]"></div>
         <LazyHomeActivities />
     </div>
