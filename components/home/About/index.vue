@@ -13,11 +13,11 @@
                 <div class="flex relative items-center max-lg:mb-3">
                     <nuxt-link :to="sections[selected_index].route">
                         <Transition name="fade" mode="out-in">
-                            <h1 class="flex items-end font-semibold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all" :key="selected_index" >
-                                <span class="hover:underline text-black-400">
-                                    {{ selected_section.title }}
+                            <h1 class="title font-semibold text-[1.8rem] sm:text-[2.1rem] lg:text-[3.6rem] cursor-pointer transition-all hover:opacity-70" :key="selected_index">
+                                <span v-for="(title_, index) in selected_section.title" :class="`text-${title_.color}`" class="">
+                                    {{ title_.text }}
                                 </span>
-                                <span class="max-lg:hidden">
+                                <span class="hidden">
                                     <Icon name="fe:link" class=" ms-1 text-[2.5rem] separator mb-3" />
                                 </span>
                             </h1>
@@ -44,11 +44,10 @@
                     </p>
                 </Transition>
                 <ul class="navigation">
-                    <li v-for="({ label }, index) in sections"
-                    :class="{'selected': selected_index === index}"
-                    @click="selected_index = index"
+                    <li v-for="({ label }, index) in sections" :class="{'selected': selected_index === index}" @click="selected_index = index"
                     class="flex items-center font-semibold text-[1.2rem] lg:text-[1.3rem] cursor-pointer" :key="index">
-                        {{ label }} <div class="cube mx-4 lg:mx-4 h-[10px] w-[10px]"></div>
+                        {{ label }}
+                        <div v-if="(index + 1) !== sections.length" class="cube bg-black-500 mx-4 lg:mx-4 h-[10px] w-[10px]"></div>
                     </li>
                 </ul>
             </div>
@@ -89,7 +88,20 @@
                 icon: "school",
                 show: false,
                 idle: false,
-                title: '¿Qué es IPISA?',
+                title: [
+                    {
+                        text: '¿Qué ',
+                        color: 'blue'
+                    },
+                    {
+                        text: ' es',
+                        color: 'separator'
+                    },
+                    {
+                        text: ' IPISA?',
+                        color: 'orange-300'
+                    }
+                ],
                 route: '/sobre-nosotros/ipisa',
             },
             {
@@ -97,7 +109,20 @@
                 icon: 'philosofy',
                 show: false,
                 idle: false,
-                title: 'Filosofía del centro',
+                title: [ // title: 'Filosofía del centro',
+                    {
+                        text: 'Filosofía ',
+                        color: 'blue'
+                    },
+                    {
+                        text: ' del',
+                        color: 'separator'
+                    },
+                    {
+                        text: ' centro',
+                        color: 'orange-300'
+                    }
+                ],
                 route: '/sobre-nosotros/filosofia',
             },
             {
@@ -105,16 +130,18 @@
                 icon: 'history',
                 show: false,
                 idle: false,
-                title: 'Nuestra trayectoria',
+                title: [ // title: 'Nuestra trayectoria',
+                    {
+                        text: 'Nuestra ',
+                        color: 'blue'
+                    },
+                    {
+                        text: ' trayectoria',
+                        color: 'orange-300'
+                    }
+                ],
+                
                 route: '/sobre-nosotros/nuestra-trayectoria',
-            },
-            {
-                label: 'Reconocimientos',
-                icon: 'awards',
-                show: false,
-                idle: false,
-                title: 'Reconocimientos',
-                route: '/sobre-nosotros/reconocimientos',
             },
     ]);
 
@@ -176,15 +203,15 @@
 .content ul.navigation li {
     @apply cursor-pointer hover:underline transition-all;
 }
-.content ul.navigation li:nth-child(odd) { @apply text-[#FF7320CC] hover:text-orange; }
-.content ul.navigation li:nth-child(odd) .cube { @apply bg-[#FF7320CC]; }
+.content ul.navigation li:nth-child(odd ) { @apply text-[#FF7320CC] hover:text-orange; }
+/* .content ul.navigation li:nth-child(odd) .cube { @apply bg-[#FF7320CC]; } */
 .content ul.navigation li:nth-child(even) { @apply text-[#0478E0CC] hover:text-blue; }
-.content ul.navigation li:nth-child(even) .cube { @apply bg-[#0478E0CC]; }
+/* .content ul.navigation li:nth-child(even) .cube { @apply bg-[#0478E0CC]; } */
 
-.content ul.navigation li.selected:nth-child(even) .cube { @apply bg-blue; }
-.content ul.navigation li.selected:nth-child(odd) .cube { @apply bg-orange; }
+/* .content ul.navigation li.selected:nth-child(even) .cube { @apply bg-blue; } */
+/* .content ul.navigation li.selected:nth-child(odd) .cube { @apply bg-orange; } */
 .content ul.navigation li.selected { @apply underline; }
-.content ul.navigation li.selected:nth-child(even) { @apply text-blue; }
+.content ul.navigation li.selected:nth-child(even ) { @apply text-blue; }
 .content ul.navigation li.selected:nth-child(odd) { @apply text-orange; }
 
 .move .icon-arrow-down {

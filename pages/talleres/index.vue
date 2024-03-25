@@ -37,8 +37,8 @@
                 </div>
             </div>
 
-            <div class="card-container md:radius-[30px] z-30 max-md:h-[100vh] max-md:snap-y max-md:snap-mandatory max-md:overflow-scroll"
-            ref="card_container" :class="{'translucent': enable_background}">
+            <div ref="card_container" class="card-container md:radius-[30px] z-30 max-md:h-[100vh] max-md:snap-y max-md:snap-mandatory max-md:overflow-scroll"
+            :class="{'translucent': enable_background}">
                 <div class="card max-[1080px]:min-[800px]:flex-row max-[1080px]:min-[800px]:items-center
                 flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all snap-center" 
                 v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name" :class="[name]" 
@@ -363,6 +363,7 @@
     });
 </script>
 <style scoped>
+/* colored outlines */
 /* .workshop-menu-container {
     box-shadow:
         0 0 0 5px var(--white),
@@ -396,7 +397,7 @@ img.workshop-focused {
     animation: card-container-show 300ms ease-in-out forwards;
 }
 @keyframes card-container-show {
-    from {  
+    from {
         opacity: 0;
         gap: 2px;
     } to {
@@ -422,11 +423,21 @@ img.workshop-focused {
     border-color: transparent;
 }
 .card-container.translucent .card :deep(svg) .shadow {
-    opacity: 0; 
-    transition: var(--default-tw-transition);
+    transform: scale(0);
+    transform-origin: center center;
+    transition: var(--tw-transition-2);
 }
 .card-container.translucent .card:hover :deep(svg) .shadow {
-    opacity: 1;
+    transform: scale(1);
+}
+/* svg */
+.card-container.translucent .card :deep(svg) {
+    transform: scale(1.08) translateY(15px);
+    transform-origin: bottom center;
+    transition: var(--tw-transition-2);
+}
+.card-container.translucent .card:hover :deep(svg) {
+    transform: scale(1) translateY(15px);
 }
 .card.confeccion :deep(svg){
     width: 140px;

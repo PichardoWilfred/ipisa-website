@@ -94,7 +94,7 @@
                         </div>
                         <div class="relative flex flex-col min-w-[315px]">
                             <h2 @mouseover.passive="toggle_bar_color" 
-                            class="translate-y-[-12px] font-raleway text-black hover:text-black-400 font-bold text-[3rem] leading-[3.3rem] xl:text-[3.3vw] xl:leading-[3.6vw] mb-4">
+                            class="translate-y-[-12px] font-raleway text-black hover:text-black-400 font-bold text-[3rem] leading-[3.3rem] xl:text-[3.3vw] xl:leading-[3.6vw] mb-4 transition-all">
                                 <nuxt-link :to="`/noticias/${featured_article.id}`">
                                     {{ featured_article.title }}
                                 </nuxt-link>
