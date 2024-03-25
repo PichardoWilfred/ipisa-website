@@ -203,7 +203,8 @@ main.info h2.subtitle.highlight {
     left: unset;
     right: 10px;
 }
-.tooltip.copy-number .tooltip-text::after {
+
+.tooltip.phone-number .tooltip-text::after {
     left: unset;
     right: 27px;
 }

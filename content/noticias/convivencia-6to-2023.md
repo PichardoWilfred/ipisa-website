@@ -7,6 +7,7 @@ description:
 img: "https://a.storyblok.com/f/272924/2048x1365/62559396c0/portrait.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/2048x1365/62559396c0/portrait.jpg"
 visibility: feed
+date_: 2023-12-13
 date: 13 de Diciembre 2023
 short_date: 13/12/2023
 author: Wilfred Pichardo

@@ -7,6 +7,7 @@ description:
 img: "https://a.storyblok.com/f/272924/1080x1080/94f1ae0bcc/418169219_18038656288633681_2236150375556891696_n.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/4000x3000/4714c57fdc/img_20240312_134629776.jpg"
 visibility: feed
+date_: 2024-01-10
 date: 10 de Enero 2024
 short_date: 10/01/2024
 author: Wilfred Pichardo

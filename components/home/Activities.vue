@@ -1,5 +1,5 @@
 <template>
-    <section class="relative w-full z-20 pt-[4rem] lg:pt-[6rem] mb-[8rem]" id="activities" data-offset="80">
+    <section class="relative w-full z-20 pt-[4rem] lg:pt-[6rem] mb-[40vh]" id="activities" data-offset="80">
         <h2 class="text-center font-raleway max-w-[1700px] mx-auto px-[5vw] mb-[0.5rem] text-black text-[1.8rem] lg:text-[3.4rem] lg:leading-[3.8rem]">
             <nuxt-link to="/pastoral">
                 <b class="text-blue">Galería</b><b class="mx-2 lg:mx-5 text-separator">de</b><b class="text-orange-300">Recuerdos</b>

@@ -266,11 +266,11 @@ ul.activities {
     margin-bottom: 0.5rem; /* 8px */
     font-family: var(--raleway);
     font-weight: 600;
-    @apply text-[18px] min-[800px]:text-[22px];
+    font-size: 18px;
     transition: var(--default-tw-transition);
 }
 .links ul.activities li.activity, li.section, li.option {
-    @apply text-[14px] min-[800px]:text-[16px];
+    font-size: 14px;
     color: var(--black);
     font-weight: 500;
     font-family: var(--raleway);
@@ -281,6 +281,14 @@ ul.activities {
 .links ul.activities li.activity:hover, li.section:hover, li.option:hover {
     color: var(--black-400);
     text-decoration: underline;
+}
+@media (min-width: 800px) {
+    .links h5.title {
+        font-size: 22px;
+    }
+    .links ul.activities li.activity, li.section, li.option {
+        font-size: 16px;
+    }
 }
 </style>
 <script setup>
@@ -346,7 +354,7 @@ ul.activities {
             address: ''
         },
         {
-            label: 'Catequesis sacramental',
+            label: '',
             address: ''
         },
     ])

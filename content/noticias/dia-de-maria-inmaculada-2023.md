@@ -7,6 +7,7 @@ description:
 img: "https://a.storyblok.com/f/272924/1080x1080/b22effa642/1.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/1080x1080/c00962b9b8/5.jpg"
 visibility: feed
+date_: 2023-12-08
 date: "8 de Diciembre 2023"
 short_date: "08/12/2023"
 author: Daniela Vicente

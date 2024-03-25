@@ -72,23 +72,66 @@
     }
 }
 .orange-comet-1 {
-    @apply absolute right-[-7%] min-[1160px]:right-[12%] bottom-[83%] min-[1160px]:bottom-[40%] h-[360px] w-[360px];
+    position: absolute; 
+    right: -7%;
+    bottom: 83%;
+    height: 360px;
+    width: 360px;
     animation-delay: 40ms;
 }
 .orange-comet-2 {
-    @apply absolute right-[-9%] min-[1160px]:right-[22%] bottom-[70%] min-[1160px]:bottom-[23%] h-[320px] w-[320px];
+    position: absolute; 
+    right: -9%;
+    bottom: 70%;
+    height: 320px;
+    width: 320px;
     animation-delay: 220ms;
 }
 .orange-small-pyramid {
-    @apply absolute min-[1160px]:right-[22%] right-[5%] bottom-[-1%] h-[245px] w-[245px];
+    position: absolute; 
+    right: 5%;
+    bottom: -1%;
+    height: 245px;
+    width: 245px;
     animation-delay: 120ms;
 }
 .small-orange-circle {
-    @apply absolute right-[28%] top-[5%] h-[100px] w-[100px];
+    position: absolute; 
+    right: 28%;
+    top: 5%;
+    height: 100px;
+    width: 100px;
+
     animation-delay: 230ms;
 }
 .big-orange-circle {
-    @apply absolute right-[-230px] min-[1160px]:right-[-30px] min-[1160px]:bottom-[-120px] bottom-[30%] h-[380px] w-[380px];
+    position: absolute; 
+    right: -230px;
+    bottom: 30%;
+    height: 380px;
+    width: 380px;
     animation-delay: 120ms;
+}
+
+@media (min-width: 1160px) {
+    .orange-comet-1 {
+        right: 12%;
+        bottom: 40%; 
+        animation-delay: 40ms;
+    }
+    .orange-comet-2 {
+        right: 22%;
+        bottom: 23%;
+        animation-delay: 220ms;
+    }
+    .orange-small-pyramid {
+        right: 22%;
+        animation-delay: 120ms;
+    }
+    .big-orange-circle {
+        right: -30px;
+        bottom: -120px;
+        animation-delay: 120ms;
+    }
 }
 </style>

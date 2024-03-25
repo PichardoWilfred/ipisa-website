@@ -63,8 +63,8 @@
                     <nuxt-icon name="layout/location-color" class="text-[28px] location-icon-color" filled />
                 </a>
             </li>
-            <li class="phone-number cursor-pointer flex items-center mt-2" @click.passive="copy_phone">
-                <button class="copy-number tooltip flex justify-center items-center p-2 me-2 rounded-full hover:bg-black-100 active:bg-black-500">
+            <li class="phone-number tooltip cursor-pointer flex items-center mt-2" @click.passive="copy_phone">
+                <button class="copy-number flex justify-center items-center p-2 me-2 rounded-full hover:bg-black-100 active:bg-black-500">
                     <span class="tooltip-text text-[16px] mx-3 font-normal">{{ requirements_copied_text }}</span>
                     <Icon name="ic:outline-content-copy" class="font-bold text-[16px] separator" />
                 </button>
@@ -117,8 +117,8 @@
         position: fixed; 
         top: 0; 
         left: 0; 
-        border-bottom-width: 1px; 
-        border-bottom-color: transparent;
+        /* border-bottom-width: 1px;  */
+        /* border-bottom-color: transparent; */
         width: 100%; 
         color: var(--black); 
         background-color: white;
@@ -131,7 +131,7 @@
         right: 0;
     }
     header ul.mobile-navigation {
-        top: 93px;
+        top: 92px;
         text-align: center; 
         background-color: white;
         width: 70vw;
@@ -144,7 +144,7 @@
         right: 0;
     }
     header ul.information {
-        @apply max-[1300px]:hidden flex;
+        display: flex;
         position: absolute; 
         top: 4.5rem;
         right: 18px;
@@ -159,22 +159,22 @@
         animation: appear 200ms ease-in-out;
     }
     header nav div.upper .logo :deep(svg) {
-        @apply max-lg:w-[60px] lg:w-[90px] h-[60px] lg:h-[90px];
+        height: 60px;
         margin-block: 1rem;
         transition-property: all;
         transition-duration: .15s;
         transition-timing-function: cubic-bezier(.4,0,.2,1);
     }
     header nav div.upper svg.salesianos-logo {
+        display: none;
+        width: 7vw;
         height: auto;
         position: absolute;
         left: 18px;
         top: 32px;
         max-width: 100px;
-        @apply hidden lg:flex w-[7vw] xl:w-[11vw];
     }
     header nav {
-        @apply lg:mb-4;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -186,7 +186,8 @@
         width: 100%;
     }
     header nav div.upper div.social-media {
-        @apply absolute flex max-lg:left-[50%] lg:right-0 max-lg:translate-x-[-50%];
+        position: absolute;
+        display: flex;
     }
     header nav div.upper div.social-media a.icon {
         display: flex;
@@ -224,17 +225,17 @@
     header nav div.upper div.social-media a.icon:nth-child(even):hover { 
         background-color: var(--orange-300);
     }
-
     header.scrolled {
         top: -200px;
-        border-bottom: solid 1px var(--black-500); 
     }
     header.scrolled.up {
         top: 0px;
     }
     header.transparent {
         background-color: #FFFFFF00;
-        @apply transition-colors;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
     }
     header.transparent ul.information {
         display: none;
@@ -248,7 +249,7 @@
     }
     header.transparent nav div.upper div.social-media { 
         position: absolute;
-        @apply top-[45px] lg:top-[32px] lg:right-[35px];
+        top: 45px;
     }
     header.transparent nav div.upper button.mobile { border-color: #FFFFFFCC; }
     header.transparent nav div.upper button.mobile:hover { background-color: #FFFFFF6B; }
@@ -266,7 +267,9 @@
         background-color: #FFFFFF00;
     }
     header.transparent nav div.upper .logo :deep(svg){
-        @apply lg:mx-auto my-7 w-[80px] h-[80px] lg:w-[130px] lg:h-[130px];
+        width: 80px;
+        height: 80px;
+        margin-block: 1.75rem;
     }
     header.transparent nav {
         border-bottom-color: #FFFFFF00;
@@ -276,6 +279,7 @@
         top: 0;
         width: 100%;
         height: auto;
+        z-index: 3;
     }
     header.transparent ul.mobile-navigation.show {
         animation: slide-up-bottom 500ms ease-in-out forwards;
@@ -299,6 +303,62 @@
     }
     header.scrolled ul.mobile-navigation {
         top: 85px;
+    }
+    
+    @media (min-width: 992px) {
+        header nav { margin-bottom: 1rem; /* 16px */ }
+        header.scrolled { border-bottom: solid 1px var(--black-500); }
+        header.transparent nav div.upper .logo :deep(svg){
+            width: 130px;
+            height: 130px;
+            margin-inline: auto;
+        }
+        header nav div.upper .logo :deep(svg) {
+            width: 90px;
+            height: 90px;
+        }
+        header nav div.upper svg.salesianos-logo { display: flex; }
+        header nav div.upper div.social-media { right: 0; }
+    }
+
+    @media (min-width: 1200px) {
+        header.transparent nav div.upper div.social-media { 
+            top: 35px;
+            right: 35px;
+        }
+        header nav div.upper div.social-media {
+            right: 0;
+        }
+    }
+
+    @media (max-width: 992px) {
+        header nav div.upper .logo :deep(svg) {
+            width: 60px;
+        }
+        header nav {
+            position: relative;
+            z-index: 3;
+            box-shadow: 0px 0.761455px 3.04582px rgba(181, 209, 255, 0.25);
+        }
+        header.transparent nav {
+            position: relative;
+            z-index: 3;
+            box-shadow: unset;
+        }
+        
+        header nav div.upper div.social-media {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        header nav div.upper div.social-media {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+    
+    @media (max-width: 1300px) {
+        header ul.information { display: none; }
+        header nav div.upper svg.salesianos-logo { width: 11vw; }
     }
 </style>
 <script setup>

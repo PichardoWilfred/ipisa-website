@@ -7,6 +7,7 @@ description:
 img: "https://a.storyblok.com/f/272924/1440x960/322d285ce2/dia-del-estudiante-1.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/1440x962/862e73be0c/dia-del-estudiante-2.jpg"
 visibility: feed
+date_: 2024-02-18
 date: "18 de Febrero 2024"
 short_date: "18/02/2024"
 author: Daniela Vicente

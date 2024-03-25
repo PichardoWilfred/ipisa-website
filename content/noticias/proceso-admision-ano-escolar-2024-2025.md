@@ -7,6 +7,7 @@ description:
 img: "https://a.storyblok.com/f/272924/1080x1080/5541b3ee57/admision-3.png"
 wallpaper: "https://a.storyblok.com/f/272924/4000x3000/9642b4db01/img_20240312_134627817.jpg"
 visibility: feed
+date_: 2024-02-23
 date: "23 de Febrero 2024"
 short_date: "23/02/2024"
 author: Daniela Vicente

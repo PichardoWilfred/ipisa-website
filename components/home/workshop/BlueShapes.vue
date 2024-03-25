@@ -43,21 +43,55 @@
 </template>
 <style scoped>
     .blue-circle-small {
-        @apply absolute left-[10%] top-[8%] min-[1160px]:left-[30%] min-[1160px]:top-[5%] h-[150px] w-[150px];
+        position: absolute; 
+        left: 10%;
+        top: 8%;
+        height: 150px;
+        width: 150px;
         animation-delay: 510ms;
     }   
     .blue-cube {
-        @apply absolute left-[2%] min-[1160px]:left-[8%] bottom-[28%] min-[1160px]:bottom-[35%] h-[310px];
+        position: absolute; 
+        left: 2%;
+        bottom: 28%;
+        height: 310px;
+
         animation-delay: 100ms;
     } 
     .big-blue-circle {
-        @apply absolute bottom-[-120px] left-[-10%] min-[1160px]:left-[7%] h-[420px] w-[420px];
+        position: absolute; 
+        bottom: -120px;
+        left: -10%;
+        height: 420px;
+        width: 420px;
         animation-delay: 200ms;
     }
     .blue-rectangular-cube-outline {
-        @apply absolute left-[13%] min-[1160px]:left-[21%] bottom-[-100px] h-[190px];
+        position: absolute; 
+        left: 13%;
+        bottom: -100px;
+        height: 190px;
+
         animation-delay: 400ms;
     }
-
-
+    @media (min-width: 1160px) {
+        .blue-circle-small {
+            top: 5%;
+            left: 30%;
+            animation-delay: 510ms;
+        }   
+        .blue-cube {
+            left: 8%;
+            bottom: 35%;
+            animation-delay: 100ms;
+        } 
+        .big-blue-circle {
+            left: 7%;
+            animation-delay: 200ms;
+        }
+        .blue-rectangular-cube-outline {
+            left: 21%;
+            animation-delay: 400ms;
+        }
+    }
 </style>

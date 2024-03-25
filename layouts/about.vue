@@ -41,7 +41,7 @@
                 <ContentList :query="query" path="/noticias" v-slot="{ list }">
                     <nuxt-link :to="'/noticias/'+item.id" v-for="(item, index) in list" 
                     class="news flex flex-col font-raleway cursor-pointer mb-12">
-                        <NewsPortraitArticle :item="item"/>
+                        <NewsArticle :article_info="item" />
                     </nuxt-link>
                 </ContentList>
             </div>
@@ -249,13 +249,12 @@
         transition: var(--default-tw-transition);
         transition-duration: 250ms;
         box-shadow: 0px 0.4147px 1.65879px 0px rgba(99, 160, 255, 0.35);
-        @apply max-xl:hidden lg:rounded-lg;
     }
     nav.navigation.mobile {
+        display: flex;
         position: fixed;
         overflow-y: scroll;
         max-height: 420px;
-        @apply flex xl:hidden overflow-y-scroll;
         top: unset !important;
         bottom: -100%;
     }
@@ -264,5 +263,20 @@
     }
     button.mobile-navigation {
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+    @media (min-width: 1200px) {
+        nav.navigation.mobile {
+            display: none;
+        }
+    }
+    @media (min-width: 992px) {
+        nav.navigation {
+            border-radius: 0.5rem; 
+        }
+    }
+    @media (max-width: 1200px) {
+        nav.navigation {
+            display: none; 
+        }
     }
 </style>

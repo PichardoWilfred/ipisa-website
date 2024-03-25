@@ -379,22 +379,16 @@
     backdrop-filter: blur(2px);
 }
 .color-background {
-    @apply absolute w-full h-full min-[800px]:w-[40%] min-[800px]:h-full z-10 opacity-[0.6];
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    z-index: 10;
 }
-
-@media (max-width: 800px) {
-    .blue-background {
-        background: linear-gradient(180deg, #0478E0 19.94%, #0478E000 45.24%);
-    }    
-    .orange-background {
-        background: linear-gradient(300deg, #FF7420 -13.27%, rgba(255, 116, 32, 0.64) 10.25%, rgba(255, 116, 32, 0.00) 73.9%);
-    }
-    .card h4 {
-        opacity: 1;
-    }
-    .card-container .card :deep(svg) {
-        transform: unset;
-        transform-origin: unset;
+@media (min-width: 800px) {
+    .color-background {
+        width: 40%;
+        height: 100%;
     }
 }
 @media (min-width: 1600px) {
@@ -442,5 +436,19 @@
     }
     .card:is(:nth-child(1), :nth-child(2), :nth-child(7), :nth-child(8)):hover { box-shadow: 0px 1px 3px 0px #47a9ff; }
     .card:is(:nth-child(5), :nth-child(6), :nth-child(7), :nth-child(8)):hover { box-shadow: 0px 1px 3px 0px #ff9a5f; }
+    
+    .blue-background {
+        background: linear-gradient(180deg, #0478E0 19.94%, #0478E000 45.24%);
+    }    
+    .orange-background {
+        background: linear-gradient(300deg, #FF7420 -13.27%, rgba(255, 116, 32, 0.64) 10.25%, rgba(255, 116, 32, 0.00) 73.9%);
+    }
+    .card h4 {
+        opacity: 1;
+    }
+    .card-container .card :deep(svg) {
+        transform: unset;
+        transform-origin: unset;
+    }
 }
 </style>

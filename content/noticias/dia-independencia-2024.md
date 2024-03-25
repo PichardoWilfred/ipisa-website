@@ -7,6 +7,7 @@ description:
 img: "https://a.storyblok.com/f/272924/1080x1080/fb6853bdcd/dia-de-independencia.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/1080x1080/fb6853bdcd/dia-de-independencia.jpg"
 visibility: feed
+date_: 2024-02-27
 date: "27 de febrero 2024"
 short_date: "27/02/2024"
 author: Wilfred Pichardo

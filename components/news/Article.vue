@@ -21,7 +21,7 @@
                     </span>
                     <div class="circle bg-[#B5D1FF] rounded-full h-[6px] w-[6px] mx-3"></div>
                     <span class="">
-                        {{ article_info.short_date }}
+                        {{ short_date }}
                     </span>
                 </div>
             </NuxtLink>
@@ -48,7 +48,7 @@
                     </span>
                     <span class="bg-[#D6E9FF] w-[2px] h-full mx-3"></span>
                     <span class="article-date text-[14px]">
-                        {{ article_info.date }}
+                        {{ long_date }}
                     </span>
                 </div>
             </div>
@@ -73,7 +73,7 @@
             </span>
             <span class="bg-blue-100 w-[2px] h-full mx-4"></span>
             <span class="">
-                {{ article_info.date }}
+                {{ long_date }}
             </span>
         </div>
 
@@ -219,6 +219,9 @@
     }
 
     const requirements_copied_text = ref("Copiar enlace de la noticia");
+    
+    const long_date = useDateParser(article_info.date_, 'long');
+    const short_date = useDateParser(article_info.date_, 'short');
 
 </script>
 <style scoped>

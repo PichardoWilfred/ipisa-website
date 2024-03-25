@@ -1,56 +1,34 @@
 <template>
-  <div
-    class="workshop-menu-container relative top-0 left-0 w-full mx-auto mb-[5rem] md:overflow-hidden"
-    :class="{ '!rounded-[0px] !mx-[0px] !w-full': variant === 'cards' }"
-  >
+  <div class="workshop-menu-container relative top-0 left-0 w-full mx-auto mb-[5rem] md:overflow-hidden"
+    :class="{ '!rounded-[0px] !mx-[0px] !w-full': variant === 'cards' }">
     <div class="absolute top-0 left-0 w-full lg:w-[112%] h-full">
-      <div
-        class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-screen md:h-[100vh] lg:w-[112%] lg:h-[105%] transition-all z-20"
-      >
+      <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-screen md:h-[100vh] lg:w-[112%] lg:h-[105%] transition-all z-20">
         <template v-if="!in_mobile">
-          <div
-            v-if="in_tablet"
-            class="tablet-color-bg relative w-full h-full overflow-hidden transition-all"
-            :class="[
-              {
+          <div v-if="in_tablet" class="tablet-color-bg relative w-full h-full overflow-hidden transition-all" :class="[ {
                 'blue-animation': blue_animation,
                 'orange-animation': orange_animation,
-              },
-            ]"
-          />
-          <div
-            v-if="!in_tablet"
-            class="desktop-color-bg relative w-full h-full overflow-hidden transition-all"
-            :class="[{ 'color-animation': color_animation }]"
-          />
+              }]" />
+          <div v-if="!in_tablet" class="desktop-color-bg relative w-full h-full overflow-hidden transition-all" :class="[{ 'color-animation': color_animation }]" />
         </template>
         <template v-else>
-          <div
-            class="absolute opacity-30 md:opacity-0 top-0 left-0 w-full h-full bg-white z-20"
-          />
+          <div class="absolute flex items-center justify-center md:opacity-0 top-0 left-0 w-full h-full bg-[#FFFFFF4D] text-[red] z-20">
+            <Transition name="fade" mode="out-in">  
+              <div v-if="workshop_card_background" class="bg-[#FFFFFF99] w-screen h-[370px] border-b border-orange-200 border-t-2 border-t-blue-200"></div>
+            </Transition>
+          </div>
         </template>
-        <div
-          v-if="variant === 'cards'"
-          class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0 blur"
-          ref="container"
-        >
-          <HomeWorkshopBlueShapes />
-          <HomeWorkshopOrangeShapes />
-          <div class="blue-background color-background" />
-          <div class="orange-background color-background" />
-          <div class="white-blur" />
+        <div v-if="variant === 'cards'" ref="container" class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0 blur">
+          <!-- <HomeWorkshopBlueShapes /> -->
+          <!-- <HomeWorkshopOrangeShapes /> -->
+
+          <!-- <div class="blue-background color-background" />
+          <div class="orange-background color-background" /> -->
+          <div class="white-blur"></div>
         </div>
-        <nuxt-img
-          v-if="variant !== 'cards' || in_mobile"
-          v-for="({ img, name }, index) in cards"
-          :key="index"
-          loading="lazy"
-          :src="`https://a.storyblok.com/f/272924/6000x4000/${img}/${name}-1.JPG`"
-          sizes="600px md:800px"
-          densities="x1 x2"
-          class="absolute top-0 left-0 w-screen h-screen md:w-[112%] md:h-[120vh] opacity-0 object-cover transition-all object-center"
-          :class="{ 'workshop-focused': name === focused_workshop }"
-        />
+        <nuxt-img  v-if="variant !== 'cards' || in_mobile" v-for="({ img, name }, index) in cards" :key="index"
+          loading="lazy" :src="`https://a.storyblok.com/f/272924/6000x4000/${img}/${name}-1.JPG`" sizes="600px md:800px" densities="x1 x2"
+          class="absolute top-0 left-0 w-screen h-screen md:w-[112%] md:h-[120vh] opacity-0 object-cover transition-all object-center" 
+          :class="{ 'workshop-focused': name === focused_workshop }" />
       </div>
     </div>
 
@@ -61,7 +39,7 @@
         'flex p-10 gap-4 radius-none': variant === 'cards' && !in_mobile,
       }"
       ref="card_container"
-      @scroll="apply_background"
+      @scroll.prevent="apply_background"
     >
       <div v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name"
         class="card max-[1080px]:min-[800px]:flex-row max-[1080px]:min-[800px]:items-center flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all snap-center"
@@ -332,13 +310,17 @@ const cards = reactive([
 
 const focused_workshop = ref(null);
 const background_image_timer = ref(0);
+const workshop_card_background_timer = ref(0);
+const workshop_card_background = ref(false); 
 const background_timer = ref(0);
 var lastIndex = -1;
 
 const apply_background = ({ target }) => {
-  const newIndex = Math.floor(
-    target?.scrollTop / target?.firstElementChild?.clientHeight
-  );
+
+  clearTimeout(workshop_card_background_timer.value);
+  workshop_card_background.value = false;
+
+  const newIndex = Math.floor( target?.scrollTop / target?.firstElementChild?.clientHeight);
   if (lastIndex != newIndex && (variant !== "cards" || in_mobile)) {
     clearTimeout(background_timer.value);
     background_timer.value = setTimeout(() => {
@@ -347,6 +329,9 @@ const apply_background = ({ target }) => {
     }, 120);
     lastIndex = newIndex;
   }
+  workshop_card_background_timer.value = setTimeout(() => {
+    workshop_card_background.value = true;
+  });
 };
 
 onMounted(() => {

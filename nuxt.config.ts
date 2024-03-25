@@ -1,10 +1,10 @@
 const path = require('path');
 export default defineNuxtConfig({ 
-  nitro: {
-    output: {
-      publicDir: path.join(__dirname, './ipisa-production-build/public') //esto es un submodulo de git configurado para cuando se haga un build nuevo
-    }
-  },
+  // nitro: {
+  //   output: {
+  //     publicDir: path.join(__dirname, './ipisa-production-build/public') //esto es un submodulo de git configurado para cuando se haga un build nuevo
+  //   }
+  // },
   devtools: { enabled: true },
   css: [ '@/assets/css/main.css'],
   app: {

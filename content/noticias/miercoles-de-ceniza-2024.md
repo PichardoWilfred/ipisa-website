@@ -7,6 +7,7 @@ description:
 img: "https://a.storyblok.com/f/272924/1440x1440/aee3556b1c/miercoles-de-ceniza-1.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/1440x1440/aee3556b1c/miercoles-de-ceniza-1.jpg"
 visibility: feed
+date_: 2024-02-14
 date: "14 de febrero 2024"
 short_date: "14/02/2024"
 author: Daniela Vicente

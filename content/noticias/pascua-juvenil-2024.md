@@ -6,7 +6,8 @@ description:
     - "Atención alumnos y exalumnos de nuestro Centro Educativo. Les invitamos a vivir la experiencia de la Pascua Juvenil 2024, bajo el lema “El camino del amor”, los días 25, 26 y 27 de marzo. ¡No te lo pierdas!❤️"
 img: "https://a.storyblok.com/f/272924/1440x1440/3f42f10087/433483923_18045687331633681_2732998769115401466_n.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/1440x1440/18abb6ad63/432862720_18045687346633681_3785676829009425561_n.jpg"
-visibility: default
+visibility: feed
+date_: 2024-02-18
 date: 18 de Febrero 2024
 short_date: 18/02/2024
 author: Wilfred Pichardo

@@ -7,6 +7,7 @@ description:
 img: "https://a.storyblok.com/f/272924/1055x582/125792b188/seo-main-panel-small.png"
 wallpaper: "https://a.storyblok.com/f/272924/3039x1676/d7fd5d41f6/seo-main-panel.png"
 visibility: default
+date_: 2024-02-18
 date: 18 de Febrero 2024
 short_date: 18/02/2024
 author: Wilfred Pichardo

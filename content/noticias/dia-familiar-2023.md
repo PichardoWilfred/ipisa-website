@@ -7,6 +7,7 @@ description:
 img: "https://a.storyblok.com/f/272924/2048x1365/4e4601fc28/406460050_779092674231727_1601465747658171303_n.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/2048x1365/092bf33421/405243193_779090274231967_3529362739893291241_n.jpg"
 visibility: feed
+date_: 2023-11-29
 date: "29 de Noviembre 2023"
 short_date: "29/11/2023"
 author: Wilfred Pichardo

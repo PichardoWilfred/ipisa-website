@@ -210,6 +210,7 @@
 
 /* .content ul.navigation li.selected:nth-child(even) .cube { @apply bg-blue; } */
 /* .content ul.navigation li.selected:nth-child(odd) .cube { @apply bg-orange; } */
+
 .content ul.navigation li.selected { @apply underline; }
 .content ul.navigation li.selected:nth-child(even ) { @apply text-blue; }
 .content ul.navigation li.selected:nth-child(odd) { @apply text-orange; }

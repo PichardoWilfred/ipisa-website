@@ -12,31 +12,32 @@ const { data } = await useAsyncData('home', () => queryContent(`/noticias/${rout
 const social_share = ref(false);
 
 const open_share = (article) => {
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            navigator.share({
-                title: article.title,
-                text: article.description,
-                url: article_link.value
-            });
-        }else {
-            social_share.value = true;
-        }
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        navigator.share({
+            title: article.title,
+            text: article.description,
+            url: article_link.value
+        });
+    }else {
+        social_share.value = true;
     }
-    const copy_share_link = () => {
-        copy_link();
-        link_copied.value = false;
-    }
-    const article_link = ref(`https://ipisa.edu.do/noticias/${data.value.id}`);
-    async function copy_link() {
-        try {
-            await navigator.clipboard.writeText(article_link.value);
-            requirements_copied_text.value = "Enlace de la noticia copiado!";
-        } catch (err) {
-            console.error('Failed to copy: ', err);
-        }
-    }
+}
 
-    const requirements_copied_text = ref("Copiar enlace de la noticia");
+const copy_share_link = () => {
+    copy_link();
+    link_copied.value = false;
+}
+const article_link = ref(`https://ipisa.edu.do/noticias/${data.value.id}`);
+async function copy_link() {
+    try {
+        await navigator.clipboard.writeText(article_link.value);
+        requirements_copied_text.value = "Enlace de la noticia copiado!";
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+    }
+}
+
+const requirements_copied_text = ref("Copiar enlace de la noticia");
 // S.E.O
 useSeoMeta({
     title: data.value.title,
@@ -46,6 +47,9 @@ useSeoMeta({
     ogImage: data.value.wallpaper,
     twitterCard: data.value.img,
 });
+
+let formatted_date = useDateParser(data.value.date_);
+
 </script>
 <template>
     <ContentDoc v-slot="{ doc }" :path="`/noticias/${route.slug}`">
@@ -60,7 +64,6 @@ useSeoMeta({
                 <div class="absolute top-[-50%] translate-y-[-30%] square-orange bg-orange-300 left-[270px] w-[80px] h-[12px]" />
             </div>
         </div>
-
         <main class="article w-full max-w-[1180px] mx-auto px-[1.4rem] lg:px-[4rem] mb-[2rem] bg-white">
 
             <div class="article-image-container max-lg:hidden overflow-hidden">
@@ -77,7 +80,7 @@ useSeoMeta({
             <h2 class="article-title font-raleway text-black text-[2rem] leading-[2rem] min-[880px]:text-[3.4rem] min-[880px]:leading-[3.5rem] font-bold mt-6 mb-4 lg:mt-10 lg:mb-7">
                 {{ doc.title }}
             </h2>
-            
+
             <div class="flex items-center justify-between font-raleway">
                 <div class="flex flex-col justify-center">
                     <h3 class="text-black-700 text-[1.4rem] leading-[1.4rem] min-[880px]:text-[1.5rem] min-[880px]:leading-[1.6rem] max-[880px]:mb-2 font-bold">
@@ -86,7 +89,7 @@ useSeoMeta({
                     <div class="flex flex-wrap items-center text-[16px]">
                         <span class="text-black-700">1 min</span>
                         <span class="rounded-full bg-black-500 h-[6px] w-[6px] mx-3"></span>
-                        <span class="text-black-700">{{ doc.date }}</span>
+                        <span class="text-black-700">{{ formatted_date }}</span>
                     </div>
                 </div>
                 

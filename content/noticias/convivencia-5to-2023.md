@@ -7,6 +7,7 @@ description:
 img: "https://a.storyblok.com/f/272924/1440x960/23bcf1f39a/portrait.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/1440x960/23bcf1f39a/portrait.jpg"
 visibility: feed
+date_: 2023-10-26
 date: 26 de Octubre 2023
 short_date: 26/02/2023
 author: Daniela Vicente
