@@ -484,20 +484,6 @@ img.workshop-focused {
     .card:is(.equipos, .ensamblaje, .mecanizado, .instalaciones) {
     border-bottom: 0;
   }
-  .blue-background {
-    background: linear-gradient(118deg, #0478e0 13.94%, #0478e000 66.24%);
-    backdrop-filter: blur(2px);
-  }
-  .orange-background {
-    right: 0;
-    background: linear-gradient(
-      284deg,
-      #ff7420 8.73%,
-      rgba(255, 116, 32, 0.64) 10.25%,
-      rgba(255, 116, 32, 0) 73.9%
-    );
-    backdrop-filter: blur(2px);
-  }
   .card-container.translucent .card:is(.confeccion, .equipos) {
     border-left: 0;
   }
@@ -582,58 +568,6 @@ img.workshop-focused {
   height: 20%;
   animation: color-vertical-movement 500ms ease-in-out 1 forwards 120ms;
 }
-@keyframes color-vertical-movement {
-  from {
-    transform: translateY(-120%);
-    background: linear-gradient(
-      180deg,
-      #daeeff 0%,
-      #6fbbff 40%,
-      #52adff 53.5%,
-      #85c5ff 65%,
-      #daeeff 100%
-    );
-  }
-  40% {
-    background: linear-gradient(
-      180deg,
-      #daeeff 0%,
-      #6fbbff 40%,
-      #52adff 53.5%,
-      #85c5ff 65%,
-      #daeeff 100%
-    );
-  }
-  45% {
-    background: linear-gradient(
-      180deg,
-      #f1f7ff 0%,
-      #cee4ff 54.64%,
-      #f1f7ff 107.14%
-    );
-  }
-  50% {
-    background: linear-gradient(
-      180deg,
-      #ffede1 0.3%,
-      #ffbf99 23.3%,
-      #ffab79 51.83%,
-      #ffcaab 74.8%,
-      #ffede1 100.3%
-    );
-  }
-  to {
-    transform: translateY(495%);
-    background: linear-gradient(
-      180deg,
-      #ffede1 0.3%,
-      #ffbf99 23.3%,
-      #ffab79 51.83%,
-      #ffcaab 74.8%,
-      #ffede1 100.3%
-    );
-  }
-}
 .middle-bg {
   position: absolute;
   display: block;
@@ -668,30 +602,6 @@ img.workshop-focused {
   height: 50%;
   animation: blue-vertical-movement 500ms ease-in-out 1 forwards 120ms;
 }
-@keyframes blue-vertical-movement {
-  from {
-    transform: translateY(-120%);
-    background: linear-gradient(
-      180deg,
-      #daeeff 0%,
-      #6fbbff 40%,
-      #52adff 53.5%,
-      #85c5ff 65%,
-      #daeeff 100%
-    );
-  }
-  to {
-    transform: translateY(500%);
-    background: linear-gradient(
-      180deg,
-      #daeeff 0%,
-      #6fbbff 40%,
-      #52adff 53.5%,
-      #85c5ff 65%,
-      #daeeff 100%
-    );
-  }
-}
 .tablet-color-bg.orange-animation {
   /* animation */
   animation: orange-background 700ms ease-in-out 1;
@@ -717,30 +627,6 @@ img.workshop-focused {
   width: 10%;
   height: 100%;
   animation: horizontal-movement 400ms ease-in-out 1 forwards 120ms;
-}
-@keyframes horizontal-movement {
-  from {
-    transform: translateX(-20%);
-    background: linear-gradient(
-      270deg,
-      #ffd9c2 0.3%,
-      #ffbf99 23.3%,
-      #ff7320 51.83%,
-      #ffcaab 74.8%,
-      #ffd9c2 100.3%
-    );
-  }
-  to {
-    transform: translateX(1000%);
-    background: linear-gradient(
-      270deg,
-      #ffd9c2 0.3%,
-      #ffbf99 23.3%,
-      #ff7320 51.83%,
-      #ffcaab 74.8%,
-      #ffd9c2 100.3%
-    );
-  }
 }
 @media (min-width: 768px) and (max-width: 1080px) {
   .card-container {
@@ -774,39 +660,6 @@ img.workshop-focused {
   }
   .card.instalaciones :deep(svg) {
     width: 10vw;
-  }
-  .blue-background {
-    background: linear-gradient(120deg, #0478e0 3.94%, #0478e000 30.24%);
-  }
-  .orange-background {
-    background: linear-gradient(
-      284deg,
-      #ff7420 2.73%,
-      rgba(255, 116, 32, 0.64) 34.25%,
-      rgba(255, 116, 32, 0) 73.9%
-    );
-  }
-  .blue-background {
-    background: linear-gradient(120deg, #0478e0 3.94%, #0478e000 30.24%);
-  }
-  .orange-background {
-    background: linear-gradient(
-      284deg,
-      #ff7420 2.73%,
-      rgba(255, 116, 32, 0.64) 34.25%,
-      rgba(255, 116, 32, 0) 73.9%
-    );
-  }
-  .blue-background {
-    background: linear-gradient(180deg, #0478e0 19.94%, #0478e000 45.24%);
-  }
-  .orange-background {
-    background: linear-gradient(
-      300deg,
-      #ff7420 -13.27%,
-      rgba(255, 116, 32, 0.64) 10.25%,
-      rgba(255, 116, 32, 0) 73.9%
-    );
   }
 }
 @media (min-width: 1080px) {
