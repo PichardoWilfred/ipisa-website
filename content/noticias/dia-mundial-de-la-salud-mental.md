@@ -6,7 +6,7 @@ description:
     - "La salud mental nos permite un mejor control sobre nuestras vidas, y hoy que celebramos el Día Mundial de la salud mental, te dejamos algunas recomendaciones y hábitos para mantener un bienestar mental. Cuidar de nuestra salud mental es fundamental para llevar una vida plena y equilibrada. ¡Celebremos este día priorizando nuestra salud emocional!"
 img: "https://a.storyblok.com/f/272924/1080x1080/f773be130a/386751967_18027765877633681_8847685113682052707_n.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/1080x1080/f773be130a/386751967_18027765877633681_8847685113682052707_n.jpg"
-visibility: feed
+visibility: featured
 date_: 2023-10-10
 date: 10 de Octubre 2023
 short_date: 10/10/2023

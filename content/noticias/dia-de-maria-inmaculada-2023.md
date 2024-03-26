@@ -6,7 +6,7 @@ description:
     - "Hoy celebramos el día de María Inmaculada o Inmaculada Concepción de María con nuestro Color Fest, bajo el lema: “Colores con María Inmaculada”. Esta actividad es una manera festiva y creativa de honrar esta fecha especial, al promover la participación de todos los estudiantes, se fomenta el sentido de comunidad y unidad en torno a valores como la pureza y la fe que representan a la Virgen María."
 img: "https://a.storyblok.com/f/272924/1080x1080/b22effa642/1.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/1080x1080/c00962b9b8/5.jpg"
-visibility: feed
+visibility: featured
 date_: 2023-12-08
 date: "8 de Diciembre 2023"
 short_date: "08/12/2023"

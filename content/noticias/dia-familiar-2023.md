@@ -6,7 +6,7 @@ description:
   - El día familiar en IPISA es mucho más que una simple reunión; es un evento lleno de alegría, unión y convivencia entre estudiantes, docentes y familias. Este año, en 2023, celebramos con entusiasmo un día dedicado al fortalecimiento de los lazos familiares y al disfrute de actividades recreativas y culturales.
 img: "https://a.storyblok.com/f/272924/2048x1365/4e4601fc28/406460050_779092674231727_1601465747658171303_n.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/2048x1365/092bf33421/405243193_779090274231967_3529362739893291241_n.jpg"
-visibility: feed
+visibility: featured
 date_: 2023-11-29
 date: "29 de Noviembre 2023"
 short_date: "29/11/2023"

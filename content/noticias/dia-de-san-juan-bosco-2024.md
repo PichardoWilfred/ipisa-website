@@ -8,7 +8,7 @@ description:
   - En nuestro país, es el santo protector de los estudiantes de Formación Profesional, y su fiesta solía celebrarse en todos los centros educativos de este tipo. En diversas listas de patronos celestiales, Don Bosco también es mencionado como el santo al que recurren los actores de doblaje, los capellanes de cárceles y las personas que trabajan en el circo. 🎩📚🎉
 img: "https://a.storyblok.com/f/272924/2048x1365/9d69ca0da3/425781172_823463636461297_4355531572615429854_n.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/2048x1365/9d69ca0da3/425781172_823463636461297_4355531572615429854_n.jpg"
-visibility: feed-portrait
+visibility: featured
 date_: 2024-02-07
 date: "7 de febrero 2024"
 short_date: "07/02/2024"

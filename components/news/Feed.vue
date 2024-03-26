@@ -8,11 +8,11 @@
     }
 
     // Create a query looking into content/articles directory
-    const recommended_query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 16 }
-    const featured_query_tiles = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 9 }
-    const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 10 }
+    const recommended_query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 16, sort: {date_: -1} }
+    const featured_query_tiles = { path: '/noticias', where: [{ visibility: 'featured' }], limit: 9, sort: {date_: -1} }
+    const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 10, sort: {date_: -1} }
     //featured_query
-    const featured_query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 4 }
+    const featured_query = { path: '/noticias', where: [{ visibility: 'featured' }], limit: 4, sort: { date_: -1 } }
 
     function get_date() {
         const months = [
@@ -73,7 +73,7 @@
             </h1>
             <!-- portrait-news -->
             <div class="w-full min-[880px]:hidden">
-                <ContentList :query="query" path="/noticias" v-slot="{ list }">
+                <ContentList :query="featured_query" path="/noticias" v-slot="{ list }">
                     <swiper :modules="[Pagination]" :slides-per-view="1.1" :space-between="20" :pagination="{ dynamicBullets: true }"
                     class="mobile-portrait-news-feed bg-white mt-4 h-[415px]">
                         <swiper-slide v-for="(article, index) in list" :key="index" class="bg-white py-3 h-[415px]">
@@ -170,8 +170,7 @@
                 </div>
                 
                 <div class="news relative flex items-stretch flex-wrap justify-between pb-[42px] min-[880px]:pb-[20px]">
-                    
-                    <ContentList :query="query" path="/noticias" v-slot="{ list }"> <!-- news-article-navigation -->
+                    <ContentList :query="recommended_query" path="/noticias" v-slot="{ list }"> <!-- news-article-navigation -->
                         <NewsArticle v-for="(article, index) in list" :article_info="article" :key="index" />
                     </ContentList>
                     <!-- <div class="absolute bottom-[0px] max-[1070px]:flex hidden justify-center w-full opacity-25">

@@ -6,7 +6,7 @@ description:
     - "El pasado miércoles 18, jueves 19 y viernes 20 de octubre, se estuvo llevando a cabo la Convivencia 5to de Secundaria 2023-2024, bajo el lema: Mi relacion con Dios “El camino que lleva a Jesús”, con el objetivo general de fortalecer el sentido de comunicación con Dios, centrada en diferentes personajes que encontramos en la biblia en el antiguo y nuevo testamento, para a partir de ellos, generar en el joven conciencia de la importancia de estar conectados a Jesús a través de su palabra viva y actuante en la Iglesia, en el prójimo y en nuestro corazón, en diferentes circunstancias de la vida."
 img: "https://a.storyblok.com/f/272924/1440x960/23bcf1f39a/portrait.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/1440x960/23bcf1f39a/portrait.jpg"
-visibility: feed
+visibility: featured
 date_: 2023-10-26
 date: 26 de Octubre 2023
 short_date: 26/02/2023

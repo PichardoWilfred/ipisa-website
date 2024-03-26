@@ -21,7 +21,7 @@ const formatId = (text) => {
 }
 
 // Create a query looking into content/articles directory
-const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 4 }
+const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 4, sort: { date_: -1 } }
 
 </script>
 <style scoped>

@@ -6,7 +6,7 @@ description:
     - El encuentro de Convivencia de 6to año 2023 en IPISA marcó un momento especial de reflexión, camaradería y crecimiento personal. Los estudiantes se sumergieron en actividades diseñadas para fortalecer los lazos de amistad, fomentar el respeto por las diferencias individuales y cultivar un sentido de pertenencia a la comunidad 
 img: "https://a.storyblok.com/f/272924/2048x1365/62559396c0/portrait.jpg"
 wallpaper: "https://a.storyblok.com/f/272924/2048x1365/62559396c0/portrait.jpg"
-visibility: feed
+visibility: featured
 date_: 2023-12-13
 date: 13 de Diciembre 2023
 short_date: 13/12/2023

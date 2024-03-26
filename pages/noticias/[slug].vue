@@ -5,8 +5,8 @@ import { EffectFade, Autoplay, Navigation, Pagination } from 'swiper/modules';
 const route = useRoute().params;
 
 //featured_query
-const desktop_query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 3 }
-const mobile_query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 8 }
+const desktop_query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 3, sort: { date_: -1 } }
+const mobile_query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 8, sort: { date_: -1 } }
 
 const { data } = await useAsyncData('home', () => queryContent(`/noticias/${route.slug}`).findOne());
 const social_share = ref(false);

@@ -102,7 +102,7 @@
     // origin
     const navigation_ = ref(layout.about_navigation); // getting it's page navigation.
 
-    const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 2 }
+    const query = { path: '/noticias', where: [{ visibility: 'feed' }], limit: 2, sort: { date_: -1 } }
 
     const scroll_timeout = ref(0);
     const scroll_highlight = ref(0);
