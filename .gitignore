@@ -33,5 +33,4 @@ logs
 .git
 
 # HTTPS Proxy certificates
-localhost.pem
-localhost-key.pem
+*.pem
