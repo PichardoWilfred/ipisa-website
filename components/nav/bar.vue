@@ -43,9 +43,9 @@
             </ul>
         </nav>   
         <ul class="mobile-navigation lg:hidden absolute" :class="{ show: mobile_menu }">
-            <li v-for="({ label, class_, section, route }, index) in navigation_bar" :key="index" @click.native="scrollToSection(section, 200)"
+            <li v-for="({ label, class_, section, route }, index) in navigation_bar" :key="index"
             class="item flex items-center justify-center font-raleway font-semibold text-black hover:text-black-400 border-b border-black-500 hover:bg-black-500 active:bg-gray-100" :class="class_">
-                <nuxt-link :to="route" class="h-full w-full py-6">
+                <nuxt-link :to="route" class="h-full w-full py-6" @click.native="() => { toggle_mobile_menu() }">
                     {{ label }}
                 </nuxt-link>
             </li>
