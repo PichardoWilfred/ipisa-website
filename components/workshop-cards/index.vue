@@ -1,34 +1,56 @@
 <template>
-  <div class="workshop-menu-container relative top-0 left-0 w-full mx-auto mb-[5rem] md:overflow-hidden"
-    :class="{ '!rounded-[0px] !mx-[0px] !w-full': variant === 'cards' }">
+  <div
+    class="workshop-menu-container relative top-0 left-0 w-full min-[1280px]:w-[95%] mx-auto mb-[10rem] min-[1080px]:rounded-[35px] md:overflow-hidden"
+    :class="{ '!rounded-[0px] !mx-[0px] !w-full': variant === 'cards' }"
+  >
     <div class="absolute top-0 left-0 w-full lg:w-[112%] h-full">
-      <div class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-screen md:h-[100vh] lg:w-[112%] lg:h-[105%] transition-all z-20">
+      <div
+        class="workshop-image sticky md:absolute top-0 left-0 w-full h-screen md:w-screen md:h-[100vh] lg:w-[112%] lg:h-[105%] transition-all z-20"
+      >
         <template v-if="!in_mobile">
-          <div v-if="in_tablet" class="tablet-color-bg relative w-full h-full overflow-hidden transition-all" :class="[ {
+          <div
+            v-if="in_tablet"
+            class="tablet-color-bg relative w-full h-full overflow-hidden transition-all"
+            :class="[
+              {
                 'blue-animation': blue_animation,
                 'orange-animation': orange_animation,
-              }]" />
-          <div v-if="!in_tablet" class="desktop-color-bg relative w-full h-full overflow-hidden transition-all" :class="[{ 'color-animation': color_animation }]" />
+              },
+            ]"
+          />
+          <div
+            v-if="!in_tablet"
+            class="desktop-color-bg relative w-full h-full overflow-hidden transition-all"
+            :class="[{ 'color-animation': color_animation }]"
+          />
         </template>
         <template v-else>
-          <div class="absolute flex items-center justify-center md:opacity-0 top-0 left-0 w-full h-full bg-[#FFFFFF4D] text-[red] z-20">
-            <Transition name="fade" mode="out-in">  
-              <div v-if="workshop_card_background" class="bg-[#FFFFFF99] w-screen h-[370px] border-b border-orange-200 border-t-2 border-t-blue-200"></div>
-            </Transition>
-          </div>
+          <div
+            class="absolute opacity-30 md:opacity-0 top-0 left-0 w-full h-full bg-white z-20"
+          />
         </template>
-        <div v-if="variant === 'cards'" ref="container" class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0 blur">
-          <!-- <HomeWorkshopBlueShapes /> -->
-          <!-- <HomeWorkshopOrangeShapes /> -->
-
-          <!-- <div class="blue-background color-background" />
-          <div class="orange-background color-background" /> -->
-          <div class="white-blur"></div>
+        <div
+          v-if="variant === 'cards'"
+          class="absolute max-lg:flex-col flex w-full h-full overflow-hidden top-0 left-0 blur"
+          ref="container"
+        >
+          <HomeWorkshopBlueShapes />
+          <HomeWorkshopOrangeShapes />
+          <div class="blue-background color-background" />
+          <div class="orange-background color-background" />
+          <div class="white-blur" />
         </div>
-        <nuxt-img  v-if="variant !== 'cards' || in_mobile" v-for="({ img, name }, index) in cards" :key="index"
-          loading="lazy" :src="`https://a.storyblok.com/f/272924/6000x4000/${img}/${name}-1.JPG`" sizes="600px md:800px" densities="x1 x2"
-          class="absolute top-0 left-0 w-screen h-screen md:w-[112%] md:h-[120vh] opacity-0 object-cover transition-all object-center" 
-          :class="{ 'workshop-focused': name === focused_workshop }" />
+        <nuxt-img
+          v-if="variant !== 'cards' || in_mobile"
+          v-for="({ img, name }, index) in cards"
+          :key="index"
+          loading="lazy"
+          :src="`https://a.storyblok.com/f/272924/6000x4000/${img}/${name}-1.JPG`"
+          sizes="600px md:800px"
+          densities="x1 x2"
+          class="absolute top-0 left-0 w-screen h-screen md:w-[112%] md:h-[120vh] opacity-0 object-cover transition-all object-center"
+          :class="{ 'workshop-focused': name === focused_workshop }"
+        />
       </div>
     </div>
 
@@ -39,13 +61,27 @@
         'flex p-10 gap-4 radius-none': variant === 'cards' && !in_mobile,
       }"
       ref="card_container"
-      @scroll.prevent="apply_background"
+      @scroll="apply_background"
     >
-      <div v-for="({ name, icon, title, description }, index) in cards" :key="index" :id="name"
-        class="card max-[1080px]:min-[800px]:flex-row max-[1080px]:min-[800px]:items-center flex flex-col justify-center md:bg-white text-black-700 object-cover cursor-pointer transition-all snap-center"
-        :class="{ 'justify-center rounded-[20px] bg-white m-3 p-2 drop-shadow-2xl': variant === 'cards' && !in_mobile, [name]: true }" @click.prevent="go_to_workshop(icon)">
-        <nuxt-icon class="no-shadow mx-auto max-[1080px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5" :class="{ '': variant === 'cards' }"
-          :name="`workshop/${icon}`" filled />
+      <div
+        class="card max-[1080px]:min-[800px]:flex-row max-[1080px]:min-[800px]:items-center flex flex-col justify-center bg-none md:bg-white text-black-700 object-cover cursor-pointer transition-all snap-center"
+        v-for="({ name, icon, title, description }, index) in cards"
+        :key="index"
+        :id="name"
+        :class="{
+          'justify-center rounded-[20px] bg-white m-3 p-2 drop-shadow-2xl':
+            variant === 'cards' && !in_mobile,
+          [name]: true,
+        }"
+        @click.prevent="go_to_workshop(icon)"
+        @mouseenter.prevent="apply_background_desktop(name)"
+      >
+        <nuxt-icon
+          class="no-shadow mx-auto max-[1080px]:min-[800px]:mx-[0] max-md:pt-10 mb-5 px-5"
+          :class="{ '': variant === 'cards' }"
+          :name="`workshop/${icon}`"
+          filled
+        />
         <div
           class="flex flex-col max-[1080px]:min-[800px]:items-start items-center max-md:pb-10"
         >
@@ -61,7 +97,7 @@
           </h4>
           <p
             v-if="variant !== 'cards' || in_mobile"
-            class="max-[1080px]:min-[800px]:text-start text-center font-raleway leading-[18px] max-w-[310px] md:mb-5 mx-auto"
+            class="max-[1080px]:min-[800px]:text-start text-center font-raleway min-[1080px]:mx-4 min-[1080px]:text-[16px] leading-[18px] max-w-[310px] md:mb-5 mx-auto"
           >
             {{ description }}
           </p>
@@ -73,23 +109,40 @@
 
 <script setup>
 // @ts-nocheck
+useSeoMeta({
+  title: "IPISA - Nuestros Talleres",
+  ogTitle: () => `IPISA - Nuestros Talleres`,
+  ogDescription: () =>
+    `Cada taller es una oportunidad para forjar un camino hacia el éxito, proporcionando a los estudiantes una base sólida y las herramientas necesarias para sobresalir en sus respectivos campos.`,
+  description: () =>
+    `Cada taller es una oportunidad para forjar un camino hacia el éxito, proporcionando a los estudiantes una base sólida y las herramientas necesarias para sobresalir en sus respectivos campos.`,
+  ogImage: () =>
+    "https://a.storyblok.com/f/272924/1055x582/742e24fb5e/nuestro-talleres.png",
+  twitterCard: () =>
+    "https://a.storyblok.com/f/272924/1055x582/742e24fb5e/nuestro-talleres.png",
+  language: () => `es`,
+});
 const { variant } = defineProps({
   variant: String,
 });
-
 const go_to_workshop = async (path) => {
   await navigateTo({ path: `talleres/${path}` });
 };
 const temp_timer = ref(0);
-
 const color_animation = ref(false);
 // these are reserved for medium & tablet
 const blue_animation = ref(false);
 const orange_animation = ref(false);
-
 const observer = ref(null);
 const once = ref(true);
-
+// TODO: fix auto center scrollable view of talleres
+// function go_to_position(target) {
+//     if (window.scrollY !== target.offsetParent.offsetTop) {
+//         setInterval(() => {
+//             target.scrollIntoView()
+//         }, 1000)
+//     }
+// }
 function trigger_animation() {
   once.value = false;
   if (in_tablet.value) {
@@ -107,10 +160,8 @@ function trigger_animation() {
   );
 }
 const card_container = ref(null);
-
 const in_tablet = ref(false);
 const in_mobile = ref(false);
-
 // cards
 const cards = reactive([
   {
@@ -307,20 +358,14 @@ const cards = reactive([
     show_element: false,
   },
 ]);
-
 const focused_workshop = ref(null);
 const background_image_timer = ref(0);
-const workshop_card_background_timer = ref(0);
-const workshop_card_background = ref(false); 
 const background_timer = ref(0);
 var lastIndex = -1;
-
 const apply_background = ({ target }) => {
-
-  clearTimeout(workshop_card_background_timer.value);
-  workshop_card_background.value = false;
-
-  const newIndex = Math.floor( target?.scrollTop / target?.firstElementChild?.clientHeight);
+  const newIndex = Math.floor(
+    target?.scrollTop / target?.firstElementChild?.clientHeight
+  );
   if (lastIndex != newIndex && (variant !== "cards" || in_mobile)) {
     clearTimeout(background_timer.value);
     background_timer.value = setTimeout(() => {
@@ -329,13 +374,18 @@ const apply_background = ({ target }) => {
     }, 120);
     lastIndex = newIndex;
   }
-  workshop_card_background_timer.value = setTimeout(() => {
-    workshop_card_background.value = true;
-  });
 };
-
+const apply_background_desktop = (workshop) => {
+  clearTimeout(background_timer.value);
+  background_timer.value = setTimeout(() => {
+    if (focused_workshop.value === workshop || variant === "cards") return;
+    focused_workshop.value = workshop;
+  }, 120);
+};
 onMounted(() => {
-  in_tablet.value = window.matchMedia("(min-width: 768px) and (max-width: 1080px)").matches;
+  in_tablet.value = window.matchMedia(
+    "(min-width: 768px) and (max-width: 1080px)"
+  ).matches;
   in_mobile.value = window.matchMedia("(max-width: 992px)").matches;
   apply_background({ target: document.querySelector(".card-container") });
   if (in_mobile.value) {
@@ -347,10 +397,8 @@ onMounted(() => {
         }
       });
     }
-
     // TODO: fix auto center scrollable view of talleres
     // document.querySelector('.card-container').addEventListener('scroll', ({target}) => go_to_position(target))
-
     observer.value = new IntersectionObserver(observe_card_callback, {
       threshold: in_tablet.value ? 0.5 : 1,
     }); // to disconnect it later
@@ -375,7 +423,6 @@ onMounted(() => {
 });
 onBeforeUnmount(() => {
   observer.value.disconnect();
-
   clearTimeout(background_timer.value);
   clearTimeout(temp_timer.value);
   clearTimeout(background_image_timer.value);
@@ -429,7 +476,6 @@ img.workshop-focused {
   font-weight: 500;
   color: #5e6b81;
   background-color: transparent;
-
   border-left: 2px solid white;
   border-bottom: 2px solid white;
 }
@@ -437,6 +483,20 @@ img.workshop-focused {
   .card-container.translucent
     .card:is(.equipos, .ensamblaje, .mecanizado, .instalaciones) {
     border-bottom: 0;
+  }
+  .blue-background {
+    background: linear-gradient(118deg, #0478e0 13.94%, #0478e000 66.24%);
+    backdrop-filter: blur(2px);
+  }
+  .orange-background {
+    right: 0;
+    background: linear-gradient(
+      284deg,
+      #ff7420 8.73%,
+      rgba(255, 116, 32, 0.64) 10.25%,
+      rgba(255, 116, 32, 0) 73.9%
+    );
+    backdrop-filter: blur(2px);
   }
   .card-container.translucent .card:is(.confeccion, .equipos) {
     border-left: 0;
@@ -446,20 +506,6 @@ img.workshop-focused {
   background-color: white;
   color: var(--black-700);
   border-color: transparent;
-}
-.blue-background {
-  background: linear-gradient(118deg, #0478e0 13.94%, #0478e000 66.24%);
-  backdrop-filter: blur(2px);
-}
-.orange-background {
-  right: 0;
-  background: linear-gradient(
-    284deg,
-    #ff7420 8.73%,
-    rgba(255, 116, 32, 0.64) 10.25%,
-    rgba(255, 116, 32, 0) 73.9%
-  );
-  backdrop-filter: blur(2px);
 }
 .card-container.translucent .card :deep(svg) .shadow {
   opacity: 0;
@@ -525,7 +571,8 @@ img.workshop-focused {
     background-color: white;
   }
 }
-.desktop-color-bg.color-animation::after { /* animation */
+.desktop-color-bg.color-animation::after {
+  /* animation */
   content: "";
   display: block;
   position: absolute;
@@ -595,7 +642,9 @@ img.workshop-focused {
   width: 5%;
   height: 20%;
 }
-.tablet-color-bg.blue-animation { /* animation */
+/* background: linear-gradient(180deg, #F1F7FF 0%, #CEE4FF 54.64%, #F1F7FF 107.14%); */
+.tablet-color-bg.blue-animation {
+  /* animation */
   animation: blue-background 700ms ease-in-out 1;
 }
 @keyframes blue-background {
@@ -610,7 +659,8 @@ img.workshop-focused {
     background-color: white;
   }
 }
-.tablet-color-bg.blue-animation::before { /* animation */
+.tablet-color-bg.blue-animation::before {
+  /* animation */
   content: "";
   display: block;
   position: relative;
@@ -642,7 +692,8 @@ img.workshop-focused {
     );
   }
 }
-.tablet-color-bg.orange-animation { /* animation */
+.tablet-color-bg.orange-animation {
+  /* animation */
   animation: orange-background 700ms ease-in-out 1;
 }
 @keyframes orange-background {
@@ -657,7 +708,8 @@ img.workshop-focused {
     background-color: white;
   }
 }
-.tablet-color-bg.orange-animation::after { /* animation */
+.tablet-color-bg.orange-animation::after {
+  /* animation */
   content: "";
   display: block;
   position: relative;
@@ -690,6 +742,80 @@ img.workshop-focused {
     );
   }
 }
+@media (min-width: 768px) and (max-width: 1080px) {
+  .card-container {
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(4, 270px);
+  }
+  .card-container .card {
+    gap: 2px;
+  }
+  .card.confeccion :deep(svg) {
+    width: 10vw;
+  }
+  .card.desarrollo :deep(svg) {
+    width: 15vw;
+  }
+  .card.electromecanica :deep(svg) {
+    width: 13vw;
+  }
+  .card.gestion :deep(svg) {
+    width: 13vw;
+  }
+  .card.equipos :deep(svg) {
+    width: 13vw;
+    transform: translateX(7px) translateY(20px);
+  }
+  .card.ensamblaje :deep(svg) {
+    width: 12vw;
+  }
+  .card.mecanizado :deep(svg) {
+    width: 10vw;
+  }
+  .card.instalaciones :deep(svg) {
+    width: 10vw;
+  }
+  .blue-background {
+    background: linear-gradient(120deg, #0478e0 3.94%, #0478e000 30.24%);
+  }
+  .orange-background {
+    background: linear-gradient(
+      284deg,
+      #ff7420 2.73%,
+      rgba(255, 116, 32, 0.64) 34.25%,
+      rgba(255, 116, 32, 0) 73.9%
+    );
+  }
+  .blue-background {
+    background: linear-gradient(120deg, #0478e0 3.94%, #0478e000 30.24%);
+  }
+  .orange-background {
+    background: linear-gradient(
+      284deg,
+      #ff7420 2.73%,
+      rgba(255, 116, 32, 0.64) 34.25%,
+      rgba(255, 116, 32, 0) 73.9%
+    );
+  }
+  .blue-background {
+    background: linear-gradient(180deg, #0478e0 19.94%, #0478e000 45.24%);
+  }
+  .orange-background {
+    background: linear-gradient(
+      300deg,
+      #ff7420 -13.27%,
+      rgba(255, 116, 32, 0.64) 10.25%,
+      rgba(255, 116, 32, 0) 73.9%
+    );
+  }
+}
+@media (min-width: 1080px) {
+  .card-container {
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(2, 50%);
+    height: 100%;
+  }
+}
 @media (max-width: 768px) {
   .card-container {
     grid-template-columns: repeat(1, min(470px, 81.5vw));
@@ -703,17 +829,6 @@ img.workshop-focused {
   }
 }
 @media (max-width: 800px) {
-  .blue-background {
-    background: linear-gradient(180deg, #0478e0 19.94%, #0478e000 45.24%);
-  }
-  .orange-background {
-    background: linear-gradient(
-      300deg,
-      #ff7420 -13.27%,
-      rgba(255, 116, 32, 0.64) 10.25%,
-      rgba(255, 116, 32, 0) 73.9%
-    );
-  }
   .card h4 {
     opacity: 1;
   }
@@ -722,23 +837,8 @@ img.workshop-focused {
     transform-origin: unset;
   }
 }
-@media (max-width: 850px) {
-  .blue-background {
-    background: linear-gradient(120deg, #0478e0 3.94%, #0478e000 30.24%);
-  }
-  .orange-background {
-    background: linear-gradient(
-      284deg,
-      #ff7420 2.73%,
-      rgba(255, 116, 32, 0.64) 34.25%,
-      rgba(255, 116, 32, 0) 73.9%
-    );
-  }
-}
+
 .color-background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.6;
+  @apply absolute w-full h-full min-[800px]:w-[40%] min-[800px]:h-full z-10 opacity-[0.6];
 }
 </style>
