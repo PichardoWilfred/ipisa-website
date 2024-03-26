@@ -270,12 +270,18 @@
 </template>
 <style scoped>
 .emblem-analysis {
-    @apply flex flex-wrap items-center justify-center lg:justify-between mt-2;
+    display: flex; 
+    margin-top: 0.5rem; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center; 
 }
 
-.emblem-analysis p.highlight-hint {
+.emblem-analysis p.highlight-hint {margin-bottom: 0.5rem; 
+    font-style: italic; 
+    transition: var(--default-tw-transition);
+    font-size: 12px;
     color: #AABDD8;
-    @apply italic text-[12px] lg:text-[14px] mb-2 translate-x-[-1.1rem] transition-all;
 }
 @keyframes highlight-hint-blink {
     0% {
@@ -293,57 +299,92 @@
     animation: highlight-hint-blink 6s ease-in-out infinite;
 }
 .emblem-analysis ul.disc-style {
-    @apply max-w-[460px] ;
+    max-width: 460px;
     list-style-type: disc;
     list-style: disc;
 }
 .emblem-analysis ul.sub-list li {
-    @apply cursor-pointer text-[14px] lg:text-[17px] hover:underline hover:text-black-600 flex items-center content-center my-1;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem; 
+    align-content: center; 
+    align-items: center; 
+    cursor: pointer; 
+    font-size: 14px;
+}
+.emblem-analysis ul.sub-list li:hover {
+    text-decoration: underline;
+    color: var(--black-600);
 }
 .emblem-analysis ul.sub-list li b {
-    @apply ms-2;
+    margin-right: 0.5rem; 
 }
 .emblem-analysis ul li {
-    @apply leading-6 text-black mb-2;
+    line-height: 1.5rem; 
+    margin-bottom: 0.5rem;
+    color: var(--black);
 }
 .emblem-analysis ul > li {
-    @apply  hover:underline hover:text-black-600 cursor-pointer transition-all;
+    cursor: pointer; 
+    transition: var(--default-tw-transition);
+}
+.emblem-analysis ul > li:hover {
+    text-decoration: underline;
+    color: var(--black-600);
 }
 .emblem-analysis ul > li.highlight {
-    @apply underline text-black-600;
+    text-decoration: underline;
+    color: var(--black-600);
 }
 .emblem-analysis .ipisa-logo-colored {
-    @apply flex items-center content-center justify-center max-sm:mt-6;
+    display: flex; 
+    justify-content: center; 
+    align-content: center; 
+    align-items: center; 
     width: 306px;
     height: 300px;
 }
 .ipisa-logo-colored :deep(svg){
-    @apply w-full h-full max-w-[290px] max-h-[290px] transition-all translate-y-[-12px];
+    width: 100%; 
+    height: 100%; 
+    transition: var(--default-tw-transition);
+    max-width: 290px;
+    max-height: 290px;
+    transform: translateY(-12px);
 }
 .ipisa-flag :deep(svg) {
-    @apply w-full h-full max-w-[420px] max-h-[290px];
+    width: 100%; 
+    height: 100%; 
+    max-width: 420px;
+    max-height: 290px;
 }
 .video-container {
-    @apply flex flex-col w-full lg:w-[800px];
+    display: flex; 
+    flex-direction: column; 
+    width: 100%; 
 }
 .video-container iframe.video {
-    @apply w-full h-[330px] lg:h-[400px];
+    width: 100%; 
+    height: 330px;
 }
 .strophe {
-    @apply italic font-medium mb-3 max-w-[420px] mx-auto;
+    margin-inline: auto; 
+    margin-bottom: 0.75rem; 
+    font-style: italic; 
+    font-weight: 500; 
+    max-width: 420px;
 }
 
 svg.ipisa-logo-colored g.background-circles {
-    @apply transition-all;
+    transition: var(--default-tw-transition);
     filter: grayscale(80%);
 }
 svg.ipisa-logo-colored g.emblem-core g:is(.gear, .anvil, .rays, .hammer, .power-tower),
 svg.ipisa-logo-colored g.emblem-core path.fire {
-    @apply transition-all;
+    transition: var(--default-tw-transition);
     filter: grayscale(80%);
 }
 svg.ipisa-logo-colored g.background-circles.colored {
-    @apply transition-all;
+    transition: var(--default-tw-transition);
     filter: grayscale(0%);
 }
 svg.ipisa-logo-colored g:is(.school-name, .location, .administration).colored {
@@ -387,6 +428,28 @@ svg.ipisa-logo-colored g.emblem-core.colored g:is(.gear, .anvil, .rays, .hammer,
         filter: brightness(160%);
     } to {
         filter: brightness(100%);
+    }
+}
+@media (max-width: 576px) {
+    .emblem-analysis .ipisa-logo-colored {
+        margin-top: 1.5rem; 
+    }
+}
+@media (min-width: 992px) {
+    .emblem-analysis ul.sub-list li {
+        font-size: 17px;
+    }
+    .emblem-analysis {
+        justify-content: space-between; 
+    }
+    .emblem-analysis p.highlight-hint {
+        font-size: 14px;
+    }
+    .video-container {
+        width: 800px;
+    }
+    .video-container iframe.video {
+        height: 400px;
     }
 }
 </style>

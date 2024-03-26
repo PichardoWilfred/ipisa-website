@@ -13,7 +13,7 @@
 </template>
 <script setup>
 useSeoMeta({
-    title: 'IPISA - Noticias',
+    title: 'Noticias',
     ogTitle: () => `IPISA - Noticias`,
     ogDescription: () => `Entérate de las últimas noticias del Centro.`,
     description: () => `Entérate de las últimas noticias del Centro.`,

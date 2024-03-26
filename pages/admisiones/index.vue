@@ -9,7 +9,7 @@
 <script setup>
 
 useSeoMeta({
-    title: 'IPISA - Requisitos de Admisión',
+    title: 'Admisiones',
     ogTitle: () => `IPISA - Requisitos de Admisión`,
     ogDescription: () => `Para formar parte de nuestra comunidad educativa es importante seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes.`,
     description: () => `Para formar parte de nuestra comunidad educativa es importante seguir un proceso de admisión que garantice la calidad y excelencia de nuestros estudiantes.`,

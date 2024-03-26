@@ -6,7 +6,7 @@
 </template>
 <script setup>
 useSeoMeta({
-    title: 'IPISA - Inserción Laboral',
+    title: 'Inserción Laboral',
     ogTitle: () => `IPISA - Inserción Laboral`,
     ogDescription: () => `En nuestra institución os enfocamos en brindar educación técnica de alta calidad que prepare a nuestros estudiantes para una exitosa inserción en el mundo laboral.`,
     description: () => `En nuestra institución os enfocamos en brindar educación técnica de alta calidad que prepare a nuestros estudiantes para una exitosa inserción en el mundo laboral. `,

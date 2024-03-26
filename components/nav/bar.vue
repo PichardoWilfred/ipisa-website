@@ -2,13 +2,26 @@
     <header :class="header_class">
         <nav>
             <div class="upper">
-                <Icon v-if="!header_class.transparent" class="salesianos-logo" name="Salesianos" />
-                <nuxt-icon @click="scrollToSection('portrait')" name="general/ipisa-logo" class="logo cursor-pointer ms-2 me-auto lg:mx-auto" filled />
+                <Transition name="fade-fast-2" mode="out-in">
+                    <div v-if="!header_class.transparent" class="flex flex-col">
+                        <NuxtLink to="https://www.salesianos.es/salesianos/" target="_blank" rel="noopener">
+                            <Icon class="salesianos-logo" name="Salesianos" />
+                        </NuxtLink>
+                    </div>
+                </Transition>
+                <nuxt-link to="/" class="logo active:scale-90 cursor-pointer ms-2 me-auto lg:mx-auto transition-all">
+                    <nuxt-icon @click="scrollToSection('portrait')" name="general/ipisa-logo" filled />
+                </nuxt-link>
                 <div class="social-media">
-                    <a v-for="({ src, link, email }, index) in social_media" class="icon" :href="link" 
-                    target="_blank" @click="call($event, index)">
+                    <NuxtLink to="https://ipisa.ses.edu.do/" target="_blank" title="Aula Virtual" class="icon edu-coco bg-blue-200" rel="noopener">
+                        <nuxt-icon class="flex-shrink-0 text-[26px] text-white-100" name="layout/aula-virtual" filled />
+                    </NuxtLink>
+                    <NuxtLink v-for="({ src, link, email }, index) in social_media" class="icon" :to="link" target="_blank">
                         <Icon class="flex-shrink-0" :name="src" size="26px" />
-                    </a>
+                    </NuxtLink>
+                    <NuxtLink to="tel:8097245700" class="icon" rel="noopener">
+                        <Icon class="flex-shrink-0" size="26px" name="material-symbols:phone-in-talk-watchface-indicator-sharp" />
+                    </NuxtLink>
                 </div>
                 <button class="mobile max-lg:flex hidden justify-center items-center my-auto me-4 w-[50px] h-[50px] rounded-md 
                     border border-black-500 hover:bg-black-500 transition-[background-color]" 
@@ -17,41 +30,45 @@
                 </button>
             </div>
             <ul class="navigation hidden lg:flex items-center transition-all">
-                <a v-for="({ label, class_, section, route }, index) in navigation_bar" :key="index" @click.prevent="scrollToSection(section)" class="me-10">
-                    <li class="item relative cursor-pointer font-raleway font-semibold last:me-0 text-gray-800
-                    before:absolute before:bottom-[-3px] before:rounded-md before:flex before:h-[3px]
-                    before:bg-orange-300 before:w-0 before:content-['']
-                    hover:before:w-full before:transition-all before:origin-center" :class="[class_, in_route(route) ? 'before:w-full':'' ]" >
-                        {{ label }}
-                    </li>
-                </a>
+                <!-- @click.prevent="scrollToSection(section)" -->
+                <li v-for="({ label, class_, section, route }, index) in navigation_bar" :key="index" 
+                class="item relative cursor-pointer font-raleway font-semibold last:me-0 me-7 xl:me-10 text-gray-800
+                before:absolute before:bottom-[-3px] before:rounded-md before:flex before:h-[3px]
+                before:bg-orange-300 before:w-0 before:content-['']
+                hover:before:w-full before:transition-all before:origin-center" :class="[class_, in_route(route) ? 'before:w-full':'' ]" >
+                    <NuxtLink class="w-full h-full" :to="route">
+                    {{ label }}
+                    </NuxtLink>
+                </li>
             </ul>
         </nav>   
         <ul class="mobile-navigation lg:hidden absolute" :class="{ show: mobile_menu }">
-            <li v-for="({ label, class_, section }, index) in navigation_bar" :key="index" 
-            class="item font-raleway font-semibold text-black hover:text-black-400 
-            py-6 border-b border-black-500 hover:bg-black-500 active:bg-gray-100" 
-            :class="class_" @click.prevent="scrollToSection(section, 200)">
-                {{ label }}
+            <li v-for="({ label, class_, section, route }, index) in navigation_bar" :key="index" @click.native="scrollToSection(section, 200)"
+            class="item flex items-center justify-center font-raleway font-semibold text-black hover:text-black-400 border-b border-black-500 hover:bg-black-500 active:bg-gray-100" :class="class_">
+                <nuxt-link :to="route" class="h-full w-full py-6">
+                    {{ label }}
+                </nuxt-link>
             </li>
-            <li v-if="!header_class.transparent" class="cursor-pointer my-5 me-4">
-                <a class="flex items-center justify-end text-[13px] font-bold" href="https://maps.app.goo.gl/tq2JfxfJoc67brRX7" target="_blank">
-                    <h4 class="font-raleway text-blue me-2 text-end transition-all">
-                        Av. Hispanoamericana, Km 1 Santiago,
-                        <span class="text-blue-300">Zona Sur, República Dominicana.</span>
-                    </h4>
-                    <nuxt-icon name="layout/location-color" class="text-[28px] location-icon-color" filled />
-                </a>
-            </li>
-            <li v-if="!header_class.transparent" class="cursor-pointer my-5 me-4">
-                <a class="flex justify-end text-[17px] font-bold" @click.prevent="copy_phone">
-                    <Icon name="ic:outline-content-copy" class="me-2 text-[16px] separator" />
-                    <h4 class="font-raleway text-orange-300 me-2 text-end transition-all">
-                        <span class="text-orange-200">(809)</span> 724-5700
-                    </h4>
-                    <nuxt-icon name="layout/phone-color" class="text-[26px] phone-icon-color" filled />
-                </a>
-            </li>
+            <template v-if="!header_class.transparent">
+                <li class="cursor-pointer my-5 me-4">
+                    <NuxtLink class="flex items-center justify-end text-[13px] font-bold" to="https://maps.app.goo.gl/tq2JfxfJoc67brRX7" target="_blank">
+                        <h4 class="font-raleway text-blue me-2 text-end transition-all">
+                            Av. Hispanoamericana, Km 1 Santiago,
+                            <span class="text-blue-300">Zona Sur, República Dominicana.</span>
+                        </h4>
+                        <nuxt-icon name="layout/location-color" class="text-[28px] location-icon-color" filled />
+                    </NuxtLink>
+                </li>
+                <li class="flex justify-end cursor-pointer my-5 me-4">
+                    <button class="flex justify-end text-[17px] font-bold" @click.prevent="copy_phone">
+                        <Icon name="ic:outline-content-copy" class="ms-auto me-2 text-[16px] separator" />
+                        <h4 class="font-raleway text-orange-300 me-2 text-end transition-all">
+                            <span class="text-orange-200">(809)</span> 724-5700
+                        </h4>
+                        <nuxt-icon name="layout/phone-color" class="text-[26px] phone-icon-color" filled />
+                    </button>
+                </li>
+            </template>
         </ul>
         <ul class="information">
             <li class="school-address cursor-pointer">
@@ -65,18 +82,19 @@
             </li>
             <li class="phone-number tooltip cursor-pointer flex items-center mt-2" @click.passive="copy_phone">
                 <button class="copy-number flex justify-center items-center p-2 me-2 rounded-full hover:bg-black-100 active:bg-black-500">
-                    <span class="tooltip-text text-[16px] mx-3 font-normal">{{ requirements_copied_text }}</span>
+                    <span class="tooltip-text text-[16px] mx-3 font-normal px-6">{{ requirements_copied_text }}</span>
                     <Icon name="ic:outline-content-copy" class="font-bold text-[16px] separator" />
                 </button>
-                <h4 class="font-raleway text-orange-300 me-2 text-end transition-all">
+                <h6 class="font-raleway text-orange-300 me-2 text-end transition-all">
                     <span class="text-orange-200">(809)</span> 724-5700
-                </h4>
+                </h6>
                 <nuxt-icon name="layout/phone-color" class="text-[26px] phone-icon-color" filled />
-                <div class=""></div>
             </li>
         </ul>
     </header>
-    <div v-if="mobile_menu" class="lg:hidden bg-[#09090970] fixed w-screen h-screen z-[40]" @click="toggle_mobile_menu" />
+    <Transition name="fade-fast-2" mode="out-in">
+        <div v-if="mobile_menu" class="lg:hidden bg-[#09090970] fixed w-screen h-screen z-[40]" @click="toggle_mobile_menu" />
+    </Transition>
 </template>
 <style scoped>
     ul.navigation li.item.focused::after {
@@ -166,7 +184,6 @@
         transition-timing-function: cubic-bezier(.4,0,.2,1);
     }
     header nav div.upper svg.salesianos-logo {
-        display: none;
         width: 7vw;
         height: auto;
         position: absolute;
@@ -216,9 +233,26 @@
     header nav div.upper div.social-media a.icon:nth-child(odd) { 
         background-color: var(--blue);
     }
+
     header nav div.upper div.social-media a.icon:nth-child(odd):hover {
         background-color: var(--blue-300);
     }
+    /*  */
+    header.transparent nav div.upper div.social-media a.icon.edu-coco {
+        background-color: transparent !important;
+        /* transition: var(--default-tw-transition); */
+    }
+    header.transparent nav div.upper div.social-media a.icon.edu-coco:hover {
+        background-color: #FFFFFF6B !important;
+    }
+    header nav div.upper div.social-media a.icon.edu-coco {
+        background-color: var(--blue-300) !important;
+        transition: var(--default-tw-transition);
+    }
+    header nav div.upper div.social-media a.icon.edu-coco:hover {
+        background-color: var(--blue-200) !important;
+    }
+    /*  */
     header nav div.upper div.social-media a.icon:nth-child(even) { 
         background-color: var(--orange);
     }
@@ -267,8 +301,8 @@
         background-color: #FFFFFF00;
     }
     header.transparent nav div.upper .logo :deep(svg){
-        width: 80px;
-        height: 80px;
+        width: 72px;
+        height: 72px;
         margin-block: 1.75rem;
     }
     header.transparent nav {
@@ -285,7 +319,7 @@
         animation: slide-up-bottom 500ms ease-in-out forwards;
     }
     header.transparent ul.mobile-navigation li.item {
-        padding-block: 1.5rem;
+        /* padding-block: 1.5rem; */
         border-bottom: 1px solid var(--black-500);
     }
     header.transparent ul.mobile-navigation li.item:hover {
@@ -317,7 +351,6 @@
             width: 90px;
             height: 90px;
         }
-        header nav div.upper svg.salesianos-logo { display: flex; }
         header nav div.upper div.social-media { right: 0; }
     }
 
@@ -329,6 +362,8 @@
         header nav div.upper div.social-media {
             right: 0;
         }
+        
+        /* header nav div.upper svg.salesianos-logo { display: flex;  } */
     }
 
     @media (max-width: 992px) {
@@ -355,8 +390,10 @@
             transform: translateX(-50%);
         }
     }
-    
-    @media (max-width: 1300px) {
+    @media (max-width: 1100px) {
+        header nav div.upper svg.salesianos-logo { display: none; }
+    }
+    @media (max-width: 1380px) {
         header ul.information { display: none; }
         header nav div.upper svg.salesianos-logo { width: 11vw; }
     }
@@ -365,16 +402,16 @@
 import { useLayoutStore } from '@/store/layout';
 const layout = useLayoutStore();
 
-const requirements_copied_text = ref('Copiar número telefónico');
+const requirements_copied_text = ref('Copiar telefóno');
 
-function call (evt, index) {
-    if ((index === 3) && window.matchMedia("(max-width: 768px)").matches) {
-        evt.preventDefault();
-        window.open('tel:8097245700');
-    }else {
-        copy_phone();
-    }
-}
+// function call (evt, index) {
+//     if ((index === 3) && window.matchMedia("(max-width: 768px)").matches) {
+//         evt.preventDefault();
+//         window.open('tel:8097245700');
+//     }else {
+//         copy_phone();
+//     }
+// }
 const copy_phone = async () => {
     try {
         await navigator.clipboard.writeText('8097245700');
@@ -407,11 +444,11 @@ const header_class = reactive({
     up: false
 })
 const navigation_bar = [
-    {
-        label: 'INICIO',
-        section: 'home',
-        route: '/',
-    },
+    // {
+    //     label: 'INICIO',
+    //     section: 'home',
+    //     route: '/',
+    // },
     {
         label: 'NOSOTROS',
         section: 'about',
@@ -443,9 +480,14 @@ const navigation_bar = [
         section: 'job-insertion',
         route: '/insercion-laboral',
     },
+    {
+        label: 'ACUAPONÍA EDUCATIVA',
+        section: 'educational-aquaponics',
+        route: '/acuaponia-educativa',
+    },
 ];
 const addresses = {
-    'home': '/',
+    // 'home': '/',
     'portrait': '/',
     'about': '/sobre-nosotros',
     'news': '/noticias',
@@ -465,9 +507,6 @@ const social_media = [
     {   src: 'fe:mail', 
         link: "mailto:info@ipisa.edu.do?cc=acct3@example.com?subject=test%20email",
         email: true,
-    },
-    {   src: 'material-symbols:phone-in-talk-watchface-indicator-sharp' ,
-        link: ""
     },
 ];
 // navigation bar styles
@@ -516,7 +555,7 @@ async function scrollToSection (section_, delay = 0 ) {
     const in_mobile = window.matchMedia("(max-width: 768px)").matches;
     // const in_home = computed(() => router.currentRoute.value.name === 'index');
 
-    await navigateTo({ path: addresses[section_]});
+    // await navigateTo({ path: addresses[section_]});
     if (in_mobile && mobile_menu.value) toggle_mobile_menu();
     
     // if (!in_home.value) { return; }
@@ -528,8 +567,5 @@ async function scrollToSection (section_, delay = 0 ) {
     //     window.scrollTo({ top: y, behavior: 'smooth' });
     // }, delay);
 
-    if (in_mobile && mobile_menu.value) {
-        toggle_mobile_menu();
-    };
 }
 </script>

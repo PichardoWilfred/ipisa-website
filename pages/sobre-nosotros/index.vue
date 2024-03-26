@@ -86,7 +86,7 @@ const sections = ref([
 ]);
 
 useSeoMeta({
-    title: 'IPISA - Sobre Nosotros',
+    title: 'Sobre Nosotros',
     ogTitle: () => `IPISA - Sobre Nosotros`,
     ogDescription: () => `Descubre más sobre el Instituto Politécnico Industrial de Santiago (IPISA) explorando lo que tenemos para ofrecerte. Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de valores cristianos.`,
     description: () => `Descubre más sobre el Instituto Politécnico Industrial de Santiago (IPISA) explorando lo que tenemos para ofrecerte. Sumérgete en nuestro mundo educativo donde la excelencia académica se combina con una sólida base de valores cristianos.`,
@@ -109,6 +109,8 @@ onBeforeUnmount(() => {
 <style scoped>
 .about-modules {
     display: grid;
+    justify-content: center;
+    align-items: center;
     grid-template-rows: 500px 2px 500px 2px 500px 2px 500px;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -119,9 +121,15 @@ onBeforeUnmount(() => {
         "history"
         "separator-three"
         "awards";
-    @apply items-center justify-center mx-auto w-[85%] pb-[140px] sm:pt-[50px];
+    width: 85%;
+    padding-bottom: 140px;
+    margin-inline: auto;
 }
-
+@media (min-width: 576px) {
+    .about-modules {
+        padding-top: 50px;
+    }
+}
 @media (min-width: 768px) {
     .about-modules {
         justify-items: center;
