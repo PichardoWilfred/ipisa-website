@@ -5,7 +5,7 @@
     layout.$reset();
 
     useSeoMeta({
-        title: 'IPISA - Inicio',
+        title: 'Instituto Politécnico Industrial de Santiago - Inicio',
         ogTitle: () => `IPISA - Buenos Cristianos y Honrados Ciudadanos`,
         ogDescription: () => `IPISA es una institución educativa de renombre que destaca por su enfoque en la formación técnica y su firme compromiso con los valores cristianos.`,
         description: () => `IPISA es una institución educativa de renombre que destaca por su enfoque en la formación técnica y su firme compromiso con los valores cristianos.`,
@@ -14,6 +14,10 @@
         language: () => `es`
     });
 
+    const in_mobile = ref(true); // mobile
+    onMounted(() => {
+        in_mobile.value = window.matchMedia("(max-width: 800px)").matches;
+    })
 </script>
 <template>
     <HomePortrait />
@@ -22,8 +26,10 @@
         <HomeAbout />
         <div class="h-[3px] w-full bg-black-100 mt-[3rem]"></div>
         <HomeNews />
-        <!-- <LazyHomeWorkshop /> -->
-        <WorkshopCards variant="cards"/>
+
+        <LazyHomeWorkshop v-if="!in_mobile" />
+        <WorkshopCards v-else variant="cards" />
+        
         <div class="h-[3px] w-full bg-black-100 mt-[6rem] lg:mt-[9rem]"></div>
         <LazyHomeActivities />
     </div>

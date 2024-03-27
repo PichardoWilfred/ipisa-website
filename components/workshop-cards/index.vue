@@ -109,19 +109,6 @@
 
 <script setup>
 // @ts-nocheck
-useSeoMeta({
-  title: "IPISA - Nuestros Talleres",
-  ogTitle: () => `IPISA - Nuestros Talleres`,
-  ogDescription: () =>
-    `Cada taller es una oportunidad para forjar un camino hacia el éxito, proporcionando a los estudiantes una base sólida y las herramientas necesarias para sobresalir en sus respectivos campos.`,
-  description: () =>
-    `Cada taller es una oportunidad para forjar un camino hacia el éxito, proporcionando a los estudiantes una base sólida y las herramientas necesarias para sobresalir en sus respectivos campos.`,
-  ogImage: () =>
-    "https://a.storyblok.com/f/272924/1055x582/742e24fb5e/nuestro-talleres.png",
-  twitterCard: () =>
-    "https://a.storyblok.com/f/272924/1055x582/742e24fb5e/nuestro-talleres.png",
-  language: () => `es`,
-});
 const { variant } = defineProps({
   variant: String,
 });
@@ -837,8 +824,17 @@ img.workshop-focused {
     transform-origin: unset;
   }
 }
-
 .color-background {
-  @apply absolute w-full h-full min-[800px]:w-[40%] min-[800px]:h-full z-10 opacity-[0.6];
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  opacity: 0.6;
+}
+@media (min-width: 800px) {
+  .color-background {
+    width: 40%;
+    height: 100%;
+  }
 }
 </style>
